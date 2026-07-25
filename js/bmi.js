@@ -95,6 +95,16 @@ const resultCard = document.getElementById("bmiResultCard");
 if (resultCard) {
     resultCard.classList.add("show-result");
 }
+
+// Record ToolXone statistics
+if (
+    typeof ToolXoneStatisticsEvents !== "undefined"
+) {
+    ToolXoneStatisticsEvents.recordCalculation(
+        "bmi-calculator"
+    );
+}
+
 }
 
 function animateBMI(target) {

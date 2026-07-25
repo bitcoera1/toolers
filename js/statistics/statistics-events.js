@@ -12,93 +12,67 @@
 
 const ToolXoneStatisticsEvents = (() => {
 
+    /*
+    ----------------------------------------
+    Internal Event Recorder
+    ----------------------------------------
+    */
+   async function recordEvent(toolId) {
+
+    ToolXoneStatistics.record(toolId);
+
+    try {
+
+        await StatisticsService.recordTool(toolId);
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Statistics Router Error:",
+            error
+        );
+
+    }
+
+}
+
     /**
      * Successful calculator action
      */
-    async function recordCalculation(toolId) {
+    function recordCalculation(toolId) {
 
-        ToolXoneStatistics.record(toolId);
+    return recordEvent(toolId);
 
-        try {
-
-            await StatisticsService.recordTool(toolId);
-
-        } catch (error) {
-
-            console.error(
-                "Statistics Router Error:",
-                error
-            );
-
-        }
-
-    }
+}
 
     /**
      * Successful converter action
      */
-    async function recordConversion(toolId) {
+    function recordConversion(toolId) {
 
-        ToolXoneStatistics.record(toolId);
+    return recordEvent(toolId);
 
-        try {
-
-            await StatisticsService.recordTool(toolId);
-
-        } catch (error) {
-
-            console.error(
-                "Statistics Router Error:",
-                error
-            );
-
-        }
-
-    }
+}
 
     /**
      * Successful utility action
      */
-    async function recordUtility(toolId) {
+    function recordUtility(toolId) {
 
-        ToolXoneStatistics.record(toolId);
+    return recordEvent(toolId);
 
-        try {
-
-            await StatisticsService.recordTool(toolId);
-
-        } catch (error) {
-
-            console.error(
-                "Statistics Router Error:",
-                error
-            );
-
-        }
-
-    }
+}
 
     /**
      * Successful AI generation
      */
-    async function recordAIGeneration(toolId) {
+    function recordAIGeneration(toolId) {
 
-        ToolXoneStatistics.record(toolId);
+    return recordEvent(toolId);
 
-        try {
-
-            await StatisticsService.recordTool(toolId);
-
-        } catch (error) {
-
-            console.error(
-                "Statistics Router Error:",
-                error
-            );
-
-        }
-
-    }
+}
 
     return {
 

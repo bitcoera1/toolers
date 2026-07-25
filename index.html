@@ -575,7 +575,7 @@ body.dark-mode .home-hero{
 
                 <div
                     class="statistics-number"
-                    id="totalToolActions"
+                    id="tx-total-actions"
                 >
                     0
                 </div>
@@ -594,7 +594,7 @@ body.dark-mode .home-hero{
 
                 <div
                     class="statistics-number"
-                    id="totalCalculations"
+                    id="tx-total-calculations"
                 >
                     0
                 </div>
@@ -613,7 +613,7 @@ body.dark-mode .home-hero{
 
                 <div
                     class="statistics-number"
-                    id="totalConversions"
+                    id="tx-total-conversions"
                 >
                     0
                 </div>
@@ -632,7 +632,7 @@ body.dark-mode .home-hero{
 
                 <div
                     class="statistics-number"
-                    id="totalUtilities"
+                    id="tx-total-utilities"
                 >
                     0
                 </div>
@@ -647,24 +647,111 @@ body.dark-mode .home-hero{
 
         <div class="statistics-highlight">
 
-            <div class="statistics-highlight-icon">
-                🏆
+    <div class="statistics-highlight-left">
+
+        <div class="statistics-highlight-icon">
+            🏆
+        </div>
+
+    </div>
+
+    <div class="statistics-highlight-right">
+
+        <div class="statistics-overview-header">
+
+            <h3>
+                📈 Platform Insights
+            </h3>
+
+            <p>
+                Live category usage across ToolXone
+            </p>
+
+        </div>
+
+        <div class="statistics-overview-grid">
+
+            <div class="overview-item">
+
+                <span>💰 Finance</span>
+
+                <strong id="totalFinance">
+                    0
+                </strong>
+
             </div>
 
-            <div class="statistics-highlight-content">
+            <div class="overview-item">
 
-                <span>
-                    Most Used Tool
-                </span>
+                <span>❤️ Health</span>
 
-                <strong id="mostUsedTool">
-                    Loading...
+                <strong id="totalHealth">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="overview-item">
+
+                <span>🔳 QR Codes</span>
+
+                <strong id="totalQR">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="overview-item">
+
+                <span>🤖 AI</span>
+
+                <strong id="totalAI">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="overview-item">
+
+                <span>📄 PDF</span>
+
+                <strong id="totalPDF">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="overview-item">
+
+                <span>📝 Text</span>
+
+                <strong id="totalText">
+                    0
                 </strong>
 
             </div>
 
         </div>
 
+        <div class="statistics-most-used">
+
+            <span>
+                🏆 Most Used Tool
+            </span>
+
+            <strong id="mostUsedTool">
+
+                Loading...
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+           
         <div class="statistics-footer">
 
             <span class="statistics-live-dot"></span>
@@ -771,29 +858,40 @@ body.dark-mode .home-hero{
 
 <script src="js/config/tools-registry.js"></script>
 
+<!-- Backend -->
 <script src="js/backend/backend-config.js"></script>
 <script src="js/backend/api-client.js"></script>
+
 <script src="js/backend/statistics-api.js"></script>
 <script src="js/backend/statistics-service.js"></script>
-<script src="js/backend/statistics-loader.js"></script>
+
 <script src="js/backend/analytics-api.js"></script>
 <script src="js/backend/feedback-api.js"></script>
 <script src="js/backend/phoenix-api.js"></script>
 <script src="js/backend/tool-usage-api.js"></script>
+
 <script src="js/backend/backend.js"></script>
 
+<!-- Statistics -->
 <script src="js/statistics/statistics-storage.js"></script>
 <script src="js/statistics/statistics-engine.js"></script>
 <script src="js/statistics/statistics-events.js"></script>
 <script src="js/statistics/statistics-api.js"></script>
+
+<script src="js/statistics/statistics-intelligence.js"></script>
+<script src="js/statistics/statistics-animation.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
+
+<!-- Load statistics LAST -->
 <script src="js/statistics/statistics-loader.js"></script>
 
+<!-- Homepage -->
 <script src="js/dashboard.js"></script>
 <script src="js/home-forex.js"></script>
 <script src="js/footer.js"></script>
-<script src="js/app.js"></script>
 
+<!-- Application -->
+<script src="js/app.js"></script>
 document.addEventListener(
 
     "DOMContentLoaded",

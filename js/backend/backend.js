@@ -24,28 +24,22 @@ const ToolXoneBackend = {
 
     try {
 
-        console.log(
-            "🚀 Initializing ToolXone Backend..."
-        );
-
-        this.verifyModules();
+      this.verifyModules();
 
         // Initialize live statistics
         if (
-            typeof StatisticsLoader !== "undefined" &&
-            typeof StatisticsLoader.init === "function"
-        ) {
 
-          await StatisticsLoader.init();
+    typeof ToolXoneStatisticsLoader !== "undefined"
 
-        }
+) {
+
+    await ToolXoneStatisticsLoader.init();
+
+}
 
         this.initialized = true;
 
-        console.log(
-            "✅ ToolXone Backend Ready"
-        );
-
+        
     }
 
     catch (error) {

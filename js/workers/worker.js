@@ -99,17 +99,31 @@ return this.dispatch(
     }
 
     // Increment a statistic
-    if (
-        path === "/statistics/increment" &&
-        method === "POST"
-    ) {
+    // Increment a statistic
+if (
+    path === "/statistics/increment" &&
+    method === "POST"
+) {
 
-        return this.incrementStatistic(
-            request,
-            env
-        );
+    return this.incrementStatistic(
+        request,
+        env
+    );
 
-    }
+}
+
+// Record individual tool usage
+if (
+    path === "/statistics/tool" &&
+    method === "POST"
+) {
+
+    return this.recordToolUsage(
+        request,
+        env
+    );
+
+}
 
     return this.notFound();
 
@@ -119,46 +133,49 @@ return this.dispatch(
 
     try {
 
-        const { results } =
+        // Get summary statistics
+        const { results: summary } = await env.DB
+            .prepare(`
+                SELECT
+                    stat_key,
+                    stat_value
+                FROM
+                    statistics
+                ORDER BY
+                    id
+            `)
+            .all();
 
-            await env.DB
+        // Get individual tool usage
+        const { results: tools } = await env.DB
+            .prepare(`
+                SELECT
+                    tool_id,
+                    tool_name,
+                    usage_count,
+                    last_used
+                FROM
+                    tool_usage
+                ORDER BY
+                    usage_count DESC
+            `)
+            .all();
 
-                .prepare(
+        return this.json({
 
-                    `
-                    SELECT
-                        stat_key,
-                        stat_value
-                    FROM
-                        statistics
-                    ORDER BY
-                        id
-                    `
-                )
+            success: true,
 
-                .all();
+            summary,
 
-        return this.json(
+            tools
 
-            {
-
-                success: true,
-
-                data: results
-
-            }
-
-        );
+        });
 
     }
 
     catch (error) {
 
-        return this.serverError(
-
-            error
-
-        );
+        return this.serverError(error);
 
     }
 
@@ -227,6 +244,110 @@ async incrementStatistic(
                 success: true,
 
                 statKey
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        return this.serverError(
+
+            error
+
+        );
+
+    }
+
+},
+
+async recordToolUsage(
+    request,
+    env
+) {
+
+    try {
+
+        const {
+
+            toolId,
+            toolName
+
+        } = await request.json();
+
+        if (
+
+            !toolId ||
+
+            !toolName
+
+        ) {
+
+            return this.json(
+
+                {
+
+                    success: false,
+
+                    message:
+                        "Tool ID and Tool Name are required."
+
+                },
+
+                400
+
+            );
+
+        }
+
+        await env.DB
+
+            .prepare(
+
+                `
+                INSERT INTO tool_usage (
+
+                    tool_id,
+                    tool_name,
+                    usage_count
+
+                )
+
+                VALUES (
+
+                    ?, ?, 1
+
+                )
+
+                ON CONFLICT(tool_id)
+
+                DO UPDATE SET
+
+                    usage_count = usage_count + 1,
+
+                    last_used = CURRENT_TIMESTAMP
+                `
+
+            )
+
+            .bind(
+
+                toolId,
+                toolName
+
+            )
+
+            .run();
+
+        return this.json(
+
+            {
+
+                success: true,
+
+                toolId
 
             }
 

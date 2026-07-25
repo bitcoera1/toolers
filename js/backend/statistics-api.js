@@ -52,7 +52,32 @@ const StatisticsAPI = {
 
         );
 
+        
     },
+
+    async recordTool(
+
+    toolId,
+
+    toolName
+
+) {
+
+    return APIClient.post(
+
+        `${BackendConfig.ENDPOINTS.STATISTICS}/tool`,
+
+        {
+
+            toolId,
+
+            toolName
+
+        }
+
+    );
+
+},
 
     async update(
 

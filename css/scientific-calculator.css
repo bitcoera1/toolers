@@ -30,6 +30,34 @@
     border:1px solid rgba(255,255,255,.08);
 }
 
+/* =====================================================
+   RESULT IN WORDS
+===================================================== */
+
+.scientific-number-words{
+
+    margin-top:12px;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    color:#1f2937;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    font-weight:500;
+
+    word-break:break-word;
+
+}
+
 .expression{
     min-height:34px;
     font-size:20px;
@@ -129,6 +157,16 @@ body.dark-mode .scientific-card{
 body.dark-mode .display{
     background:#111827;
     border-color:#374151;
+}
+
+body.dark-mode .scientific-number-words{
+
+    background:#111827;
+
+    border-color:#374151;
+
+    color:#f8fafc;
+
 }
 
 body.dark-mode .num{

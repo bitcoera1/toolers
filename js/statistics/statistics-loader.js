@@ -109,18 +109,3 @@ const ToolXoneStatisticsLoader = (() => {
     };
 
 })();
-
-/**
- * Automatically initialize
- */
-document.addEventListener(
-
-    "DOMContentLoaded",
-
-    async () => {
-
-        await ToolXoneStatisticsLoader.init();
-
-    }
-
-);

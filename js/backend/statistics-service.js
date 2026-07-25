@@ -18,6 +18,12 @@ business logic.
 
 const StatisticsService = {
 
+    _summary: [],
+
+    _tools: [],
+
+    _isRefreshing: false,
+
     async incrementToolAction() {
 
         return StatisticsAPI.increment(
@@ -133,9 +139,15 @@ const StatisticsService = {
 
         );
 
+        
         return;
 
     }
+
+    await StatisticsAPI.recordTool(
+    tool.id,
+    tool.name
+);
 
     const statisticsCategory = tool.statisticsCategory;
 
@@ -216,99 +228,69 @@ const StatisticsService = {
 
     async refreshStatistics() {
 
-    const response = await StatisticsAPI.getAll();
-
-    if (
-
-        !response ||
-
-        !response.success ||
-
-        !Array.isArray(response.data)
-
-    ) {
+    if (this._isRefreshing) {
 
         return false;
 
     }
 
-    const liveStatistics = {
+    this._isRefreshing = true;
 
-        totals: {
+    try {
 
-            toolActions: 0,
+        const response = await StatisticsAPI.getAll();
 
-            calculations: 0,
+        if (
+            !response ||
+            !response.success
+        ) {
 
-            conversions: 0,
-
-            utilities: 0,
-
-            aiGenerations: 0
-
-        },
-
-        tools: {}
-
-    };
-
-    for (const item of response.data) {
-
-        switch (item.stat_key) {
-
-            case "tool_actions":
-
-                liveStatistics.totals.toolActions =
-                    item.stat_value;
-
-                break;
-
-            case "calculations":
-
-                liveStatistics.totals.calculations =
-                    item.stat_value;
-
-                break;
-
-            case "conversions":
-
-                liveStatistics.totals.conversions =
-                    item.stat_value;
-
-                break;
-
-            case "utilities":
-
-                liveStatistics.totals.utilities =
-                    item.stat_value;
-
-                break;
-
-            case "ai_generations":
-
-                liveStatistics.totals.aiGenerations =
-                    item.stat_value;
-
-                break;
+            return false;
 
         }
 
+        const summary = response.summary || [];
+
+        const tools = response.tools || [];
+
+        this._summary = summary;
+
+        this._tools = tools;
+
+        ToolXoneStatisticsIntelligence.analyze(
+
+            summary,
+
+            tools
+
+        );
+
+        ToolXoneStatisticsDashboard.refresh();
+
+        return true;
+
     }
 
-    ToolXoneStatistics.replaceStatistics(
+    finally {
 
-        liveStatistics
+        this._isRefreshing = false;
 
-    );
+    }
 
-    ToolXoneStatisticsDashboard.refresh();
+},
 
-    return true;
+    getSummary() {
 
-}
+        return this._summary;
+
+    },
+
+    getTools() {
+
+        return this._tools;
+
+    }
 
 };
 
-Object.freeze(
-    StatisticsService
-);
+Object.freeze(StatisticsService);
