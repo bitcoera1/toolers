@@ -25,7 +25,10 @@ function createFinanceCalculator(config) {
     }
 
     // Feedback
-    renderFinanceFeedback("financeFeedback");
+renderFinanceFeedback(
+    "financeFeedback",
+    config.title || "ToolXone Tool"
+);
 
     // Related Tools
     initializeRelatedTools(config.id);
