@@ -286,3 +286,583 @@ body:not(.dark-mode) .calculator-message.success{
 
     overflow-wrap:anywhere;
 }
+
+/* =========================================================
+   TOOLXONE MORTGAGE CALCULATOR
+   EDUCATIONAL / SEO GUIDE
+   ========================================================= */
+
+.mortgage-guide {
+    width: min(1120px, calc(100% - 40px));
+    margin: 36px auto;
+    padding: 38px 42px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.07);
+
+    color: #334155;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   MAIN ARTICLE TITLE
+   ========================================================= */
+
+.mortgage-guide > h2 {
+    margin: 0 0 20px;
+
+    color: #0f172a;
+
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   ARTICLE SECTION HEADINGS
+   ========================================================= */
+
+.mortgage-guide h3 {
+    margin: 34px 0 12px;
+
+    color: #0f172a;
+
+    font-size: 1.18rem;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.mortgage-guide p {
+    margin: 0 0 18px;
+
+    color: #475569;
+
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.mortgage-guide p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   STRONG TEXT
+   ========================================================= */
+
+.mortgage-guide strong {
+    color: #1e293b;
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   INPUT EXPLANATION GRID
+   Loan Amount / Rate / Term
+   ========================================================= */
+
+.mortgage-input-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin: 22px 0 28px;
+}
+
+
+.mortgage-input-item {
+    min-width: 0;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fafc 0%,
+            #eff6ff 100%
+        );
+
+    border: 1px solid #dbeafe;
+    border-radius: 15px;
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.045);
+}
+
+
+.mortgage-input-item strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #1d4ed8;
+
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+
+.mortgage-input-item span {
+    display: block;
+
+    color: #475569;
+
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MORTGAGE FORMULA BOXES
+   ========================================================= */
+
+.mortgage-formula {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 18px 0 22px;
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff 0%,
+            #f0fdf4 100%
+        );
+
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    border-radius: 14px;
+
+    color: #0f172a;
+
+    font-size: 1.08rem;
+    font-weight: 800;
+    line-height: 1.55;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   WORKED EXAMPLE BOXES
+   ========================================================= */
+
+.mortgage-formula-example {
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4 0%,
+            #ecfdf5 100%
+        );
+
+    border-color: #bbf7d0;
+    border-left-color: #10b981;
+}
+
+
+/* =========================================================
+   IMPORTANT EXCLUSIONS / NOTE BOX
+   ========================================================= */
+
+.mortgage-note {
+    margin: 22px 0 24px;
+    padding: 22px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed 0%,
+            #fffbeb 100%
+        );
+
+    border: 1px solid #fed7aa;
+    border-left: 4px solid #f59e0b;
+    border-radius: 15px;
+
+    color: #475569;
+}
+
+
+.mortgage-note > strong {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #9a3412;
+
+    font-size: 1rem;
+}
+
+
+.mortgage-note ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+
+.mortgage-note li {
+    margin: 7px 0;
+
+    color: #475569;
+
+    line-height: 1.6;
+}
+
+
+.mortgage-note li::marker {
+    color: #f59e0b;
+}
+
+
+/* =========================================================
+   INTERNAL LINKS
+   ========================================================= */
+
+.mortgage-guide a {
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+
+.mortgage-guide a:hover {
+    color: #1d4ed8;
+
+    text-decoration: underline;
+}
+
+
+.mortgage-guide a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.25);
+    outline-offset: 3px;
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .mortgage-input-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .mortgage-guide {
+        width: calc(100% - 28px);
+
+        margin: 28px auto;
+        padding: 28px 22px;
+
+        border-radius: 18px;
+    }
+
+
+    .mortgage-guide > h2 {
+        font-size: 1.6rem;
+    }
+
+
+    .mortgage-guide h3 {
+        margin-top: 28px;
+
+        font-size: 1.08rem;
+    }
+
+
+    .mortgage-guide p {
+        font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+
+    .mortgage-input-grid {
+        gap: 12px;
+
+        margin: 18px 0 24px;
+    }
+
+
+    .mortgage-input-item {
+        padding: 18px;
+    }
+
+
+    .mortgage-formula {
+        padding: 17px 16px;
+
+        font-size: 1rem;
+    }
+
+
+    .mortgage-note {
+        padding: 19px 18px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .mortgage-guide {
+        width: calc(100% - 20px);
+
+        margin: 22px auto;
+        padding: 24px 18px;
+
+        border-radius: 16px;
+    }
+
+
+    .mortgage-guide > h2 {
+        font-size: 1.42rem;
+    }
+
+
+    .mortgage-guide h3 {
+        font-size: 1.03rem;
+    }
+
+
+    .mortgage-guide p {
+        font-size: 0.94rem;
+    }
+
+
+    .mortgage-input-item {
+        padding: 16px;
+    }
+
+
+    .mortgage-input-item span {
+        font-size: 0.92rem;
+    }
+
+
+    .mortgage-formula {
+        margin: 16px 0 20px;
+        padding: 16px 12px;
+
+        font-size: 0.94rem;
+        line-height: 1.55;
+    }
+
+
+    .mortgage-note {
+        margin: 18px 0 22px;
+        padding: 17px 16px;
+    }
+
+
+    .mortgage-note ul {
+        padding-left: 20px;
+    }
+
+
+    .mortgage-note li {
+        font-size: 0.93rem;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark .mortgage-guide,
+body.dark-mode .mortgage-guide,
+[data-theme="dark"] .mortgage-guide {
+    background: #111827;
+    border-color: #273449;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22);
+
+    color: #cbd5e1;
+}
+
+
+/* Headings */
+
+body.dark .mortgage-guide > h2,
+body.dark .mortgage-guide h3,
+body.dark-mode .mortgage-guide > h2,
+body.dark-mode .mortgage-guide h3,
+[data-theme="dark"] .mortgage-guide > h2,
+[data-theme="dark"] .mortgage-guide h3 {
+    color: #f8fafc;
+}
+
+
+/* Paragraphs */
+
+body.dark .mortgage-guide p,
+body.dark-mode .mortgage-guide p,
+[data-theme="dark"] .mortgage-guide p {
+    color: #cbd5e1;
+}
+
+
+/* Strong text */
+
+body.dark .mortgage-guide strong,
+body.dark-mode .mortgage-guide strong,
+[data-theme="dark"] .mortgage-guide strong {
+    color: #f1f5f9;
+}
+
+
+/* Input cards */
+
+body.dark .mortgage-input-item,
+body.dark-mode .mortgage-input-item,
+[data-theme="dark"] .mortgage-input-item {
+    background:
+        linear-gradient(
+            145deg,
+            #172033 0%,
+            #152238 100%
+        );
+
+    border-color: #334155;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.14);
+}
+
+
+body.dark .mortgage-input-item strong,
+body.dark-mode .mortgage-input-item strong,
+[data-theme="dark"] .mortgage-input-item strong {
+    color: #60a5fa;
+}
+
+
+body.dark .mortgage-input-item span,
+body.dark-mode .mortgage-input-item span,
+[data-theme="dark"] .mortgage-input-item span {
+    color: #cbd5e1;
+}
+
+
+/* Formula boxes */
+
+body.dark .mortgage-formula,
+body.dark-mode .mortgage-formula,
+[data-theme="dark"] .mortgage-formula {
+    background: #172033;
+
+    border-color: #334155;
+    border-left-color: #60a5fa;
+
+    color: #f8fafc;
+}
+
+
+/* Example formula boxes */
+
+body.dark .mortgage-formula-example,
+body.dark-mode .mortgage-formula-example,
+[data-theme="dark"] .mortgage-formula-example {
+    background: #12261f;
+
+    border-color: #285b46;
+    border-left-color: #34d399;
+}
+
+
+/* Exclusion note */
+
+body.dark .mortgage-note,
+body.dark-mode .mortgage-note,
+[data-theme="dark"] .mortgage-note {
+    background:
+        linear-gradient(
+            135deg,
+            #292016 0%,
+            #241e14 100%
+        );
+
+    border-color: #634d27;
+    border-left-color: #fbbf24;
+
+    color: #d6d3d1;
+}
+
+
+body.dark .mortgage-note > strong,
+body.dark-mode .mortgage-note > strong,
+[data-theme="dark"] .mortgage-note > strong {
+    color: #fbbf24;
+}
+
+
+body.dark .mortgage-note li,
+body.dark-mode .mortgage-note li,
+[data-theme="dark"] .mortgage-note li {
+    color: #d6d3d1;
+}
+
+
+body.dark .mortgage-note li::marker,
+body.dark-mode .mortgage-note li::marker,
+[data-theme="dark"] .mortgage-note li::marker {
+    color: #fbbf24;
+}
+
+
+/* Links */
+
+body.dark .mortgage-guide a,
+body.dark-mode .mortgage-guide a,
+[data-theme="dark"] .mortgage-guide a {
+    color: #60a5fa;
+}
+
+
+body.dark .mortgage-guide a:hover,
+body.dark-mode .mortgage-guide a:hover,
+[data-theme="dark"] .mortgage-guide a:hover {
+    color: #93c5fd;
+}

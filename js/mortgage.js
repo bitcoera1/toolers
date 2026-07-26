@@ -287,50 +287,59 @@ function updateMortgageBars(
    ====================================== */
 
 function runMortgageCalculator() {
-    const data =
-        getMortgageInputValues();
+    const data = getMortgageInputValues();
 
     if (
-        Number.isNaN(
-            data.loan
-        ) ||
-        Number.isNaN(
-            data.annualRate
-        ) ||
-        Number.isNaN(
-            data.years
-        ) ||
+        !Number.isFinite(data.loan) ||
+        !Number.isFinite(data.annualRate) ||
+        !Number.isFinite(data.years) ||
         data.loan <= 0 ||
         data.annualRate < 0 ||
         data.years <= 0
     ) {
         showMortgageMessage(
-            "Please enter valid positive values.",
+            "Please enter valid values. Loan amount and loan term must be greater than zero, and interest rate cannot be negative.",
             "error"
         );
-
         return;
     }
 
-    const resultData =
-        calculateMortgageValues(
-            data
+    const payments = data.years * 12;
+
+    if (!Number.isInteger(payments)) {
+        showMortgageMessage(
+            "Please enter a loan term that represents a whole number of months.",
+            "error"
         );
+        return;
+    }
+
+    const resultData = calculateMortgageValues(data);
+
+    if (
+        !Number.isFinite(resultData.monthlyPayment) ||
+        !Number.isFinite(resultData.totalInterest) ||
+        !Number.isFinite(resultData.totalPayment)
+    ) {
+        showMortgageMessage(
+            "These values are too large to calculate reliably. Please use smaller values.",
+            "error"
+        );
+        return;
+    }
 
     clearMortgageMessage();
+    renderMortgageSummary(resultData);
+    updateMortgageBars(resultData);
 
-    renderMortgageSummary(
-        resultData
-    );
-
-    updateMortgageBars(
-        resultData
-    );
-
-    // Record successful calculation
-ToolXoneStatisticsEvents.recordCalculation(
-    "mortgage-calculator"
-);
+    if (
+        window.ToolXoneStatisticsEvents &&
+        typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+    ) {
+        ToolXoneStatisticsEvents.recordCalculation(
+            "mortgage-calculator"
+        );
+    }
 }
 
 
