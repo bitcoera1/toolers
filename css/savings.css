@@ -253,3 +253,285 @@ body.dark-mode .bar-bg{
 
     overflow-wrap:anywhere;
 }
+
+/* =========================================================
+   TOOLXONE SAVINGS GOAL CALCULATOR
+   SEO / EDUCATIONAL GUIDE
+   ========================================================= */
+
+.savings-guide {
+    width: min(1120px, calc(100% - 40px));
+    margin: 36px auto;
+    padding: 38px 42px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.07);
+
+    color: #334155;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   MAIN GUIDE TITLE
+   ========================================================= */
+
+.savings-guide > h2 {
+    margin: 0 0 20px;
+
+    color: #0f172a;
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.savings-guide h3 {
+    margin: 32px 0 12px;
+
+    color: #0f172a;
+    font-size: 1.18rem;
+    line-height: 1.4;
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.savings-guide p {
+    margin: 0 0 18px;
+
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.savings-guide p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   SAVINGS FORMULA BOXES
+   ========================================================= */
+
+.savings-formula {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    margin: 18px 0 22px;
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff 0%,
+            #f0fdf4 100%
+        );
+
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    border-radius: 14px;
+
+    color: #0f172a;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    font-weight: 800;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   WORKED EXAMPLE FORMULAS
+   ========================================================= */
+
+.savings-formula-example {
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4 0%,
+            #ecfdf5 100%
+        );
+
+    border-color: #bbf7d0;
+    border-left-color: #10b981;
+}
+
+
+/* =========================================================
+   INTERNAL LINKS
+   ========================================================= */
+
+.savings-guide a {
+    color: #2563eb;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.savings-guide a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.savings-guide a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.25);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .savings-guide {
+        width: calc(100% - 28px);
+
+        margin: 28px auto;
+        padding: 28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .savings-guide > h2 {
+        font-size: 1.6rem;
+    }
+
+    .savings-guide h3 {
+        margin-top: 27px;
+        font-size: 1.08rem;
+    }
+
+    .savings-guide p {
+        font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+    .savings-formula {
+        padding: 17px 16px;
+        font-size: 1rem;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .savings-guide {
+        width: calc(100% - 20px);
+
+        margin: 22px auto;
+        padding: 24px 18px;
+
+        border-radius: 16px;
+    }
+
+    .savings-guide > h2 {
+        font-size: 1.42rem;
+    }
+
+    .savings-guide h3 {
+        font-size: 1.03rem;
+    }
+
+    .savings-guide p {
+        font-size: 0.94rem;
+    }
+
+    .savings-formula {
+        margin: 16px 0 20px;
+        padding: 16px 12px;
+
+        font-size: 0.94rem;
+        line-height: 1.55;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+   Supports common ToolXone theme patterns
+   ========================================================= */
+
+body.dark .savings-guide,
+body.dark-mode .savings-guide,
+[data-theme="dark"] .savings-guide {
+    background: #111827;
+    border-color: #273449;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22);
+
+    color: #cbd5e1;
+}
+
+body.dark .savings-guide > h2,
+body.dark .savings-guide h3,
+body.dark-mode .savings-guide > h2,
+body.dark-mode .savings-guide h3,
+[data-theme="dark"] .savings-guide > h2,
+[data-theme="dark"] .savings-guide h3 {
+    color: #f8fafc;
+}
+
+body.dark .savings-guide p,
+body.dark-mode .savings-guide p,
+[data-theme="dark"] .savings-guide p {
+    color: #cbd5e1;
+}
+
+body.dark .savings-formula,
+body.dark-mode .savings-formula,
+[data-theme="dark"] .savings-formula {
+    background: #172033;
+    border-color: #334155;
+    border-left-color: #60a5fa;
+
+    color: #f8fafc;
+}
+
+body.dark .savings-formula-example,
+body.dark-mode .savings-formula-example,
+[data-theme="dark"] .savings-formula-example {
+    background: #12261f;
+    border-color: #285b46;
+    border-left-color: #34d399;
+}
+
+body.dark .savings-guide a,
+body.dark-mode .savings-guide a,
+[data-theme="dark"] .savings-guide a {
+    color: #60a5fa;
+}
+
+body.dark .savings-guide a:hover,
+body.dark-mode .savings-guide a:hover,
+[data-theme="dark"] .savings-guide a:hover {
+    color: #93c5fd;
+}

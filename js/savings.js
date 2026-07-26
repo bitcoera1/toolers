@@ -26,19 +26,20 @@ function calculateSavings() {
         );
 
     if (
-        Number.isNaN(target) ||
-        Number.isNaN(current) ||
-        Number.isNaN(months) ||
-        target <= 0 ||
-        current < 0 ||
-        months <= 0
-    ) {
-        alert(
-            "Please enter valid values."
-        );
+    !Number.isFinite(target) ||
+    !Number.isFinite(current) ||
+    !Number.isFinite(months) ||
+    target <= 0 ||
+    current < 0 ||
+    months <= 0 ||
+    !Number.isInteger(months)
+) {
+    alert(
+        "Please enter valid values. Time period must be a whole number of months."
+    );
 
-        return;
-    }
+    return;
+}
 
     const remaining =
         Math.max(
