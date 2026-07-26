@@ -47,25 +47,59 @@ function calculateBMI() {
         const height = parseFloat(document.getElementById("heightCm").value);
         const weight = parseFloat(document.getElementById("weightKg").value);
 
-        if (!height || !weight) {
-            alert("Please enter your height and weight.");
-            return;
-        }
+        if (
+    !Number.isFinite(height) ||
+    !Number.isFinite(weight) ||
+    height <= 0 ||
+    weight <= 0
+) {
+    alert("Please enter valid height and weight values.");
+    return;
+}
 
         bmi = weight / Math.pow(height / 100, 2);
     } else {
-        const feet = parseFloat(document.getElementById("heightFt").value) || 0;
-        const inches = parseFloat(document.getElementById("heightIn").value) || 0;
-        const weightLb = parseFloat(document.getElementById("weightLb").value);
+        const feetInput = document.getElementById("heightFt").value.trim();
+const inchesInput = document.getElementById("heightIn").value.trim();
+const weightInput = document.getElementById("weightLb").value.trim();
 
-        const totalInches = (feet * 12) + inches;
+const feet = parseFloat(feetInput);
+const inches = parseFloat(inchesInput);
+const weightLb = parseFloat(weightInput);
 
-        if (!totalInches || !weightLb) {
-            alert("Please enter your height and weight.");
-            return;
-        }
+// Reject missing or non-numeric values
+if (
+    feetInput === "" ||
+    inchesInput === "" ||
+    weightInput === "" ||
+    !Number.isFinite(feet) ||
+    !Number.isFinite(inches) ||
+    !Number.isFinite(weightLb)
+) {
+    alert("Please enter your height and weight.");
+    return;
+}
 
-        bmi = (weightLb / Math.pow(totalInches, 2)) * 703;
+// Reject negative/zero measurements and invalid inch values
+if (
+    feet < 0 ||
+    inches < 0 ||
+    inches >= 12 ||
+    weightLb <= 0
+) {
+    alert("Please enter valid height and weight values.");
+    return;
+}
+
+const totalInches = (feet * 12) + inches;
+
+// Total height must be greater than zero
+if (totalInches <= 0) {
+    alert("Please enter valid height and weight values.");
+    return;
+}
+
+bmi = (weightLb / Math.pow(totalInches, 2)) * 703;
     }
 
     animateBMI(bmi);
@@ -75,18 +109,18 @@ function calculateBMI() {
     let advice = "";
 
     if (bmi < 18.5) {
-        category = "🔵 Underweight";
-        advice = "Consider a balanced diet and consult a healthcare professional if needed.";
-    } else if (bmi < 25) {
-        category = "🟢 Normal Weight";
-        advice = "Excellent! Maintain your healthy lifestyle.";
-    } else if (bmi < 30) {
-        category = "🟠 Overweight";
-        advice = "Regular exercise and balanced nutrition can help.";
-    } else {
-        category = "🔴 Obese";
-        advice = "Consult a healthcare professional for personalized guidance.";
-    }
+    category = "🔵 Underweight";
+    advice = "This BMI falls within the underweight range for adults. BMI is a screening measure and does not assess overall health.";
+} else if (bmi < 25) {
+    category = "🟢 Healthy Weight Range";
+    advice = "This BMI falls within the healthy weight range for adults. BMI is a screening measure and does not assess overall health.";
+} else if (bmi < 30) {
+    category = "🟠 Overweight";
+    advice = "This BMI falls within the overweight range for adults. BMI is a screening measure and does not assess overall health.";
+} else {
+    category = "🔴 Obesity Range";
+    advice = "This BMI falls within the obesity range for adults. BMI is a screening measure and does not assess overall health.";
+}
 
     document.getElementById("bmiCategory").innerHTML = category;
 document.getElementById("bmiAdvice").textContent = advice;
@@ -134,7 +168,8 @@ function resetBMI() {
 
     document.getElementById("bmiNumber").textContent = "--";
     document.getElementById("bmiCategory").textContent = "Enter your height and weight";
-    document.getElementById("bmiAdvice").textContent = "Your health category and advice will appear here.";
+    document.getElementById("bmiAdvice").textContent =
+    "Your BMI range and information will appear here.";
 
     const marker = document.getElementById("scaleMarker");
     if (marker) marker.style.left = "0%";
