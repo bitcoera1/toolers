@@ -332,3 +332,611 @@ body.dark-mode
     border-color:#854d0e;
     color:#fde68a;
 }
+
+/* ==========================================
+   TOOLXONE CURRENCY PROFIT CALCULATOR
+   PREMIUM EDUCATIONAL ARTICLE
+   ========================================== */
+
+.currency-profit-guide {
+    width: 100%;
+    padding: 34px 20px 60px;
+}
+
+.currency-profit-guide-inner {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 42px 44px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ==========================================
+   MAIN TYPOGRAPHY
+   ========================================== */
+
+.currency-profit-guide h2 {
+    margin: 0 0 20px;
+    color: #0f172a;
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.currency-profit-guide h3 {
+    margin: 34px 0 12px;
+    color: #0f172a;
+    font-size: 21px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.currency-profit-guide h4 {
+    margin: 0 0 8px;
+    color: #047857;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 750;
+}
+
+.currency-profit-guide p {
+    margin: 0 0 18px;
+    color: #475569;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.currency-profit-guide strong {
+    color: #0f172a;
+}
+
+
+/* ==========================================
+   INPUT INFORMATION GRID
+   ========================================== */
+
+.currency-profit-info-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 22px 0 30px;
+}
+
+.currency-profit-info-box {
+    padding: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #ecfdf5
+        );
+    border: 1px solid #bbf7d0;
+    border-radius: 16px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.currency-profit-info-box:hover {
+    transform: translateY(-2px);
+    border-color: #86efac;
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.07);
+}
+
+.currency-profit-info-box p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+
+/* ==========================================
+   FORMULA BOXES
+   ========================================== */
+
+.currency-profit-formula {
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    padding: 19px 24px;
+    background:
+        linear-gradient(
+            90deg,
+            #eff6ff 0%,
+            #ecfdf5 100%
+        );
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    border-radius: 14px;
+
+    color: #0f172a;
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 800;
+    text-align: center;
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+
+/* ==========================================
+   WORKED EXAMPLE BOXES
+   ========================================== */
+
+.currency-profit-example {
+    margin: 20px 0 22px;
+    padding: 18px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #ecfdf5
+        );
+
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid #10b981;
+    border-radius: 14px;
+
+    color: #0f172a;
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.04);
+}
+
+.currency-profit-example strong {
+    color: #047857;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   COMPARISON CARDS
+   ========================================== */
+
+.currency-profit-comparison-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 22px 0 30px;
+}
+
+.currency-profit-comparison-box {
+    padding: 21px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.035);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.currency-profit-comparison-box:hover {
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+    box-shadow:
+        0 12px 26px rgba(15, 23, 42, 0.07);
+}
+
+.currency-profit-comparison-box h4 {
+    color: #1d4ed8;
+}
+
+.currency-profit-comparison-box p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+
+/* ==========================================
+   REAL-WORLD USE CASE GRID
+   ========================================== */
+
+.currency-profit-use-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin: 24px 0 32px;
+}
+
+.currency-profit-use-box {
+    padding: 22px 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #f8fafc
+        );
+
+    border: 1px solid #e2e8f0;
+    border-radius: 17px;
+
+    text-align: center;
+
+    box-shadow:
+        0 7px 20px rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.currency-profit-use-box:hover {
+    transform: translateY(-3px);
+    border-color: #a7f3d0;
+    box-shadow:
+        0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.currency-profit-use-box > span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 29px;
+    line-height: 1;
+}
+
+.currency-profit-use-box h4 {
+    margin-bottom: 8px;
+    color: #0f766e;
+}
+
+.currency-profit-use-box p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   IMPORTANT FACTORS LIST
+   ========================================== */
+
+.currency-profit-considerations {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+
+    margin: 20px 0 24px;
+    padding: 0;
+
+    list-style: none;
+}
+
+.currency-profit-considerations li {
+    position: relative;
+
+    padding: 13px 16px 13px 43px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.currency-profit-considerations li::before {
+    content: "✓";
+
+    position: absolute;
+    top: 12px;
+    left: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 19px;
+    height: 19px;
+
+    background: #dcfce7;
+    border-radius: 50%;
+
+    color: #047857;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+/* ==========================================
+   IMPORTANT NOTE
+   ========================================== */
+
+.currency-profit-note {
+    position: relative;
+    margin-top: 38px;
+    padding: 24px 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffbeb,
+            #fff7ed
+        );
+
+    border: 1px solid #fde68a;
+    border-left: 5px solid #f59e0b;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.045);
+}
+
+.currency-profit-note h3 {
+    margin: 0 0 10px;
+    color: #92400e;
+    font-size: 19px;
+}
+
+.currency-profit-note p {
+    margin: 0;
+    color: #78350f;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   SECTION RHYTHM
+   ========================================== */
+
+.currency-profit-guide-inner > h3 {
+    padding-top: 5px;
+}
+
+.currency-profit-guide-inner > h3:not(:first-child) {
+    border-top: 1px solid transparent;
+}
+
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .currency-profit-guide {
+        padding:
+            28px 18px
+            50px;
+    }
+
+    .currency-profit-guide-inner {
+        padding: 34px 30px;
+        border-radius: 20px;
+    }
+
+    .currency-profit-guide h2 {
+        font-size: 27px;
+    }
+
+    .currency-profit-guide h3 {
+        font-size: 20px;
+    }
+
+    .currency-profit-use-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 640px) {
+
+    .currency-profit-guide {
+        padding:
+            22px 12px
+            42px;
+    }
+
+    .currency-profit-guide-inner {
+        padding: 26px 18px;
+        border-radius: 17px;
+    }
+
+    .currency-profit-guide h2 {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    .currency-profit-guide h3 {
+        margin-top: 28px;
+        font-size: 19px;
+    }
+
+    .currency-profit-guide p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .currency-profit-info-grid,
+    .currency-profit-comparison-grid,
+    .currency-profit-use-grid,
+    .currency-profit-considerations {
+        grid-template-columns: 1fr;
+    }
+
+    .currency-profit-formula {
+        padding: 17px 15px;
+        font-size: 15px;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+    }
+
+    .currency-profit-example {
+        padding: 16px;
+        font-size: 15px;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+
+    .currency-profit-info-box,
+    .currency-profit-comparison-box,
+    .currency-profit-use-box {
+        padding: 18px;
+    }
+
+    .currency-profit-note {
+        padding: 20px 18px;
+    }
+
+}
+
+
+/* ==========================================
+   VERY SMALL SCREENS
+   ========================================== */
+
+@media (max-width: 380px) {
+
+    .currency-profit-guide {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .currency-profit-guide-inner {
+        padding:
+            22px 14px;
+    }
+
+    .currency-profit-guide h2 {
+        font-size: 22px;
+    }
+
+    .currency-profit-formula,
+    .currency-profit-example {
+        font-size: 14px;
+    }
+
+}
+
+
+/* ==========================================
+   DARK MODE
+   Supports common ToolXone theme patterns
+   ========================================== */
+
+body.dark-mode .currency-profit-guide-inner,
+body.dark .currency-profit-guide-inner,
+[data-theme="dark"] .currency-profit-guide-inner {
+    background: #111827;
+    border-color: #334155;
+}
+
+body.dark-mode .currency-profit-guide h2,
+body.dark-mode .currency-profit-guide h3,
+body.dark-mode .currency-profit-guide strong,
+body.dark .currency-profit-guide h2,
+body.dark .currency-profit-guide h3,
+body.dark .currency-profit-guide strong,
+[data-theme="dark"] .currency-profit-guide h2,
+[data-theme="dark"] .currency-profit-guide h3,
+[data-theme="dark"] .currency-profit-guide strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .currency-profit-guide p,
+body.dark .currency-profit-guide p,
+[data-theme="dark"] .currency-profit-guide p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .currency-profit-info-box,
+body.dark .currency-profit-info-box,
+[data-theme="dark"] .currency-profit-info-box {
+    background: #13251f;
+    border-color: #275c49;
+}
+
+body.dark-mode .currency-profit-comparison-box,
+body.dark-mode .currency-profit-use-box,
+body.dark .currency-profit-comparison-box,
+body.dark .currency-profit-use-box,
+[data-theme="dark"] .currency-profit-comparison-box,
+[data-theme="dark"] .currency-profit-use-box {
+    background: #172033;
+    border-color: #334155;
+}
+
+body.dark-mode .currency-profit-formula,
+body.dark .currency-profit-formula,
+[data-theme="dark"] .currency-profit-formula {
+    background:
+        linear-gradient(
+            90deg,
+            #172554,
+            #12332b
+        );
+
+    border-color: #334e7d;
+    border-left-color: #60a5fa;
+    color: #f8fafc;
+}
+
+body.dark-mode .currency-profit-example,
+body.dark .currency-profit-example,
+[data-theme="dark"] .currency-profit-example {
+    background: #123326;
+    border-color: #276749;
+    border-left-color: #34d399;
+    color: #f8fafc;
+}
+
+body.dark-mode .currency-profit-considerations li,
+body.dark .currency-profit-considerations li,
+[data-theme="dark"] .currency-profit-considerations li {
+    background: #172033;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .currency-profit-note,
+body.dark .currency-profit-note,
+[data-theme="dark"] .currency-profit-note {
+    background: #352711;
+    border-color: #6b4d16;
+    border-left-color: #fbbf24;
+}
+
+body.dark-mode .currency-profit-note h3,
+body.dark .currency-profit-note h3,
+[data-theme="dark"] .currency-profit-note h3 {
+    color: #fbbf24;
+}
+
+body.dark-mode .currency-profit-note p,
+body.dark .currency-profit-note p,
+[data-theme="dark"] .currency-profit-note p {
+    color: #fde68a;
+}

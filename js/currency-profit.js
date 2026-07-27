@@ -25,28 +25,40 @@ function calculateCurrencyProfit() {
             ).value
         );
 
+    const feeInput =
+        document.getElementById(
+            "exchangeFee"
+        ).value.trim();
+
     const fee =
-        parseFloat(
-            document.getElementById(
-                "exchangeFee"
-            ).value
-        ) || 0;
+        feeInput === ""
+            ? 0
+            : parseFloat(feeInput);
+
+    // ======================================
+    // INPUT VALIDATION
+    // ======================================
 
     if (
-        Number.isNaN(amount) ||
-        Number.isNaN(buyRate) ||
-        Number.isNaN(sellRate) ||
+        !Number.isFinite(amount) ||
+        !Number.isFinite(buyRate) ||
+        !Number.isFinite(sellRate) ||
+        !Number.isFinite(fee) ||
         amount <= 0 ||
         buyRate <= 0 ||
         sellRate <= 0 ||
         fee < 0
     ) {
         alert(
-            "Please enter valid values."
+            "Please enter valid values. Currency amount, buy rate, and sell rate must be greater than zero, and the exchange fee cannot be negative."
         );
 
         return;
     }
+
+    // ======================================
+    // CALCULATIONS
+    // ======================================
 
     const buyingCost =
         amount * buyRate;
@@ -63,12 +75,32 @@ function calculateCurrencyProfit() {
         fee;
 
     const profitPercent =
-        buyingCost > 0
-            ? (
-                netProfit /
-                buyingCost
-            ) * 100
-            : 0;
+        (
+            netProfit /
+            buyingCost
+        ) * 100;
+
+    // ======================================
+    // RESULT SAFETY CHECK
+    // ======================================
+
+    if (
+        !Number.isFinite(buyingCost) ||
+        !Number.isFinite(sellingValue) ||
+        !Number.isFinite(grossProfit) ||
+        !Number.isFinite(netProfit) ||
+        !Number.isFinite(profitPercent)
+    ) {
+        alert(
+            "These values are too large to calculate reliably. Please use smaller values."
+        );
+
+        return;
+    }
+
+    // ======================================
+    // RESULT OUTPUT
+    // ======================================
 
     const result =
         document.getElementById(
@@ -113,13 +145,19 @@ function calculateCurrencyProfit() {
             netProfit >= 0
                 ? "Profit %"
                 : "Loss %",
-            profitPercent
+            netProfit >= 0
+                ? profitPercent
+                : Math.abs(profitPercent)
         )}
 
         ${createCurrencyProfitInsight(
             netProfit
         )}
     `;
+
+    // ======================================
+    // VISUAL BARS
+    // ======================================
 
     document.getElementById(
         "currencyProfitBars"
@@ -157,12 +195,20 @@ function calculateCurrencyProfit() {
             profitPercentOfSelling
         )}%`;
 
-// Record successful calculation
-ToolXoneStatisticsEvents.recordCalculation(
-    "currency-profit-calculator"
-);
+    // ======================================
+    // STATISTICS
+    // ======================================
 
+    if (
+        window.ToolXoneStatisticsEvents &&
+        typeof ToolXoneStatisticsEvents
+            .recordCalculation === "function"
+    ) {
+        ToolXoneStatisticsEvents.recordCalculation(
+            "currency-profit-calculator"
+        );
     }
+}
 
 
 /* ======================================
