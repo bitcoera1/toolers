@@ -25,10 +25,15 @@ function calculateInflation() {
             ).value
         );
 
+
+    /* ======================================
+       INPUT VALIDATION
+       ====================================== */
+
     if (
-        Number.isNaN(current) ||
-        Number.isNaN(rate) ||
-        Number.isNaN(years) ||
+        !Number.isFinite(current) ||
+        !Number.isFinite(rate) ||
+        !Number.isFinite(years) ||
         current <= 0 ||
         rate < 0 ||
         years <= 0
@@ -39,6 +44,11 @@ function calculateInflation() {
 
         return;
     }
+
+
+    /* ======================================
+       CALCULATION
+       ====================================== */
 
     const inflationFactor =
         Math.pow(
@@ -57,6 +67,29 @@ function calculateInflation() {
     const purchasingPower =
         current /
         inflationFactor;
+
+
+    /* ======================================
+       RESULT SAFETY CHECK
+       ====================================== */
+
+    if (
+        !Number.isFinite(inflationFactor) ||
+        !Number.isFinite(futureValue) ||
+        !Number.isFinite(increase) ||
+        !Number.isFinite(purchasingPower)
+    ) {
+        alert(
+            "These values are too large to calculate reliably. Please use smaller values."
+        );
+
+        return;
+    }
+
+
+    /* ======================================
+       RESULT RENDERING
+       ====================================== */
 
     const result =
         document.getElementById(
@@ -84,7 +117,7 @@ function calculateInflation() {
         )}
 
         ${createInflationMoneyResult(
-            "Today's Purchasing Power",
+            "Future Purchasing Power",
             purchasingPower
         )}
 
@@ -96,6 +129,11 @@ function calculateInflation() {
                 : "Years"
         )}
     `;
+
+
+    /* ======================================
+       VISUAL BARS
+       ====================================== */
 
     document.getElementById(
         "inflationBars"
@@ -128,11 +166,20 @@ function calculateInflation() {
             increasePercent
         )}%`;
 
-        // Record successful calculation
-ToolXoneStatisticsEvents.recordCalculation(
-    "inflation-calculator"
-);
 
+    /* ======================================
+       STATISTICS
+       ====================================== */
+
+    if (
+        window.ToolXoneStatisticsEvents &&
+        typeof ToolXoneStatisticsEvents.recordCalculation ===
+            "function"
+    ) {
+        ToolXoneStatisticsEvents.recordCalculation(
+            "inflation-calculator"
+        );
+    }
 }
 
 

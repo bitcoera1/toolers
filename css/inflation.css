@@ -253,3 +253,596 @@ body.dark-mode .bar-bg{
 
     overflow-wrap:anywhere;
 }
+
+/* =========================================================
+   TOOLXONE INFLATION CALCULATOR
+   EDUCATIONAL / SEO GUIDE
+   ========================================================= */
+
+.inflation-guide {
+    width: min(1120px, calc(100% - 40px));
+    margin: 36px auto;
+    padding: 38px 42px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.07);
+
+    color: #334155;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   MAIN ARTICLE TITLE
+   ========================================================= */
+
+.inflation-guide > h2 {
+    margin: 0 0 20px;
+
+    color: #0f172a;
+
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.inflation-guide h3 {
+    margin: 34px 0 12px;
+
+    color: #0f172a;
+
+    font-size: 1.18rem;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.inflation-guide p {
+    margin: 0 0 18px;
+
+    color: #475569;
+
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.inflation-guide > p:last-child {
+    margin-bottom: 0;
+}
+
+.inflation-guide strong {
+    color: #1e293b;
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   INPUT EXPLANATION CARDS
+   ========================================================= */
+
+.inflation-input-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin: 22px 0 28px;
+}
+
+.inflation-input-item {
+    min-width: 0;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fafc 0%,
+            #f0fdf4 100%
+        );
+
+    border: 1px solid #bbf7d0;
+    border-radius: 15px;
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.045);
+}
+
+.inflation-input-item strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #15803d;
+
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.inflation-input-item span {
+    display: block;
+
+    color: #475569;
+
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   FORMULA BOXES
+   ========================================================= */
+
+.inflation-formula {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 18px 0 22px;
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff 0%,
+            #f0fdf4 100%
+        );
+
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    border-radius: 14px;
+
+    color: #0f172a;
+
+    font-size: 1.08rem;
+    font-weight: 800;
+    line-height: 1.55;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Worked calculations */
+
+.inflation-formula-example {
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4 0%,
+            #ecfdf5 100%
+        );
+
+    border-color: #bbf7d0;
+    border-left-color: #10b981;
+}
+
+
+/* =========================================================
+   FUTURE VALUE VS PURCHASING POWER
+   ========================================================= */
+
+.inflation-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin: 22px 0 28px;
+}
+
+.inflation-comparison-item {
+    min-width: 0;
+
+    padding: 21px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.04);
+}
+
+.inflation-comparison-item strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #1d4ed8;
+
+    font-size: 1rem;
+}
+
+.inflation-comparison-item span {
+    display: block;
+
+    color: #475569;
+
+    font-size: 0.94rem;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   IMPORTANT NOTE
+   ========================================================= */
+
+.inflation-note {
+    margin: 22px 0 26px;
+    padding: 22px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed 0%,
+            #fffbeb 100%
+        );
+
+    border: 1px solid #fed7aa;
+    border-left: 4px solid #f59e0b;
+    border-radius: 15px;
+}
+
+.inflation-note > strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #9a3412;
+
+    font-size: 1rem;
+}
+
+.inflation-note p {
+    margin: 0;
+
+    color: #57534e;
+}
+
+
+/* =========================================================
+   INTERNAL LINKS
+   ========================================================= */
+
+.inflation-guide a {
+    color: #2563eb;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.inflation-guide a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.inflation-guide a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.25);
+    outline-offset: 3px;
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .inflation-input-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inflation-comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .inflation-guide {
+        width: calc(100% - 28px);
+
+        margin: 28px auto;
+        padding: 28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .inflation-guide > h2 {
+        font-size: 1.6rem;
+    }
+
+    .inflation-guide h3 {
+        margin-top: 28px;
+
+        font-size: 1.08rem;
+    }
+
+    .inflation-guide p {
+        font-size: 0.96rem;
+        line-height: 1.7;
+    }
+
+    .inflation-input-grid,
+    .inflation-comparison-grid {
+        gap: 12px;
+
+        margin: 18px 0 24px;
+    }
+
+    .inflation-input-item,
+    .inflation-comparison-item {
+        padding: 18px;
+    }
+
+    .inflation-formula {
+        padding: 17px 16px;
+
+        font-size: 1rem;
+    }
+
+    .inflation-note {
+        padding: 19px 18px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .inflation-guide {
+        width: calc(100% - 20px);
+
+        margin: 22px auto;
+        padding: 24px 18px;
+
+        border-radius: 16px;
+    }
+
+    .inflation-guide > h2 {
+        font-size: 1.42rem;
+    }
+
+    .inflation-guide h3 {
+        font-size: 1.03rem;
+    }
+
+    .inflation-guide p {
+        font-size: 0.94rem;
+    }
+
+    .inflation-input-item,
+    .inflation-comparison-item {
+        padding: 16px;
+    }
+
+    .inflation-input-item span,
+    .inflation-comparison-item span {
+        font-size: 0.92rem;
+    }
+
+    .inflation-formula {
+        margin: 16px 0 20px;
+        padding: 16px 12px;
+
+        font-size: 0.94rem;
+        line-height: 1.55;
+    }
+
+    .inflation-note {
+        margin: 18px 0 22px;
+        padding: 17px 16px;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark .inflation-guide,
+body.dark-mode .inflation-guide,
+[data-theme="dark"] .inflation-guide {
+    background: #111827;
+    border-color: #273449;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22);
+
+    color: #cbd5e1;
+}
+
+
+/* Headings */
+
+body.dark .inflation-guide > h2,
+body.dark .inflation-guide h3,
+body.dark-mode .inflation-guide > h2,
+body.dark-mode .inflation-guide h3,
+[data-theme="dark"] .inflation-guide > h2,
+[data-theme="dark"] .inflation-guide h3 {
+    color: #f8fafc;
+}
+
+
+/* Paragraphs */
+
+body.dark .inflation-guide p,
+body.dark-mode .inflation-guide p,
+[data-theme="dark"] .inflation-guide p {
+    color: #cbd5e1;
+}
+
+
+/* Strong text */
+
+body.dark .inflation-guide strong,
+body.dark-mode .inflation-guide strong,
+[data-theme="dark"] .inflation-guide strong {
+    color: #f1f5f9;
+}
+
+
+/* Input cards */
+
+body.dark .inflation-input-item,
+body.dark-mode .inflation-input-item,
+[data-theme="dark"] .inflation-input-item {
+    background:
+        linear-gradient(
+            145deg,
+            #172033 0%,
+            #12261f 100%
+        );
+
+    border-color: #285b46;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.14);
+}
+
+body.dark .inflation-input-item strong,
+body.dark-mode .inflation-input-item strong,
+[data-theme="dark"] .inflation-input-item strong {
+    color: #4ade80;
+}
+
+body.dark .inflation-input-item span,
+body.dark-mode .inflation-input-item span,
+[data-theme="dark"] .inflation-input-item span {
+    color: #cbd5e1;
+}
+
+
+/* Formula boxes */
+
+body.dark .inflation-formula,
+body.dark-mode .inflation-formula,
+[data-theme="dark"] .inflation-formula {
+    background: #172033;
+
+    border-color: #334155;
+    border-left-color: #60a5fa;
+
+    color: #f8fafc;
+}
+
+
+/* Worked examples */
+
+body.dark .inflation-formula-example,
+body.dark-mode .inflation-formula-example,
+[data-theme="dark"] .inflation-formula-example {
+    background: #12261f;
+
+    border-color: #285b46;
+    border-left-color: #34d399;
+}
+
+
+/* Comparison cards */
+
+body.dark .inflation-comparison-item,
+body.dark-mode .inflation-comparison-item,
+[data-theme="dark"] .inflation-comparison-item {
+    background: #172033;
+
+    border-color: #334155;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.14);
+}
+
+body.dark .inflation-comparison-item strong,
+body.dark-mode .inflation-comparison-item strong,
+[data-theme="dark"] .inflation-comparison-item strong {
+    color: #60a5fa;
+}
+
+body.dark .inflation-comparison-item span,
+body.dark-mode .inflation-comparison-item span,
+[data-theme="dark"] .inflation-comparison-item span {
+    color: #cbd5e1;
+}
+
+
+/* Important note */
+
+body.dark .inflation-note,
+body.dark-mode .inflation-note,
+[data-theme="dark"] .inflation-note {
+    background:
+        linear-gradient(
+            135deg,
+            #292016 0%,
+            #241e14 100%
+        );
+
+    border-color: #634d27;
+    border-left-color: #fbbf24;
+}
+
+body.dark .inflation-note > strong,
+body.dark-mode .inflation-note > strong,
+[data-theme="dark"] .inflation-note > strong {
+    color: #fbbf24;
+}
+
+body.dark .inflation-note p,
+body.dark-mode .inflation-note p,
+[data-theme="dark"] .inflation-note p {
+    color: #d6d3d1;
+}
+
+
+/* Links */
+
+body.dark .inflation-guide a,
+body.dark-mode .inflation-guide a,
+[data-theme="dark"] .inflation-guide a {
+    color: #60a5fa;
+}
+
+body.dark .inflation-guide a:hover,
+body.dark-mode .inflation-guide a:hover,
+[data-theme="dark"] .inflation-guide a:hover {
+    color: #93c5fd;
+}
