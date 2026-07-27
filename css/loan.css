@@ -1,5 +1,5 @@
 /* ==========================================
-   LOAN / EMI CALCULATOR - CLEAN VERSION
+   LOAN  CALCULATOR - CLEAN VERSION
 ========================================== */
 
 .loan-page{
@@ -298,4 +298,812 @@
     text-align:center;
 
     overflow-wrap:anywhere;
+}
+
+/* ==========================================
+   TOOLXONE LOAN EDUCATIONAL GUIDE
+   Premium Article Styling
+   ========================================== */
+
+.loan-education {
+    width: min(1180px, calc(100% - 32px));
+    margin: 42px auto 50px;
+    padding: 42px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    border-radius: 24px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    color: var(--text-color, #1e293b);
+    line-height: 1.75;
+}
+
+
+/* ==========================================
+   ARTICLE HEADER
+   ========================================== */
+
+.loan-education-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 42px;
+}
+
+.loan-education-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.10);
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    color: #2563eb;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.loan-education-header h2 {
+    margin: 0 0 18px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.18;
+    color: var(--heading-color, #0f172a);
+}
+
+.loan-education-header p {
+    max-width: 820px;
+    margin: 10px auto 0;
+    color: var(--muted-color, #64748b);
+    font-size: 1.04rem;
+}
+
+
+/* ==========================================
+   ARTICLE SECTIONS
+   ========================================== */
+
+.loan-education-section {
+    padding: 34px 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.20);
+}
+
+.loan-education-section:first-of-type {
+    border-top: 0;
+}
+
+.loan-education-section h3 {
+    margin: 0 0 14px;
+    color: var(--heading-color, #0f172a);
+    font-size: clamp(1.3rem, 3vw, 1.65rem);
+    line-height: 1.3;
+}
+
+.loan-education-section h4 {
+    margin: 22px 0 10px;
+    color: var(--heading-color, #0f172a);
+    font-size: 1.08rem;
+}
+
+.loan-education-section > p {
+    margin: 10px 0;
+    color: var(--text-color, #475569);
+}
+
+/* ========================================
+   LOAN ARTICLE — CONTEXTUAL INTERNAL LINKS
+   ======================================== */
+
+.loan-related-note a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.35);
+    transition: border-color 0.2s ease;
+}
+
+.loan-related-note a:hover {
+    border-bottom-color: currentColor;
+}
+
+/* ==========================================
+   INFORMATION GRID
+   ========================================== */
+
+.loan-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.loan-info-box {
+    padding: 22px;
+    border: 1px solid rgba(37, 99, 235, 0.14);
+    border-radius: 18px;
+    background: rgba(37, 99, 235, 0.035);
+}
+
+.loan-info-box strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #2563eb;
+    font-size: 1.02rem;
+}
+
+.loan-info-box p {
+    margin: 0;
+    color: var(--muted-color, #64748b);
+}
+
+
+/* ==========================================
+   FORMULA BLOCKS
+   ========================================== */
+
+.loan-formula-box {
+    margin: 22px 0;
+    padding: 20px 24px;
+    overflow-wrap: anywhere;
+    text-align: center;
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    border-radius: 16px;
+    background: rgba(37, 99, 235, 0.07);
+    color: var(--heading-color, #0f172a);
+    font-weight: 750;
+    font-size: 1.05rem;
+}
+
+.loan-formula-large {
+    padding: 26px 20px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+
+/* ==========================================
+   DEFINITION LIST
+   ========================================== */
+
+.loan-definition-list {
+    display: grid;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.loan-definition-list > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: rgba(148, 163, 184, 0.09);
+}
+
+.loan-definition-list strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
+    min-height: 38px;
+    border-radius: 10px;
+    background: rgba(37, 99, 235, 0.12);
+    color: #2563eb;
+}
+
+.loan-definition-list span {
+    color: var(--text-color, #475569);
+}
+
+
+/* ==========================================
+   EXAMPLE BOXES
+   ========================================== */
+
+.loan-example-box {
+    margin: 20px 0;
+    padding: 18px 22px;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 14px 14px 0;
+    background: rgba(37, 99, 235, 0.06);
+    color: var(--text-color, #334155);
+}
+
+.loan-example-box strong {
+    color: var(--heading-color, #0f172a);
+}
+
+
+/* ==========================================
+   WORKED EXAMPLE GRID
+   ========================================== */
+
+.loan-example-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.loan-example-stat {
+    padding: 20px 14px;
+    text-align: center;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 16px;
+    background: rgba(148, 163, 184, 0.055);
+}
+
+.loan-example-stat span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted-color, #64748b);
+    font-size: 0.88rem;
+}
+
+.loan-example-stat strong {
+    display: block;
+    color: var(--heading-color, #0f172a);
+    font-size: 1.15rem;
+}
+
+
+/* ==========================================
+   RESULT EXAMPLE
+   ========================================== */
+
+.loan-result-example {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 24px 0;
+    padding: 22px 24px;
+    border: 1px solid rgba(22, 163, 74, 0.22);
+    border-radius: 16px;
+    background: rgba(22, 163, 74, 0.07);
+}
+
+.loan-result-example span {
+    color: var(--text-color, #475569);
+    font-weight: 650;
+}
+
+.loan-result-example strong {
+    color: #15803d;
+    font-size: 1.35rem;
+}
+
+
+/* ==========================================
+   AMORTIZATION FLOW
+   ========================================== */
+
+.loan-amortization-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 16px;
+    margin: 26px 0;
+}
+
+.loan-amortization-card {
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 18px;
+    background: rgba(148, 163, 184, 0.055);
+}
+
+.loan-amortization-card span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted-color, #64748b);
+    font-size: 0.9rem;
+}
+
+.loan-amortization-card strong {
+    display: block;
+    margin-bottom: 9px;
+    color: #2563eb;
+    font-size: 1.15rem;
+}
+
+.loan-amortization-card p {
+    margin: 0;
+    color: var(--text-color, #475569);
+}
+
+.loan-amortization-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   ZERO-INTEREST GRID
+   ========================================== */
+
+.loan-zero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.loan-zero-grid > div {
+    padding: 20px 14px;
+    text-align: center;
+    border-radius: 16px;
+    border: 1px solid rgba(22, 163, 74, 0.18);
+    background: rgba(22, 163, 74, 0.055);
+}
+
+.loan-zero-grid span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted-color, #64748b);
+    font-size: 0.88rem;
+}
+
+.loan-zero-grid strong {
+    color: #15803d;
+    font-size: 1.15rem;
+}
+
+
+/* ==========================================
+   COMPARISON CARDS
+   ========================================== */
+
+.loan-comparison-grid,
+.loan-rate-grid,
+.loan-vs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.loan-comparison-card,
+.loan-rate-card,
+.loan-vs-card {
+    padding: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 18px;
+    background: rgba(148, 163, 184, 0.055);
+}
+
+.loan-comparison-card span,
+.loan-rate-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted-color, #64748b);
+    font-size: 0.9rem;
+}
+
+.loan-comparison-card strong,
+.loan-rate-card strong,
+.loan-vs-card strong {
+    display: block;
+    margin-bottom: 12px;
+    color: #2563eb;
+    font-size: 1.12rem;
+}
+
+.loan-comparison-card ul {
+    margin: 14px 0 0;
+    padding-left: 20px;
+    color: var(--text-color, #475569);
+}
+
+.loan-comparison-card li + li {
+    margin-top: 7px;
+}
+
+.loan-rate-card p,
+.loan-vs-card p {
+    margin: 0;
+    color: var(--text-color, #475569);
+}
+
+
+/* ==========================================
+   TIP / KEY IDEA
+   ========================================== */
+
+.loan-tip-box {
+    margin: 22px 0;
+    padding: 18px 22px;
+    border: 1px solid rgba(245, 158, 11, 0.22);
+    border-radius: 16px;
+    background: rgba(245, 158, 11, 0.08);
+    color: var(--text-color, #475569);
+}
+
+.loan-tip-box strong {
+    color: #b45309;
+}
+
+
+/* ==========================================
+   USE CASE CARDS
+   ========================================== */
+
+.loan-use-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.loan-use-card {
+    padding: 22px 18px;
+    text-align: center;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 18px;
+    background: rgba(148, 163, 184, 0.05);
+}
+
+.loan-use-card > span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.loan-use-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--heading-color, #0f172a);
+}
+
+.loan-use-card p {
+    margin: 0;
+    color: var(--muted-color, #64748b);
+    font-size: 0.94rem;
+}
+
+
+/* ==========================================
+   INCLUDED GRID
+   ========================================== */
+
+.loan-check-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.loan-check-grid > div {
+    padding: 14px 16px;
+    border: 1px solid rgba(22, 163, 74, 0.18);
+    border-radius: 12px;
+    background: rgba(22, 163, 74, 0.06);
+    color: var(--text-color, #334155);
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   EXCLUDED / WARNING GRID
+   ========================================== */
+
+.loan-warning-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.loan-warning-grid > div {
+    position: relative;
+    padding: 14px 16px 14px 42px;
+    border: 1px solid rgba(220, 38, 38, 0.15);
+    border-radius: 12px;
+    background: rgba(220, 38, 38, 0.045);
+    color: var(--text-color, #475569);
+}
+
+.loan-warning-grid > div::before {
+    content: "!";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: rgba(220, 38, 38, 0.12);
+    color: #dc2626;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+
+/* ==========================================
+   IMPORTANT NOTE / DISCLAIMER
+   ========================================== */
+
+.loan-important-note {
+    margin-top: 32px;
+    padding: 26px 28px;
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    border-radius: 18px;
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.loan-important-note > strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #b45309;
+    font-size: 1.08rem;
+}
+
+.loan-important-note p {
+    margin: 0;
+    color: var(--text-color, #475569);
+}
+
+
+/* ==========================================
+   SUBTLE HOVER EFFECTS
+   ========================================== */
+
+.loan-info-box,
+.loan-example-stat,
+.loan-amortization-card,
+.loan-comparison-card,
+.loan-rate-card,
+.loan-use-card,
+.loan-vs-card {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.loan-info-box:hover,
+.loan-example-stat:hover,
+.loan-amortization-card:hover,
+.loan-comparison-card:hover,
+.loan-rate-card:hover,
+.loan-use-card:hover,
+.loan-vs-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+}
+
+
+/* ==========================================
+   DARK MODE
+   Supports common ToolXone theme patterns
+   ========================================== */
+
+body.dark .loan-education,
+body.dark-mode .loan-education,
+[data-theme="dark"] .loan-education {
+    background: #111827;
+    border-color: rgba(148, 163, 184, 0.16);
+    color: #e2e8f0;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+}
+
+body.dark .loan-education h2,
+body.dark .loan-education h3,
+body.dark .loan-education h4,
+body.dark-mode .loan-education h2,
+body.dark-mode .loan-education h3,
+body.dark-mode .loan-education h4,
+[data-theme="dark"] .loan-education h2,
+[data-theme="dark"] .loan-education h3,
+[data-theme="dark"] .loan-education h4 {
+    color: #f8fafc;
+}
+
+body.dark .loan-education p,
+body.dark .loan-definition-list span,
+body.dark .loan-comparison-card ul,
+body.dark-mode .loan-education p,
+body.dark-mode .loan-definition-list span,
+body.dark-mode .loan-comparison-card ul,
+[data-theme="dark"] .loan-education p,
+[data-theme="dark"] .loan-definition-list span,
+[data-theme="dark"] .loan-comparison-card ul {
+    color: #cbd5e1;
+}
+
+body.dark .loan-info-box,
+body.dark .loan-example-stat,
+body.dark .loan-amortization-card,
+body.dark .loan-comparison-card,
+body.dark .loan-rate-card,
+body.dark .loan-use-card,
+body.dark .loan-vs-card,
+body.dark-mode .loan-info-box,
+body.dark-mode .loan-example-stat,
+body.dark-mode .loan-amortization-card,
+body.dark-mode .loan-comparison-card,
+body.dark-mode .loan-rate-card,
+body.dark-mode .loan-use-card,
+body.dark-mode .loan-vs-card,
+[data-theme="dark"] .loan-info-box,
+[data-theme="dark"] .loan-example-stat,
+[data-theme="dark"] .loan-amortization-card,
+[data-theme="dark"] .loan-comparison-card,
+[data-theme="dark"] .loan-rate-card,
+[data-theme="dark"] .loan-use-card,
+[data-theme="dark"] .loan-vs-card {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(148, 163, 184, 0.15);
+}
+
+body.dark .loan-example-stat strong,
+body.dark .loan-use-card strong,
+body.dark .loan-example-box strong,
+body.dark-mode .loan-example-stat strong,
+body.dark-mode .loan-use-card strong,
+body.dark-mode .loan-example-box strong,
+[data-theme="dark"] .loan-example-stat strong,
+[data-theme="dark"] .loan-use-card strong,
+[data-theme="dark"] .loan-example-box strong {
+    color: #f8fafc;
+}
+
+body.dark .loan-formula-box,
+body.dark .loan-example-box,
+body.dark-mode .loan-formula-box,
+body.dark-mode .loan-example-box,
+[data-theme="dark"] .loan-formula-box,
+[data-theme="dark"] .loan-example-box {
+    background: rgba(59, 130, 246, 0.10);
+    border-color: rgba(96, 165, 250, 0.22);
+    color: #e2e8f0;
+}
+
+body.dark .loan-definition-list > div,
+body.dark-mode .loan-definition-list > div,
+[data-theme="dark"] .loan-definition-list > div {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+body.dark .loan-check-grid > div,
+body.dark-mode .loan-check-grid > div,
+[data-theme="dark"] .loan-check-grid > div {
+    background: rgba(34, 197, 94, 0.08);
+    color: #d1fae5;
+}
+
+body.dark .loan-warning-grid > div,
+body.dark-mode .loan-warning-grid > div,
+[data-theme="dark"] .loan-warning-grid > div {
+    background: rgba(239, 68, 68, 0.07);
+    color: #fecaca;
+}
+
+body.dark .loan-result-example,
+body.dark-mode .loan-result-example,
+[data-theme="dark"] .loan-result-example {
+    background: rgba(34, 197, 94, 0.08);
+}
+
+body.dark .loan-result-example span,
+body.dark-mode .loan-result-example span,
+[data-theme="dark"] .loan-result-example span {
+    color: #d1fae5;
+}
+
+body.dark .loan-tip-box,
+body.dark .loan-important-note,
+body.dark-mode .loan-tip-box,
+body.dark-mode .loan-important-note,
+[data-theme="dark"] .loan-tip-box,
+[data-theme="dark"] .loan-important-note {
+    background: rgba(245, 158, 11, 0.08);
+}
+
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .loan-education {
+        padding: 32px 26px;
+    }
+
+    .loan-example-grid,
+    .loan-use-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .loan-check-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 650px) {
+
+    .loan-education {
+        width: min(100% - 20px, 1180px);
+        margin-top: 28px;
+        padding: 26px 18px;
+        border-radius: 18px;
+    }
+
+    .loan-education-header {
+        margin-bottom: 28px;
+    }
+
+    .loan-education-section {
+        padding: 28px 0;
+    }
+
+    .loan-info-grid,
+    .loan-example-grid,
+    .loan-zero-grid,
+    .loan-comparison-grid,
+    .loan-rate-grid,
+    .loan-use-grid,
+    .loan-vs-grid,
+    .loan-check-grid,
+    .loan-warning-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .loan-amortization-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .loan-amortization-arrow {
+        min-height: 32px;
+        transform: rotate(90deg);
+    }
+
+    .loan-result-example {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .loan-formula-box {
+        padding: 18px 14px;
+    }
+
+    .loan-important-note {
+        padding: 22px 18px;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL SCREENS
+   ========================================== */
+
+@media (max-width: 380px) {
+
+    .loan-education {
+        width: calc(100% - 12px);
+        padding: 22px 14px;
+    }
+
+    .loan-info-box,
+    .loan-comparison-card,
+    .loan-rate-card,
+    .loan-use-card,
+    .loan-vs-card,
+    .loan-amortization-card {
+        padding: 18px 15px;
+    }
 }
