@@ -3,7 +3,136 @@
 // Number Engine Integrated
 // ======================================
 
+/* ======================================
+   SHARED VALIDATION CONFIG
+   Stage 5C.4.3F
+   ====================================== */
+
+const emiValidationFields = [
+    {
+        id: "loanAmount",
+        label: "Loan Amount",
+        type: "number",
+        required: true,
+        min: 0.01,
+        max: 1e15
+    },
+    {
+        id: "interestRate",
+        label: "Annual Interest Rate",
+        type: "number",
+        required: true,
+        min: 0,
+        max: 100
+    },
+    {
+        id: "loanYears",
+        label: "Loan Tenure",
+        type: "number",
+        required: true,
+        min: 0.01,
+        max: 100
+    }
+];
+
+/* ======================================
+   MATHEMATICAL INTEGRITY HELPERS
+   Stage 5D.3
+   ====================================== */
+
+const EMI_EPSILON = 1e-10;
+
+function normalizeEMINumber(value) {
+    if (!Number.isFinite(value)) {
+        return value;
+    }
+
+    return Math.abs(value) < EMI_EPSILON
+        ? 0
+        : value;
+}
+
+function approximatelyEqualEMI(
+    a,
+    b,
+    tolerance = 1e-8
+) {
+    if (
+        !Number.isFinite(a) ||
+        !Number.isFinite(b)
+    ) {
+        return false;
+    }
+
+    const scale = Math.max(
+        1,
+        Math.abs(a),
+        Math.abs(b)
+    );
+
+    return (
+        Math.abs(a - b) <=
+        tolerance * scale
+    );
+}
+
 function calculateEMI() {
+    
+    /* ======================================
+   SHARED VALIDATION GATE
+   Stage 5C.4.3F — Inline Validation UX
+   ====================================== */
+
+if (
+    window.ToolXoneValidation &&
+    typeof ToolXoneValidation.validateForm === "function"
+) {
+    const validationResult =
+        ToolXoneValidation.validateForm(
+            emiValidationFields
+        );
+
+    if (!validationResult.valid) {
+
+        if (
+            window.ToolXoneValidationUI &&
+            typeof ToolXoneValidationUI.showErrors === "function"
+        ) {
+            ToolXoneValidationUI.showErrors(
+                validationResult.errors || {}
+            );
+
+            if (
+                typeof ToolXoneValidationUI
+                    .focusFirstInvalid === "function"
+            ) {
+                ToolXoneValidationUI.focusFirstInvalid(
+                    validationResult.errors || {}
+                );
+            }
+        } else {
+            const firstError =
+                Object.values(
+                    validationResult.errors || {}
+                )[0];
+
+            alert(
+                firstError ||
+                "Please check the entered values."
+            );
+        }
+
+        return;
+    }
+
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.clearAllErrors === "function"
+    ) {
+        ToolXoneValidationUI.clearAllErrors();
+    }
+}
+
     const loan =
         parseFloat(
             document.getElementById(
@@ -25,61 +154,182 @@ function calculateEMI() {
             ).value
         );
 
-    if (
-        Number.isNaN(loan) ||
-        Number.isNaN(annualRate) ||
-        Number.isNaN(years) ||
-        loan <= 0 ||
-        annualRate < 0 ||
-        years <= 0
-    ) {
-        alert(
-            "Please enter valid values."
-        );
-
-        return;
-    }
-
     const monthlyRate =
         annualRate /
         100 /
         12;
 
+    /* ======================================
+   LOAN TENURE → MONTHS
+   Stage 5D.1 — Exact Month Integrity
+   ====================================== */
+
+const rawMonths =
+    years * 12;
+
+/*
+ * EMI is a monthly repayment model.
+ * The entered tenure must therefore resolve
+ * to a whole number of monthly installments.
+ */
+
+if (
+    !Number.isFinite(rawMonths) ||
+    rawMonths <= 0 ||
+    !Number.isInteger(rawMonths)
+) {
+    const message =
+        "Loan Tenure must result in a whole number of months.";
+
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
+    ) {
+        const errors = {
+            loanYears: message
+        };
+
+        ToolXoneValidationUI.showErrors(
+            errors
+        );
+
+        if (
+            typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+        ) {
+            ToolXoneValidationUI.focusFirstInvalid(
+                errors
+            );
+        }
+    } else {
+        alert(message);
+    }
+
+    return;
+}
+
+
     const months =
-        years * 12;
+    
+    rawMonths;
 
     let emi;
 
-    if (
-        monthlyRate === 0
-    ) {
-        emi =
-            loan /
-            months;
-    } else {
-        const growthFactor =
-            Math.pow(
-                1 + monthlyRate,
-                months
-            );
+if (
+    monthlyRate === 0
+) {
+    emi =
+        loan /
+        months;
+} else {
 
-        emi =
-            loan *
-            (
-                monthlyRate *
-                growthFactor
-            ) /
-            (
-                growthFactor - 1
-            );
+    /* ======================================
+       NUMERICALLY STABLE EMI FORMULA
+       Stage 5D.2 — Stability Upgrade
+       ====================================== */
+
+    const discountFactor =
+        Math.pow(
+            1 + monthlyRate,
+            -months
+        );
+
+    const denominator =
+        1 - discountFactor;
+
+    if (
+        !Number.isFinite(discountFactor) ||
+        !Number.isFinite(denominator) ||
+        discountFactor < 0 ||
+        discountFactor >= 1 ||
+        denominator <= 0
+    ) {
+        return;
     }
 
-    const totalPayment =
-        emi * months;
+    emi =
+        (
+            loan *
+            monthlyRate
+        ) /
+        denominator;
+}
 
-    const totalInterest =
-        totalPayment -
-        loan;
+if (
+    !Number.isFinite(emi) ||
+    emi <= 0
+) {
+    return;
+}
+
+    /* ======================================
+   RESULT INTEGRITY
+   Stage 5D.3
+   ====================================== */
+
+let totalPayment =
+    normalizeEMINumber(
+        emi * months
+    );
+
+let totalInterest =
+    normalizeEMINumber(
+        totalPayment - loan
+    );
+
+/*
+ * Floating-point protection:
+ * mathematically zero interest must
+ * never appear as a tiny negative value.
+ */
+if (
+    totalInterest < 0 &&
+    approximatelyEqualEMI(
+        totalInterest,
+        0
+    )
+) {
+    totalInterest = 0;
+}
+
+if (
+    !Number.isFinite(totalPayment) ||
+    !Number.isFinite(totalInterest) ||
+    totalPayment <= 0 ||
+    totalInterest < 0
+) {
+    return;
+}
+
+/*
+ * Core EMI mathematical invariants
+ */
+if (
+    !approximatelyEqualEMI(
+        totalPayment,
+        emi * months
+    )
+) {
+    return;
+}
+
+if (
+    !approximatelyEqualEMI(
+        totalInterest,
+        totalPayment - loan
+    )
+) {
+    return;
+}
+
+if (
+    totalPayment < loan &&
+    !approximatelyEqualEMI(
+        totalPayment,
+        loan
+    )
+) {
+    return;
+}    
 
     const result =
         document.getElementById(
@@ -126,16 +376,35 @@ function calculateEMI() {
         "block";
 
     const principalPercent =
+    normalizeEMINumber(
         (
             loan /
             totalPayment
-        ) * 100;
+        ) * 100
+    );
 
-    const interestPercent =
+const interestPercent =
+    normalizeEMINumber(
         (
             totalInterest /
             totalPayment
-        ) * 100;
+        ) * 100
+    );
+
+const percentageTotal =
+    principalPercent +
+    interestPercent;
+
+if (
+    !Number.isFinite(principalPercent) ||
+    !Number.isFinite(interestPercent) ||
+    !approximatelyEqualEMI(
+        percentageTotal,
+        100
+    )
+) {
+    return;
+}
 
     document.getElementById(
         "principalBar"
@@ -152,9 +421,16 @@ function calculateEMI() {
     )}%`;
 
 // Record successful calculation
-ToolXoneStatisticsEvents.recordCalculation(
-    "loan-calculator"
-);
+
+// Record successful calculation
+if (
+    window.ToolXoneStatisticsEvents &&
+    typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+) {
+    ToolXoneStatisticsEvents.recordCalculation(
+        "emi-calculator"
+    );
+}
 
 }
 
@@ -291,6 +567,24 @@ function clampEMIPercent(value) {
    ====================================== */
 
 function resetEMI() {
+
+/* ======================================
+   VALIDATION STATE CLEANUP
+   ====================================== */
+
+if (
+    window.ToolXoneValidationUI &&
+    typeof ToolXoneValidationUI.clearAllErrors === "function"
+) {
+    const calculatorForm =
+        document.getElementById(
+            "calculatorForm"
+        );
+
+    ToolXoneValidationUI.clearAllErrors(
+        calculatorForm || document
+    );
+}    
     document.getElementById(
         "loanAmount"
     ).value = "";
@@ -330,31 +624,92 @@ function resetEMI() {
         "0%";
 }
 
+if (
+    window.ToolXoneValidationUI &&
+    typeof ToolXoneValidationUI.clear === "function"
+) {
+    ToolXoneValidationUI.clear(
+        emiValidationFields
+    );
+}
 
 /* ======================================
-   ENTER KEY SUPPORT
+   EMI UI EVENT WIRING
+   Click + Reset + Enter Support
    ====================================== */
 
-document
-    .querySelectorAll(
-        "#loanAmount, " +
-        "#interestRate, " +
-        "#loanYears"
-    )
-    .forEach(input => {
-        input.addEventListener(
-            "keydown",
-            function (event) {
-                if (
-                    event.key === "Enter"
-                ) {
-                    calculateEMI();
-                }
+document.addEventListener("DOMContentLoaded", function () {
+
+    const calculateButton =
+        document.getElementById("calculateEMIBtn");
+
+    const resetButton =
+        document.getElementById("resetEMIBtn");
+
+    const calculatorForm =
+        document.getElementById("calculatorForm");
+
+
+    /* ======================================
+       CALCULATE BUTTON
+       ====================================== */
+
+    if (calculateButton) {
+        calculateButton.addEventListener(
+            "click",
+            function () {
+                calculateEMI();
             }
         );
-    });
+    }
 
 
-function runEMICalculator() {
-    calculateEMI();
-}
+    /* ======================================
+       RESET BUTTON
+       ====================================== */
+
+    if (resetButton) {
+        resetButton.addEventListener(
+            "click",
+            function () {
+                resetEMI();
+            }
+        );
+    }
+
+
+    /* ======================================
+       ENTER KEY SUPPORT
+       Event Delegation for Dynamic Fields
+       ====================================== */
+
+    if (calculatorForm) {
+        calculatorForm.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key !== "Enter") {
+                    return;
+                }
+
+                const target = event.target;
+
+                if (
+                    !target ||
+                    ![
+                        "loanAmount",
+                        "interestRate",
+                        "loanYears"
+                    ].includes(target.id)
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                calculateEMI();
+            }
+        );
+    }
+
+});

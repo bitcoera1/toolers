@@ -325,3 +325,575 @@ body.dark-mode .bar-bg{
 
     overflow-wrap:anywhere;
 }
+
+/* =========================================================
+   EMI CALCULATOR — ARTICLE SECTION
+   Premium ToolXone Finance Article Styling
+   ========================================================= */
+
+.finance-article {
+    width: min(100% - 32px, 1000px);
+    margin: 34px auto;
+    padding: 38px 42px;
+
+    background: #ffffff;
+    border: 1px solid #e3e8ef;
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+
+    color: #1e293b;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   MAIN ARTICLE TITLE
+   ========================================================= */
+
+.finance-article > h2,
+.finance-article #emiArticleTitle {
+    margin: 0 0 28px;
+
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.25;
+
+    color: #00b875;
+}
+
+
+/* =========================================================
+   ARTICLE SECTION HEADINGS
+   ========================================================= */
+
+.finance-article h3 {
+    margin: 30px 0 10px;
+
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.35;
+
+    color: #0f172a;
+}
+
+
+/* First heading after article title */
+
+.finance-article > h2 + h3 {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.finance-article p {
+    margin: 0 0 16px;
+
+    font-size: 15.5px;
+    line-height: 1.8;
+
+    color: #475569;
+}
+
+
+/* =========================================================
+   STRONG / IMPORTANT TEXT
+   ========================================================= */
+
+.finance-article strong {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+
+/* =========================================================
+   LISTS
+   ========================================================= */
+
+.finance-article ul,
+.finance-article ol {
+    margin: 12px 0 20px;
+    padding-left: 24px;
+
+    color: #475569;
+}
+
+
+.finance-article li {
+    margin-bottom: 9px;
+
+    font-size: 15.5px;
+    line-height: 1.7;
+}
+
+
+.finance-article li::marker {
+    color: #00b875;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   LINKS INSIDE ARTICLE
+   ========================================================= */
+
+.finance-article a {
+    color: #009f68;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+
+.finance-article a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   OPTIONAL FORMULA / CALCULATION BLOCK
+   Works if article contains .formula-box
+   ========================================================= */
+
+.finance-article .formula-box {
+    margin: 22px 0;
+    padding: 18px 20px;
+
+    background: #f0fdf7;
+    border: 1px solid #b7f0d5;
+    border-left: 4px solid #00b875;
+    border-radius: 12px;
+
+    color: #14532d;
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: 650;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   OPTIONAL NOTE / IMPORTANT INFORMATION BLOCK
+   Works if article contains .article-note
+   ========================================================= */
+
+.finance-article .article-note {
+    margin: 22px 0;
+    padding: 16px 18px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    color: #475569;
+}
+
+
+/* =========================================================
+   LAST ELEMENT
+   Prevent unnecessary bottom space
+   ========================================================= */
+
+.finance-article > *:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .finance-article {
+        width: min(100% - 24px, 1000px);
+
+        margin: 26px auto;
+        padding: 30px 26px;
+
+        border-radius: 16px;
+    }
+
+
+    .finance-article > h2,
+    .finance-article #emiArticleTitle {
+        margin-bottom: 24px;
+
+        font-size: 24px;
+    }
+
+
+    .finance-article h3 {
+        margin-top: 25px;
+
+        font-size: 18px;
+    }
+
+
+    .finance-article p,
+    .finance-article li {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .finance-article {
+        width: calc(100% - 20px);
+
+        margin: 22px auto;
+        padding: 24px 18px;
+
+        border-radius: 14px;
+    }
+
+
+    .finance-article > h2,
+    .finance-article #emiArticleTitle {
+        margin-bottom: 21px;
+
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+
+    .finance-article h3 {
+        margin: 22px 0 8px;
+
+        font-size: 17px;
+    }
+
+
+    .finance-article p {
+        margin-bottom: 14px;
+
+        font-size: 14.5px;
+        line-height: 1.72;
+    }
+
+
+    .finance-article ul,
+    .finance-article ol {
+        padding-left: 21px;
+    }
+
+
+    .finance-article li {
+        font-size: 14.5px;
+        line-height: 1.65;
+    }
+
+
+    .finance-article .formula-box,
+    .finance-article .article-note {
+        padding: 14px 15px;
+    }
+}
+
+/* =========================================================
+   EMI ARTICLE — EXACT STRUCTURE POLISH
+   Add BELOW existing .finance-article CSS
+   ========================================================= */
+
+
+/* ---------- ARTICLE HEADER ---------- */
+
+.finance-article-header {
+    margin-bottom: 34px;
+    padding-bottom: 28px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* ---------- "EMI GUIDE" LABEL ---------- */
+
+.finance-article-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+    padding: 6px 12px;
+
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    border-radius: 999px;
+
+    color: #008f5d;
+
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* ---------- MAIN ARTICLE TITLE ---------- */
+
+.finance-article-header h2 {
+    max-width: 760px;
+
+    margin: 0 auto 16px;
+
+    color: #00b875;
+
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.25;
+
+    text-align: center;
+}
+
+
+/* ---------- INTRODUCTION ---------- */
+
+.finance-article-header > p {
+    max-width: 780px;
+
+    margin: 0 auto;
+
+    color: #475569;
+
+    font-size: 16px;
+    line-height: 1.75;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ARTICLE CONTENT SECTIONS
+   ========================================================= */
+
+.finance-article > section {
+    margin-top: 30px;
+}
+
+
+/* First content section */
+
+.finance-article-header + section {
+    margin-top: 0;
+}
+
+
+/* ---------- SECTION HEADINGS ---------- */
+
+.finance-article > section h3 {
+    position: relative;
+
+    margin: 0 0 12px;
+    padding-left: 15px;
+
+    color: #172033;
+
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+
+/* Green accent beside every H3 */
+
+.finance-article > section h3::before {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    bottom: 3px;
+    left: 0;
+
+    width: 4px;
+
+    background: #00b875;
+    border-radius: 999px;
+}
+
+
+/* ---------- SECTION PARAGRAPHS ---------- */
+
+.finance-article > section p {
+    margin: 0 0 15px;
+
+    color: #475569;
+
+    font-size: 15.5px;
+    line-height: 1.8;
+}
+
+
+/* ---------- SECTION SEPARATION ---------- */
+
+.finance-article > section + section {
+    padding-top: 28px;
+
+    border-top: 1px solid #eef2f6;
+}
+
+
+/* =========================================================
+   ARTICLE LISTS
+   ========================================================= */
+
+.finance-article > section ul,
+.finance-article > section ol {
+    margin: 14px 0 18px;
+    padding-left: 25px;
+}
+
+
+.finance-article > section li {
+    margin-bottom: 9px;
+
+    color: #475569;
+
+    font-size: 15.5px;
+    line-height: 1.7;
+}
+
+
+.finance-article > section li::marker {
+    color: #00b875;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .finance-article-header {
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+    }
+
+    .finance-article-header h2 {
+        font-size: 25px;
+    }
+
+    .finance-article-header > p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .finance-article > section {
+        margin-top: 25px;
+    }
+
+    .finance-article > section + section {
+        padding-top: 24px;
+    }
+
+    .finance-article > section h3 {
+        font-size: 18px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .finance-article-header h2 {
+        font-size: 22px;
+    }
+
+    .finance-article-label {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .finance-article-header > p,
+    .finance-article > section p,
+    .finance-article > section li {
+        font-size: 14.5px;
+    }
+
+    .finance-article > section h3 {
+        font-size: 17px;
+    }
+}
+
+/* =========================================================
+   FINANCE ARTICLE — FORMULA PILL
+   ========================================================= */
+
+.finance-formula-box {
+    width: fit-content;
+    max-width: 100%;
+
+    margin: 22px 0;
+    padding: 14px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #ecfdf5,
+        #f0fdf9
+    );
+
+    border: 1px solid #a7f3d0;
+    border-radius: 16px;
+
+    box-shadow: 0 4px 14px rgba(0, 184, 117, 0.08);
+}
+
+.finance-formula-box .formula-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #008f5d;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.finance-formula-box .formula-expression {
+    color: #0f5132;
+
+    font-size: 17px;
+    font-weight: 750;
+    line-height: 1.6;
+
+    white-space: normal;
+}
+
+.finance-formula-box sup {
+    font-size: 0.7em;
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .finance-formula-box {
+        width: 100%;
+
+        padding: 13px 15px;
+        border-radius: 13px;
+    }
+
+    .finance-formula-box .formula-expression {
+        font-size: 15px;
+    }
+}
