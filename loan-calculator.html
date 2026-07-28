@@ -59,7 +59,9 @@
 
 <link rel="stylesheet" href="css/tools.css">
 <link rel="stylesheet" href="css/loan.css">
+<link rel="stylesheet" href="css/validation.css">
 <link rel="stylesheet" href="css/feedback.css">
+
 
 
 <!-- Software Application Schema -->
@@ -1015,6 +1017,8 @@
 <script src="js/tool-cards.js"></script>
 <script src="js/tools.js"></script>
 <script src="js/form-engine.js"></script>
+<script src="js/validation-engine.js"></script>
+<script src="js/validation-ui.js"></script>
 <script src="js/calculator-engine.js"></script>
 <script src="js/finance-components.js"></script>
 <script src="js/finance-engine.js"></script>
@@ -1065,43 +1069,62 @@ const loanCalculator = {
         "Estimate your monthly payment, total interest, and total repayment based on the loan amount, interest rate, and repayment term.",
 
     fields: [
-        {
-            label: "Loan Amount",
-            type: "number",
-            id: "loanAmount",
-            placeholder: "Example: 500000"
-        },
-
-        {
-            label: "Annual Interest Rate (%)",
-            type: "number",
-            id: "interestRate",
-            placeholder: "Example: 12"
-        },
-
-        {
-            label: "Loan Term",
-            type: "number",
-            id: "loanTenure",
-            placeholder: "Example: 5"
-        },
-
-        {
-            label: "Loan Term Type",
-            type: "select",
-            id: "tenureType",
-            options: [
-                {
-                    value: "years",
-                    label: "Years"
-                },
-                {
-                    value: "months",
-                    label: "Months"
-                }
-            ]
-        }
-    ],
+    {
+        label: "Loan Amount",
+        type: "number",
+        id: "loanAmount",
+        name: "loanAmount",
+        placeholder: "Example: 500000",
+        min: 0.01,
+        max: 1000000000000000,
+        step: "any",
+        inputmode: "decimal",
+        autocomplete: "off",
+        required: true
+    },
+    {
+        label: "Annual Interest Rate (%)",
+        type: "number",
+        id: "interestRate",
+        name: "interestRate",
+        placeholder: "Example: 12",
+        min: 0,
+        max: 1000,
+        step: "any",
+        inputmode: "decimal",
+        autocomplete: "off",
+        required: true
+    },
+    {
+        label: "Loan Term",
+        type: "number",
+        id: "loanTenure",
+        name: "loanTenure",
+        placeholder: "Example: 5",
+        min: 0.01,
+        step: "any",
+        inputmode: "decimal",
+        autocomplete: "off",
+        required: true
+    },
+    {
+        label: "Loan Term Type",
+        type: "select",
+        id: "tenureType",
+        name: "tenureType",
+        required: true,
+        options: [
+            {
+                value: "years",
+                label: "Years"
+            },
+            {
+                value: "months",
+                label: "Months"
+            }
+        ]
+    }
+],
 
     info: {
         title: "Understand Your Loan Repayment",

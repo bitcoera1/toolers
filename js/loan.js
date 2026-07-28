@@ -4,7 +4,110 @@
 // Stage 1 Hardened Calculation Engine
 // ======================================
 
+/* ======================================
+   SHARED VALIDATION CONFIG
+   Stage 5C.2
+   ====================================== */
+
+const loanValidationFields = [
+    {
+        id: "loanAmount",
+        label: "Loan Amount",
+        type: "number",
+        required: true,
+        min: 0.01,
+        max: 1e15
+    },
+    {
+        id: "interestRate",
+        label: "Annual Interest Rate",
+        type: "number",
+        required: true,
+        min: 0,
+        max: 1000
+    },
+    {
+        id: "loanTenure",
+        label: "Loan Term",
+        type: "number",
+        required: true,
+        min: 0.01
+    },
+    {
+        id: "tenureType",
+        label: "Loan Term Type",
+        type: "select",
+        required: true
+    }
+];
+
 function calculateLoan() {
+
+        /* ======================================
+   SHARED VALIDATION GATE
+   Stage 5C.3 — Inline Validation UX
+   ====================================== */
+
+if (
+    window.ToolXoneValidation &&
+    typeof ToolXoneValidation.validateForm === "function"
+) {
+    const validationResult =
+        ToolXoneValidation.validateForm(
+            loanValidationFields
+        );
+
+    if (!validationResult.valid) {
+
+        if (
+            window.ToolXoneValidationUI &&
+            typeof ToolXoneValidationUI.showErrors === "function"
+        ) {
+            ToolXoneValidationUI.showErrors(
+                validationResult.errors || {}
+            );
+
+            if (
+                typeof ToolXoneValidationUI
+                    .focusFirstInvalid === "function"
+            ) {
+                ToolXoneValidationUI.focusFirstInvalid(
+                    validationResult.errors || {}
+                );
+            }
+        } 
+        
+        else {
+            /*
+             * Compatibility fallback if the
+             * validation UI layer is unavailable.
+             */
+            const firstError =
+                Object.values(
+                    validationResult.errors || {}
+                )[0];
+
+            alert(
+                firstError ||
+                "Please check the entered values."
+            );
+        }
+
+        return;
+    }
+
+    /*
+     * Validation passed.
+     * Remove any errors left from a previous attempt.
+     */
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.clearAllErrors === "function"
+    ) {
+        ToolXoneValidationUI.clearAllErrors();
+    }
+}
+    
     const amount = parseFloat(
         document.getElementById("loanAmount").value
     );
@@ -26,31 +129,90 @@ function calculateLoan() {
        INPUT VALIDATION
        ====================================== */
 
+    const defensiveErrors = {};
+
+if (
+    !Number.isFinite(amount) ||
+    amount <= 0
+) {
+    defensiveErrors.loanAmount =
+        "Loan Amount must be greater than zero.";
+}
+
+if (
+    !Number.isFinite(annualRate) ||
+    annualRate < 0
+) {
+    defensiveErrors.interestRate =
+        "Annual Interest Rate cannot be negative.";
+}
+
+if (
+    !Number.isFinite(enteredDuration) ||
+    enteredDuration <= 0
+) {
+    defensiveErrors.loanTenure =
+        "Loan Term must be greater than zero.";
+}
+
+if (Object.keys(defensiveErrors).length > 0) {
+
     if (
-        !Number.isFinite(amount) ||
-        !Number.isFinite(annualRate) ||
-        !Number.isFinite(enteredDuration) ||
-        amount <= 0 ||
-        annualRate < 0 ||
-        enteredDuration <= 0
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
     ) {
-        alert(
-            "Please enter valid values. Loan amount and duration must be greater than zero, and the interest rate cannot be negative."
+        ToolXoneValidationUI.showErrors(
+            defensiveErrors
         );
 
-        return;
+        if (
+            typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+        ) {
+            ToolXoneValidationUI.focusFirstInvalid(
+                defensiveErrors
+            );
+        }
+    } else {
+        const firstError =
+            Object.values(defensiveErrors)[0];
+
+        alert(
+            firstError ||
+            "Please enter valid loan values."
+        );
     }
+
+    return;
+}
 
     if (
-        tenureType !== "years" &&
-        tenureType !== "months"
-    ) {
-        alert(
-            "Please select a valid loan duration type."
-        );
+    tenureType !== "years" &&
+    tenureType !== "months"
+) {
+    const message =
+        "Please select a valid loan duration type.";
 
-        return;
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
+    ) {
+        ToolXoneValidationUI.showErrors({
+            tenureType: message
+        });
+
+        if (
+            typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+        ) {
+            ToolXoneValidationUI.focusFirstInvalid({
+                tenureType: message
+            });
+        }
+    } else {
+        alert(message);
     }
+
+    return;
+}
 
 
     /* ======================================
@@ -75,16 +237,38 @@ function calculateLoan() {
      */
 
     if (
-        !Number.isFinite(durationMonths) ||
-        durationMonths <= 0 ||
-        !Number.isInteger(durationMonths)
-    ) {
-        alert(
-            "Loan duration must result in a whole number of months."
-        );
+    !Number.isFinite(durationMonths) ||
+    durationMonths <= 0 ||
+    !Number.isInteger(durationMonths)
+) {
+    const message =
+        "Loan Term must result in a whole number of months.";
 
-        return;
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
+    ) {
+        const errors = {
+    loanTenure: message
+};
+
+ToolXoneValidationUI.showErrors(
+    errors
+);
+
+if (
+    typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+) {
+    ToolXoneValidationUI.focusFirstInvalid(
+        errors
+    );
+}
+    } else {
+        alert(message);
     }
+
+    return;
+}
 
 
     /* ======================================
@@ -100,18 +284,54 @@ function calculateLoan() {
     const MAX_LOAN_AMOUNT = 1e15;
     const MAX_ANNUAL_RATE = 1000;
     const MAX_DURATION_MONTHS = 12000;
+    const extremeErrors = {};
+
+if (amount > MAX_LOAN_AMOUNT) {
+    extremeErrors.loanAmount =
+        "Loan Amount must not exceed 1,000,000,000,000,000.";
+}
+
+if (annualRate > MAX_ANNUAL_RATE) {
+    extremeErrors.interestRate =
+        "Annual Interest Rate must not exceed 1000.";
+}
+
+if (durationMonths > MAX_DURATION_MONTHS) {
+    extremeErrors.loanTenure =
+        "Loan Term must not exceed 12,000 months.";
+}
+
+if (Object.keys(extremeErrors).length > 0) {
 
     if (
-        amount > MAX_LOAN_AMOUNT ||
-        annualRate > MAX_ANNUAL_RATE ||
-        durationMonths > MAX_DURATION_MONTHS
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
     ) {
-        alert(
-            "These values are too large to calculate reliably. Please use smaller values."
-        );
+        ToolXoneValidationUI.showErrors(
+    extremeErrors
+);
 
-        return;
+if (
+    typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+) {
+    ToolXoneValidationUI.focusFirstInvalid(
+        extremeErrors
+    );
+}
     }
+    
+    else {
+        const firstError =
+            Object.values(extremeErrors)[0];
+
+        alert(
+            firstError ||
+            "These values are too large to calculate reliably."
+        );
+    }
+
+    return;
+}
 
 
     /* ======================================
@@ -155,16 +375,41 @@ function calculateLoan() {
             1 - discountFactor;
 
         if (
-            !Number.isFinite(discountFactor) ||
-            !Number.isFinite(denominator) ||
-            denominator <= 0
-        ) {
-            alert(
-                "These values cannot be calculated reliably. Please check the interest rate and loan duration."
-            );
+    !Number.isFinite(discountFactor) ||
+    !Number.isFinite(denominator) ||
+    denominator <= 0
+) {
+    const message =
+        "This interest rate and loan term combination cannot be calculated reliably. Please use more moderate values.";
 
-            return;
-        }
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
+    ) {
+        const errors = {
+    interestRate: message,
+    loanTenure: message
+};
+
+ToolXoneValidationUI.showErrors(
+    errors
+);
+
+if (
+    typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+) {
+    ToolXoneValidationUI.focusFirstInvalid(
+        errors
+    );
+}
+    }
+    
+    else {
+        alert(message);
+    }
+
+    return;
+}
 
         emi =
             (
@@ -204,19 +449,30 @@ function calculateLoan() {
        ====================================== */
 
     if (
-        !Number.isFinite(emi) ||
-        !Number.isFinite(totalPayment) ||
-        !Number.isFinite(totalInterest) ||
-        emi < 0 ||
-        totalPayment < 0 ||
-        totalInterest < 0
-    ) {
-        alert(
-            "The calculation produced an invalid result. Please use smaller or more realistic values."
-        );
+    !Number.isFinite(emi) ||
+    !Number.isFinite(totalPayment) ||
+    !Number.isFinite(totalInterest) ||
+    emi < 0 ||
+    totalPayment < 0 ||
+    totalInterest < 0
+) {
+    const errors = {
+    loanAmount: message
+};
 
-        return;
-    }
+ToolXoneValidationUI.showErrors(
+    errors
+);
+
+if (
+    typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+) {
+    ToolXoneValidationUI.focusFirstInvalid(
+        errors
+    );
+}
+
+}
 
 
     /* ======================================
@@ -482,11 +738,36 @@ function clampLoanPercent(
 }
 
 
+
+
 /* ======================================
    RESET
    ====================================== */
 
 function resetLoan() {
+
+    /* ======================================
+       VALIDATION STATE CLEANUP
+       Stage 5C.3.7
+       ====================================== */
+
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.clearAllErrors === "function"
+    ) {
+        const calculatorForm =
+            document.getElementById(
+                "calculatorForm"
+            );
+
+        ToolXoneValidationUI.clearAllErrors(
+            calculatorForm || document
+        );
+    }
+
+
+    
+
     document.getElementById(
         "loanAmount"
     ).value = "";
@@ -528,31 +809,67 @@ function resetLoan() {
         "interestBar"
     ).style.width =
         "0%";
+
+/* ======================================
+RESET FOCUS STATE
+Stage 5C.3.9
+====================================== */
+
+const firstLoanField =
+document.getElementById(
+"loanAmount"
+);
+
+if (
+firstLoanField &&
+typeof firstLoanField.focus === "function"
+) {
+firstLoanField.focus({
+preventScroll: true
+});
+
 }
+
+    }
 
 
 /* ======================================
    ENTER KEY SUPPORT
+   Stage 5C.3.9B — Dynamic Field Support
    ====================================== */
 
-document
-    .querySelectorAll(
-        "#loanAmount, " +
-        "#interestRate, " +
-        "#loanTenure"
-    )
-    .forEach(input => {
-        input.addEventListener(
-            "keydown",
-            function (event) {
-                if (
-                    event.key === "Enter"
-                ) {
-                    calculateLoan();
-                }
-            }
-        );
-    });
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Enter") {
+            return;
+        }
+
+        const target = event.target;
+
+        if (!target) {
+            return;
+        }
+
+        const isLoanInput =
+            target.id === "loanAmount" ||
+            target.id === "interestRate" ||
+            target.id === "loanTenure";
+
+        if (!isLoanInput) {
+            return;
+        }
+
+        /*
+         * Prevent any native/default Enter
+         * behaviour before running ToolXone.
+         */
+        event.preventDefault();
+
+        calculateLoan();
+    }
+);
 
 
 /* ======================================

@@ -1,0 +1,117 @@
+/* =========================================
+   TOOLXONE SHARED VALIDATION UI
+   Stage 5C.3.5
+   Shared validation styling
+========================================= */
+
+
+/* -----------------------------------------
+   INVALID FIELD
+----------------------------------------- */
+
+.toolxone-field-invalid {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.12);
+}
+
+
+/* Preserve clear error feedback on focus */
+
+.toolxone-field-invalid:focus {
+    border-color: #dc2626 !important;
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(220, 38, 38, 0.14);
+}
+
+
+/* -----------------------------------------
+   ERROR MESSAGE
+----------------------------------------- */
+
+.toolxone-field-error {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #b91c1c;
+
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Small visual indicator */
+
+.toolxone-field-error::before {
+    content: "⚠ ";
+}
+
+
+/* -----------------------------------------
+   FORM GROUP ERROR STATE
+----------------------------------------- */
+
+.form-group:has(.toolxone-field-invalid) label {
+    color: #b91c1c;
+}
+
+
+/* -----------------------------------------
+   DARK MODE
+----------------------------------------- */
+
+[data-theme="dark"] .toolxone-field-invalid {
+    border-color: #f87171 !important;
+
+    box-shadow:
+        0 0 0 1px rgba(248, 113, 113, 0.18);
+}
+
+[data-theme="dark"] .toolxone-field-invalid:focus {
+    border-color: #f87171 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(248, 113, 113, 0.18);
+}
+
+[data-theme="dark"] .toolxone-field-error {
+    color: #fca5a5;
+}
+
+[data-theme="dark"]
+.form-group:has(.toolxone-field-invalid) label {
+    color: #fca5a5;
+}
+
+
+/* -----------------------------------------
+   HIGH CONTRAST / FORCED COLORS
+----------------------------------------- */
+
+@media (forced-colors: active) {
+
+    .toolxone-field-invalid {
+        border: 2px solid CanvasText !important;
+    }
+
+    .toolxone-field-error {
+        color: CanvasText;
+    }
+}
+
+
+/* -----------------------------------------
+   REDUCED MOTION
+----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .toolxone-field-invalid,
+    .toolxone-field-error {
+        transition: none;
+    }
+}

@@ -8,4 +8,24 @@ function renderCalculator(config) {
 
     renderForm("calculatorForm", config.fields);
 
+
+    /* ======================================
+       LIVE VALIDATION RECOVERY
+       Stage 5C.3.6
+    ====================================== */
+
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.enableLiveRecovery === "function"
+    ) {
+        const calculatorForm =
+            document.getElementById("calculatorForm");
+
+        if (calculatorForm) {
+            ToolXoneValidationUI.enableLiveRecovery(
+                calculatorForm
+            );
+        }
+    }
+
 }

@@ -8,8 +8,13 @@ function renderForm(containerId, fields) {
 
     fields.forEach(field => {
 
+        const errorId = `${field.id}-error`;
+
         html += `
-            <div class="form-group">
+            <div
+                class="form-group"
+                data-field-group="${field.id}"
+            >
                 <label for="${field.id}">
                     ${field.label}
                 </label>
@@ -23,6 +28,8 @@ function renderForm(containerId, fields) {
                     ${field.name ? `name="${field.name}"` : ""}
                     ${field.required ? "required" : ""}
                     ${field.ariaLabel ? `aria-label="${field.ariaLabel}"` : ""}
+                    aria-describedby="${errorId}"
+                    aria-invalid="false"
                 >
             `;
 
@@ -53,11 +60,20 @@ function renderForm(containerId, fields) {
                     ${field.autocomplete ? `autocomplete="${field.autocomplete}"` : ""}
                     ${field.required ? "required" : ""}
                     ${field.ariaLabel ? `aria-label="${field.ariaLabel}"` : ""}
+                    aria-describedby="${errorId}"
+                    aria-invalid="false"
                 >
             `;
         }
 
         html += `
+                <div
+                    id="${errorId}"
+                    class="validation-message"
+                    role="alert"
+                    aria-live="polite"
+                    hidden
+                ></div>
             </div>
         `;
     });
