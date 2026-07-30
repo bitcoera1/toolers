@@ -320,80 +320,67 @@ function resetTax() {
 
 /* ======================================
    ENTER KEY SUPPORT
+   Dynamic Form Compatible
    ====================================== */
 
-document
-    .querySelectorAll(
-        "#amount, #taxRate"
-    )
-    .forEach(input => {
-        input.addEventListener(
-            "keydown",
-            function (event) {
-                if (
-                    event.key === "Enter"
-                ) {
-                    calculateTax();
-                }
-            }
-        );
-    });
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Enter") {
+            return;
+        }
+
+        const target = event.target;
+
+        if (
+            target &&
+            (
+                target.id === "amount" ||
+                target.id === "taxRate"
+            )
+        ) {
+            event.preventDefault();
+            calculateTax();
+        }
+    }
+);
 
 
-/* ======================================
+/* ==================================
    LIVE RECALCULATION
-   ====================================== */
+================================== */
 
-document
-    .getElementById(
-        "taxType"
-    )
-    .addEventListener(
-        "change",
-        function () {
-            if (
-                document.getElementById(
-                    "amount"
-                ).value !== "" &&
-                document.getElementById(
-                    "taxRate"
-                ).value !== ""
-            ) {
-                calculateTax();
-            }
-        }
-    );
+document.addEventListener("change", function (event) {
+    if (event.target && event.target.id === "taxType") {
+        const amountInput = document.getElementById("amount");
+        const taxRateInput = document.getElementById("taxRate");
 
-document
-    .getElementById(
-        "taxRate"
-    )
-    .addEventListener(
-        "input",
-        function () {
-            if (
-                document.getElementById(
-                    "amount"
-                ).value !== ""
-            ) {
-                calculateTax();
-            }
+        if (
+            amountInput &&
+            taxRateInput &&
+            amountInput.value !== "" &&
+            taxRateInput.value !== ""
+        ) {
+            calculateTax();
         }
-    );
+    }
+});
 
-document
-    .getElementById(
-        "amount"
-    )
-    .addEventListener(
-        "input",
-        function () {
-            if (
-                document.getElementById(
-                    "taxRate"
-                ).value !== ""
-            ) {
-                calculateTax();
-            }
+document.addEventListener("input", function (event) {
+    if (event.target && event.target.id === "taxRate") {
+        const amountInput = document.getElementById("amount");
+
+        if (amountInput && amountInput.value !== "") {
+            calculateTax();
         }
-    );
+    }
+
+    if (event.target && event.target.id === "amount") {
+        const taxRateInput = document.getElementById("taxRate");
+
+        if (taxRateInput && taxRateInput.value !== "") {
+            calculateTax();
+        }
+    }
+});

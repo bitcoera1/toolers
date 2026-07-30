@@ -256,3 +256,856 @@ body.dark-mode .bar-bg{
 
     overflow-wrap:anywhere;
 }
+
+/* =========================================================
+   GST / VAT CALCULATOR — EDUCATIONAL ARTICLE
+   ========================================================= */
+
+.tax-article {
+    width: min(1100px, calc(100% - 32px));
+    margin: 56px auto;
+    padding: 48px 52px;
+
+    background: var(--card-bg, #ffffff);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.07),
+        0 2px 8px rgba(15, 23, 42, 0.03);
+
+    color: var(--text-color, #172033);
+}
+
+
+/* =========================================================
+   ARTICLE SECTIONS
+   ========================================================= */
+
+.tax-article-section {
+    position: relative;
+    padding: 0 0 38px;
+    margin: 0 0 38px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+}
+
+.tax-article-section:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   ARTICLE HEADINGS
+   ========================================================= */
+
+.tax-article h2 {
+    position: relative;
+
+    margin: 0 0 20px;
+    padding-left: 20px;
+
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+    line-height: 1.25;
+    font-weight: 800;
+
+    color: var(--heading-color, #0f172a);
+}
+
+.tax-article h2::before {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    top: 0.16em;
+
+    width: 5px;
+    height: 1.05em;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        180deg,
+        #10b981,
+        #059669
+    );
+}
+
+.tax-article h3 {
+    margin: 28px 0 12px;
+
+    font-size: 1.2rem;
+    line-height: 1.35;
+    font-weight: 800;
+
+    color: var(--heading-color, #0f172a);
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+.tax-article p {
+    margin: 0 0 17px;
+
+    font-size: 1.03rem;
+    line-height: 1.78;
+
+    color: var(--text-color, #334155);
+}
+
+.tax-article p:last-child {
+    margin-bottom: 0;
+}
+
+.tax-article strong {
+    font-weight: 750;
+    color: var(--heading-color, #0f172a);
+}
+
+
+/* =========================================================
+   HOW-TO / GENERAL LISTS
+   ========================================================= */
+
+.tax-article ol,
+.tax-article ul {
+    margin: 18px 0 22px;
+    padding-left: 26px;
+}
+
+.tax-article li {
+    margin: 10px 0;
+    padding-left: 5px;
+
+    font-size: 1.02rem;
+    line-height: 1.65;
+
+    color: var(--text-color, #334155);
+}
+
+.tax-article li::marker {
+    color: #059669;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORMULA BOX
+   Add class="tax-formula" around formulas
+   ========================================================= */
+
+.tax-formula {
+    position: relative;
+
+    margin: 22px 0;
+    padding: 20px 24px 20px 28px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.09),
+        rgba(16, 185, 129, 0.035)
+    );
+
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    border-left: 5px solid #10b981;
+    border-radius: 14px;
+
+    font-size: 1.04rem;
+    line-height: 1.7;
+    font-weight: 750;
+
+    color: #0f5132;
+
+    overflow-wrap: anywhere;
+}
+
+.tax-formula strong {
+    color: #065f46;
+}
+
+
+/* =========================================================
+   EXAMPLE BOX
+   Add class="tax-example" around examples
+   ========================================================= */
+
+.tax-example {
+    margin: 22px 0;
+    padding: 22px 24px;
+
+    background: rgba(16, 185, 129, 0.055);
+
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    border-radius: 16px;
+}
+
+.tax-example::before {
+    content: "Quick Example";
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+
+    color: #047857;
+}
+
+.tax-example p {
+    margin-bottom: 8px;
+}
+
+.tax-example p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CONTEXTUAL INTERNAL LINKS
+   ========================================================= */
+
+.tax-article a {
+    color: #047857;
+    font-weight: 700;
+
+    text-decoration-line: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.tax-article a:hover {
+    color: #065f46;
+    text-decoration-color: #10b981;
+}
+
+.tax-article a:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.28);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   IMPORTANT TAX NOTE
+   Add class="tax-note" to the note container
+   ========================================================= */
+
+.tax-note {
+    position: relative;
+
+    margin-top: 8px;
+    padding: 26px 28px 26px 68px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(245, 158, 11, 0.10),
+        rgba(245, 158, 11, 0.035)
+    );
+
+    border: 1px solid rgba(245, 158, 11, 0.30);
+    border-radius: 16px;
+}
+
+.tax-note::before {
+    content: "⚠️";
+
+    position: absolute;
+    left: 24px;
+    top: 25px;
+
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.tax-note h2 {
+    padding-left: 0;
+    margin-bottom: 14px;
+
+    font-size: 1.35rem;
+}
+
+.tax-note h2::before {
+    display: none;
+}
+
+.tax-note p {
+    color: var(--text-color, #334155);
+}
+
+
+/* =========================================================
+   COMMON USES — OPTIONAL GRID
+   Add class="tax-use-list" to the <ul>
+   ========================================================= */
+
+.tax-use-list {
+    list-style: none;
+    padding: 0 !important;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+
+    margin: 22px 0 !important;
+}
+
+.tax-use-list li {
+    position: relative;
+
+    margin: 0;
+    padding: 15px 16px 15px 44px;
+
+    background: rgba(16, 185, 129, 0.045);
+
+    border: 1px solid rgba(16, 185, 129, 0.16);
+    border-radius: 12px;
+}
+
+.tax-use-list li::before {
+    content: "✓";
+
+    position: absolute;
+    left: 16px;
+    top: 14px;
+
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #10b981;
+    color: #ffffff;
+
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   DARK MODE
+   Supports common ToolXone theme patterns
+   ========================================================= */
+
+body.dark-mode .tax-article,
+[data-theme="dark"] .tax-article {
+    background: #111827;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.22);
+
+    color: #e5e7eb;
+}
+
+body.dark-mode .tax-article h2,
+body.dark-mode .tax-article h3,
+body.dark-mode .tax-article strong,
+[data-theme="dark"] .tax-article h2,
+[data-theme="dark"] .tax-article h3,
+[data-theme="dark"] .tax-article strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .tax-article p,
+body.dark-mode .tax-article li,
+[data-theme="dark"] .tax-article p,
+[data-theme="dark"] .tax-article li {
+    color: #cbd5e1;
+}
+
+body.dark-mode .tax-article-section,
+[data-theme="dark"] .tax-article-section {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .tax-formula,
+[data-theme="dark"] .tax-formula {
+    background: rgba(16, 185, 129, 0.10);
+    border-color: rgba(52, 211, 153, 0.25);
+    border-left-color: #34d399;
+    color: #d1fae5;
+}
+
+body.dark-mode .tax-formula strong,
+[data-theme="dark"] .tax-formula strong {
+    color: #a7f3d0;
+}
+
+body.dark-mode .tax-example,
+[data-theme="dark"] .tax-example {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: rgba(52, 211, 153, 0.20);
+}
+
+body.dark-mode .tax-example::before,
+[data-theme="dark"] .tax-example::before {
+    color: #6ee7b7;
+}
+
+body.dark-mode .tax-article a,
+[data-theme="dark"] .tax-article a {
+    color: #6ee7b7;
+}
+
+body.dark-mode .tax-article a:hover,
+[data-theme="dark"] .tax-article a:hover {
+    color: #a7f3d0;
+}
+
+body.dark-mode .tax-use-list li,
+[data-theme="dark"] .tax-use-list li {
+    background: rgba(16, 185, 129, 0.07);
+    border-color: rgba(52, 211, 153, 0.17);
+}
+
+body.dark-mode .tax-note,
+[data-theme="dark"] .tax-note {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(251, 191, 36, 0.24);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .tax-article {
+        width: min(94%, 1100px);
+        margin: 42px auto;
+        padding: 38px 34px;
+    }
+
+    .tax-use-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .tax-article {
+        width: calc(100% - 22px);
+
+        margin: 30px auto;
+        padding: 28px 20px;
+
+        border-radius: 18px;
+    }
+
+    .tax-article-section {
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+    }
+
+    .tax-article h2 {
+        padding-left: 16px;
+
+        font-size: 1.35rem;
+        line-height: 1.3;
+    }
+
+    .tax-article h2::before {
+        width: 4px;
+    }
+
+    .tax-article p,
+    .tax-article li {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .tax-article ol,
+    .tax-article ul {
+        padding-left: 22px;
+    }
+
+    .tax-formula {
+        padding: 17px 18px;
+
+        font-size: 0.96rem;
+        line-height: 1.65;
+
+        border-left-width: 4px;
+    }
+
+    .tax-example {
+        padding: 18px;
+    }
+
+    .tax-note {
+        padding: 58px 20px 20px;
+    }
+
+    .tax-note::before {
+        left: 20px;
+        top: 20px;
+    }
+
+    .tax-note h2 {
+        font-size: 1.25rem;
+    }
+
+    .tax-use-list li {
+        padding: 14px 14px 14px 42px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tax-article a {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   GST / VAT CALCULATOR — EDUCATIONAL ARTICLE
+========================================================= */
+
+.gst-guide {
+    width: 100%;
+    padding: 40px 20px 60px;
+    background: #f8fafc;
+}
+
+.gst-guide-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gst-guide-block {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 30px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.gst-guide-block h2 {
+    margin: 0 0 18px;
+    padding-left: 16px;
+    position: relative;
+
+    font-size: 1.65rem;
+    line-height: 1.3;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.gst-guide-block h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 5px;
+    border-radius: 999px;
+    background: #10b981;
+}
+
+.gst-guide-block h3 {
+    margin: 0 0 14px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #047857;
+}
+
+.gst-guide-block p {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #334155;
+}
+
+.gst-guide-block p:last-child {
+    margin-bottom: 0;
+}
+
+.gst-guide-block strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   QUICK EXAMPLE
+========================================================= */
+
+.gst-example-box {
+    margin-top: 22px;
+    padding: 22px 24px;
+
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-left: 5px solid #10b981;
+    border-radius: 14px;
+}
+
+.gst-example-box h3 {
+    margin-bottom: 14px;
+}
+
+.gst-example-box p {
+    margin: 6px 0;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   HOW-TO STEPS
+========================================================= */
+
+.gst-steps {
+    margin: 20px 0 0;
+    padding-left: 26px;
+}
+
+.gst-steps li {
+    margin-bottom: 13px;
+    padding-left: 5px;
+    line-height: 1.65;
+    color: #334155;
+}
+
+.gst-steps li:last-child {
+    margin-bottom: 0;
+}
+
+.gst-steps li::marker {
+    color: #059669;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORMULA BOXES
+========================================================= */
+
+.gst-formula-box {
+    margin: 22px 0;
+    padding: 20px 24px;
+
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 14px;
+
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #14532d;
+}
+
+.gst-formula-box strong {
+    color: #14532d;
+}
+
+
+/* =========================================================
+   IMPORTANT NOTE
+========================================================= */
+
+.gst-note-box {
+    margin-top: 22px;
+    padding: 18px 22px;
+
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 5px solid #f59e0b;
+    border-radius: 12px;
+
+    line-height: 1.65;
+    color: #78350f;
+}
+
+.gst-note-box strong {
+    color: #92400e;
+}
+
+
+/* =========================================================
+   COMMON USES
+========================================================= */
+
+.gst-use-list {
+    margin: 18px 0 20px;
+    padding-left: 26px;
+}
+
+.gst-use-list li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+    line-height: 1.6;
+    color: #334155;
+}
+
+.gst-use-list li::marker {
+    color: #10b981;
+}
+
+
+/* =========================================================
+   CONTEXTUAL INTERNAL LINKS
+========================================================= */
+
+.gst-context-link {
+    color: #047857;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.gst-context-link:hover {
+    color: #065f46;
+}
+
+
+/* =========================================================
+   TAX NOTICE
+========================================================= */
+
+.gst-tax-notice {
+    background: #fff7ed;
+    border-color: #fed7aa;
+    border-left: 5px solid #f97316;
+}
+
+.gst-tax-notice h2::before {
+    background: #f97316;
+}
+
+
+/* =========================================================
+   DARK MODE SUPPORT
+========================================================= */
+
+body.dark-mode .gst-guide {
+    background: #0f172a;
+}
+
+body.dark-mode .gst-guide-block {
+    background: #111827;
+    border-color: #334155;
+}
+
+body.dark-mode .gst-guide-block h2,
+body.dark-mode .gst-guide-block strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .gst-guide-block p,
+body.dark-mode .gst-steps li,
+body.dark-mode .gst-use-list li {
+    color: #cbd5e1;
+}
+
+body.dark-mode .gst-example-box,
+body.dark-mode .gst-formula-box {
+    background: #052e2b;
+    border-color: #065f46;
+}
+
+body.dark-mode .gst-example-box h3,
+body.dark-mode .gst-formula-box,
+body.dark-mode .gst-formula-box strong {
+    color: #a7f3d0;
+}
+
+body.dark-mode .gst-note-box {
+    background: #422006;
+    border-color: #92400e;
+    color: #fde68a;
+}
+
+body.dark-mode .gst-note-box strong {
+    color: #fef3c7;
+}
+
+body.dark-mode .gst-tax-notice {
+    background: #431407;
+    border-color: #9a3412;
+}
+
+body.dark-mode .gst-context-link {
+    color: #6ee7b7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .gst-guide {
+        padding: 28px 14px 45px;
+    }
+
+    .gst-guide-block {
+        padding: 23px 20px;
+        border-radius: 15px;
+        margin-bottom: 18px;
+    }
+
+    .gst-guide-block h2 {
+        font-size: 1.35rem;
+        padding-left: 14px;
+    }
+
+    .gst-guide-block p,
+    .gst-steps li,
+    .gst-use-list li {
+        font-size: 0.96rem;
+    }
+
+    .gst-example-box,
+    .gst-formula-box,
+    .gst-note-box {
+        padding: 17px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .gst-guide {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .gst-guide-block {
+        padding: 20px 16px;
+    }
+
+    .gst-guide-block h2 {
+        font-size: 1.22rem;
+    }
+
+    .gst-steps,
+    .gst-use-list {
+        padding-left: 22px;
+    }
+}
