@@ -120,6 +120,131 @@
     margin-bottom:8px;
 }
 
+/* =========================================
+   D3.3.3 — SMART INSIGHT PRESENTATION
+   ========================================= */
+
+.discount-insight-container {
+    margin-top: 18px;
+}
+
+/* Empty container must occupy no space */
+.discount-insight-container:empty {
+    display: none;
+}
+
+.discount-insight {
+    position: relative;
+
+    padding: 16px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.08),
+            rgba(16, 185, 129, 0.025)
+        );
+
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.04);
+
+    overflow: hidden;
+}
+
+/* -----------------------------------------
+   Accent strip
+   ----------------------------------------- */
+
+.discount-insight::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #10b981;
+}
+
+/* -----------------------------------------
+   Title
+   ----------------------------------------- */
+
+.discount-insight-title {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    color: #047857;
+}
+
+/* -----------------------------------------
+   Main explanation
+   ----------------------------------------- */
+
+.discount-insight p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.55;
+
+    color: #334155;
+}
+
+.discount-insight p + p {
+    margin-top: 9px;
+}
+
+.discount-insight strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* -----------------------------------------
+   Per-$100 example
+   ----------------------------------------- */
+
+.discount-insight-example {
+    padding-top: 9px;
+
+    border-top: 1px solid rgba(16, 185, 129, 0.14);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .discount-insight-container {
+        margin-top: 14px;
+    }
+
+    .discount-insight {
+        padding: 14px 15px;
+        border-radius: 10px;
+    }
+
+    .discount-insight-title {
+        font-size: 13px;
+    }
+
+    .discount-insight p {
+        font-size: 12.5px;
+        line-height: 1.5;
+    }
+}
+
 .bar-bg{
     height:16px;
     background:#e5e7eb;
@@ -235,4 +360,1860 @@ body.dark-mode .bar-bg{
     text-align:center;
 
     overflow-wrap:anywhere;
+}
+
+/* =========================================
+   D2.3 — DISCOUNT RESULT EXPERIENCE
+   ========================================= */
+
+/* Bar section spacing */
+.discount-page .growth-bars {
+    margin-top: 22px;
+}
+
+/* Each result bar group */
+.discount-page .bar-row {
+    margin-bottom: 18px;
+}
+
+.discount-page .bar-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Label + calculated value on same row */
+.discount-page .bar-row > span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    width: 100%;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* D2 calculated amount + percentage */
+#payBarValue,
+#saveBarValue {
+    margin-left: auto;
+
+    font-size: 14px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* Pay value */
+#payBarValue {
+    color: #10b981;
+}
+
+/* Saving value */
+#saveBarValue {
+    color: #f59e0b;
+}
+
+/* Progress track */
+.discount-page .bar-bg {
+    width: 100%;
+    height: 14px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+    background: #e5e7eb;
+}
+
+/* Progress bars */
+.discount-page .bar {
+    height: 100%;
+    width: 0;
+
+    border-radius: inherit;
+
+    transition:
+        width 0.55s ease;
+}
+
+/* You Pay */
+.discount-page .investment-bar {
+    background: #10b981;
+}
+
+/* You Save */
+.discount-page .interest-bar {
+    background: #f59e0b;
+}
+
+
+/* =========================================
+   D2 — RESPONSIVE RESULT BARS
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .discount-page .bar-row > span {
+        gap: 10px;
+
+        font-size: 13px;
+    }
+
+    #payBarValue,
+    #saveBarValue {
+        font-size: 13px;
+    }
+
+    .discount-page .bar-bg {
+        height: 12px;
+    }
+}
+
+/* =========================================
+   D2.3 — BAR HEADER ALIGNMENT FIX
+   Existing HTML uses .discount-bar-header
+   ========================================= */
+
+.discount-page .discount-bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.discount-page .discount-bar-header span {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.discount-page .discount-bar-header strong {
+    margin-left: auto;
+
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.discount-page #payBarValue {
+    color: #10b981;
+}
+
+.discount-page #saveBarValue {
+    color: #f59e0b;
+}
+
+@media (max-width: 600px) {
+
+    .discount-page .discount-bar-header {
+        gap: 10px;
+    }
+
+    .discount-page .discount-bar-header span,
+    .discount-page .discount-bar-header strong {
+        font-size: 13px;
+    }
+}
+
+/* =========================================
+   D2.4 — RESULT STATE EXPERIENCE
+   ========================================= */
+
+/* Smooth state changes */
+.discount-page .result-card {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* INITIAL STATE */
+
+.discount-page .result-card.state-initial {
+    border-color: transparent;
+}
+
+
+/* SUCCESS STATE */
+
+.discount-page .result-card.state-success {
+    border-color: rgba(16, 185, 129, 0.22);
+
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(16, 185, 129, 0.08);
+}
+
+
+/* INVALID ATTEMPT
+   Keep previous valid result visible.
+   Only give the result card subtle feedback.
+*/
+
+.discount-page .result-card.state-error {
+    border-color: rgba(239, 68, 68, 0.22);
+
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(239, 68, 68, 0.08);
+}
+
+
+/* Active result */
+
+.discount-page
+.result-card.state-success
+.discount-result.active {
+    opacity: 1;
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .discount-page .result-card,
+    .discount-page .bar {
+        transition: none;
+    }
+}
+
+/* =========================================================
+   D3.4.2 — DISCOUNT STRENGTH PRESENTATION
+   ========================================================= */
+
+.discount-strength {
+  --strength-color: #64748b;
+  --strength-soft: #f8fafc;
+  --strength-border: #e2e8f0;
+
+  margin-top: 14px;
+  border: 1px solid var(--strength-border);
+  border-left: 3px solid var(--strength-color);
+  border-radius: 10px;
+  background: var(--strength-soft);
+  overflow: hidden;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.discount-strength-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.discount-strength-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--strength-color);
+
+  font-size: 14px;
+  font-weight: 800;
+
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+}
+
+.discount-strength-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.discount-strength-caption {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.discount-strength-label {
+  margin-top: 2px;
+  color: var(--strength-color);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.discount-strength-percent {
+  flex-shrink: 0;
+
+  padding: 4px 8px;
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: var(--strength-color);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  border: 1px solid var(--strength-border);
+}
+
+.discount-strength-message {
+    padding: 9px 12px 10px;
+
+    border-top: 1px solid
+        var(--strength-border);
+
+    color: #475569;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.discount-strength-message:empty {
+    display: none;
+}
+
+/* =========================================
+   D3.4.4.6.2 — VALUE PERSPECTIVE
+   VISUAL SYSTEM
+   ========================================= */
+
+.value-aware-intelligence-container {
+    margin-top: 12px;
+}
+
+.value-aware-intelligence {
+    padding: 14px 16px;
+    border: 1px solid #d9e2ec;
+    border-left: 4px solid #64748b;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.value-aware-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.value-aware-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+
+.value-aware-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.value-aware-message {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #475569;
+}
+
+/* High percentage + high monetary value */
+
+.value-aware-high-impact {
+    border-color: #a7f3d0;
+    border-left-color: #10b981;
+    background: linear-gradient(
+        135deg,
+        #ecfdf5,
+        #f8fafc
+    );
+}
+
+.value-aware-high-impact .value-aware-title {
+    color: #047857;
+}
+
+.value-aware-high-impact .value-aware-icon {
+    border-color: #a7f3d0;
+    background: #ecfdf5;
+}
+
+/* =========================================
+   D3.4.5.3 — DEAL CONTEXT INTELLIGENCE
+   ========================================= */
+
+#dealContextIntelligence {
+    width: 100%;
+}
+
+.deal-context-intelligence {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 18px 20px;
+
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid #64748b;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f8fafc 100%
+    );
+
+    color: #334155;
+}
+
+.deal-context-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 12px;
+}
+
+.deal-context-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    font-size: 15px;
+}
+
+.deal-context-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+
+    color: #334155;
+}
+
+.deal-context-message {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: #475569;
+}
+
+
+/* -----------------------------------------
+   NO SAVINGS
+   ----------------------------------------- */
+
+.deal-context-none {
+    border-left-color: #94a3b8;
+}
+
+
+/* -----------------------------------------
+   SAVE LESS THAN PAY
+   ----------------------------------------- */
+
+.deal-context-save-less-than-pay {
+    border-left-color: #f59e0b;
+}
+
+
+/* -----------------------------------------
+   SAVE EQUALS PAY
+   ----------------------------------------- */
+
+.deal-context-save-equals-pay {
+    border-left-color: #3b82f6;
+}
+
+
+/* -----------------------------------------
+   SAVE MORE THAN PAY
+   ----------------------------------------- */
+
+.deal-context-save-more-than-pay {
+    border-left-color: #10b981;
+}
+
+
+/* -----------------------------------------
+   FULL SAVING
+   ----------------------------------------- */
+
+.deal-context-full-saving {
+    border-left-color: #8b5cf6;
+}
+
+
+/* -----------------------------------------
+   MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .deal-context-intelligence {
+        padding: 16px;
+    }
+
+    .deal-context-title {
+        font-size: 15px;
+    }
+
+    .deal-context-message {
+        font-size: 13.5px;
+    }
+}
+
+/* =========================================
+   D3.4.4.6.3 — VALUE PERSPECTIVE
+   SEMANTIC STATE STYLING
+   ========================================= */
+
+
+/* -----------------------------------------
+   NONE
+   No discount / no monetary savings
+   ----------------------------------------- */
+
+.value-aware-none {
+    border-color: #e2e8f0;
+    border-left-color: #94a3b8;
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #ffffff
+    );
+}
+
+.value-aware-none .value-aware-title {
+    color: #475569;
+}
+
+.value-aware-none .value-aware-icon {
+    border-color: #cbd5e1;
+    background: #f1f5f9;
+}
+
+
+/* -----------------------------------------
+   HIGH RATE + LOW VALUE
+   Strong percentage, small actual saving
+   ----------------------------------------- */
+
+.value-aware-high-rate-low-value {
+    border-color: #fde68a;
+    border-left-color: #f59e0b;
+    background: linear-gradient(
+        135deg,
+        #fffbeb,
+        #f8fafc
+    );
+}
+
+.value-aware-high-rate-low-value
+.value-aware-title {
+    color: #92400e;
+}
+
+.value-aware-high-rate-low-value
+.value-aware-icon {
+    border-color: #fcd34d;
+    background: #fffbeb;
+}
+
+
+/* -----------------------------------------
+   LOW RATE + HIGH VALUE
+   Modest percentage, substantial saving
+   ----------------------------------------- */
+
+.value-aware-low-rate-high-value {
+    border-color: #bfdbfe;
+    border-left-color: #3b82f6;
+    background: linear-gradient(
+        135deg,
+        #eff6ff,
+        #f8fafc
+    );
+}
+
+.value-aware-low-rate-high-value
+.value-aware-title {
+    color: #1d4ed8;
+}
+
+.value-aware-low-rate-high-value
+.value-aware-icon {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+
+/* -----------------------------------------
+   BALANCED
+   Meaningful rate + meaningful value
+   ----------------------------------------- */
+
+.value-aware-balanced {
+    border-color: #ddd6fe;
+    border-left-color: #8b5cf6;
+    background: linear-gradient(
+        135deg,
+        #f5f3ff,
+        #f8fafc
+    );
+}
+
+.value-aware-balanced .value-aware-title {
+    color: #6d28d9;
+}
+
+.value-aware-balanced .value-aware-icon {
+    border-color: #c4b5fd;
+    background: #f5f3ff;
+}
+
+/* =========================================
+   D3.4.4.6.3 — VALUE PERSPECTIVE
+   SEMANTIC STATE STYLING
+   ========================================= */
+
+
+/* -----------------------------------------
+   NONE
+   No discount / no savings
+   ----------------------------------------- */
+
+.discount-value-perspective[data-state="none"] {
+    border-color: #d9dee7;
+    border-left-color: #94a3b8;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f8fafc 100%
+        );
+}
+
+.discount-value-perspective[data-state="none"]
+.discount-value-perspective-icon {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.discount-value-perspective[data-state="none"]
+.discount-value-perspective-title {
+    color: #475569;
+}
+
+
+/* -----------------------------------------
+   HIGH RATE + LOW VALUE
+   Strong percentage, small real saving
+   ----------------------------------------- */
+
+.discount-value-perspective[data-state="high-rate-low-value"] {
+    border-color: #fde68a;
+    border-left-color: #f59e0b;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #fffbeb 100%
+        );
+}
+
+.discount-value-perspective[data-state="high-rate-low-value"]
+.discount-value-perspective-icon {
+    background: #fffbeb;
+    border-color: #fcd34d;
+}
+
+.discount-value-perspective[data-state="high-rate-low-value"]
+.discount-value-perspective-title {
+    color: #92400e;
+}
+
+
+/* -----------------------------------------
+   LOW RATE + HIGH VALUE
+   Modest percentage, substantial real saving
+   ----------------------------------------- */
+
+.discount-value-perspective[data-state="low-rate-high-value"] {
+    border-color: #bfdbfe;
+    border-left-color: #3b82f6;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #eff6ff 100%
+        );
+}
+
+.discount-value-perspective[data-state="low-rate-high-value"]
+.discount-value-perspective-icon {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.discount-value-perspective[data-state="low-rate-high-value"]
+.discount-value-perspective-title {
+    color: #1d4ed8;
+}
+
+
+/* -----------------------------------------
+   HIGH IMPACT
+   Strong percentage + strong actual saving
+   ----------------------------------------- */
+
+.discount-value-perspective[data-state="high-impact"] {
+    border-color: #a7f3d0;
+    border-left-color: #10b981;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #ecfdf5 100%
+        );
+}
+
+.discount-value-perspective[data-state="high-impact"]
+.discount-value-perspective-icon {
+    background: #ecfdf5;
+    border-color: #6ee7b7;
+}
+
+.discount-value-perspective[data-state="high-impact"]
+.discount-value-perspective-title {
+    color: #047857;
+}
+
+
+/* -----------------------------------------
+   BALANCED
+   General meaningful saving
+   ----------------------------------------- */
+
+.discount-value-perspective[data-state="balanced"] {
+    border-color: #ddd6fe;
+    border-left-color: #8b5cf6;
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f5f3ff 100%
+        );
+}
+
+.discount-value-perspective[data-state="balanced"]
+.discount-value-perspective-icon {
+    background: #f5f3ff;
+    border-color: #c4b5fd;
+}
+
+.discount-value-perspective[data-state="balanced"]
+.discount-value-perspective-title {
+    color: #6d28d9;
+}
+
+/* -------------------------
+   Strength states
+   ------------------------- */
+
+.discount-strength[data-strength="none"] {
+  --strength-color: #64748b;
+  --strength-soft: #f8fafc;
+  --strength-border: #e2e8f0;
+}
+
+.discount-strength[data-strength="minimal"] {
+  --strength-color: #64748b;
+  --strength-soft: #f8fafc;
+  --strength-border: #cbd5e1;
+}
+
+.discount-strength[data-strength="light"] {
+  --strength-color: #0f766e;
+  --strength-soft: #f0fdfa;
+  --strength-border: #99f6e4;
+}
+
+.discount-strength[data-strength="moderate"] {
+  --strength-color: #047857;
+  --strength-soft: #ecfdf5;
+  --strength-border: #a7f3d0;
+}
+
+.discount-strength[data-strength="strong"] {
+  --strength-color: #b45309;
+  --strength-soft: #fffbeb;
+  --strength-border: #fde68a;
+}
+
+.discount-strength[data-strength="very-strong"] {
+  --strength-color: #c2410c;
+  --strength-soft: #fff7ed;
+  --strength-border: #fed7aa;
+}
+
+.discount-strength[data-strength="exceptional"] {
+  --strength-color: #b91c1c;
+  --strength-soft: #fef2f2;
+  --strength-border: #fecaca;
+}
+
+.discount-strength[data-strength="maximum"] {
+  --strength-color: #7c3aed;
+  --strength-soft: #f5f3ff;
+  --strength-border: #ddd6fe;
+}
+
+
+/* Small screens */
+
+@media (max-width: 480px) {
+  .discount-strength-main {
+    padding: 9px 10px;
+    gap: 8px;
+  }
+
+  .discount-strength-icon {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+  }
+
+  .discount-strength-percent {
+    padding: 3px 7px;
+  }
+
+}
+
+/* =========================================================
+   D3.4.6.4 — SAVINGS EFFICIENCY INTELLIGENCE UI
+   ========================================================= */
+
+.savings-efficiency-intelligence-card {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 16px 18px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        rgba(248, 250, 252, 0.98),
+        rgba(241, 245, 249, 0.96)
+    );
+
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid #64748b;
+    border-radius: 12px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.savings-efficiency-intelligence-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.savings-efficiency-intelligence-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 30px;
+
+    width: 30px;
+    height: 30px;
+
+    font-size: 16px;
+    line-height: 1;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid #dbe3ec;
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.savings-efficiency-intelligence-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.savings-efficiency-intelligence-eyebrow {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.savings-efficiency-intelligence-title {
+    display: block;
+
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   PERCENT BADGE
+   ========================================================= */
+
+.savings-efficiency-intelligence-percent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    padding: 5px 10px;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1px solid #dbe3ec;
+    border-radius: 999px;
+}
+
+
+/* =========================================================
+   INTELLIGENCE MESSAGE
+   ========================================================= */
+
+.savings-efficiency-intelligence-message {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   NONE
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="none"]
+.savings-efficiency-intelligence-card {
+    border-left-color: #94a3b8;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="none"]
+.savings-efficiency-intelligence-title {
+    color: #475569;
+}
+
+
+/* =========================================================
+   MINIMAL
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="minimal"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 251, 235, 0.98),
+        rgba(254, 249, 195, 0.32)
+    );
+
+    border-color: #fde68a;
+    border-left-color: #f59e0b;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="minimal"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="minimal"]
+.savings-efficiency-intelligence-percent {
+    color: #b45309;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="minimal"]
+.savings-efficiency-intelligence-percent {
+    border-color: #fde68a;
+}
+
+
+/* =========================================================
+   MODERATE
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="moderate"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(240, 253, 250, 0.98),
+        rgba(204, 251, 241, 0.38)
+    );
+
+    border-color: #99f6e4;
+    border-left-color: #14b8a6;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="moderate"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="moderate"]
+.savings-efficiency-intelligence-percent {
+    color: #0f766e;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="moderate"]
+.savings-efficiency-intelligence-percent {
+    border-color: #99f6e4;
+}
+
+
+/* =========================================================
+   STRONG
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="strong"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(239, 246, 255, 0.98),
+        rgba(219, 234, 254, 0.42)
+    );
+
+    border-color: #bfdbfe;
+    border-left-color: #3b82f6;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="strong"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="strong"]
+.savings-efficiency-intelligence-percent {
+    color: #1d4ed8;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="strong"]
+.savings-efficiency-intelligence-percent {
+    border-color: #bfdbfe;
+}
+
+
+/* =========================================================
+   VERY STRONG
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="very-strong"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(245, 243, 255, 0.98),
+        rgba(237, 233, 254, 0.48)
+    );
+
+    border-color: #ddd6fe;
+    border-left-color: #8b5cf6;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="very-strong"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="very-strong"]
+.savings-efficiency-intelligence-percent {
+    color: #6d28d9;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="very-strong"]
+.savings-efficiency-intelligence-percent {
+    border-color: #ddd6fe;
+}
+
+
+/* =========================================================
+   EXCEPTIONAL
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="exceptional"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 247, 237, 0.98),
+        rgba(254, 226, 226, 0.48)
+    );
+
+    border-color: #fecaca;
+    border-left-color: #ef4444;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="exceptional"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="exceptional"]
+.savings-efficiency-intelligence-percent {
+    color: #b91c1c;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="exceptional"]
+.savings-efficiency-intelligence-percent {
+    border-color: #fecaca;
+}
+
+
+/* =========================================================
+   MAXIMUM
+   ========================================================= */
+
+#savingsEfficiencyIntelligence[data-efficiency="maximum"]
+.savings-efficiency-intelligence-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 251, 235, 0.98),
+        rgba(254, 243, 199, 0.62)
+    );
+
+    border-color: #fcd34d;
+    border-left-color: #d97706;
+
+    box-shadow:
+        0 5px 18px rgba(217, 119, 6, 0.08);
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="maximum"]
+.savings-efficiency-intelligence-title,
+#savingsEfficiencyIntelligence[data-efficiency="maximum"]
+.savings-efficiency-intelligence-percent {
+    color: #92400e;
+}
+
+#savingsEfficiencyIntelligence[data-efficiency="maximum"]
+.savings-efficiency-intelligence-percent {
+    border-color: #fcd34d;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .savings-efficiency-intelligence-card {
+        padding: 14px 15px;
+    }
+
+    .savings-efficiency-intelligence-header {
+        gap: 8px;
+    }
+
+    .savings-efficiency-intelligence-icon {
+        flex-basis: 28px;
+
+        width: 28px;
+        height: 28px;
+
+        font-size: 15px;
+    }
+
+    .savings-efficiency-intelligence-title {
+        font-size: 14px;
+    }
+
+    .savings-efficiency-intelligence-percent {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .savings-efficiency-intelligence-message {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+/* =========================================================
+   D3.4.7.4.3 — DISCOUNT CALCULATOR SEO EDUCATIONAL ARTICLE
+   ========================================================= */
+
+.discount-guide {
+    width: 100%;
+    padding: 32px 20px 70px;
+}
+
+.discount-guide-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 42px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   ARTICLE HEADER
+   ========================================================= */
+
+.discount-guide-header {
+    max-width: 900px;
+    margin: 0 auto 46px;
+    text-align: center;
+}
+
+.discount-guide-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 7px 14px;
+    border: 1px solid #a7f3d0;
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #047857;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.discount-guide-header h2 {
+    margin: 0 0 18px;
+    color: #0f172a;
+    font-size: clamp(1.8rem, 4vw, 2.55rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.discount-guide-header p {
+    max-width: 850px;
+    margin: 0 auto 12px;
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   ARTICLE SECTIONS
+   ========================================================= */
+
+.discount-guide-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 34px 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.discount-guide-header + .discount-guide-section {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.discount-guide-section h3 {
+    position: relative;
+    margin: 0 0 18px;
+    padding-left: 18px;
+    color: #0f172a;
+    font-size: 1.45rem;
+    line-height: 1.3;
+    font-weight: 800;
+}
+
+.discount-guide-section h3::before {
+    content: "";
+    position: absolute;
+    top: 0.2em;
+    bottom: 0.2em;
+    left: 0;
+    width: 5px;
+    border-radius: 999px;
+    background: #10b981;
+}
+
+.discount-guide-section p {
+    margin: 0 0 16px;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.discount-guide-section p:last-child {
+    margin-bottom: 0;
+}
+
+.discount-guide-section strong {
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   EXAMPLE BOXES
+   ========================================================= */
+
+.discount-example-box {
+    margin: 24px 0;
+    padding: 22px 24px;
+    border: 1px solid #a7f3d0;
+    border-left: 5px solid #10b981;
+    border-radius: 14px;
+    background: linear-gradient(
+        135deg,
+        #ecfdf5 0%,
+        #f8fffc 100%
+    );
+}
+
+.discount-example-box > strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #047857;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.discount-example-box p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   HOW-TO STEPS
+   ========================================================= */
+
+.discount-guide-steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: discount-step;
+}
+
+.discount-guide-steps li {
+    position: relative;
+    min-height: 130px;
+    padding: 22px 22px 22px 66px;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #f8fafc;
+    color: #475569;
+    line-height: 1.65;
+    counter-increment: discount-step;
+}
+
+.discount-guide-steps li::before {
+    content: counter(discount-step);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #10b981;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.discount-guide-steps li strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   FORMULA BOXES
+   ========================================================= */
+
+.discount-formula-box {
+    margin: 22px 0;
+    padding: 22px 24px;
+    border: 1px solid #bfdbfe;
+    border-radius: 16px;
+    background: #eff6ff;
+    text-align: center;
+}
+
+.discount-formula-box span {
+    display: block;
+    margin-bottom: 9px;
+    color: #64748b;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.discount-formula-box strong {
+    display: block;
+    color: #1d4ed8;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   CALCULATION BOX
+   ========================================================= */
+
+.discount-calculation-box {
+    margin: 18px 0 22px;
+    padding: 17px 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #0f172a;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.discount-table-wrapper {
+    width: 100%;
+    margin: 24px 0;
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+}
+
+.discount-guide-table {
+    width: 100%;
+    min-width: 500px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.discount-guide-table th,
+.discount-guide-table td {
+    padding: 15px 18px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.discount-guide-table th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.discount-guide-table td {
+    color: #334155;
+    font-size: 0.95rem;
+}
+
+.discount-guide-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.discount-guide-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   GENERAL LIST
+   ========================================================= */
+
+.discount-guide-list {
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.discount-guide-list li {
+    position: relative;
+    margin-bottom: 12px;
+    padding: 15px 18px 15px 46px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #475569;
+    line-height: 1.65;
+}
+
+.discount-guide-list li::before {
+    content: "✓";
+    position: absolute;
+    top: 15px;
+    left: 17px;
+    display: flex;
+    width: 21px;
+    height: 21px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #d1fae5;
+    color: #047857;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.discount-guide-list li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   SMART TIP
+   ========================================================= */
+
+.discount-tip-box {
+    margin: 24px 0;
+    padding: 22px 24px;
+    border: 1px solid #fde68a;
+    border-left: 5px solid #f59e0b;
+    border-radius: 14px;
+    background: #fffbeb;
+}
+
+.discount-tip-box > strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #b45309;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.discount-tip-box p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   CONTEXTUAL INTERNAL LINKS
+   ========================================================= */
+
+.discount-guide-section a {
+    color: #047857;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #6ee7b7;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.discount-guide-section a:hover {
+    color: #065f46;
+    text-decoration-color: #059669;
+}
+
+.discount-guide-section a:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.25);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+
+/* =========================================================
+   CONCLUSION
+   ========================================================= */
+
+.discount-guide-conclusion {
+    margin-top: 22px;
+    padding: 28px;
+    border: 1px solid #a7f3d0;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #ecfdf5 0%,
+        #ffffff 100%
+    );
+}
+
+.discount-guide-conclusion h3 {
+    color: #047857;
+}
+
+
+/* =========================================================
+   DARK MODE
+   Supports common ToolXone theme patterns.
+   ========================================================= */
+
+[data-theme="dark"] .discount-guide-container,
+.dark-mode .discount-guide-container {
+    background: #111827;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .discount-guide-header h2,
+[data-theme="dark"] .discount-guide-section h3,
+[data-theme="dark"] .discount-guide-section strong,
+.dark-mode .discount-guide-header h2,
+.dark-mode .discount-guide-section h3,
+.dark-mode .discount-guide-section strong {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .discount-guide-header p,
+[data-theme="dark"] .discount-guide-section p,
+.dark-mode .discount-guide-header p,
+.dark-mode .discount-guide-section p {
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .discount-guide-section,
+.dark-mode .discount-guide-section {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .discount-guide-steps li,
+[data-theme="dark"] .discount-guide-list li,
+[data-theme="dark"] .discount-calculation-box,
+.dark-mode .discount-guide-steps li,
+.dark-mode .discount-guide-list li,
+.dark-mode .discount-calculation-box {
+    background: #1e293b;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .discount-formula-box,
+.dark-mode .discount-formula-box {
+    background: #172554;
+    border-color: #1e40af;
+}
+
+[data-theme="dark"] .discount-example-box,
+.dark-mode .discount-example-box {
+    background: #052e2b;
+    border-color: #047857;
+}
+
+[data-theme="dark"] .discount-tip-box,
+.dark-mode .discount-tip-box {
+    background: #422006;
+    border-color: #b45309;
+}
+
+[data-theme="dark"] .discount-guide-table,
+.dark-mode .discount-guide-table {
+    background: #111827;
+}
+
+[data-theme="dark"] .discount-guide-table th,
+.dark-mode .discount-guide-table th {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .discount-guide-table td,
+.dark-mode .discount-guide-table td {
+    color: #cbd5e1;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .discount-guide-table th,
+.dark-mode .discount-guide-table th {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .discount-guide-table tbody tr:hover,
+.dark-mode .discount-guide-table tbody tr:hover {
+    background: #1e293b;
+}
+
+[data-theme="dark"] .discount-guide-conclusion,
+.dark-mode .discount-guide-conclusion {
+    background: #052e2b;
+    border-color: #047857;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .discount-guide {
+        padding: 28px 18px 60px;
+    }
+
+    .discount-guide-container {
+        padding: 34px 28px;
+        border-radius: 20px;
+    }
+
+    .discount-guide-header {
+        margin-bottom: 38px;
+    }
+
+    .discount-guide-section {
+        padding: 30px 0;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .discount-guide {
+        padding: 22px 12px 48px;
+    }
+
+    .discount-guide-container {
+        padding: 26px 18px;
+        border-radius: 16px;
+    }
+
+    .discount-guide-header {
+        margin-bottom: 32px;
+        text-align: left;
+    }
+
+    .discount-guide-eyebrow {
+        font-size: 0.7rem;
+    }
+
+    .discount-guide-header h2 {
+        font-size: 1.65rem;
+    }
+
+    .discount-guide-header p,
+    .discount-guide-section p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .discount-guide-section {
+        padding: 26px 0;
+    }
+
+    .discount-guide-section h3 {
+        padding-left: 15px;
+        font-size: 1.22rem;
+    }
+
+    .discount-guide-section h3::before {
+        width: 4px;
+    }
+
+    .discount-guide-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .discount-guide-steps li {
+        min-height: 0;
+        padding: 18px 18px 18px 60px;
+    }
+
+    .discount-guide-steps li::before {
+        top: 17px;
+        left: 17px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .discount-example-box,
+    .discount-formula-box,
+    .discount-tip-box {
+        padding: 18px;
+    }
+
+    .discount-calculation-box {
+        padding: 15px 12px;
+        font-size: 0.9rem;
+    }
+
+    .discount-guide-list li {
+        padding: 14px 14px 14px 43px;
+    }
+
+    .discount-guide-list li::before {
+        top: 14px;
+        left: 14px;
+    }
+
+    .discount-guide-conclusion {
+        padding: 22px 18px;
+    }
 }
