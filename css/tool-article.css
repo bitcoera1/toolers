@@ -1,0 +1,412 @@
+/*
+==========================================================
+TOOLXONE SHARED TOOL ARTICLE
+----------------------------------------------------------
+Reusable educational-content design for:
+- Calculators
+- Converters
+- Health tools
+- Utilities
+- Future ToolXone tools
+==========================================================
+*/
+
+
+/* =====================================================
+   1. ARTICLE CONTAINER
+   ===================================================== */
+
+.tool-article {
+    width: min(100% - 32px, 1070px);
+    margin: 44px auto;
+    padding: 42px 38px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.07);
+
+    color: #334155;
+
+    font-size: 17px;
+    line-height: 1.75;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   2. MAIN ARTICLE HEADING
+   ===================================================== */
+
+.tool-article > h2 {
+    margin: 0 0 26px;
+
+    color: #10b981;
+
+    font-size: 30px;
+    line-height: 1.25;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   3. SECTION HEADINGS
+   ===================================================== */
+
+.tool-article h3 {
+    margin: 38px 0 14px;
+
+    color: #0f172a;
+
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.tool-article h3:first-of-type {
+    margin-top: 30px;
+}
+
+
+/* =====================================================
+   4. PARAGRAPHS
+   ===================================================== */
+
+.tool-article p {
+    margin: 0 0 18px;
+}
+
+.tool-article p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =====================================================
+   5. LISTS
+   ===================================================== */
+
+.tool-article ul,
+.tool-article ol {
+    margin: 16px 0 24px;
+    padding-left: 28px;
+}
+
+.tool-article li {
+    margin-bottom: 10px;
+    padding-left: 4px;
+}
+
+.tool-article li:last-child {
+    margin-bottom: 0;
+}
+
+.tool-article li::marker {
+    color: #10b981;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   6. STRONG / IMPORTANT TEXT
+   ===================================================== */
+
+.tool-article strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   7. LINKS
+   ===================================================== */
+
+.tool-article a {
+    color: #059669;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.tool-article a:hover {
+    color: #047857;
+}
+
+.tool-article a:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.25);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+
+/* =====================================================
+   8. SECTION RHYTHM
+   ===================================================== */
+
+.tool-article h3 + p {
+    margin-top: 0;
+}
+
+.tool-article ul + h3,
+.tool-article ol + h3,
+.tool-article p + h3 {
+    margin-top: 38px;
+}
+
+
+/* =====================================================
+   9. OPTIONAL ARTICLE CALLOUTS
+   -----------------------------------------------------
+   Available for future articles:
+
+   <div class="article-note">...</div>
+   <div class="article-example">...</div>
+   ===================================================== */
+
+.tool-article .article-note,
+.tool-article .article-example {
+    margin: 24px 0;
+    padding: 18px 20px;
+
+    border-radius: 14px;
+
+    line-height: 1.65;
+}
+
+.tool-article .article-note {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid #10b981;
+}
+
+.tool-article .article-example {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #3b82f6;
+}
+
+
+/* =====================================================
+   10. TABLE SUPPORT
+   -----------------------------------------------------
+   Ready for future educational articles.
+   ===================================================== */
+
+.tool-article .article-table-wrap {
+    width: 100%;
+    margin: 24px 0;
+
+    overflow-x: auto;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.tool-article table {
+    width: 100%;
+    border-collapse: collapse;
+
+    font-size: 16px;
+}
+
+.tool-article th,
+.tool-article td {
+    padding: 14px 16px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.tool-article th {
+    background: #f8fafc;
+    color: #0f172a;
+
+    font-weight: 700;
+}
+
+.tool-article tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =====================================================
+   11. DARK MODE
+   ===================================================== */
+
+body.dark-mode .tool-article,
+body.dark .tool-article,
+[data-theme="dark"] .tool-article {
+    background: #111827;
+    border-color: #334155;
+
+    color: #cbd5e1;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22);
+}
+
+body.dark-mode .tool-article > h2,
+body.dark .tool-article > h2,
+[data-theme="dark"] .tool-article > h2 {
+    color: #34d399;
+}
+
+body.dark-mode .tool-article h3,
+body.dark .tool-article h3,
+[data-theme="dark"] .tool-article h3,
+
+body.dark-mode .tool-article strong,
+body.dark .tool-article strong,
+[data-theme="dark"] .tool-article strong {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tool-article a,
+body.dark .tool-article a,
+[data-theme="dark"] .tool-article a {
+    color: #34d399;
+}
+
+body.dark-mode .tool-article a:hover,
+body.dark .tool-article a:hover,
+[data-theme="dark"] .tool-article a:hover {
+    color: #6ee7b7;
+}
+
+body.dark-mode .tool-article .article-note,
+body.dark .tool-article .article-note,
+[data-theme="dark"] .tool-article .article-note {
+    background: rgba(16, 185, 129, 0.08);
+    border-color: #065f46;
+    border-left-color: #34d399;
+}
+
+body.dark-mode .tool-article .article-example,
+body.dark .tool-article .article-example,
+[data-theme="dark"] .tool-article .article-example {
+    background: #172033;
+    border-color: #334155;
+    border-left-color: #60a5fa;
+}
+
+body.dark-mode .tool-article .article-table-wrap,
+body.dark .tool-article .article-table-wrap,
+[data-theme="dark"] .tool-article .article-table-wrap {
+    border-color: #334155;
+}
+
+body.dark-mode .tool-article th,
+body.dark .tool-article th,
+[data-theme="dark"] .tool-article th {
+    background: #172033;
+    color: #f1f5f9;
+}
+
+body.dark-mode .tool-article th,
+body.dark-mode .tool-article td,
+body.dark .tool-article th,
+body.dark .tool-article td,
+[data-theme="dark"] .tool-article th,
+[data-theme="dark"] .tool-article td {
+    border-color: #334155;
+}
+
+
+/* =====================================================
+   12. TABLET
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .tool-article {
+        width: min(100% - 24px, 1070px);
+
+        margin: 32px auto;
+        padding: 32px 26px;
+
+        border-radius: 18px;
+
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .tool-article > h2 {
+        margin-bottom: 22px;
+
+        font-size: 26px;
+    }
+
+    .tool-article h3 {
+        margin-top: 32px;
+
+        font-size: 20px;
+    }
+
+    .tool-article ul,
+    .tool-article ol {
+        padding-left: 24px;
+    }
+}
+
+
+/* =====================================================
+   13. MOBILE
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+    .tool-article {
+        width: calc(100% - 20px);
+
+        margin: 26px auto;
+        padding: 26px 20px;
+
+        border-radius: 16px;
+
+        font-size: 15.5px;
+        line-height: 1.68;
+    }
+
+    .tool-article > h2 {
+        margin-bottom: 20px;
+
+        font-size: 24px;
+    }
+
+    .tool-article h3 {
+        margin: 28px 0 12px;
+
+        font-size: 19px;
+    }
+
+    .tool-article p {
+        margin-bottom: 16px;
+    }
+
+    .tool-article ul,
+    .tool-article ol {
+        margin: 14px 0 20px;
+        padding-left: 22px;
+    }
+
+    .tool-article li {
+        margin-bottom: 8px;
+    }
+
+    .tool-article .article-note,
+    .tool-article .article-example {
+        padding: 16px;
+        margin: 20px 0;
+    }
+}
