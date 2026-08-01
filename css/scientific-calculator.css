@@ -1,260 +1,1229 @@
-.tool-area{
-    padding:60px 20px;
-    display:flex;
-    justify-content:center;
+/* =========================================================
+   TOOLXONE PROFESSIONAL SCIENTIFIC CALCULATOR
+   UI SYSTEM v2.0
+   ========================================================= */
+
+
+/* =========================================================
+   1. TOOL AREA
+   ========================================================= */
+
+.tool-area {
+    width: 100%;
+    padding: 42px 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.scientific-card{
-    width:100%;
-    max-width:560px;
-    background:#2d3748;
-    padding:22px;
-    border-radius:22px;
-    box-shadow:0 14px 38px rgba(0,0,0,.25);
+
+/* =========================================================
+   2. CALCULATOR SHELL
+   ========================================================= */
+
+.scientific-card {
+    width: 100%;
+    max-width: 660px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #334155 0%,
+            #273449 48%,
+            #1e293b 100%
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 28px 60px rgba(15, 23, 42, 0.22),
+        0 10px 24px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    position: relative;
+    overflow: hidden;
 }
 
-.scientific-title{
-    text-align:center;
-    color:white;
-    font-size:25px;
-    font-weight:bold;
-    margin-bottom:16px;
+
+/* subtle calculator top highlight */
+
+.scientific-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(16, 185, 129, 0.85),
+        rgba(37, 99, 235, 0.65),
+        transparent
+    );
+
+    pointer-events: none;
 }
 
-.display{
-    background:#111827;
-    border-radius:14px;
-    padding:16px;
-    margin-bottom:16px;
-    color:white;
-    border:1px solid rgba(255,255,255,.08);
+
+/* =========================================================
+   3. TITLE
+   ========================================================= */
+
+.scientific-title {
+    margin: 0 0 14px;
+
+    text-align: center;
+
+    color: #f8fafc;
+
+    font-size: 24px;
+    line-height: 1.25;
+
+    font-weight: 800;
+
+    letter-spacing: -0.02em;
 }
 
-/* =====================================================
-   RESULT IN WORDS
-===================================================== */
 
-.scientific-number-words{
+/* =========================================================
+   4. INDICATOR / STATUS PANEL
+   ========================================================= */
 
-    margin-top:12px;
+.scientific-indicators {
+    min-height: 30px;
 
-    padding:14px 16px;
+    margin-bottom: 8px;
 
-    border-radius:12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 
-    background:#f8fafc;
+    gap: 6px;
 
-    border:1px solid #e2e8f0;
+    color: #cbd5e1;
 
-    color:#1f2937;
+    font-size: 11px;
 
-    font-size:15px;
+    font-weight: 800;
 
-    line-height:1.7;
-
-    font-weight:500;
-
-    word-break:break-word;
-
+    letter-spacing: 0.05em;
 }
 
-.expression{
-    min-height:34px;
-    font-size:20px;
-    text-align:right;
-    word-wrap:break-word;
-    overflow-wrap:break-word;
-    color:#cbd5e1;
+
+/* Generic indicator */
+
+.scientific-indicator {
+    min-height: 22px;
+
+    padding: 4px 8px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 6px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    border: 1px solid rgba(148, 163, 184, 0.12);
+
+    color: #94a3b8;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
-.result{
-    min-height:46px;
-    font-size:34px;
-    font-weight:bold;
-    text-align:right;
+
+/* =========================================================
+   5. DISPLAY
+   ========================================================= */
+
+.display {
+    width: 100%;
+
+    min-height: 112px;
+
+    margin-bottom: 12px;
+
+    padding: 15px 17px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0f172a,
+            #0b1220
+        );
+
+    border: 1px solid rgba(148, 163, 184, 0.12);
+
+    border-radius: 15px;
+
+    color: #ffffff;
+
+    box-shadow:
+        inset 0 2px 9px rgba(0, 0, 0, 0.32),
+        0 1px 0 rgba(255, 255, 255, 0.04);
+
+    overflow: hidden;
 }
 
+
+/* Expression line */
+
+.expression {
+    width: 100%;
+
+    min-height: 34px;
+
+    margin-bottom: 5px;
+
+    color: #94a3b8;
+
+    font-size: 18px;
+    line-height: 1.35;
+
+    font-weight: 500;
+
+    text-align: right;
+
+    word-break: break-all;
+    overflow-wrap: anywhere;
+}
+
+
+/* Result line */
+
+.result {
+    width: 100%;
+
+    min-height: 45px;
+
+    color: #f8fafc;
+
+    font-size: 36px;
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    text-align: right;
+
+    word-break: break-all;
+    overflow-wrap: anywhere;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   6. VALIDATION / ERROR
+   ========================================================= */
+
+.validation-message {
+    margin: -3px 0 10px;
+
+    padding: 9px 12px;
+
+    border-radius: 9px;
+
+    background: rgba(220, 38, 38, 0.14);
+
+    border: 1px solid rgba(248, 113, 113, 0.35);
+
+    color: #fecaca;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    font-weight: 600;
+}
+
+.validation-message[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   7. RESULT IN WORDS
+   ========================================================= */
+
+.scientific-number-words {
+    margin: 0 0 12px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    background: rgba(248, 250, 252, 0.96);
+
+    border: 1px solid #e2e8f0;
+
+    color: #1f2937;
+
+    font-size: 13px;
+    line-height: 1.55;
+
+    font-weight: 500;
+
+    word-break: break-word;
+}
+
+.scientific-number-words[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   8. ALL KEYPAD GROUPS
+   ========================================================= */
+
+.scientific-control-pad,
+.scientific-function-pad,
+.scientific-memory-pad,
+.scientific-main-pad,
 .buttons,
-.utility{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+.utility {
+    width: 100%;
 }
 
-.utility{
-    margin-top:10px;
+
+/* =========================================================
+   9. TOP CONTROL PAD
+   SHIFT / ALPHA / MODE / DRG / REPLAY
+   ========================================================= */
+
+.scientific-control-pad {
+    margin-bottom: 8px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.2fr
+        1.2fr
+        1fr
+        1fr
+        0.72fr
+        0.72fr;
+
+    gap: 7px;
 }
 
-.sci-btn{
-    height:58px;
-    border:none;
-    border-radius:11px;
-    font-size:18px;
-    cursor:pointer;
-    transition:.2s;
-    font-weight:bold;
+
+/* =========================================================
+   10. SCIENTIFIC FUNCTION PAD
+   ========================================================= */
+
+.scientific-function-pad {
+    margin-bottom: 8px;
+
+    display: grid;
+
+    grid-template-columns: repeat(8, 1fr);
+
+    gap: 7px;
 }
 
-.sci-btn:hover{
-    transform:translateY(-2px);
-    filter:brightness(1.08);
+
+/* =========================================================
+   11. MEMORY PAD
+   ========================================================= */
+
+.scientific-memory-pad {
+    margin-bottom: 8px;
+
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 7px;
 }
 
-.num{
-    background:#e2e8f0;
-    color:#111827;
+
+/* =========================================================
+   12. MAIN KEYPAD
+   ========================================================= */
+
+.scientific-main-pad,
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
 }
 
-.operator{
-    background:#10b981;
-    color:white;
+
+/* =========================================================
+   13. UTILITY PAD
+   ========================================================= */
+
+.utility {
+    margin-top: 8px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
 }
 
-.function{
-    background:#475569;
-    color:white;
+
+/* =========================================================
+   14. BASE BUTTON
+   ========================================================= */
+
+.sci-btn {
+    min-width: 0;
+    height: 50px;
+
+    padding: 5px 7px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    outline: none;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+    line-height: 1;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    box-shadow:
+        0 3px 0 rgba(15, 23, 42, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    transition:
+        transform 0.1s ease,
+        filter 0.15s ease,
+        box-shadow 0.1s ease,
+        background 0.18s ease,
+        color 0.18s ease;
 }
 
-.equal{
-    background:#2563eb;
-    color:white;
+
+/* Hover */
+
+.sci-btn:hover {
+    filter: brightness(1.09);
+
+    transform: translateY(-1px);
 }
 
-.clear{
-    background:#dc2626;
-    color:white;
+
+/* Physical press effect */
+
+.sci-btn:active {
+    transform: translateY(2px);
+
+    box-shadow:
+        0 1px 0 rgba(15, 23, 42, 0.25),
+        inset 0 2px 4px rgba(0, 0, 0, 0.12);
 }
 
-.special{
-    background:#7c3aed;
-    color:white;
+
+/* Keyboard accessibility */
+
+.sci-btn:focus-visible {
+    outline: 3px solid rgba(56, 189, 248, 0.55);
+
+    outline-offset: 2px;
 }
 
-.status{
-    margin-top:12px;
-    text-align:center;
-    color:#cbd5e1;
-    font-size:14px;
+
+/* Disabled */
+
+.sci-btn:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    filter: none;
 }
 
-.back-home{
-    display:block;
-    margin-top:16px;
-    text-align:center;
-    text-decoration:none;
-    color:#10B981;
-    font-weight:bold;
+
+/* =========================================================
+   15. NUMBER KEYS
+   ========================================================= */
+
+.sci-btn.num {
+    background: #e8eef6;
+
+    color: #0f172a;
+
+    border-color: rgba(255, 255, 255, 0.28);
 }
 
-.back-home:hover{
-    text-decoration:underline;
+
+/* =========================================================
+   16. OPERATORS
+   ========================================================= */
+
+.sci-btn.operator {
+    background:
+        linear-gradient(
+            180deg,
+            #18c991,
+            #10b981
+        );
+
+    color: #ffffff;
 }
 
-body.dark-mode .scientific-card{
-    background:#1f2937;
+
+/* =========================================================
+   17. SCIENTIFIC FUNCTIONS
+   ========================================================= */
+
+.sci-btn.function {
+    background:
+        linear-gradient(
+            180deg,
+            #53657d,
+            #43536a
+        );
+
+    color: #f8fafc;
 }
 
-body.dark-mode .display{
-    background:#111827;
-    border-color:#374151;
+
+/* =========================================================
+   18. EQUAL
+   ========================================================= */
+
+.sci-btn.equal {
+    background:
+        linear-gradient(
+            180deg,
+            #3478ee,
+            #2563eb
+        );
+
+    color: #ffffff;
 }
 
-body.dark-mode .scientific-number-words{
 
-    background:#111827;
+/* =========================================================
+   19. CLEAR / DEL / AC
+   ========================================================= */
 
-    border-color:#374151;
+.sci-btn.clear {
+    background:
+        linear-gradient(
+            180deg,
+            #ef3434,
+            #dc2626
+        );
 
-    color:#f8fafc;
-
+    color: #ffffff;
 }
 
-body.dark-mode .num{
-    background:#374151;
-    color:#e5e7eb;
+
+/* =========================================================
+   20. SPECIAL / ANS
+   ========================================================= */
+
+.sci-btn.special {
+    background:
+        linear-gradient(
+            180deg,
+            #8747ef,
+            #7c3aed
+        );
+
+    color: #ffffff;
 }
 
-@media(max-width:600px){
-    .scientific-card{
-        padding:16px;
+
+/* =========================================================
+   21. CONTROL KEYS
+   ========================================================= */
+
+.scientific-control-pad .sci-btn {
+    height: 43px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc,
+            #dbe4ef
+        );
+
+    color: #172033;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   22. FUNCTION BANK KEYS
+   ========================================================= */
+
+.scientific-function-pad .sci-btn {
+    height: 43px;
+
+    padding: 4px;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   23. MEMORY KEYS
+   ========================================================= */
+
+.scientific-memory-pad .sci-btn {
+    height: 40px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #dce6f2,
+            #cbd7e5
+        );
+
+    color: #172033;
+
+    font-size: 13px;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   24. ACTIVE SHIFT STATE
+   ========================================================= */
+
+.scientific-card[data-shift="true"]
+[data-sci-action="shift"] {
+    background:
+        linear-gradient(
+            180deg,
+            #fbbf24,
+            #f59e0b
+        );
+
+    color: #111827;
+
+    box-shadow:
+        0 0 0 2px rgba(251, 191, 36, 0.20),
+        0 0 16px rgba(245, 158, 11, 0.35);
+}
+
+
+/* =========================================================
+   25. ACTIVE ALPHA STATE
+   ========================================================= */
+
+.scientific-card[data-alpha="true"]
+[data-sci-action="alpha"] {
+    background:
+        linear-gradient(
+            180deg,
+            #ef5b67,
+            #e11d48
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 0 0 2px rgba(244, 63, 94, 0.20),
+        0 0 16px rgba(225, 29, 72, 0.30);
+}
+
+
+/* =========================================================
+   26. MEMORY ACTIVE
+   ========================================================= */
+
+.scientific-card[data-memory="true"] {
+    border-color: rgba(16, 185, 129, 0.24);
+}
+
+
+/* =========================================================
+   27. GT ACTIVE
+   ========================================================= */
+
+.scientific-card[data-gt="true"] {
+    box-shadow:
+        0 28px 60px rgba(15, 23, 42, 0.22),
+        0 10px 24px rgba(15, 23, 42, 0.18),
+        inset 0 0 0 1px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   28. GENERIC ACTIVE BUTTON
+   ========================================================= */
+
+.sci-btn.active,
+.sci-btn.is-active,
+.sci-btn[aria-pressed="true"] {
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 0 0 2px rgba(56, 189, 248, 0.30),
+        0 0 14px rgba(56, 189, 248, 0.18);
+}
+
+
+/* =========================================================
+   29. STATUS
+   ========================================================= */
+
+.status {
+    min-height: 20px;
+
+    margin-top: 11px;
+
+    text-align: center;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   30. BACK HOME
+   ========================================================= */
+
+.back-home {
+    display: block;
+
+    width: max-content;
+
+    max-width: 100%;
+
+    margin: 9px auto 0;
+
+    color: #10b981;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.back-home:hover {
+    color: #34d399;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   31. MODE DATA STATES
+   ========================================================= */
+
+.scientific-card[data-mode="COMP"] {
+    --scientific-mode-accent: #10b981;
+}
+
+.scientific-card[data-mode="STAT"] {
+    --scientific-mode-accent: #3b82f6;
+}
+
+.scientific-card[data-mode="TABLE"] {
+    --scientific-mode-accent: #8b5cf6;
+}
+
+.scientific-card[data-mode="EQN"] {
+    --scientific-mode-accent: #f59e0b;
+}
+
+
+/* =========================================================
+   32. ANGLE DATA STATES
+   ========================================================= */
+
+.scientific-card[data-angle="DEG"] {
+    --scientific-angle-accent: #38bdf8;
+}
+
+.scientific-card[data-angle="RAD"] {
+    --scientific-angle-accent: #a78bfa;
+}
+
+.scientific-card[data-angle="GRAD"] {
+    --scientific-angle-accent: #34d399;
+}
+
+
+/* =========================================================
+   33. DARK MODE
+   ========================================================= */
+
+body.dark-mode .scientific-card {
+    background:
+        linear-gradient(
+            145deg,
+            #1f2937,
+            #172033 52%,
+            #111827
+        );
+
+    border-color: rgba(148, 163, 184, 0.12);
+
+    box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.35),
+        0 10px 24px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+body.dark-mode .display {
+    background:
+        linear-gradient(
+            180deg,
+            #080f1d,
+            #060b14
+        );
+
+    border-color: rgba(148, 163, 184, 0.14);
+}
+
+
+body.dark-mode .scientific-number-words {
+    background: #111827;
+
+    border-color: #374151;
+
+    color: #f8fafc;
+}
+
+
+body.dark-mode .sci-btn.num {
+    background:
+        linear-gradient(
+            180deg,
+            #475569,
+            #374151
+        );
+
+    color: #f8fafc;
+}
+
+
+body.dark-mode .scientific-control-pad .sci-btn,
+body.dark-mode .scientific-memory-pad .sci-btn {
+    background:
+        linear-gradient(
+            180deg,
+            #475569,
+            #334155
+        );
+
+    color: #f8fafc;
+}
+
+
+/* =========================================================
+   34. TABLET
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+    .tool-area {
+        padding: 28px 14px 45px;
     }
 
-    .sci-btn{
-        height:52px;
-        font-size:16px;
+    .scientific-card {
+        max-width: 590px;
+
+        padding: 16px;
+
+        border-radius: 20px;
     }
 
-    .result{
-        font-size:28px;
+    .scientific-title {
+        font-size: 21px;
     }
 
-    .scientific-title{
-        font-size:20px;
+    .scientific-function-pad {
+        grid-template-columns: repeat(6, 1fr);
     }
+
+    .sci-btn {
+        height: 48px;
+
+        font-size: 15px;
+    }
+
 }
 
-/* =====================================================
-   COMPACT LAPTOP HEIGHT
-   Keeps the full scientific calculator visible
-   at 100% browser zoom on shorter desktop screens
-===================================================== */
 
-@media (max-height:850px) and (min-width:601px){
+/* =========================================================
+   35. MOBILE
+   ========================================================= */
 
-    .tool-area{
-        padding:24px 20px 12px;
-        align-items:flex-start;
+@media (max-width: 520px) {
+
+    .tool-area {
+        padding: 18px 8px 35px;
     }
 
-    .scientific-card{
-        max-width:520px;
-        padding:14px;
-        border-radius:18px;
+    .scientific-card {
+        padding: 11px;
+
+        border-radius: 17px;
     }
 
-    .scientific-title{
-        font-size:21px;
-        margin-bottom:8px;
+    .scientific-card::before {
+        left: 12px;
+        right: 12px;
     }
 
-    .display{
-        padding:10px 12px;
-        margin-bottom:8px;
-        border-radius:11px;
+    .scientific-title {
+        margin-bottom: 9px;
+
+        font-size: 18px;
     }
 
-    .expression{
-        min-height:24px;
-        font-size:16px;
+    .scientific-indicators {
+        margin-bottom: 6px;
+
+        gap: 4px;
+
+        font-size: 9px;
     }
 
-    .result{
-        min-height:34px;
-        font-size:28px;
+    .scientific-indicator {
+        min-height: 19px;
+
+        padding: 3px 6px;
     }
 
-    .buttons,
-    .utility{
-        gap:7px;
+    .display {
+        min-height: 92px;
+
+        padding: 11px 12px;
+
+        margin-bottom: 8px;
+
+        border-radius: 11px;
     }
 
-    .utility{
-        margin-top:7px;
+    .expression {
+        min-height: 27px;
+
+        font-size: 15px;
     }
 
-    .sci-btn{
-        height:46px;
-        font-size:16px;
-        border-radius:9px;
+    .result {
+        min-height: 38px;
+
+        font-size: 29px;
     }
 
-    .status{
-        margin-top:6px;
-        font-size:12px;
+    .scientific-control-pad {
+        grid-template-columns:
+            repeat(4, 1fr)
+            0.7fr
+            0.7fr;
+
+        gap: 5px;
+
+        margin-bottom: 6px;
     }
 
-    .back-home{
-        margin-top:8px;
-        font-size:14px;
+    .scientific-function-pad {
+        grid-template-columns: repeat(6, 1fr);
+
+        gap: 5px;
+
+        margin-bottom: 6px;
     }
+
+    .scientific-memory-pad {
+        grid-template-columns: repeat(6, 1fr);
+
+        gap: 5px;
+
+        margin-bottom: 6px;
+    }
+
+    .scientific-main-pad,
+    .buttons {
+        gap: 6px;
+    }
+
+    .utility {
+        gap: 6px;
+
+        margin-top: 6px;
+    }
+
+    .sci-btn {
+        height: 46px;
+
+        padding: 4px;
+
+        border-radius: 8px;
+
+        font-size: 15px;
+    }
+
+    .scientific-control-pad .sci-btn {
+        height: 39px;
+
+        font-size: 11px;
+    }
+
+    .scientific-function-pad .sci-btn {
+        height: 39px;
+
+        font-size: 12px;
+    }
+
+    .scientific-memory-pad .sci-btn {
+        height: 37px;
+
+        font-size: 11px;
+    }
+
+    .status {
+        margin-top: 8px;
+
+        font-size: 11px;
+    }
+
+    .back-home {
+        margin-top: 7px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   36. VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .scientific-card {
+        padding: 9px;
+    }
+
+    .scientific-title {
+        font-size: 16px;
+    }
+
+    .scientific-control-pad,
+    .scientific-function-pad,
+    .scientific-memory-pad {
+        gap: 4px;
+    }
+
+    .scientific-function-pad {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .sci-btn {
+        height: 43px;
+
+        font-size: 14px;
+    }
+
+    .scientific-control-pad .sci-btn,
+    .scientific-function-pad .sci-btn,
+    .scientific-memory-pad .sci-btn {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   37. COMPACT LAPTOP HEIGHT
+   Designed for shorter desktop/laptop screens
+   ========================================================= */
+
+@media (max-height: 850px) and (min-width: 601px) {
+
+    .tool-area {
+        padding: 20px 18px 18px;
+    }
+
+    .scientific-card {
+        max-width: 620px;
+
+        padding: 13px 15px;
+
+        border-radius: 18px;
+    }
+
+    .scientific-title {
+        margin-bottom: 7px;
+
+        font-size: 20px;
+    }
+
+    .scientific-indicators {
+        min-height: 22px;
+
+        margin-bottom: 5px;
+
+        font-size: 9px;
+    }
+
+    .scientific-indicator {
+        min-height: 18px;
+
+        padding: 2px 6px;
+    }
+
+    .display {
+        min-height: 82px;
+
+        padding: 9px 12px;
+
+        margin-bottom: 7px;
+
+        border-radius: 10px;
+    }
+
+    .expression {
+        min-height: 23px;
+
+        margin-bottom: 2px;
+
+        font-size: 14px;
+    }
+
+    .result {
+        min-height: 34px;
+
+        font-size: 28px;
+    }
+
+    .scientific-control-pad,
+    .scientific-function-pad,
+    .scientific-memory-pad {
+        gap: 5px;
+
+        margin-bottom: 5px;
+    }
+
+    .scientific-main-pad,
+    .buttons {
+        gap: 5px;
+    }
+
+    .utility {
+        gap: 5px;
+
+        margin-top: 5px;
+    }
+
+    .sci-btn {
+        height: 40px;
+
+        border-radius: 7px;
+
+        font-size: 14px;
+    }
+
+    .scientific-control-pad .sci-btn {
+        height: 34px;
+
+        font-size: 11px;
+    }
+
+    .scientific-function-pad .sci-btn {
+        height: 34px;
+
+        font-size: 11px;
+    }
+
+    .scientific-memory-pad .sci-btn {
+        height: 32px;
+
+        font-size: 11px;
+    }
+
+    .scientific-number-words {
+        margin-bottom: 6px;
+
+        padding: 7px 9px;
+
+        font-size: 11px;
+    }
+
+    .status {
+        min-height: 16px;
+
+        margin-top: 5px;
+
+        font-size: 10px;
+    }
+
+    .back-home {
+        margin-top: 4px;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   38. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .sci-btn,
+    .back-home,
+    .scientific-indicator {
+        transition: none;
+    }
+
+    .sci-btn:hover,
+    .sci-btn:active,
+    .back-home:hover {
+        transform: none;
+    }
+
 }
