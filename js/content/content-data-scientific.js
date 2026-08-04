@@ -73,7 +73,7 @@ console.info(
 ------------------------------------------------------- */
 
 window.ToolXoneContentRegistry.register(
-  
+
     "faq",
 
     "scientific-calculator",
@@ -116,6 +116,59 @@ window.ToolXoneContentRegistry.register(
 
 console.info(
     "✓ Scientific Calculator FAQ registered."
+);
+
+/* -------------------------------------------------------
+   METADATA
+------------------------------------------------------- */
+
+window.ToolXoneContentRegistry.register(
+
+    "metadata",
+
+    "scientific-calculator",
+
+    {
+
+        title:
+            "Scientific Calculator - Free Online Scientific Calculator | ToolXone",
+
+        description:
+            "Use ToolXone Scientific Calculator to solve advanced mathematical calculations including trigonometry, logarithms, powers, roots, exponents, constants, percentages and engineering calculations instantly.",
+
+        keywords: [
+
+            "scientific calculator",
+
+            "online scientific calculator",
+
+            "engineering calculator",
+
+            "math calculator",
+
+            "free calculator",
+
+            "ToolXone"
+
+        ],
+
+        canonical:
+            "/scientific-calculator.html",
+
+        robots:
+            "index,follow",
+
+        author:
+            "ToolXone"
+
+    }
+
+);
+
+console.info(
+
+    "✓ Scientific Calculator metadata registered."
+
 );
 
 })();

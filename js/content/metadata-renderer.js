@@ -135,7 +135,6 @@ function sanitize(text){
         .replace(/"/g,"&quot;");
 
 }
-
 /*
 ==========================================================
 Render Metadata
@@ -150,37 +149,125 @@ function render(metadata){
 
         state.failed++;
 
-        return "";
+        return false;
 
     }
 
-    let html = "";
+    /*==========================================
+    Page Title
+    ==========================================*/
 
     if(metadata.title){
 
-        html +=
-`<title>${sanitize(metadata.title)}</title>\n`;
+        document.title = metadata.title;
 
     }
+
+    /*==========================================
+    Description
+    ==========================================*/
 
     if(metadata.description){
 
-        html +=
-`<meta name="description" content="${sanitize(metadata.description)}">\n`;
+        let tag = document.querySelector(
+
+            'meta[name="description"]'
+
+        );
+
+        if(tag){
+
+            tag.setAttribute(
+
+                "content",
+
+                metadata.description
+
+            );
+
+        }
 
     }
+
+    /*==========================================
+    Keywords
+    ==========================================*/
 
     if(metadata.keywords){
 
-        html +=
-`<meta name="keywords" content="${sanitize(metadata.keywords)}">\n`;
+        let tag = document.querySelector(
+
+            'meta[name="keywords"]'
+
+        );
+
+        if(tag){
+
+            tag.setAttribute(
+
+                "content",
+
+                Array.isArray(metadata.keywords)
+
+                    ? metadata.keywords.join(", ")
+
+                    : metadata.keywords
+
+            );
+
+        }
 
     }
 
+    /*==========================================
+    Canonical
+    ==========================================*/
+
     if(metadata.canonical){
 
-        html +=
-`<link rel="canonical" href="${sanitize(metadata.canonical)}">\n`;
+        let tag = document.querySelector(
+
+            'link[rel="canonical"]'
+
+        );
+
+        if(tag){
+
+            tag.setAttribute(
+
+                "href",
+
+                metadata.canonical
+
+            );
+
+        }
+
+    }
+
+    /*==========================================
+    Robots
+    ==========================================*/
+
+    if(metadata.robots){
+
+        let tag = document.querySelector(
+
+            'meta[name="robots"]'
+
+        );
+
+        if(tag){
+
+            tag.setAttribute(
+
+                "content",
+
+                metadata.robots
+
+            );
+
+        }
 
     }
 
@@ -188,7 +275,7 @@ function render(metadata){
 
     statistics.renderedMetadata++;
 
-    return html;
+    return true;
 
 }
 
