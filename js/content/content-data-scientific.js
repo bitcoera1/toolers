@@ -178,6 +178,45 @@ console.info(
 );
 
 /* -------------------------------------------------------
+   SCHEMA
+------------------------------------------------------- */
+
+window.ToolXoneContentRegistry.register(
+
+    "schema",
+
+    "scientific-calculator",
+
+    {
+
+        "@context": "https://schema.org",
+
+        "@type": "WebApplication",
+
+        "name":
+            "Scientific Calculator",
+
+        "applicationCategory":
+            "CalculatorApplication",
+
+        "operatingSystem":
+            "Any",
+
+        "url":
+            "/scientific-calculator.html",
+
+        "description":
+            "Free online scientific calculator for trigonometry, logarithms, powers, roots and advanced mathematics."
+
+    }
+
+);
+
+console.info(
+    "✓ Scientific Calculator schema registered."
+);
+
+/* -------------------------------------------------------
    METADATA
 ------------------------------------------------------- */
 
