@@ -2,7 +2,7 @@
 ==========================================================
  ToolXone Content Registry
  Central Content Discovery System
- Version: 1.0.0
+ Version: 1.1.0 (Stable)
 ==========================================================
 */
 
@@ -10,9 +10,17 @@
 
 "use strict";
 
+/*=========================================================
+Constants
+=========================================================*/
+
 const REGISTRY_NAME = "ToolXone Content Registry";
 
-const REGISTRY_VERSION = "1.0.0";
+const REGISTRY_VERSION = "1.1.0";
+
+/*=========================================================
+Registry Storage
+=========================================================*/
 
 const registry = {
 
@@ -30,19 +38,67 @@ const registry = {
 
 };
 
+/*=========================================================
+Statistics
+=========================================================*/
+
 const statistics = {
 
     totalItems : 0,
 
-    categories : 6,
+    registrations : 0,
+
+    categories : Object.keys(registry).length,
 
     lastUpdated : Date.now()
 
 };
 
+/*=========================================================
+Logger
+=========================================================*/
+
+function log(...message){
+
+    console.info(
+
+        "[Content Registry]",
+
+        ...message
+
+    );
+
+}
+
+/*=========================================================
+Register Content
+=========================================================*/
+
 function register(type,name,data){
 
-    if(!registry[type]){
+    if(
+
+        typeof type !== "string" ||
+
+        typeof name !== "string"
+
+    ){
+
+        console.warn(
+
+            "[Content Registry] Invalid registration."
+
+        );
+
+        return false;
+
+    }
+
+    if(
+
+        !registry[type]
+
+    ){
 
         console.warn(
 
@@ -60,15 +116,25 @@ function register(type,name,data){
 
     statistics.totalItems++;
 
+    statistics.registrations++;
+
     statistics.lastUpdated = Date.now();
 
     return true;
 
 }
 
+/*=========================================================
+Get Content
+=========================================================*/
+
 function get(type,name){
 
-    if(!registry[type]){
+    if(
+
+        !registry[type]
+
+    ){
 
         return null;
 
@@ -78,15 +144,27 @@ function get(type,name){
 
 }
 
+/*=========================================================
+Exists
+=========================================================*/
+
 function exists(type,name){
 
-    return !!get(type,name);
+    return get(type,name) !== null;
 
 }
 
+/*=========================================================
+List
+=========================================================*/
+
 function list(type){
 
-    if(!registry[type]){
+    if(
+
+        !registry[type]
+
+    ){
 
         return [];
 
@@ -100,37 +178,173 @@ function list(type){
 
 }
 
+/*=========================================================
+Counts
+=========================================================*/
+
 function counts(){
 
     return {
 
-        articles :
+        articles : list("articles").length,
 
-            list("articles").length,
+        faq : list("faq").length,
 
-        faq :
+        metadata : list("metadata").length,
 
-            list("faq").length,
+        related : list("related").length,
 
-        metadata :
+        glossary : list("glossary").length,
 
-            list("metadata").length,
-
-        related :
-
-            list("related").length,
-
-        glossary :
-
-            list("glossary").length,
-
-        schema :
-
-            list("schema").length
+        schema : list("schema").length
 
     };
 
 }
+
+/*=========================================================
+Clear Registry
+=========================================================*/
+
+function clear(type){
+
+    if(type){
+
+        if(!registry[type]){
+
+            return false;
+
+        }
+
+        registry[type] = {};
+
+    }
+
+    else{
+
+        Object.keys(registry).forEach(function(category){
+
+            registry[category] = {};
+
+        });
+
+    }
+
+    statistics.totalItems = 0;
+
+    statistics.lastUpdated = Date.now();
+
+    return true;
+
+}
+
+/*=========================================================
+Validate Registry
+=========================================================*/
+
+function validate(){
+
+    const result = {
+
+        valid : true,
+
+        counts : counts(),
+
+        issues : []
+
+    };
+
+    Object.keys(registry).forEach(function(category){
+
+        Object.keys(registry[category]).forEach(function(tool){
+
+            const data = registry[category][tool];
+
+            if(
+
+                data === null ||
+
+                data === undefined
+
+            ){
+
+                result.valid = false;
+
+                result.issues.push({
+
+                    category,
+
+                    tool,
+
+                    message : "Empty registration"
+
+                });
+
+            }
+
+        });
+
+    });
+
+    return result;
+
+}
+
+/*=========================================================
+Information
+=========================================================*/
+
+function info(){
+
+    return {
+
+        name : REGISTRY_NAME,
+
+        version : REGISTRY_VERSION,
+
+        statistics,
+
+        counts : counts(),
+
+        categories : Object.keys(registry)
+
+    };
+
+}
+
+/*=========================================================
+Console Report
+=========================================================*/
+
+function report(){
+
+    console.group(
+
+        REGISTRY_NAME
+
+    );
+
+    console.table(
+
+        counts()
+
+    );
+
+    console.log(
+
+        "Statistics:",
+
+        statistics
+
+    );
+
+    console.groupEnd();
+
+}
+
+/*=========================================================
+Public API
+=========================================================*/
 
 window.ToolXoneContentRegistry = {
 
@@ -148,13 +362,25 @@ window.ToolXoneContentRegistry = {
 
     counts,
 
+    clear,
+
+    validate,
+
+    info,
+
+    report,
+
     registry,
 
     statistics
 
 };
 
-console.info(
+/*=========================================================
+Initialization
+=========================================================*/
+
+log(
 
     REGISTRY_NAME +
 
