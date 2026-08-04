@@ -156,62 +156,6 @@ function report(){
 
     );
 
-    console.log(
-
-        "Articles:",
-
-        statistics.articles
-
-    );
-
-    console.log(
-
-        "FAQ:",
-
-        statistics.faq
-
-    );
-
-    console.log(
-
-        "Metadata:",
-
-        statistics.metadata
-
-    );
-
-    console.log(
-
-        "Related:",
-
-        statistics.related
-
-    );
-
-    console.log(
-
-        "Glossary:",
-
-        statistics.glossary
-
-    );
-
-    console.log(
-
-        "Schema:",
-
-        statistics.schema
-
-    );
-
-    console.log(
-
-        "Total:",
-
-        statistics.total
-
-    );
-
     console.groupEnd();
 
 }

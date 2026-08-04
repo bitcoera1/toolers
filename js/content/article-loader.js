@@ -251,30 +251,6 @@ function report(){
 
     );
 
-    console.log(
-
-        "Loaded:",
-
-        state.loaded
-
-    );
-
-    console.log(
-
-        "Failed:",
-
-        state.failed
-
-    );
-
-    console.log(
-
-        "Cache:",
-
-        Object.keys(cache).length
-
-    );
-
     console.groupEnd();
 
 }

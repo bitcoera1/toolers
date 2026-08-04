@@ -66,14 +66,6 @@ function log(...message){
 
     if(configuration.debug){
 
-        console.log(
-
-            "[Content Platform]",
-
-            ...message
-
-        );
-
     }
 
 }
@@ -259,46 +251,6 @@ function report(){
     console.group(
 
         PLATFORM_NAME
-
-    );
-
-    console.log(
-
-        "Version:",
-
-        PLATFORM_VERSION
-
-    );
-
-    console.log(
-
-        "Initialized:",
-
-        state.initialized
-
-    );
-
-    console.log(
-
-        "Healthy:",
-
-        health().healthy
-
-    );
-
-    console.log(
-
-        "Initialized Modules:",
-
-        statistics.initializedModules
-
-    );
-
-    console.log(
-
-        "Failed Modules:",
-
-        statistics.failedModules
 
     );
 

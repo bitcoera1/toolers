@@ -70,14 +70,6 @@ function log(...message){
 
     if(configuration.debug){
 
-        console.log(
-
-            "[Related Renderer]",
-
-            ...message
-
-        );
-
     }
 
 }
@@ -333,46 +325,6 @@ function report(){
     console.group(
 
         RENDERER_NAME
-
-    );
-
-    console.log(
-
-        "Version:",
-
-        RENDERER_VERSION
-
-    );
-
-    console.log(
-
-        "Initialized:",
-
-        state.initialized
-
-    );
-
-    console.log(
-
-        "Rendered:",
-
-        state.rendered
-
-    );
-
-    console.log(
-
-        "Failed:",
-
-        state.failed
-
-    );
-
-    console.log(
-
-        "Render Operations:",
-
-        statistics.renderOperations
 
     );
 

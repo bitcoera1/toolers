@@ -86,14 +86,6 @@ function log(...message){
 
     if(configuration.debug){
 
-        console.log(
-
-            "[Related Loader]",
-
-            ...message
-
-        );
-
     }
 
 }
@@ -371,54 +363,6 @@ function report(){
     console.group(
 
         LOADER_NAME
-
-    );
-
-    console.log(
-
-        "Version:",
-
-        LOADER_VERSION
-
-    );
-
-    console.log(
-
-        "Loaded:",
-
-        state.loaded
-
-    );
-
-    console.log(
-
-        "Failed:",
-
-        state.failed
-
-    );
-
-    console.log(
-
-        "Cached:",
-
-        cache.size
-
-    );
-
-    console.log(
-
-        "Cache Hits:",
-
-        statistics.cacheHits
-
-    );
-
-    console.log(
-
-        "Cache Misses:",
-
-        statistics.cacheMisses
 
     );
 

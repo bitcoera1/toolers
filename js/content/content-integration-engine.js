@@ -90,11 +90,6 @@
 
             this.state.lastUpdated = Date.now();
 
-            console.log(
-                "%c✓ ToolXone Content Integration Engine Ready",
-                "color:green;font-weight:bold;"
-            );
-
         },
 
                 connectModules() {
@@ -203,14 +198,6 @@
         "schema",
         tool
     );
-
-    console.log({
-        article,
-        faq,
-        metadata,
-        related,
-        schema
-    });
 
 this.state.rendering = true;
 
@@ -334,12 +321,6 @@ if (
 
         this.state.rendering = false;
 
-        console.log(
-
-            `[ToolXone] Rendered ${this.statistics.renderedSections} section(s) for "${tool}".`
-
-        );
-
         return true;
           },
         start() {
@@ -375,18 +356,6 @@ if (
         report() {
 
             console.group("🧠 ToolXone Content Integration Engine");
-
-            console.log("Version:", this.version);
-
-            console.log("Initialized:", this.state.initialized);
-
-            console.log("Current Tool:", this.state.currentTool);
-
-            console.log("Rendered Sections:", this.statistics.renderedSections);
-
-            console.log("Modules:", this.statistics.initializedModules);
-
-            console.log("Failed:", this.statistics.failedModules);
 
             console.groupEnd();
 
