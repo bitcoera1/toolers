@@ -210,21 +210,11 @@ function renderAll(items){
 Render Into Container
 =========================================================*/
 
-function renderInto(container, items){
+function renderInto(container, related){
 
-    if(
+    if(typeof container === "string"){
 
-        typeof container === "string"
-
-    ){
-
-        container =
-
-            document.querySelector(
-
-                container
-
-            );
+        container = document.querySelector(container);
 
     }
 
@@ -234,9 +224,19 @@ function renderInto(container, items){
 
     }
 
-    container.innerHTML =
+    const items = Array.isArray(related)
 
-        renderAll(items);
+        ? related
+
+        : related?.items;
+
+    if(!Array.isArray(items)){
+
+        return false;
+
+    }
+
+    container.innerHTML = renderAll(items);
 
     if(configuration.animate){
 

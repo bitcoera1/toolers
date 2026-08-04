@@ -119,6 +119,65 @@ console.info(
 );
 
 /* -------------------------------------------------------
+   RELATED TOOLS
+------------------------------------------------------- */
+
+window.ToolXoneContentRegistry.register(
+
+    "related",
+
+    "scientific-calculator",
+
+    [
+
+        {
+
+            title:
+                "Percentage Calculator",
+
+            description:
+                "Calculate percentages quickly and accurately.",
+
+            url:
+                "percentage-calculator.html"
+
+        },
+
+        {
+
+            title:
+                "Age Calculator",
+
+            description:
+                "Calculate exact age between dates.",
+
+            url:
+                "age-calculator.html"
+
+        },
+
+        {
+
+            title:
+                "BMI Calculator",
+
+            description:
+                "Calculate Body Mass Index instantly.",
+
+            url:
+                "bmi-calculator.html"
+
+        }
+
+    ]
+
+);
+
+console.info(
+    "✓ Scientific Calculator related tools registered."
+);
+
+/* -------------------------------------------------------
    METADATA
 ------------------------------------------------------- */
 

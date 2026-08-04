@@ -298,7 +298,9 @@ if (
 
 ){
 
-    this.modules.relatedRenderer.render(
+    this.modules.relatedRenderer.renderInto(
+
+        "#relatedTools",
 
         related
 
