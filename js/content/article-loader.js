@@ -6,36 +6,29 @@
 ==========================================================
 */
 
-(function () {
+(function(){
 
 "use strict";
 
-/*=========================================================
-  Constants
-=========================================================*/
-
 const LOADER_NAME = "ToolXone Article Loader";
-const LOADER_VERSION = "2.0.0";
 
-/*=========================================================
-  Configuration
-=========================================================*/
+const LOADER_VERSION = "2.0.0";
 
 const configuration = {
 
     autoInitialize : true,
 
+    autoDiscover : true,
+
     cacheArticles : true,
 
     validateArticles : true,
 
+    autoRegister : true,
+
     debug : false
 
 };
-
-/*=========================================================
-  State
-=========================================================*/
 
 const state = {
 
@@ -49,19 +42,11 @@ const state = {
 
     cached : 0,
 
-    lastUpdated : null
+    lastUpdated : Date.now()
 
 };
 
-/*=========================================================
-  Cache
-=========================================================*/
-
 const cache = new Map();
-
-/*=========================================================
-  Statistics
-=========================================================*/
 
 const statistics = {
 
@@ -77,23 +62,6 @@ const statistics = {
 
 };
 
-/*=========================================================
-  Debug Logger
-=========================================================*/
-
-function log(...message){
-
-    if(configuration.debug){
-
-        
-    }
-
-}
-
-/*=========================================================
-  Discover Articles
-=========================================================*/
-
 function discover(){
 
     return ToolXoneContentRegistry.list(
@@ -104,13 +72,7 @@ function discover(){
 
 }
 
-/*=========================================================
-  Fetch Article
-=========================================================*/
-
 async function fetchArticle(path){
-
-    log("Loading:", path);
 
     const response = await fetch(path);
 
@@ -118,23 +80,15 @@ async function fetchArticle(path){
 
         throw new Error(
 
-            "Unable to load article: " + path
+            "Unable to load article."
 
         );
 
     }
 
-    const markdown = await response.text();
-
-    log("Loaded:", path);
-
-    return markdown;
+    return await response.text();
 
 }
-
-/*=========================================================
-  Validation
-=========================================================*/
 
 function validate(content){
 
@@ -148,35 +102,21 @@ function validate(content){
 
 }
 
-/*=========================================================
-  Cache Manager
-=========================================================*/
-
 function saveCache(id, content){
 
-    cache.set(id, content);
+    cache[id] = content;
 
     state.cached++;
+
+    statistics.totalArticles++;
 
 }
 
 function getCache(id){
 
-    return cache.get(id) || null;
+    return cache[id] || null;
 
 }
-
-function clearCache(){
-
-    cache.clear();
-
-    state.cached = 0;
-
-}
-
-/*=========================================================
-  Load Single Article
-=========================================================*/
 
 async function load(id){
 
@@ -196,13 +136,15 @@ async function load(id){
 
     statistics.cacheMisses++;
 
-    const article = ToolXoneContentRegistry.get(
+    const article =
 
-        "articles",
+        ToolXoneContentRegistry.get(
 
-        id
+            "articles",
 
-    );
+            id
+
+        );
 
     if(!article){
 
@@ -210,15 +152,15 @@ async function load(id){
 
     }
 
-    const markdown = await fetchArticle(
+    const markdown =
 
-        article.path
+        await fetchArticle(
 
-    );
+            article.path
+
+        );
 
     if(
-
-        configuration.validateArticles &&
 
         !validate(markdown)
 
@@ -226,7 +168,7 @@ async function load(id){
 
         throw new Error(
 
-            "Invalid article: " + id
+            "Invalid article."
 
         );
 
@@ -244,15 +186,9 @@ async function load(id){
 
     statistics.successfulLoads++;
 
-    statistics.totalArticles = cache.size;
-
     return markdown;
 
 }
-
-/*=========================================================
-  Load All Articles
-=========================================================*/
 
 async function loadAll(){
 
@@ -260,9 +196,10 @@ async function loadAll(){
 
     if(ids.length === 0){
 
-        return;
+    return;
 
-    }
+
+  }
 
     for(const id of ids){
 
@@ -271,6 +208,8 @@ async function loadAll(){
             await load(id);
 
         }
+
+      
 
         catch(error){
 
@@ -285,60 +224,6 @@ async function loadAll(){
     }
 
 }
-
-/*=========================================================
-  Refresh
-=========================================================*/
-
-async function refresh(){
-
-    state.loaded = 0;
-
-    state.failed = 0;
-
-    clearCache();
-
-    statistics.totalArticles = 0;
-
-    statistics.successfulLoads = 0;
-
-    statistics.failedLoads = 0;
-
-    statistics.cacheHits = 0;
-
-    statistics.cacheMisses = 0;
-
-    await loadAll();
-
-}
-
-/*=========================================================
-  Initialize
-=========================================================*/
-
-async function initialize(){
-
-    if(state.initialized){
-
-        return;
-
-    }
-
-    state.loading = true;
-
-    await loadAll();
-
-    state.loading = false;
-
-    state.initialized = true;
-
-    state.lastUpdated = Date.now();
-
-}
-
-/*=========================================================
-  Information
-=========================================================*/
 
 function info(){
 
@@ -358,10 +243,6 @@ function info(){
 
 }
 
-/*=========================================================
-  Report
-=========================================================*/
-
 function report(){
 
     console.group(
@@ -370,15 +251,75 @@ function report(){
 
     );
 
-    
+    console.log(
+
+        "Loaded:",
+
+        state.loaded
+
+    );
+
+    console.log(
+
+        "Failed:",
+
+        state.failed
+
+    );
+
+    console.log(
+
+        "Cache:",
+
+        Object.keys(cache).length
+
+    );
 
     console.groupEnd();
 
 }
 
-/*=========================================================
-  Public API
-=========================================================*/
+async function initialize(){
+
+    if(state.initialized){
+
+        return;
+
+    }
+
+    state.loading = true;
+
+    await loadAll();
+
+    state.loading = false;
+
+    state.lastUpdated = Date.now();
+
+    state.initialized = true;
+
+}
+
+async function refresh(){
+
+    state.loaded = 0;
+
+    state.failed = 0;
+
+    state.cached = 0;
+    
+    statistics.successfulLoads = 0;
+
+    statistics.failedLoads = 0;
+
+    statistics.cacheHits = 0;
+
+    statistics.cacheMisses = 0;
+
+    statistics.totalArticles = 0;
+
+    await loadAll();
+
+}
 
 window.ToolXoneArticleLoader = {
 
@@ -394,7 +335,7 @@ window.ToolXoneArticleLoader = {
 
     initialize,
 
-    refresh,
+    refresh, 
 
     discover,
 
@@ -408,32 +349,14 @@ window.ToolXoneArticleLoader = {
 
     info,
 
-    getCache,
-
-    clearCache
+    getCache
 
 };
-
-/*=========================================================
-  Auto Initialize
-=========================================================*/
 
 if(configuration.autoInitialize){
 
     initialize();
 
 }
-
-console.info(
-
-    LOADER_NAME +
-
-    " v" +
-
-    LOADER_VERSION +
-
-    " initialized"
-
-);
 
 })();

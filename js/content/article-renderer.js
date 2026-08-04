@@ -313,7 +313,6 @@ Render Complete Article
 function renderArticle(container, article){
 
 
-
     if(!article){
 
         return false;
@@ -475,7 +474,6 @@ window.ToolXoneArticleRenderer = {
     state,
 
     statistics,
-
 
     initialize,
 
