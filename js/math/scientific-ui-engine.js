@@ -1336,12 +1336,12 @@ return dispatchAction(
                 allClear();
                 break;
 
-            case "ArrowUp":
+            if (event.ctrlKey && event.key === "ArrowUp")
                 event.preventDefault();
                 historyUp();
                 break;
 
-            case "ArrowDown":
+            if (event.ctrlKey && event.key === "ArrowDown")
                 event.preventDefault();
                 historyDown();
                 break;

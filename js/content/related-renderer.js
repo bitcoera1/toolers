@@ -104,6 +104,12 @@ function createCard(item){
 
 <div class="toolxone-related-card">
 
+    <div class="toolxone-related-icon">
+
+        ${sanitize(item.icon || "🧮")}
+
+    </div>
+
     <h3>
 
         ${sanitize(item.title || "")}
@@ -117,11 +123,8 @@ function createCard(item){
     </p>
 
     <a
-
         href="${item.url || "#"}"
-
         class="toolxone-related-link"
-
     >
 
         View Tool →
@@ -228,7 +231,31 @@ function renderInto(container, related){
 
     }
 
-    container.innerHTML = renderAll(items);
+    container.innerHTML = `
+
+<section class="toolxone-related-tools">
+
+    <h2 class="toolxone-related-title">
+
+        Explore More ToolXone Calculators
+
+    </h2>
+
+    <p class="toolxone-related-subtitle">
+
+        Continue with more free calculators and productivity tools.
+
+    </p>
+
+    <div class="toolxone-related-grid">
+
+        ${renderAll(items)}
+
+    </div>
+
+</section>
+
+`;
 
     if(configuration.animate){
 

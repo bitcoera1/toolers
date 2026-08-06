@@ -1,0 +1,419 @@
+/*
+==========================================================
+ ToolXone Professional Content Components
+ Mission 1.1.2A
+ Version: 1.0.0
+==========================================================
+*/
+
+/* ======================================================
+   Design Tokens
+====================================================== */
+
+:root{
+
+    --tx-card-radius:16px;
+
+    --tx-card-radius-sm:10px;
+
+    --tx-card-padding:24px;
+
+    --tx-card-padding-sm:18px;
+
+    --tx-card-gap:20px;
+
+    --tx-border:#e5e7eb;
+
+    --tx-background:#ffffff;
+
+    --tx-surface:#f8fafc;
+
+    --tx-shadow:
+
+        0 10px 30px rgba(15,23,42,.08);
+
+    --tx-shadow-hover:
+
+        0 18px 40px rgba(15,23,42,.12);
+
+    --tx-transition:
+
+        .28s ease;
+
+}
+
+/* ======================================================
+   Base Card
+====================================================== */
+
+.tx-card{
+
+    position:relative;
+
+    display:block;
+
+    width:100%;
+
+    background:var(--tx-background);
+
+    border:1px solid var(--tx-border);
+
+    border-radius:var(--tx-card-radius);
+
+    padding:var(--tx-card-padding);
+
+    margin:32px 0;
+
+    box-shadow:var(--tx-shadow);
+
+    transition:
+
+        transform var(--tx-transition),
+
+        box-shadow var(--tx-transition),
+
+        border-color var(--tx-transition);
+
+}
+
+.tx-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--tx-shadow-hover);
+
+}
+
+/* ======================================================
+   Compact Card
+====================================================== */
+
+.tx-card-sm{
+
+    padding:var(--tx-card-padding-sm);
+
+    border-radius:var(--tx-card-radius-sm);
+
+}
+
+/* ======================================================
+   Card Header
+====================================================== */
+
+.tx-card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.tx-card-title{
+
+    margin:0;
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.tx-card-subtitle{
+
+    margin-top:6px;
+
+    color:#64748b;
+
+    font-size:.95rem;
+
+    line-height:1.6;
+
+}
+
+/* ======================================================
+   Card Body
+====================================================== */
+
+.tx-card-body{
+
+    color:#334155;
+
+    line-height:1.8;
+
+}
+
+.tx-card-body p{
+
+    margin:14px 0;
+
+}
+
+.tx-card-body ul{
+
+    margin:18px 0;
+
+    padding-left:22px;
+
+}
+
+.tx-card-body li{
+
+    margin:8px 0;
+
+}
+
+/* ======================================================
+   Section Divider
+====================================================== */
+
+.tx-divider{
+
+    height:1px;
+
+    background:#e5e7eb;
+
+    margin:28px 0;
+
+}
+
+/* ======================================================
+   Badge
+====================================================== */
+
+.tx-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    letter-spacing:.03em;
+
+    text-transform:uppercase;
+
+    background:#ecfdf5;
+
+    color:#059669;
+
+}
+
+/* ======================================================
+   Small Label
+====================================================== */
+
+.tx-label{
+
+    display:inline-block;
+
+    margin-bottom:12px;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+    letter-spacing:.04em;
+
+    text-transform:uppercase;
+
+    color:#16c784;
+
+}
+
+/*=========================================================
+Information Card
+=========================================================*/
+
+.tx-info-card{
+
+    background:#ffffff;
+
+    border-left:6px solid #2563eb;
+
+}
+
+.tx-info-card .tx-card-title{
+
+    color:#1d4ed8;
+
+}
+
+/*=========================================================
+Tip Card
+=========================================================*/
+
+.tx-tip-card{
+
+    background:#f0fdf4;
+
+    border-left:6px solid #16c784;
+
+}
+
+.tx-tip-card .tx-card-title{
+
+    color:#15803d;
+
+}
+
+/*=========================================================
+Warning Card
+=========================================================*/
+
+.tx-warning-card{
+
+    background:#fffbeb;
+
+    border-left:6px solid #f59e0b;
+
+}
+
+.tx-warning-card .tx-card-title{
+
+    color:#b45309;
+
+}
+
+/*=========================================================
+Success Card
+=========================================================*/
+
+.tx-success-card{
+
+    background:#ecfdf5;
+
+    border-left:6px solid #10b981;
+
+}
+
+.tx-success-card .tx-card-title{
+
+    color:#047857;
+
+}
+
+/*=========================================================
+Feature Card
+=========================================================*/
+
+.tx-feature-card{
+
+    text-align:center;
+
+}
+
+.tx-feature-card .tx-card-title{
+
+    margin-bottom:12px;
+
+}
+
+.tx-feature-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+/*=========================================================
+Summary Card
+=========================================================*/
+
+.tx-summary-card{
+
+    background:#f8fafc;
+
+    border:2px dashed #cbd5e1;
+
+}
+
+/*=========================================================
+Feature Grid
+=========================================================*/
+
+.tx-feature-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            auto-fit,
+
+            minmax(
+
+                220px,
+
+                1fr
+
+            )
+
+        );
+
+    gap:24px;
+
+    margin:40px 0;
+
+}
+
+/*=========================================================
+Card Icon
+=========================================================*/
+
+.tx-card-icon{
+
+    width:56px;
+
+    height:56px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#ecfdf5;
+
+    font-size:1.5rem;
+
+    flex-shrink:0;
+
+}
+
+/*=========================================================
+Responsive
+=========================================================*/
+
+@media(max-width:768px){
+
+    .tx-card{
+
+        padding:20px;
+
+    }
+
+    .tx-feature-grid{
+
+        grid-template-columns:1fr;
+
+        gap:18px;
+
+    }
+
+}

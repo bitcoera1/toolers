@@ -153,13 +153,22 @@ content="@ToolXone"
     href="images/toolxone-favicon.png"
 >
 
-<!-- Styles -->
+<!-- Core -->
 <link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/scientific-calculator.css">
 <link rel="stylesheet" href="css/validation.css">
+
+<!-- Calculator -->
+<link rel="stylesheet" href="css/scientific-calculator.css">
+
+<!-- Content Platform -->
+<link rel="stylesheet" href="css/tool-components.css">
+<link rel="stylesheet" href="css/tool-layout.css">
+<link rel="stylesheet" href="css/tool-hero.css">
 <link rel="stylesheet" href="css/tool-article.css">
-<link rel="stylesheet" href="css/tool-content.css">
-<link rel="stylesheet" href="css/feedback.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
 
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -189,7 +198,7 @@ content="@ToolXone"
 
 </head>
 
-<body data-tool="scientific">
+<body data-tool="scientific-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" alt="ToolXone Logo" class="site-logo">
@@ -199,7 +208,14 @@ content="@ToolXone"
 
 <div id="navbar"></div>
 
-<main class="tool-area">
+<main class="tool-page">
+
+
+    <!-- =========================================
+         TOOL HERO
+    ========================================== -->
+
+    <section id="toolHero"></section>
 
     <div
         class="scientific-card scientific-calculator"
@@ -212,6 +228,7 @@ content="@ToolXone"
         data-gt="false"
     >
 
+        
         <!-- =========================================
              CALCULATOR HEADER
         ========================================== -->
@@ -900,19 +917,6 @@ content="@ToolXone"
     <section id="relatedTools"></section>
 </section>
 
-<!-- =========================================
-     FAQ
-========================================= -->
-
-<section class="tx-faq-section">
-
-    <div class="tx-faq-card">
-
-        <div id="financeFAQ"></div>
-
-    </div>
-
-</section>
 
 <!-- =========================================
      TOOL ARTICLE
@@ -922,10 +926,33 @@ content="@ToolXone"
 
     <div class="tx-content-card">
 
-        <div id="financeInfo"></div>
+    <section
+        id="financeInfo"
+        class="tool-article">
+    </section>
+
+</div>
+
+
+
+<!-- =========================================
+     FAQ
+========================================= -->
+
+<section class="tx-faq-section">
+
+    <div class="tx-faq-card">
+
+        <section
+    id="financeFAQ"
+    class="tool-faq">
+</section>
 
     </div>
 
+<!-- Tool Reviews -->
+<section class="tool-section">
+    <div id="tool-reviews"></div>
 </section>
 
 <!-- =========================================
@@ -934,7 +961,14 @@ content="@ToolXone"
 
 <section class="tx-feedback-section">
 
-    <div id="financeFeedback"></div>
+    <div class="tx-feedback-card">
+
+        <section
+            id="financeFeedback"
+            class="tool-feedback">
+        </section>
+
+    </div>
 
 </section>
 
@@ -1021,6 +1055,7 @@ content="@ToolXone"
 <script src="js/performance/performance-tests.js"></script>
 <script src="js/performance/performance-platform.js"></script>
 
+
 <!-- Content Framework -->
 <script src="js/content/content-registry.js"></script>
 <script src="js/content/content-engine.js"></script>
@@ -1037,9 +1072,14 @@ content="@ToolXone"
 <script src="js/content/metadata-renderer.js"></script>
 <script src="js/content/schema-renderer.js"></script>
 <script src="js/content/content-data-scientific.js"></script>
+
+<!-- Hero -->
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
 <script src="js/content/content-integration-engine.js"></script>
-
-
 
 <script src="js/scientific-calculator.js"></script>
 <script src="js/footer.js"></script>
@@ -1073,6 +1113,11 @@ renderFinanceFAQ(
             answer: "ANS lets you reuse your previous calculated result in the next calculation."
         }
     ]
+);
+
+renderToolReviews(
+    "tool-reviews",
+    "Scientific Calculator"
 );
 
 renderFinanceFeedback(

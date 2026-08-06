@@ -8,14 +8,15 @@
    1. TOOL AREA
    ========================================================= */
 
-.tool-area {
-    width: 100%;
-    padding: 42px 20px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
+.tool-area{
 
+    width:100%;
+
+    padding:42px 20px 60px;
+
+    display:block;
+
+}
 
 /* =========================================================
    2. CALCULATOR SHELL
@@ -24,6 +25,8 @@
 .scientific-card {
     width: 100%;
     max-width: 660px;
+
+    margin:0 auto;
 
     padding: 20px;
 

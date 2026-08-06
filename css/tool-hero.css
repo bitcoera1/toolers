@@ -1,0 +1,404 @@
+
+/*=========================================================
+Tool Hero Layout
+=========================================================*/
+
+.tx-tool-hero{
+
+    display:grid;
+
+    grid-template-columns:1.15fr 0.85fr;
+
+    gap:48px;
+
+    align-items:center;
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:0 auto 80px;
+
+    padding:48px;
+
+    border-radius:26px;
+
+    background:linear-gradient(
+    180deg,
+    #f8fcff,
+    #eef7ff
+    );
+
+    box-shadow:
+0 18px 45px rgba(15,23,42,.10);
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.tx-tool-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16,185,129,.05),
+            rgba(59,130,246,.04)
+        );
+
+    pointer-events:none;
+
+}
+
+.tx-tool-hero>*{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+
+/*=========================================================
+Hero Columns
+=========================================================*/
+
+.toolxone-tool-hero-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    min-width:0;
+
+}
+
+.tx-tool-hero-preview{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-width:0;
+
+}
+
+/*=========================================================
+Tool Hero Typography
+=========================================================*/
+
+.tx-tool-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:2.35rem;
+    font-weight:800;
+    line-height:1.15;
+    color:#0f172a;
+
+    letter-spacing:-0.03em;
+
+    margin:8px 0;
+}
+
+.tx-tool-subtitle{
+
+    font-size:1.2rem;
+
+    font-weight:600;
+
+    color:#334155;
+
+    margin-bottom:10px;
+
+}
+
+.tx-tool-description{
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    color:#475569;
+
+    max-width:640px;
+
+}
+
+.tx-tool-statistics{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:10px;
+
+}
+
+.tx-tool-stat{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:0 8px 20px rgba(15,23,42,.05);
+
+    transition:
+    transform .3s,
+    box-shadow .3s;
+
+
+}
+
+
+.tx-tool-stat:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 16px 35px rgba(16,185,129,.12);
+
+}
+
+.tx-tool-stat strong{
+
+    display:block;
+
+    font-size:1.35rem;
+
+    font-weight:800;
+
+    color:#10b981;
+
+}
+
+.tx-tool-stat span{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:.9rem;
+
+    color:#64748b;
+
+}
+
+.tx-primary-button{
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px 28px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.tx-primary-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 16px 34px rgba(16,185,129,.35);
+
+}
+
+.tx-secondary-button{
+
+    background:#fff;
+
+    color:#0f172a;
+
+    border:2px solid #d1d5db;
+
+    border-radius:14px;
+
+    padding:14px 28px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.tx-secondary-button:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#10b981;
+
+    color:#10b981;
+
+}
+
+
+.tx-tool-preview-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+
+        0 30px 80px rgba(15,23,42,.12);
+
+}
+
+
+.tx-tool-preview-image{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    border-radius:18px;
+
+    transition:transform .35s ease;
+
+
+}
+
+
+
+.tx-tool-actions{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-top:14px;
+
+}
+
+
+/*=========================================================
+Tool Preview
+=========================================================*/
+
+.tx-tool-preview-card{
+
+    background:#fff;
+
+    border-radius:28px;
+
+    padding:20px;
+
+    box-shadow:
+        0 18px 60px rgba(15,23,42,.08);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+    width:100%;
+
+    max-width:520px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+}
+
+.tx-tool-preview-card:hover .tx-tool-preview-image{
+
+    transform:scale(1.03);
+
+}
+
+.tx-tool-preview-placeholder{
+
+    width:100%;
+
+    min-height:360px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:26px;
+
+    background:linear-gradient(135deg,#eff6ff,#ecfeff);
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+/*=========================================================
+Dark Mode
+=========================================================*/
+
+body.dark-mode .tx-tool-hero{
+
+    background:linear-gradient(
+        180deg,
+        #182233,
+        #111827
+    );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.45);
+
+}
+
+body.dark-mode .tx-tool-title{
+
+    color:#f8fafc;
+
+}
+
+body.dark-mode .tx-tool-subtitle{
+
+    color:#cbd5e1;
+
+}
+
+body.dark-mode .tx-tool-description{
+
+    color:#94a3b8;
+
+}

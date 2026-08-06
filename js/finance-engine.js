@@ -24,6 +24,12 @@ function createFinanceCalculator(config) {
         );
     }
 
+     // Reviews section
+    renderToolReviews(
+    "tool-reviews",
+    "Scientific Calculator"
+);
+
     // Feedback
 renderFinanceFeedback(
     "financeFeedback",

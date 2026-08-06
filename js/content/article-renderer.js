@@ -273,11 +273,17 @@ function render(container,markdown){
 
     }
 
-    const html = parse(
+    const html = parse(markdown);
 
-        markdown
+    element.innerHTML = `
 
-    );
+    <section class="tool-article">
+
+    ${html}
+
+</section>
+
+`;
 
     element.innerHTML = html;
 

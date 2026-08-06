@@ -1,0 +1,614 @@
+/*=========================================================
+  ToolXone Shared Review System
+  Version: 1.0.0
+=========================================================*/
+
+
+
+/*=========================================================
+  Review Container
+=========================================================*/
+
+.tx-review-section{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:60px auto 80px;
+
+    padding:36px;
+
+    border-radius:22px;
+
+    background:#162235;
+
+    border:1px solid #2f4058;
+
+    color:#e5e7eb;
+
+    box-shadow:
+        0 20px 55px rgba(15,23,42,.14);
+
+}
+
+
+
+/*=========================================================
+  Review Header
+=========================================================*/
+
+.tx-review-header{
+
+    text-align:center;
+
+    margin-bottom:36px;
+
+}
+
+.tx-review-icon{
+
+    width:72px;
+
+    height:72px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #fbbf24
+        );
+
+    color:#ffffff;
+
+    font-size:34px;
+
+    box-shadow:
+        0 16px 32px rgba(245,158,11,.28);
+
+}
+
+.tx-review-header h2{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:#10b981;
+
+    margin-bottom:12px;
+
+}
+
+.tx-review-header p{
+
+    max-width:650px;
+
+    margin:0 auto;
+
+    line-height:1.8;
+
+    color:#cbd5e1;
+
+}
+
+/*=========================================================
+  Rating Summary
+=========================================================*/
+
+.tx-review-summary{
+
+    display:grid;
+
+    grid-template-columns:300px 1fr;
+
+    gap:32px;
+
+    align-items:center;
+
+    margin-bottom:42px;
+
+}
+
+.tx-review-score{
+
+    background:#1b2b42;
+
+    border:1px solid #314761;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    text-align:center;
+
+}
+
+.tx-rating-number{
+
+    font-size:3.4rem;
+
+    font-weight:800;
+
+    color:#10b981;
+
+    line-height:1;
+
+    margin-bottom:10px;
+
+}
+
+.tx-rating-stars{
+
+    font-size:1.45rem;
+
+    color:#f59e0b;
+
+    letter-spacing:3px;
+
+    margin-bottom:12px;
+
+}
+
+.tx-rating-text{
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+}
+
+.tx-rating-text strong{
+
+    color:#ffffff;
+
+    font-weight:800;
+
+}
+
+/*=========================================================
+  Rating Breakdown
+=========================================================*/
+
+.tx-rating-breakdown{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.tx-rating-row{
+
+    display:grid;
+
+    grid-template-columns:80px 1fr 55px;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+.tx-rating-row span{
+
+    color:#f59e0b;
+
+    font-size:1rem;
+
+    letter-spacing:1px;
+
+}
+
+.tx-rating-row strong{
+
+    text-align:right;
+
+    font-size:.95rem;
+
+    color:#e5e7eb;
+
+}
+
+.tx-rating-bar{
+
+    height:10px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:#24364d;
+
+}
+
+.tx-rating-fill{
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #10b981,
+        #34d399
+    );
+
+    transition:width .5s ease;
+
+}
+
+/*=========================================================
+  Review Cards
+=========================================================*/
+
+.tx-review-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.tx-review-card{
+
+    background:#1b2b42;
+
+    border:1px solid #314761;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    transition:
+        transform .28s ease,
+        box-shadow .28s ease,
+        border-color .28s ease;
+
+}
+
+.tx-review-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#10b981;
+
+    box-shadow:
+        0 18px 40px rgba(16,185,129,.16);
+
+}
+
+.tx-review-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+
+.tx-review-avatar{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #10b981,
+        #34d399
+    );
+
+    color:#ffffff;
+
+    font-size:1.2rem;
+
+    font-weight:800;
+
+    flex-shrink:0;
+
+}
+
+.tx-review-user{
+
+    flex:1;
+
+}
+
+.tx-review-user h4{
+
+    margin:0;
+
+    font-size:1.05rem;
+
+    color:#ffffff;
+
+}
+
+.tx-review-user span{
+
+    color:#94a3b8;
+
+    font-size:.88rem;
+
+}
+
+.tx-review-date{
+
+    color:#94a3b8;
+
+    font-size:.88rem;
+
+    white-space:nowrap;
+
+}
+
+.tx-review-stars{
+
+    color:#f59e0b;
+
+    font-size:1.15rem;
+
+    letter-spacing:2px;
+
+    margin-bottom:14px;
+
+}
+
+.tx-review-message{
+
+    line-height:1.8;
+
+    color:#d1d5db;
+
+    margin-bottom:18px;
+
+}
+
+.tx-review-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+}
+
+.tx-review-helpful{
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:10px 18px;
+
+    background:#24364d;
+
+    color:#e5e7eb;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+.tx-review-helpful:hover{
+
+    background:#10b981;
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================================================
+  Light Mode
+=========================================================*/
+
+body:not(.dark-mode) .tx-review-section{
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:
+        0 16px 40px rgba(15,23,42,.08);
+
+}
+
+body:not(.dark-mode) .tx-review-header p{
+
+    color:#475569;
+
+}
+
+body:not(.dark-mode) .tx-review-icon{
+
+    box-shadow:
+        0 16px 36px rgba(245,158,11,.22);
+
+}
+
+
+
+/*=========================================================
+  Tablet
+=========================================================*/
+
+@media (max-width:900px){
+
+    .tx-review-summary{
+
+        grid-template-columns:1fr;
+
+        gap:26px;
+
+    }
+
+}
+
+
+
+/*=========================================================
+  Mobile
+=========================================================*/
+
+@media (max-width:768px){
+
+    .tx-review-section{
+
+        padding:28px;
+
+    }
+
+    .tx-review-top{
+
+        flex-wrap:wrap;
+
+        align-items:flex-start;
+
+    }
+
+    .tx-review-date{
+
+        width:100%;
+
+        margin-left:70px;
+
+    }
+
+    .tx-rating-row{
+
+        grid-template-columns:70px 1fr 45px;
+
+        gap:10px;
+
+    }
+
+}
+
+
+
+@media (max-width:480px){
+
+    .tx-review-section{
+
+        padding:22px;
+
+        border-radius:18px;
+
+    }
+
+    .tx-review-header h2{
+
+        font-size:1.7rem;
+
+    }
+
+    .tx-review-icon{
+
+        width:62px;
+
+        height:62px;
+
+        font-size:28px;
+
+    }
+
+    .tx-rating-number{
+
+        font-size:2.8rem;
+
+    }
+
+    .tx-review-card{
+
+        padding:18px;
+
+    }
+
+    .tx-review-top{
+
+        gap:12px;
+
+    }
+
+    .tx-review-avatar{
+
+        width:46px;
+
+        height:46px;
+
+        font-size:1rem;
+
+    }
+
+    .tx-review-date{
+
+        margin-left:58px;
+
+        font-size:.82rem;
+
+    }
+
+    .tx-rating-row{
+
+        grid-template-columns:60px 1fr 40px;
+
+        font-size:.85rem;
+
+    }
+
+}
+
+
+
+/*=========================================================
+  Accessibility
+=========================================================*/
+
+.tx-review-helpful:focus{
+
+    outline:none;
+
+    box-shadow:
+        0 0 0 4px rgba(16,185,129,.18);
+
+}
+
+.tx-review-helpful:active{
+
+    transform:scale(.98);
+
+}

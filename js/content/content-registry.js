@@ -34,7 +34,10 @@ const registry = {
 
     glossary : {},
 
-    schema : {}
+    schema : {},
+
+    hero : {}
+
 
 };
 
@@ -196,7 +199,9 @@ function counts(){
 
         glossary : list("glossary").length,
 
-        schema : list("schema").length
+        schema : list("schema").length,
+
+        hero : list("hero").length
 
     };
 

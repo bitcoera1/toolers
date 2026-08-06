@@ -1,0 +1,156 @@
+
+/* ---------- FAQ SECTION ---------- */
+
+.tx-faq-section{
+    width:100%;
+    max-width:1000px;
+    margin:60px auto 80px;
+    padding:35px;
+    background:#162235;
+    border:1px solid #2f4058;
+    border-radius:22px;
+    color:#e5e7eb;
+}
+
+.tx-faq-section h2{
+    color:#10b981;
+    text-align:center;
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.toolxone-faq-item{
+    background:#172235;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:20px 22px;
+    margin-bottom:18px;
+    transition:.28s ease;
+}
+
+.toolxone-faq-item[open]{
+
+    border-color:#10b981;
+
+    box-shadow:
+        0 12px 28px rgba(16,185,129,.12);
+
+}
+
+.toolxone-faq-item summary{
+    cursor:pointer;
+    font-weight:700;
+    color:#e5e7eb;
+    
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:
+    color .25s ease;
+
+}
+
+.toolxone-faq-answer p{
+    margin-top:14px;
+    line-height:1.85;
+    color:#cbd5e1;
+}
+
+
+body:not(.dark-mode) .tx-faq-section{
+
+    background:#ffffff;
+    color:#1f2937;
+    border:1px solid #e5e7eb;
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+}
+
+body:not(.dark-mode) .toolxone-faq-answer p{
+    color:#475569;
+}
+
+body:not(.dark-mode) .toolxone-faq-item{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+}
+
+body:not(.dark-mode) .toolxone-faq-item summary{
+    color:#1f2937;
+}
+
+.toolxone-faq-item:hover{
+
+    border-color:#10b981;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(15,23,42,.08);
+
+}
+
+.toolxone-faq-item summary:focus-visible{
+
+    outline:3px solid rgba(16,185,129,.25);
+
+    outline-offset:4px;
+
+}
+
+@media(max-width:768px){
+
+    .tx-faq-section{
+
+        padding:28px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .tx-faq-section{
+
+        padding:22px;
+
+        border-radius:18px;
+
+    }
+
+    .tx-faq-section h2{
+
+        font-size:1.5rem;
+
+    }
+
+}
+
+.toolxone-faq-item:last-child{
+
+    margin-bottom:0;
+
+}
+
+.tx-faq-header{
+
+    text-align:center;
+
+    margin-bottom:36px;
+
+}
+
+.tx-faq-subtitle{
+
+    max-width:700px;
+
+    margin:0 auto;
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+}
