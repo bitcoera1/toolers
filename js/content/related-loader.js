@@ -96,7 +96,13 @@ function log(...message){
 
 function discover(){
 
-    return ToolXoneContentRegistry.list(
+    if(!window.ToolXoneContentRegistry){
+
+        return [];
+
+    }
+
+    return window.ToolXoneContentRegistry.list(
 
         "related"
 
@@ -104,29 +110,6 @@ function discover(){
 
 }
 
-/*=========================================================
- Fetch
-=========================================================*/
-
-async function fetchRelated(path){
-
-    log("Loading:", path);
-
-    const response = await fetch(path);
-
-    if(!response.ok){
-
-        throw new Error(
-
-            "Unable to load related content: " + path
-
-        );
-
-    }
-
-    return await response.text();
-
-}
 
 /*=========================================================
  Validation
@@ -136,9 +119,7 @@ function validate(content){
 
     return (
 
-        typeof content === "string" &&
-
-        content.trim().length > 0
+        Array.isArray(content)
 
     );
 
@@ -192,7 +173,7 @@ async function load(id){
 
     statistics.cacheMisses++;
 
-    const related = ToolXoneContentRegistry.get(
+    const related = window.ToolXoneContentRegistry.get(
 
         "related",
 
@@ -206,11 +187,7 @@ async function load(id){
 
     }
 
-    const content = await fetchRelated(
-
-        related.path
-
-    );
+    const content = related;
 
     if(
 
@@ -306,6 +283,8 @@ async function refresh(){
 
     await loadAll();
 
+    state.lastUpdated = Date.now();
+
 }
 
 /*=========================================================
@@ -314,11 +293,17 @@ async function refresh(){
 
 async function initialize(){
 
-    if(state.initialized){
+    if(
 
-        return;
+    state.initialized ||
 
-    }
+    state.loading
+
+){
+
+    return;
+
+}
 
     state.loading = true;
 

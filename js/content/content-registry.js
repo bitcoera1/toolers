@@ -24,6 +24,8 @@ Registry Storage
 
 const registry = {
 
+    tools : {},
+
     articles : {},
 
     faq : {},
@@ -37,7 +39,6 @@ const registry = {
     schema : {},
 
     hero : {}
-
 
 };
 
@@ -144,6 +145,52 @@ function get(type,name){
     }
 
     return registry[type][name] || null;
+
+}
+
+/*=========================================================*
+*Resolve Tool ID From Slug*
+*=========================================================*/
+
+function resolveSlug(slug){
+
+    if(
+
+        typeof slug !== "string" ||
+
+        slug.trim() === ""
+
+    ){
+
+        return null;
+
+    }
+
+    const tools = registry.tools;
+
+    for(
+
+        const toolId of Object.keys(tools)
+
+    ){
+
+        const tool = tools[toolId];
+
+        if(
+
+            tool &&
+
+            tool.slug === slug
+
+        ){
+
+            return toolId;
+
+        }
+
+    }
+
+    return null;
 
 }
 
@@ -360,6 +407,8 @@ window.ToolXoneContentRegistry = {
     register,
 
     get,
+
+    resolveSlug,
 
     exists,
 

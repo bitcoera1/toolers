@@ -150,7 +150,23 @@ Exists
 
 function exists(tool){
 
-    return load(tool) !== null;
+    if(!window.ToolXoneContentRegistry){
+
+        return false;
+
+    }
+
+    return (
+
+        window.ToolXoneContentRegistry.get(
+
+            "hero",
+
+            tool
+
+        ) !== null
+
+    );
 
 }
 

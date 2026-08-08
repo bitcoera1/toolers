@@ -64,29 +64,49 @@ const statistics = {
 
 function discover(){
 
-    return ToolXoneContentRegistry.list(
+    if(!window.ToolXoneContentRegistry){
 
+        return [];
+
+    }
+
+    return window.ToolXoneContentRegistry.list(
         "articles"
-
     );
 
 }
 
 async function fetchArticle(path){
 
-    const response = await fetch(path);
+    try{
 
-    if(!response.ok){
+        const response = await fetch(path);
 
-        throw new Error(
+        if(!response.ok){
 
-            "Unable to load article."
+            throw new Error(
+                "Unable to load article."
+            );
 
-        );
+        }
+
+        return await response.text();
 
     }
 
-    return await response.text();
+    catch(error){
+
+        console.error(
+
+            "[Article Loader]",
+
+            error
+
+        );
+
+        return null;
+
+    }
 
 }
 
@@ -104,17 +124,16 @@ function validate(content){
 
 function saveCache(id, content){
 
-    cache[id] = content;
+    cache.set(id, content);
 
     state.cached++;
 
-    statistics.totalArticles++;
 
 }
 
 function getCache(id){
 
-    return cache[id] || null;
+    return cache.get(id) || null;
 
 }
 
@@ -138,7 +157,7 @@ async function load(id){
 
     const article =
 
-        ToolXoneContentRegistry.get(
+        window.ToolXoneContentRegistry.get(
 
             "articles",
 
@@ -194,12 +213,13 @@ async function loadAll(){
 
     const ids = discover();
 
+    statistics.totalArticles = ids.length;
+
     if(ids.length === 0){
 
-    return;
+        return;
 
-
-  }
+}
 
     for(const id of ids){
 
@@ -222,6 +242,15 @@ async function loadAll(){
         }
 
     }
+
+}
+
+function exists(id){
+
+    return !!window.ToolXoneContentRegistry.get(
+        "articles",
+        id
+    );
 
 }
 
@@ -277,6 +306,8 @@ async function initialize(){
 
 async function refresh(){
 
+    cache.clear();
+
     state.loaded = 0;
 
     state.failed = 0;
@@ -319,6 +350,8 @@ window.ToolXoneArticleLoader = {
 
     loadAll,
 
+    exists, 
+    
     validate,
 
     report,

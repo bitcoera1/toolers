@@ -1,0 +1,737 @@
+/* ==========================================================
+   ToolXone Calculator Components
+   Version: 1.0
+   Shared UI Component Library
+   Author: ToolXone
+========================================================== */
+
+/*
+==========================================================
+1. Calculator Card
+==========================================================
+*/
+
+.tx-calculator-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    width:100%;
+
+    padding:32px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+}
+
+/*
+==========================================================
+2. Calculator Header
+==========================================================
+*/
+
+.tx-calculator-header{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.tx-calculator-title{
+
+    margin:0;
+
+}
+
+.tx-calculator-subtitle{
+
+    margin:0;
+
+    text-align:center;
+
+}
+
+/*
+==========================================================
+3. Calculator Display
+==========================================================
+*/
+
+.tx-calculator-display{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.tx-calculator-display input,
+
+.tx-calculator-display textarea{
+
+    width:100%;
+
+    min-height:64px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    outline:none;
+
+}
+
+/*
+==========================================================
+4. Number Words
+==========================================================
+*/
+
+.tx-number-words{
+
+    min-height:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+}
+
+/*
+==========================================================
+5. Calculator Button Grid
+==========================================================
+*/
+
+.tx-calculator-buttons{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+/*
+==========================================================
+6. Base Button
+==========================================================
+*/
+
+.tx-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:60px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    touch-action:manipulation;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+
+}
+
+/*
+==========================================================
+7. Wide Button
+==========================================================
+*/
+
+.tx-button-wide{
+
+    grid-column:span 4;
+
+}
+
+/*
+==========================================================
+8. Result Area
+==========================================================
+*/
+
+.tx-result{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.tx-result-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+/*
+==========================================================
+9. Input Groups
+==========================================================
+*/
+
+.tx-input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.tx-input-row{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.tx-input-row > *{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+10. Action Area
+==========================================================
+*/
+
+.tx-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    justify-content:center;
+
+}
+
+/*
+==========================================================
+11. Utility Components
+==========================================================
+*/
+
+.tx-full-width{
+
+    width:100%;
+
+}
+
+.tx-center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.tx-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+/*
+==========================================================
+12. Responsive
+==========================================================
+*/
+
+@media (max-width:768px){
+
+    .tx-calculator-card{
+
+        padding:24px;
+
+    }
+
+    .tx-input-row{
+
+        flex-direction:column;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .tx-calculator-buttons{
+
+        gap:10px;
+
+    }
+
+    .tx-button{
+
+        min-height:56px;
+
+    }
+
+}
+
+@media (max-width:420px){
+
+    .tx-calculator-card{
+
+        padding:20px;
+
+    }
+
+}
+
+/*
+==========================================================
+13. Number Button
+==========================================================
+*/
+
+.tx-button-number{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+14. Operator Button
+==========================================================
+*/
+
+.tx-button-operator{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+15. Equal Button
+==========================================================
+*/
+
+.tx-button-equal{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+16. Clear Button
+==========================================================
+*/
+
+.tx-button-clear{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+17. Scientific Button
+==========================================================
+*/
+
+.tx-button-scientific{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+18. Memory Button
+==========================================================
+*/
+
+.tx-button-memory{
+
+    flex:1;
+
+}
+
+/*
+==========================================================
+19. Button Icon
+==========================================================
+*/
+
+.tx-button-icon{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-right:6px;
+
+}
+
+/*
+==========================================================
+20. Hover Effects
+==========================================================
+*/
+
+.tx-button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/*
+==========================================================
+21. Active State
+==========================================================
+*/
+
+.tx-button:active{
+
+    transform:scale(.97);
+
+}
+
+/*
+==========================================================
+22. Focus State
+==========================================================
+*/
+
+.tx-button:focus{
+
+    outline:none;
+
+}
+
+.tx-button:focus-visible{
+
+    outline:3px solid currentColor;
+
+    outline-offset:3px;
+
+}
+
+/*
+==========================================================
+23. Disabled State
+==========================================================
+*/
+
+.tx-button:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.55;
+
+    transform:none;
+
+}
+
+/*
+==========================================================
+24. Loading State
+==========================================================
+*/
+
+.tx-button-loading{
+
+    pointer-events:none;
+
+}
+
+.tx-button-loading::after{
+
+    content:"";
+
+    width:16px;
+
+    height:16px;
+
+    margin-left:8px;
+
+    border-radius:50%;
+
+    border:2px solid transparent;
+
+    border-top-color:currentColor;
+
+    animation:tx-button-spin .8s linear infinite;
+
+}
+
+/*
+==========================================================
+25. Button Group
+==========================================================
+*/
+
+.tx-button-group{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+/*
+==========================================================
+26. Full Width Button
+==========================================================
+*/
+
+.tx-button-block{
+
+    width:100%;
+
+}
+
+/*
+==========================================================
+27. Calculator Keypad
+==========================================================
+*/
+
+.tx-keypad{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+/*
+==========================================================
+28. Motion
+==========================================================
+*/
+
+.tx-button{
+
+    transition:
+
+        transform .20s ease,
+
+        opacity .20s ease,
+
+        box-shadow .20s ease;
+
+}
+
+/*
+==========================================================
+29. Reduced Motion
+==========================================================
+*/
+
+@media (prefers-reduced-motion:reduce){
+
+    .tx-button{
+
+        transition:none;
+
+    }
+
+    .tx-button:hover{
+
+        transform:none;
+
+    }
+
+    .tx-button:active{
+
+        transform:none;
+
+    }
+
+}
+
+/*
+==========================================================
+30. Button Spinner
+==========================================================
+*/
+
+@keyframes tx-button-spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================
+   PREMIUM BUTTON COLOR VARIANTS
+========================================== */
+
+.calc-btn{
+    position:relative;
+    overflow:hidden;
+
+    transition:
+        background-color .22s ease,
+        color .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease,
+        transform .18s ease,
+        opacity .18s ease;
+}
+
+.calc-btn:hover:not(.operator):not(.equal):not(.clear){
+
+    background:#eef2f7;
+
+    border-color:#d1d9e6;
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 22px rgba(15,23,42,.12);
+
+}
+
+.calc-btn:active{
+
+    transform:translateY(0);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.12);
+
+}
+
+.calc-btn:focus-visible{
+
+    outline:none;
+
+    box-shadow:
+
+        0 0 0 3px rgba(16,185,129,.25),
+
+        0 0 0 5px rgba(16,185,129,.12);
+
+}
+
+.operator{
+
+    box-shadow:
+
+        0 4px 10px rgba(16,185,129,.25);
+
+}
+
+body.dark-mode .operator:hover{
+
+    background:#10b981;
+
+    box-shadow:
+        0 16px 30px rgba(16,185,129,.35);
+}
+
+.equal{
+
+    box-shadow:
+
+        0 4px 10px rgba(37,99,235,.28);
+
+}
+
+body.dark-mode .equal:hover{
+
+    background:#3b82f6;
+
+    box-shadow:
+        0 16px 30px rgba(59,130,246,.35);
+}
+
+.clear{
+
+    box-shadow:
+
+        0 4px 10px rgba(239,68,68,.25);
+
+}
+
+body.dark-mode .clear:hover{
+
+    background:#ef4444;
+
+    box-shadow:
+        0 16px 30px rgba(239,68,68,.35);
+}
+
+.calc-btn:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}

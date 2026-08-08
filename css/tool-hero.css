@@ -402,3 +402,568 @@ body.dark-mode .tx-tool-description{
     color:#94a3b8;
 
 }
+
+/* =========================================================
+   TOOLXONE HERO — INTELLIGENT RESPONSIVE SYSTEM
+   Mission 3.2.6
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   This layer controls ONLY the ToolXone tool hero.
+   It does not modify the calculator keypad/card.
+*/
+
+
+/* =========================================================
+   GLOBAL HERO SAFETY
+   ========================================================= */
+
+.tx-tool-hero,
+.tx-tool-hero * {
+    box-sizing: border-box;
+}
+
+.tx-tool-hero {
+    width: min(100%, 1400px);
+    max-width: 1400px;
+    min-width: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow: hidden;
+}
+
+.tx-tool-hero > * {
+    min-width: 0;
+}
+
+.toolxone-tool-hero-content,
+.tx-tool-hero-preview {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   TITLE SAFETY
+   Prevent long titles from forcing horizontal overflow.
+   ========================================================= */
+
+.tx-tool-title {
+    min-width: 0;
+    max-width: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.tx-tool-subtitle,
+.tx-tool-description {
+    min-width: 0;
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   PREVIEW SAFETY
+   ========================================================= */
+
+.tx-tool-hero-preview {
+    width: 100%;
+    min-width: 0;
+}
+
+.tx-tool-preview-card {
+    width: 100%;
+    max-width: 520px;
+    min-width: 0;
+}
+
+.tx-tool-preview-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   STATISTICS — DESKTOP BASE
+   ========================================================= */
+
+.tx-tool-statistics {
+    width: 100%;
+    min-width: 0;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+}
+
+.tx-tool-stat {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.tx-tool-actions {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tx-primary-button,
+.tx-secondary-button {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   TABLET
+   769px → 1024px
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .tx-tool-hero {
+        grid-template-columns:
+            minmax(0, 1.1fr)
+            minmax(260px, .9fr);
+
+        gap: 32px;
+
+        padding: 36px;
+    }
+
+    .tx-tool-title {
+        font-size: clamp(
+            2rem,
+            4vw,
+            2.35rem
+        );
+    }
+
+    .tx-tool-description {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .tx-tool-statistics {
+        gap: 12px;
+    }
+
+    .tx-tool-stat {
+        padding: 15px 12px;
+    }
+
+    .tx-tool-actions {
+        gap: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   COMPACT TABLET / LARGE MOBILE
+   769px and below
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .tx-tool-hero {
+
+        /*
+         * Desktop two-column hero becomes
+         * a clean vertical flow.
+         */
+        grid-template-columns: 1fr;
+
+        width: calc(100% - 32px);
+        max-width: 100%;
+
+        gap: 28px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        padding: 28px 24px;
+
+        border-radius: 22px;
+    }
+
+
+    /* -----------------------------------------------------
+       Hero content
+       ----------------------------------------------------- */
+
+    .toolxone-tool-hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        gap: 18px;
+    }
+
+
+    /* -----------------------------------------------------
+       Hero preview
+       ----------------------------------------------------- */
+
+    .tx-tool-hero-preview {
+        width: 100%;
+        max-width: 100%;
+
+        order: 2;
+    }
+
+    .tx-tool-preview-card {
+        width: min(100%, 520px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    /* -----------------------------------------------------
+       Typography
+       ----------------------------------------------------- */
+
+    .tx-tool-title {
+        font-size: clamp(
+            2rem,
+            5vw,
+            2.35rem
+        );
+
+        line-height: 1.12;
+
+        gap: 10px;
+    }
+
+    .tx-tool-subtitle {
+        font-size: 1.1rem;
+        line-height: 1.4;
+    }
+
+    .tx-tool-description {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+
+    /* -----------------------------------------------------
+       Statistics → 2 × 2
+       ----------------------------------------------------- */
+
+    .tx-tool-statistics {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+
+        width: 100%;
+    }
+
+    .tx-tool-stat {
+        width: 100%;
+        padding: 16px 10px;
+
+        border-radius: 16px;
+    }
+
+    .tx-tool-stat strong {
+        font-size: 1.2rem;
+    }
+
+    .tx-tool-stat span {
+        font-size: .85rem;
+    }
+
+
+    /* -----------------------------------------------------
+       CTA buttons
+       ----------------------------------------------------- */
+
+    .tx-tool-actions {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .tx-primary-button,
+    .tx-secondary-button {
+        width: 100%;
+        min-width: 0;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   480px and below
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .tx-tool-hero {
+
+        width: calc(100% - 20px);
+
+        padding: 22px 18px;
+
+        gap: 24px;
+
+        border-radius: 20px;
+
+        margin-bottom: 48px;
+    }
+
+
+    /* -----------------------------------------------------
+       Content spacing
+       ----------------------------------------------------- */
+
+    .toolxone-tool-hero-content {
+        gap: 15px;
+    }
+
+
+    /* -----------------------------------------------------
+       Title
+       ----------------------------------------------------- */
+
+    .tx-tool-title {
+
+        font-size: clamp(
+            1.75rem,
+            8vw,
+            2rem
+        );
+
+        line-height: 1.12;
+
+        gap: 8px;
+
+        margin: 4px 0;
+    }
+
+
+    .tx-tool-subtitle {
+        font-size: 1rem;
+        line-height: 1.45;
+
+        margin-bottom: 4px;
+    }
+
+
+    .tx-tool-description {
+
+        font-size: .95rem;
+
+        line-height: 1.65;
+
+        max-width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       Statistics
+       ----------------------------------------------------- */
+
+    .tx-tool-statistics {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        margin-top: 4px;
+    }
+
+
+    .tx-tool-stat {
+
+        padding: 14px 8px;
+
+        border-radius: 15px;
+    }
+
+
+    .tx-tool-stat strong {
+        font-size: 1.1rem;
+    }
+
+
+    .tx-tool-stat span {
+        font-size: .78rem;
+        line-height: 1.35;
+    }
+
+
+    /* -----------------------------------------------------
+       Buttons → vertical mobile flow
+       ----------------------------------------------------- */
+
+    .tx-tool-actions {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        margin-top: 4px;
+    }
+
+
+    .tx-primary-button,
+    .tx-secondary-button {
+
+        width: 100%;
+
+        padding:
+            13px 18px;
+
+        font-size: .95rem;
+    }
+
+
+    /* -----------------------------------------------------
+       Preview
+       ----------------------------------------------------- */
+
+    .tx-tool-preview-card {
+
+        max-width: 100%;
+
+        padding: 12px;
+
+        border-radius: 20px;
+    }
+
+    .tx-tool-preview-image {
+        border-radius: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   390px and below
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .tx-tool-hero {
+
+        width: calc(100% - 16px);
+
+        padding:
+            20px 15px;
+
+        gap: 21px;
+    }
+
+
+    .tx-tool-title {
+
+        font-size:
+            clamp(
+                1.55rem,
+                8vw,
+                1.85rem
+            );
+
+        gap: 7px;
+    }
+
+
+    .tx-tool-subtitle {
+        font-size: .95rem;
+    }
+
+
+    .tx-tool-description {
+        font-size: .9rem;
+        line-height: 1.6;
+    }
+
+
+    .tx-tool-statistics {
+        gap: 8px;
+    }
+
+
+    .tx-tool-stat {
+        padding: 13px 6px;
+    }
+
+
+    .tx-tool-stat strong {
+        font-size: 1rem;
+    }
+
+
+    .tx-tool-stat span {
+        font-size: .74rem;
+    }
+
+
+    .tx-primary-button,
+    .tx-secondary-button {
+        padding:
+            12px 15px;
+
+        font-size: .9rem;
+    }
+
+}
+
+
+/* =========================================================
+   ULTRA-SMALL PHONES
+   360px and below
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .tx-tool-hero {
+
+        width: calc(100% - 12px);
+
+        padding:
+            18px 12px;
+    }
+
+
+    .tx-tool-title {
+        font-size: 1.5rem;
+    }
+
+
+    .tx-tool-statistics {
+        gap: 7px;
+    }
+
+
+    .tx-tool-stat {
+        padding:
+            12px 5px;
+    }
+
+}

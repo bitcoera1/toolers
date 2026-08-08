@@ -97,7 +97,13 @@ Discover
 
 function discover(){
 
-    return ToolXoneContentRegistry.list(
+    if(!window.ToolXoneContentRegistry){
+
+        return [];
+
+    }
+
+    return window.ToolXoneContentRegistry.list(
 
         "glossary"
 
@@ -207,7 +213,7 @@ async function load(id){
 
     statistics.cacheMisses++;
 
-    const glossary = ToolXoneContentRegistry.get(
+    const glossary = window.ToolXoneContentRegistry.get(
 
         "glossary",
 
@@ -257,8 +263,6 @@ async function load(id){
 
     statistics.successfulLoads++;
 
-    statistics.totalGlossary = cache.size;
-
     return content;
 
 }
@@ -270,6 +274,8 @@ Load All
 async function loadAll(){
 
     const ids = discover();
+
+    statistics.totalGlossary = ids.length;
 
     if(ids.length === 0){
 
@@ -325,6 +331,8 @@ async function refresh(){
 
     await loadAll();
 
+    state.lastUpdated = Date.now();
+
 }
 
 /*=========================================================
@@ -333,11 +341,17 @@ Initialize
 
 async function initialize(){
 
-    if(state.initialized){
+    if(
 
-        return;
+    state.initialized ||
 
-    }
+    state.loading
+
+){
+
+    return;
+
+}
 
     state.loading = true;
 

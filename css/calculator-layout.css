@@ -1,0 +1,905 @@
+/* ==========================================================
+   ToolXone Calculator Layout
+   Version: 1.0
+   Shared Layout Framework
+   Author: ToolXone
+========================================================== */
+
+/*
+==========================================================
+1. Calculator Page
+==========================================================
+*/
+
+.tx-calculator-page {
+    width: 100%;
+}
+
+.tx-calculator-container {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 48px 0;
+}
+
+/*
+==========================================================
+2. Hero Layout
+==========================================================
+*/
+
+.tx-calculator-hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 56px;
+    margin-bottom: 56px;
+}
+
+.tx-calculator-hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tx-calculator-hero-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+==========================================================
+3. Hero Highlights
+==========================================================
+*/
+
+.tx-hero-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tx-hero-highlight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*
+==========================================================
+4. Hero Statistics
+==========================================================
+*/
+
+.tx-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+/*
+==========================================================
+5. Hero Buttons
+==========================================================
+*/
+
+.tx-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+/*
+==========================================================
+6. Calculator Section
+==========================================================
+*/
+
+.tx-calculator-section {
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.tx-calculator-wrapper {
+    width: min(520px, 100%);
+    margin: 0 auto;
+}
+
+/*
+==========================================================
+7. Calculator Card Layout
+==========================================================
+*/
+
+.tx-calculator-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tx-calculator-display {
+    width: 100%;
+}
+
+.tx-calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.tx-button-wide {
+    grid-column: span 4;
+}
+
+/*
+==========================================================
+8. Tool Content Sections
+==========================================================
+*/
+
+.tx-tool-section {
+    margin-top: 80px;
+}
+
+.tx-tool-section:first-child {
+    margin-top: 0;
+}
+
+/*
+==========================================================
+9. Shared Grid
+==========================================================
+*/
+
+.tx-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.tx-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.tx-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/*
+==========================================================
+10. Utility Layout Classes
+==========================================================
+*/
+
+.tx-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tx-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-row {
+    display: flex;
+    align-items: center;
+}
+
+.tx-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*
+==========================================================
+11. Responsive Layout
+==========================================================
+*/
+
+@media (max-width: 1400px) {
+
+    .tx-calculator-container {
+        width: calc(100% - 40px);
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .tx-calculator-hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tx-calculator-hero-content {
+        order: 1;
+    }
+
+    .tx-calculator-hero-preview {
+        order: 2;
+    }
+
+}
+
+@media (max-width: 992px) {
+
+    .tx-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .tx-calculator-container {
+        width: calc(100% - 32px);
+        padding: 32px 0;
+    }
+
+    .tx-grid-4,
+    .tx-grid-3,
+    .tx-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .tx-hero-actions {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .tx-hero-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .tx-calculator-buttons {
+        gap: 10px;
+    }
+
+}
+
+@media (max-width: 420px) {
+
+    .tx-calculator-container {
+        width: calc(100% - 24px);
+    }
+
+    .tx-calculator-hero {
+        gap: 28px;
+    }
+
+}
+
+/* =====================================================
+   TOOLXONE CALCULATOR WORKSPACE
+   Shared by ALL calculators
+===================================================== */
+
+.tx-calculator-workspace{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:0 auto;
+
+    padding:48px 24px 72px;
+
+}
+
+.tx-calculator-shell{
+
+    position:relative;
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:28px;
+
+    padding:32px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 12px 35px rgba(15,23,42,.08),
+
+        0 2px 8px rgba(15,23,42,.05);
+
+    transition:
+
+        box-shadow .25s ease,
+
+        border-color .25s ease,
+
+        transform .25s ease;
+
+}
+
+.tx-calculator-shell:hover{
+
+    box-shadow:
+
+        0 18px 48px rgba(15,23,42,.10),
+
+        0 4px 14px rgba(15,23,42,.06);
+
+}
+
+.tx-calculator-shell>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark-mode .tx-calculator-shell{
+
+    background:#111827;
+
+    border-color:#2b3648;
+
+    box-shadow:
+
+        0 18px 50px rgba(0,0,0,.45);
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:992px){
+
+    .tx-calculator-workspace{
+
+        padding:36px 18px 60px;
+
+    }
+
+    .tx-calculator-shell{
+
+        padding:24px;
+
+        border-radius:22px;
+
+    }
+
+}
+
+@media (max-width:640px){
+
+    .tx-calculator-workspace{
+
+        padding:24px 14px 42px;
+
+    }
+
+    .tx-calculator-shell{
+
+        padding:18px;
+
+        border-radius:18px;
+
+    }
+
+}
+
+/* =====================================================
+   PREMIUM DISPLAY SYSTEM
+===================================================== */
+
+.tx-calculator-display{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-bottom:28px;
+
+}
+
+.tx-display-input{
+
+    width:100%;
+
+    min-height:82px;
+
+    padding:20px 24px;
+
+    border:2px solid #dbe4ee;
+
+    border-radius:18px;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    text-align:right;
+
+    outline:none;
+
+    transition:
+
+        border-color .25s ease,
+
+        box-shadow .25s ease,
+
+        background-color .25s ease;
+
+}
+
+.tx-display-input:focus{
+
+    border-color:#10b981;
+
+    box-shadow:
+
+        0 0 0 5px rgba(16,185,129,.12);
+
+}
+
+.tx-display-helper{
+
+    min-height:42px;
+
+    padding:12px 18px;
+
+    border:1px solid #dbe8e1;
+
+    border-radius:14px;
+
+    background:#f8fcfa;
+
+    color:#166534;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    line-height:1.6;
+
+    transition:.25s ease;
+
+}
+
+.tx-display-helper:empty{
+
+    display:none;
+
+}
+
+body.dark-mode .tx-display-input{
+
+    background:#0f172a;
+
+    color:#f8fafc;
+
+    border-color:#334155;
+
+}
+
+body.dark-mode .tx-display-input:focus{
+
+    border-color:#10b981;
+
+}
+
+body.dark-mode .tx-display-helper{
+
+    background:#152032;
+
+    color:#c7f9d4;
+
+    border-color:#2b3648;
+
+}
+
+@media (max-width:768px){
+
+    .tx-display-input{
+
+        min-height:68px;
+
+        font-size:1.55rem;
+
+        padding:16px;
+
+    }
+
+    .tx-display-helper{
+
+        font-size:.82rem;
+
+    }
+
+}
+
+/* =====================================================
+   3.2.4.3 PREMIUM CALCULATOR GRID SYSTEM
+===================================================== */
+
+.tx-button-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,minmax(0,1fr));
+
+    gap:14px;
+
+    align-items:stretch;
+
+    width:100%;
+
+}
+
+.tx-button-grid>*{
+
+    min-width:0;
+
+}
+
+@media (max-width:768px){
+
+    .tx-button-grid{
+
+        gap:12px;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .tx-button-grid{
+
+        gap:10px;
+
+    }
+
+}
+
+/* =====================================================
+   3.2.5 RESPONSIVE INTELLIGENCE
+===================================================== */
+
+/*
+--------------------------------------------------------
+Large Desktop (1600px+)
+--------------------------------------------------------
+*/
+
+@media (min-width:1600px){
+
+    .tx-calculator-workspace{
+
+        max-width:1500px;
+
+    }
+
+}
+
+/*
+--------------------------------------------------------
+Laptop
+--------------------------------------------------------
+*/
+
+@media (max-width:1200px){
+
+    .tx-calculator-shell{
+
+        padding:28px;
+
+    }
+
+}
+
+/*
+--------------------------------------------------------
+Tablet
+--------------------------------------------------------
+*/
+
+@media (max-width:992px){
+
+    .tx-calculator-shell{
+
+        padding:24px;
+
+        border-radius:22px;
+
+    }
+
+}
+
+/*
+--------------------------------------------------------
+Mobile
+--------------------------------------------------------
+*/
+
+@media (max-width:768px){
+
+    .tx-calculator-workspace{
+
+        padding:28px 16px 48px;
+
+    }
+
+    .tx-calculator-shell{
+
+        padding:20px;
+
+        border-radius:18px;
+
+    }
+
+}
+
+/*
+--------------------------------------------------------
+Small Mobile
+--------------------------------------------------------
+*/
+
+@media (max-width:480px){
+
+    .tx-calculator-workspace{
+
+        padding:20px 12px 36px;
+
+    }
+
+    .tx-calculator-shell{
+
+        padding:16px;
+
+        border-radius:16px;
+
+    }
+
+}
+
+/* =====================================================
+   3.2.6 FINAL CONTAINER POLISH
+===================================================== */
+
+/* Premium smooth rendering */
+
+.tx-calculator-shell,
+.tx-calculator-display,
+.tx-button-grid{
+
+    -webkit-font-smoothing:antialiased;
+
+    -moz-osx-font-smoothing:grayscale;
+
+    backface-visibility:hidden;
+
+    transform:translateZ(0);
+
+}
+
+/* Better box sizing */
+
+.tx-calculator-shell *,
+.tx-calculator-display *,
+.tx-button-grid *{
+
+    box-sizing:border-box;
+
+}
+
+/* Prevent layout overflow */
+
+.tx-calculator-shell{
+
+    overflow:hidden;
+
+}
+
+.tx-button-grid{
+
+    overflow:visible;
+
+}
+
+/* Smooth resize */
+
+.tx-calculator-shell{
+
+    transition:
+
+        box-shadow .25s ease,
+
+        border-color .25s ease,
+
+        background-color .25s ease,
+
+        padding .25s ease;
+
+}
+
+/* Reduce motion for accessibility */
+
+@media (prefers-reduced-motion:reduce){
+
+    .tx-calculator-shell,
+
+    .tx-display-input,
+
+    .calc-btn{
+
+        transition:none !important;
+
+        animation:none !important;
+
+    }
+
+}
+
+/* =====================================================
+   CALCULATOR CONTAINER — CENTERED WORKSPACE
+   ===================================================== */
+
+.tx-calculator-container{
+    width:100%;
+    max-width:900px;
+
+    margin:0 auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:0 20px;
+
+    box-sizing:border-box;
+}
+
+/* =========================================================
+   MISSION 3.2.5
+   RESPONSIVE INTELLIGENCE
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   LARGE DESKTOP
+   --------------------------------------------------------- */
+
+.tx-calculator-container {
+    width: min(100%, 760px);
+    margin-inline: auto;
+    padding-inline: 20px;
+    box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET / SMALL LAPTOP
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .tx-calculator-container {
+        width: min(100%, 620px);
+        padding-inline: 18px;
+    }
+
+    .tx-calculator-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .tx-calculator-container {
+        width: 100%;
+        padding-inline: 16px;
+    }
+
+    .tx-calculator-card {
+        width: 100%;
+        max-width: 520px;
+        margin-inline: auto;
+    }
+
+    .tx-button-grid {
+        gap: 10px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .tx-calculator-container {
+        width: 100%;
+        padding-inline: 12px;
+    }
+
+    .tx-calculator-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .tx-button-grid {
+        gap: 8px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   SMALL MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 420px) {
+
+    .tx-calculator-container {
+        padding-inline: 10px;
+    }
+
+    .tx-calculator-card {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .tx-button-grid {
+        gap: 7px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   VERY SMALL MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 360px) {
+
+    .tx-calculator-container {
+        padding-inline: 8px;
+    }
+
+    .tx-calculator-card {
+        padding: 14px;
+    }
+
+    .tx-button-grid {
+        gap: 6px;
+    }
+}

@@ -266,8 +266,11 @@ function render(metadata){
     state.rendered++;
 
     statistics.renderedMetadata++;
+    
+    state.lastUpdated = Date.now();
 
     return true;
+
 
 }
 

@@ -103,7 +103,13 @@ function log(...message){
 
 function discover(){
 
-    return ToolXoneContentRegistry.list(
+    if(!window.ToolXoneContentRegistry){
+
+        return [];
+
+    }
+
+    return window.ToolXoneContentRegistry.list(
 
         "metadata"
 
@@ -125,11 +131,9 @@ async function fetchMetadata(path){
 
     );
 
-    const response = await fetch(
+    try{
 
-        path
-
-    );
+    const response = await fetch(path);
 
     if(!response.ok){
 
@@ -144,6 +148,20 @@ async function fetchMetadata(path){
     }
 
     return await response.json();
+
+}
+
+catch(error){
+
+    throw new Error(
+
+        "Metadata fetch failed: " +
+
+        error.message
+
+    );
+
+}
 
 }
 
@@ -231,7 +249,7 @@ async function load(id){
 
     const metadata =
 
-        ToolXoneContentRegistry.get(
+        window.ToolXoneContentRegistry.get(
 
             "metadata",
 
@@ -671,6 +689,7 @@ async function refresh(){
 
     await loadAll();
 
+    state.lastUpdated = Date.now();
 }
 
 /*=========================================================
@@ -679,15 +698,22 @@ async function refresh(){
 
 async function initialize(){
 
-    if(state.initialized){
+    if(
 
-        return;
+    state.initialized ||
 
-    }
+    state.loading
+
+){
+
+    return;
+
+}
 
     state.loading = true;
 
     await loadAll();
+
 
     state.loading = false;
 

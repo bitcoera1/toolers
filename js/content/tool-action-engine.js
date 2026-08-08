@@ -1,14 +1,15 @@
 /*
-==========================================================
- ToolXone Action Engine
- Shared Hero Actions
- Version: 1.0.0
-==========================================================
+=========================================================
+ToolXone Action Engine
+Version 1.1.0
+Tool-aware CTA action system
+=========================================================
 */
 
 (function(){
 
 "use strict";
+
 
 /*=========================================================
 Constants
@@ -16,7 +17,8 @@ Constants
 
 const NAME = "ToolXone Action Engine";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
+
 
 /*=========================================================
 Configuration
@@ -26,9 +28,44 @@ const configuration = {
 
     smooth : true,
 
-    autoInitialize : true
+    autoInitialize : true,
+
+    /*
+    ---------------------------------------------------------
+    Tool-specific action targets
+    ---------------------------------------------------------
+    */
+
+    actions : {
+
+    basic : {
+
+        startCalculating : ".tx-calculator-section",
+
+        learnMore : "#financeInfo"
+
+    },
+
+    scientific : {
+
+        startCalculating : ".scientific-card",
+
+        learnMore : "#financeInfo"
+
+    },
+
+    "scientific-calculator" : {
+
+        startCalculating : ".scientific-card",
+
+        learnMore : "#financeInfo"
+
+    }
+
+}
 
 };
+
 
 /*=========================================================
 State
@@ -36,9 +73,77 @@ State
 
 const state = {
 
-    initialized : false
+    initialized : false,
+
+    currentTool : null
 
 };
+
+
+/*=========================================================
+Get Current Tool
+=========================================================*/
+
+function getCurrentTool(){
+
+    const tool = document.body.dataset.tool;
+
+    if(!tool){
+
+        return null;
+
+    }
+
+    return tool;
+
+}
+
+
+/*=========================================================
+Get Tool Actions
+=========================================================*/
+
+function getToolActions(tool){
+
+    if(!tool){
+
+        return null;
+
+    }
+
+    return configuration.actions[tool] || null;
+
+}
+
+
+/*=========================================================
+Resolve Action Target
+=========================================================*/
+
+function resolveTarget(action){
+
+    const tool = getCurrentTool();
+
+    if(!tool){
+
+        return null;
+
+    }
+
+    state.currentTool = tool;
+
+    const toolActions = getToolActions(tool);
+
+    if(!toolActions){
+
+        return null;
+
+    }
+
+    return toolActions[action] || null;
+
+}
+
 
 /*=========================================================
 Scroll Helper
@@ -46,9 +151,25 @@ Scroll Helper
 
 function scrollTo(selector){
 
+    if(!selector){
+
+        return false;
+
+    }
+
     const element = document.querySelector(selector);
 
     if(!element){
+
+        console.warn(
+
+            NAME +
+
+            ": Target not found:",
+
+            selector
+
+        );
 
         return false;
 
@@ -56,7 +177,9 @@ function scrollTo(selector){
 
     element.scrollIntoView({
 
-        behavior : configuration.smooth ? "smooth" : "auto",
+        behavior : configuration.smooth
+            ? "smooth"
+            : "auto",
 
         block : "start"
 
@@ -66,19 +189,23 @@ function scrollTo(selector){
 
 }
 
+
 /*=========================================================
 Primary Action
 =========================================================*/
 
 function startCalculating(){
 
-    return scrollTo(
+    const target = resolveTarget(
 
-        ".scientific-card"
+        "startCalculating"
 
     );
 
+    return scrollTo(target);
+
 }
+
 
 /*=========================================================
 Secondary Action
@@ -86,13 +213,49 @@ Secondary Action
 
 function learnMore(){
 
-    return scrollTo(
+    const target = resolveTarget(
 
-        "#financeInfo"
+        "learnMore"
 
     );
 
+    return scrollTo(target);
+
 }
+
+
+/*=========================================================
+Execute Action
+=========================================================*/
+
+function executeAction(action){
+
+    if(action === "startCalculating"){
+
+        return startCalculating();
+
+    }
+
+    if(action === "learnMore"){
+
+        return learnMore();
+
+    }
+
+    console.warn(
+
+        NAME +
+
+        ": Unknown action:",
+
+        action
+
+    );
+
+    return false;
+
+}
+
 
 /*=========================================================
 Initialize
@@ -106,19 +269,28 @@ function initialize(){
 
     }
 
+    state.currentTool = getCurrentTool();
+
+
     document.addEventListener(
 
         "click",
 
         function(event){
 
-            const button = event.target.closest("button");
+            const button = event.target.closest(
+
+                ".tx-primary-button, .tx-secondary-button"
+
+            );
+
 
             if(!button){
 
                 return;
 
             }
+
 
             if(
 
@@ -130,9 +302,14 @@ function initialize(){
 
             ){
 
-                startCalculating();
+                executeAction(
+
+                    "startCalculating"
+
+                );
 
             }
+
 
             if(
 
@@ -144,7 +321,11 @@ function initialize(){
 
             ){
 
-                learnMore();
+                executeAction(
+
+                    "learnMore"
+
+                );
 
             }
 
@@ -152,9 +333,11 @@ function initialize(){
 
     );
 
+
     state.initialized = true;
 
 }
+
 
 /*=========================================================
 Public API
@@ -168,6 +351,14 @@ window.ToolXoneActionEngine = {
 
     learnMore,
 
+    executeAction,
+
+    getCurrentTool,
+
+    getToolActions,
+
+    resolveTarget,
+
     configuration,
 
     state,
@@ -178,6 +369,7 @@ window.ToolXoneActionEngine = {
 
 };
 
+
 /*=========================================================
 Auto Initialize
 =========================================================*/
@@ -187,6 +379,7 @@ if(configuration.autoInitialize){
     initialize();
 
 }
+
 
 console.info(
 

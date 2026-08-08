@@ -1,10 +1,10 @@
-.tool-area{
+.tx-tool-area{
     padding:60px 20px;
     display:flex;
     justify-content:center;
 }
 
-.calculator-card{
+.tx-calculator-card{
     width:340px;
     background:white;
     padding:25px;
@@ -12,7 +12,7 @@
     box-shadow:0 12px 35px rgba(0,0,0,.16);
 }
 
-.calculator-card h1{
+.tx-calculator-card h1{
     text-align:center;
     color:#10B981;
     font-size:26px;
@@ -32,13 +32,13 @@
     outline:none;
 }
 
-.buttons{
+.tx-button-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:10px;
 }
 
-.calc-btn{
+.tx-calc-btn{
     height:60px;
     font-size:20px;
     border:none;
@@ -48,39 +48,39 @@
     transition:.2s;
 }
 
-.calc-btn:hover{
+.tx-calc-btn:hover{
     background:#e2e8f0;
     transform:translateY(-2px);
 }
 
-.operator{
+.tx-operator{
     background:#10B981;
     color:white;
 }
 
-.operator:hover{
+.tx-operator:hover{
     background:#059669;
 }
 
-.equal{
+.tx-equal{
     background:#2563eb;
     color:white;
 }
 
-.equal:hover{
+.tx-equal:hover{
     background:#1d4ed8;
 }
 
-.clear{
+.tx-clear{
     background:#ef4444;
     color:white;
 }
 
-.clear:hover{
+.tx-clear:hover{
     background:#dc2626;
 }
 
-.back{
+.tx-back{
     display:block;
     text-align:center;
     margin-top:20px;
@@ -89,7 +89,7 @@
     color:#10B981;
 }
 
-body.dark-mode .calculator-card{
+body.dark-mode .tx-calculator-card{
     background:#1f2937;
     color:#e5e7eb;
 }
@@ -100,37 +100,37 @@ body.dark-mode #display{
     border-color:#374151;
 }
 
-body.dark-mode .calc-btn{
+body.dark-mode .tx-calc-btn{
     background:#374151;
     color:#e5e7eb;
 }
 
-body.dark-mode .calc-btn:hover{
+body.dark-mode .tx-calc-btn:hover{
     background:#4b5563;
 }
 
-body.dark-mode .operator{
+body.dark-mode .tx-operator{
     background:#10B981;
     color:white;
 }
 
-body.dark-mode .equal{
+body.dark-mode .tx-equal{
     background:#2563eb;
     color:white;
 }
 
-body.dark-mode .clear{
+body.dark-mode .tx-clear{
     background:#ef4444;
     color:white;
 }
-.clear-wide{
+.tx-clear-wide{
     grid-column:span 4;
 }
 /* =====================================================
    NUMBER IN WORDS
    ===================================================== */
 
-.calculator-number-words {
+.tx-calculator-number-words {
     margin-top: 8px;
     min-height: 32px;
     padding: 8px 10px;
@@ -149,6 +149,6 @@ body.dark-mode .clear{
     overflow-wrap: anywhere;
 }
 
-.calculator-number-words:empty {
+.tx-calculator-number-words:empty {
     display: none;
 }

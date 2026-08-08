@@ -163,6 +163,8 @@ function render(schema){
     state.rendered++;
 
     statistics.renderedSchemas++;
+    
+    state.lastUpdated = Date.now();
 
     return `<script type="application/ld+json">\n${json}\n</script>`;
 

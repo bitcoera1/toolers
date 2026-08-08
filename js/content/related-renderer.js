@@ -215,6 +215,8 @@ function renderInto(container, related){
 
     if(!container){
 
+        state.failed++;
+
         return false;
 
     }
@@ -226,6 +228,8 @@ function renderInto(container, related){
         : related?.items;
 
     if(!Array.isArray(items)){
+
+        state.failed++;
 
         return false;
 

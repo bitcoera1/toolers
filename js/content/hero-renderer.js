@@ -242,20 +242,13 @@ return `
 
         <div class="tx-tool-actions">
 
-      <button
-          class="tx-primary-button"
-          onclick="document.querySelector('.scientific-card')?.scrollIntoView({
-          behavior:'smooth',
-          block:'center'
-    });">
+      <button class="tx-primary-button">
 
     ${escapeHTML(hero.cta?.primary || "Start")}
 
-<button
-        class="tx-secondary-button"
-        onclick="document.querySelector('.tx-content-section')?.scrollIntoView({
-        behavior:'smooth'
-    });">
+</button>
+
+<button class="tx-secondary-button">
 
     ${escapeHTML(hero.cta?.secondary || "Learn More")}
 
@@ -310,6 +303,8 @@ function render(tool){
     state.rendered = true;
 
     statistics.renders++;
+
+    state.lastRendered = Date.now();
 
     return true;
 

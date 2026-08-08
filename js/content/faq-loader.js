@@ -97,7 +97,13 @@ function log(...message){
 
 function discover(){
 
-    return ToolXoneContentRegistry.list(
+    if(!window.ToolXoneContentRegistry){
+
+        return [];
+
+    }
+
+    return window.ToolXoneContentRegistry.list(
 
         "faq"
 
@@ -113,19 +119,30 @@ async function fetchFAQ(path){
 
     log("Loading:", path);
 
+    try{
+
     const response = await fetch(path);
 
     if(!response.ok){
 
         throw new Error(
-
             "Unable to load FAQ: " + path
-
         );
 
     }
 
     return await response.text();
+
+}
+
+catch(error){
+
+    throw new Error(
+        "FAQ fetch failed: " +
+        error.message
+    );
+
+}
 
 }
 
@@ -193,7 +210,7 @@ async function load(id){
 
     statistics.cacheMisses++;
 
-    const faq = ToolXoneContentRegistry.get(
+    const faq = window.ToolXoneContentRegistry.get(
 
         "faq",
 
@@ -241,8 +258,6 @@ async function load(id){
 
     statistics.successfulLoads++;
 
-    statistics.totalFAQs = cache.size;
-
     return content;
 
 }
@@ -254,6 +269,8 @@ async function load(id){
 async function loadAll(){
 
     const ids = discover();
+
+    statistics.totalFAQs = ids.length;
 
     if(ids.length === 0){
 
@@ -307,6 +324,8 @@ async function refresh(){
 
     await loadAll();
 
+    state.lastUpdated = Date.now();
+
 }
 
 /*=========================================================
@@ -315,11 +334,17 @@ async function refresh(){
 
 async function initialize(){
 
-    if(state.initialized){
+    if(
 
-        return;
+    state.initialized ||
 
-    }
+    state.loading
+
+){
+
+    return;
+
+}
 
     state.loading = true;
 

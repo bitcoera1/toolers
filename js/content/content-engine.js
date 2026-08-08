@@ -78,7 +78,7 @@ function updateStatistics(){
 
     const counts =
 
-        ToolXoneContentRegistry.counts();
+        window.ToolXoneContentRegistry.counts();
 
     statistics.articles = counts.articles;
 
@@ -103,8 +103,9 @@ function updateStatistics(){
 function initialize(){
 
     state.registryReady =
-
-        validateRegistry();
+    config.validateRegistry
+        ? validateRegistry()
+        : true;
 
     if(!state.registryReady){
 

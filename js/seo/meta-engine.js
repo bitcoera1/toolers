@@ -77,7 +77,7 @@ function createLink() {
 function ensureMeta(attribute, value) {
 
     const selector =
-        `meta[${attribute}]`;
+        `meta[${attribute}="${CSS.escape(value)}"]`;
 
     let element =
         findMeta(selector);
@@ -91,6 +91,11 @@ function ensureMeta(attribute, value) {
             value
         );
 
+        element.setAttribute(
+            "data-toolxone-meta",
+            "true"
+        );
+
         getHead().appendChild(
             element
         );
@@ -98,7 +103,6 @@ function ensureMeta(attribute, value) {
     }
 
     return element;
-
 }
 
 function ensureLink(rel) {

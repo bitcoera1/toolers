@@ -62,18 +62,7 @@ const statistics = {
 
 };
 
-/*=========================================================
-Logger
-=========================================================*/
 
-function log(...message){
-
-    if(configuration.debug){
-
-        
-    }
-
-}
 
 /*=========================================================
 Markdown Parser
@@ -184,28 +173,34 @@ function parse(markdown){
     );
 
     /*-----------------------------------------------------
-      Links
-    -----------------------------------------------------*/
+  Images
+-----------------------------------------------------*/
 
-    html = html.replace(
+html = html.replace(
 
-        /\[(.*?)\]\((.*?)\)/g,
+    /!\[(.*?)\]\((.*?)\)/g,
 
-        '<a href="$2">$1</a>'
+    `<img
+        src="$2"
+        alt="$1"
+        loading="lazy">`
 
-    );
+);
 
-    /*-----------------------------------------------------
-      Images
-    -----------------------------------------------------*/
+/*-----------------------------------------------------
+  Links
+-----------------------------------------------------*/
 
-    html = html.replace(
+html = html.replace(
 
-        /!\[(.*?)\]\((.*?)\)/g,
+    /\[(.*?)\]\((.*?)\)/g,
 
-        '<img src="$2" alt="$1">'
+    `<a
+        href="$2"
+        target="_blank"
+        rel="noopener noreferrer">$1</a>`
 
-    );
+);
 
     /*-----------------------------------------------------
       Horizontal Rule
@@ -285,14 +280,7 @@ function render(container,markdown){
 
 `;
 
-    element.innerHTML = html;
-
-    log(
-    "Rendered article into",
-    element
-    );
-
-    
+      
     if (
     configuration.animate &&
     element instanceof HTMLElement
@@ -462,6 +450,8 @@ function report(){
         RENDERER_NAME
 
     );
+
+    console.groupEnd();
 
 }
 

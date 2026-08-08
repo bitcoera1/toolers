@@ -66,6 +66,14 @@ function log(...message){
 
     if(configuration.debug){
 
+        console.log(
+
+            "[Content Platform]",
+
+            ...message
+
+        );
+
     }
 
 }
@@ -76,11 +84,17 @@ Initialization Engine
 
 async function initialize(){
 
-    if(state.initialized){
+if(
 
-        return;
+    state.initialized ||
 
-    }
+    state.loading
+
+){
+
+    return;
+
+}
 
     state.loading = true;
 
@@ -155,6 +169,10 @@ Refresh
 =========================================================*/
 
 async function refresh(){
+
+        statistics.initializedModules = 0;
+
+        statistics.failedModules = 0;
 
     const modules = [
 

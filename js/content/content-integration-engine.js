@@ -144,16 +144,34 @@
 
         detectCurrentPage() {
 
-            const fileName = window.location.pathname
-                .split("/")
-                .pop()
-                .replace(".html", "");
+    const fileName = window.location.pathname
+        .split("/")
+        .pop()
+        .replace(".html", "");
 
-            this.state.currentTool = fileName;
+    let resolvedTool = fileName;
 
-            return fileName;
+    if (
+        this.modules.registry &&
+        typeof this.modules.registry.resolveSlug === "function"
+    ) {
 
-        },
+        const toolId =
+            this.modules.registry.resolveSlug(fileName);
+
+        if (toolId) {
+
+            resolvedTool = toolId;
+
+        }
+
+    }
+
+    this.state.currentTool = resolvedTool;
+
+    return resolvedTool;
+
+},
 
         getCurrentTool() {
 
