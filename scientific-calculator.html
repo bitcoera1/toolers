@@ -618,8 +618,8 @@ content="@ToolXone"
             <button
                 type="button"
                 class="sci-btn memory-btn gt-btn"
-                data-sci-action="gt-clear"
-                aria-label="Clear grand total"
+                data-sci-action="gt"
+                aria-label="Recall grand total"
             >
                 GT
             </button>
@@ -866,13 +866,13 @@ content="@ToolXone"
     </button>
 
     <button
-        type="button"
-        class="sci-btn equal"
-        data-sci-action="evaluate"
-        aria-label="Calculate result"
-    >
-        =
-    </button>
+    type="button"
+    class="sci-btn equal"
+    data-sci-action="equals"
+    aria-label="Calculate result"
+>
+    =
+</button>
 
 </div>
 
@@ -992,6 +992,8 @@ content="@ToolXone"
 
 <script src="js/math/scientific-function-registry.js"></script>
 
+<script src="js/number-engine.js"></script>
+
 <!-- Professional Scientific Calculator UI -->
 <script src="js/math/scientific-ui-engine.js"></script>
 
@@ -1006,7 +1008,7 @@ content="@ToolXone"
 <script src="js/math/scientific-math-tests.js"></script>
 
 <script src="js/finance-components.js"></script>
-<script src="js/number-engine.js"></script>
+
 
 <!-- Backend -->
 <script src="js/backend/backend-config.js"></script>
@@ -1081,39 +1083,11 @@ content="@ToolXone"
 
 <script src="js/content/content-integration-engine.js"></script>
 
-<script src="js/scientific-calculator.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
 
 <script>
 
-renderFinanceInfo(
-    "financeInfo",
-    "Why Use a Scientific Calculator?",
-    "A scientific calculator helps you solve advanced calculations such as trigonometry, logarithms, square roots, powers, percentages, constants and brackets."
-);
-
-renderFinanceFAQ(
-    "financeFAQ",
-    [
-        {
-            question: "What can I calculate with this scientific calculator?",
-            answer: "You can calculate basic arithmetic, trigonometric functions, logarithms, square roots, powers, percentages and constants like π and e."
-        },
-        {
-            question: "Does this calculator support keyboard input?",
-            answer: "Yes. You can use number keys, operators, Enter, Backspace and Delete."
-        },
-        {
-            question: "Are sin, cos and tan calculated in degrees?",
-            answer: "Yes. This calculator calculates trigonometric functions in degrees."
-        },
-        {
-            question: "What does ANS mean?",
-            answer: "ANS lets you reuse your previous calculated result in the next calculation."
-        }
-    ]
-);
 
 renderToolReviews(
     "tool-reviews",

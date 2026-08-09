@@ -276,26 +276,151 @@
     }
 
     function appendExpression(value) {
-        const engine = requireStateEngine();
+    const engine = requireStateEngine();
+    const text = normalizeExpression(value);
 
-        const text = normalizeExpression(value);
+    if (!text) {
+        return getExpression();
+    }
 
-        if (!text) {
-            return getExpression();
+    /*
+    ========================================================
+    POST-EVALUATION INPUT HANDLING
+    --------------------------------------------------------
+    After "=":
+
+    - New numbers / decimals / constants start a new
+      calculation.
+    - Binary operators continue from the previous result.
+    - Postfix operators operate on the previous result.
+    - Scientific functions start a new expression.
+    ========================================================
+    */
+
+    if (controlState.justEvaluated) {
+
+        const trimmedText =
+            text.trim();
+
+        const result =
+            normalizeExpression(
+                getResult()
+            );
+
+        /*
+        ----------------------------------------------------
+        Binary operators
+        ----------------------------------------------------
+        Continue from the previous result.
+
+        12 =
+        +
+        →
+        12+
+        ----------------------------------------------------
+        */
+
+        const isBinaryOperator =
+            [
+                "+",
+                "-",
+                "*",
+                "/",
+                "^"
+            ].includes(trimmedText);
+
+        if (isBinaryOperator) {
+
+            setExpression(
+                result + trimmedText
+            );
+
         }
 
-        const method = findMethod(engine, [
-            "appendExpression",
-            "appendInput",
-            "append"
-        ]);
+        /*
+        ----------------------------------------------------
+        Postfix operators
+        ----------------------------------------------------
+        Apply directly to the previous result.
 
-        if (method) {
-            engine[method](text);
-        } else {
+        12 =
+        !
+        →
+        12!
+
+        12 =
+        %
+        →
+        12%
+        ----------------------------------------------------
+        */
+
+        else if (
+            trimmedText === "!" ||
+            trimmedText === "%"
+        ) {
+
             setExpression(
-                getExpression() + text
+                result + trimmedText
             );
+
+        }
+
+        /*
+        ----------------------------------------------------
+        Square
+        ----------------------------------------------------
+        12 =
+        ^2
+        →
+        12^2
+        ----------------------------------------------------
+        */
+
+        else if (
+            trimmedText === "^2"
+        ) {
+
+            setExpression(
+                result + "^2"
+            );
+
+        }
+
+        /*
+        ----------------------------------------------------
+        Everything else starts a NEW calculation.
+
+        Examples:
+
+        12 =
+        7
+        →
+        7
+
+        12 =
+        .
+        →
+        .
+
+        12 =
+        π
+        →
+        π
+
+        12 =
+        sin(
+        →
+        sin(
+        ----------------------------------------------------
+        */
+
+        else {
+
+            setExpression(
+                trimmedText
+            );
+
         }
 
         controlState.error = null;
@@ -303,6 +428,42 @@
 
         return getExpression();
     }
+
+    /*
+    ========================================================
+    NORMAL INPUT
+    --------------------------------------------------------
+    No completed calculation exists, so append normally.
+    ========================================================
+    */
+
+    const method =
+        findMethod(
+            engine,
+            [
+                "appendExpression",
+                "appendInput",
+                "append"
+            ]
+        );
+
+    if (method) {
+
+        engine[method](text);
+
+    } else {
+
+        setExpression(
+            getExpression() + text
+        );
+
+    }
+
+    controlState.error = null;
+    controlState.justEvaluated = false;
+
+    return getExpression();
+}
 
     function deleteLast() {
         const engine = requireStateEngine();
@@ -869,6 +1030,28 @@
         return controlState.grandTotal;
     }
 
+    function recallGrandTotal() {
+
+    const total =
+        controlState.grandTotal;
+
+    /*
+    --------------------------------------------------------
+    Recall the accumulated Grand Total into the calculator
+    result without modifying the GT accumulator.
+    --------------------------------------------------------
+    */
+
+    setExpression("");
+    setResult(total);
+    setAns(total);
+
+    controlState.error = null;
+    controlState.justEvaluated = true;
+
+    return total;
+}
+
     /* =========================================
        ERROR CONTROL
     ========================================= */
@@ -1278,6 +1461,7 @@
         getGrandTotal,
         addGrandTotal,
         clearGrandTotal,
+        recallGrandTotal,
 
         // Errors
         getError,

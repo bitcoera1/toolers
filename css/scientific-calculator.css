@@ -1230,3 +1230,15 @@ body.dark-mode .scientific-memory-pad .sci-btn {
     }
 
 }
+
+/* =========================================================
+   POINTER INTERACTION SAFETY
+   ========================================================= */
+
+.scientific-card .sci-btn {
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}

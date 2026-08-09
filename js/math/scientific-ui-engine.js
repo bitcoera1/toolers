@@ -56,6 +56,12 @@
             ".calculator-result"
         ],
 
+        numberWords: [
+            "[data-scientific-number-words]",
+            "#scientificNumberWords",
+            ".scientific-number-words"
+        ],
+
         mode: [
             "[data-scientific-mode]",
             "#scientific-mode",
@@ -111,6 +117,7 @@
         display: null,
         expression: null,
         result: null,
+        numberWords: null,
         mode: null,
         angle: null,
         shift: null,
@@ -268,6 +275,9 @@
         elements.result =
             findElement("result");
 
+        elements.numberWords =
+            findElement("numberWords");
+
         elements.mode =
             findElement("mode");
 
@@ -322,66 +332,143 @@
        DISPLAY FORMATTING
        ===================================================== */
 
-    function formatExpression(
-        expression
-    ) {
-        if (
-            expression === null ||
-            expression === undefined ||
-            expression === ""
-        ) {
-            return "";
-        }
+    function formatExpression(expression) {
 
-        return String(expression)
+    if (
+        expression === null ||
+        expression === undefined ||
+        expression === ""
+    ) {
+        return "";
+    }
+
+    const text =
+        String(expression)
             .replace(/\*/g, "×")
             .replace(/\//g, "÷");
+
+    /*
+    --------------------------------------------------------
+    Format numeric tokens for display only.
+
+    IMPORTANT:
+    Commas are NEVER written back into calculator state.
+    --------------------------------------------------------
+    */
+
+    return text.replace(
+        /(?:\d+\.\d*|\.\d+|\d+)/g,
+        formatNumberToken
+    );
+}
+
+
+function formatNumberToken(value) {
+
+    const hasTrailingDecimal =
+        value.endsWith(".");
+
+    const startsWithDecimal =
+        value.startsWith(".");
+
+    const parts =
+        value.split(".");
+
+    const integerPart =
+        startsWithDecimal
+            ? "0"
+            : parts[0];
+
+    const decimalPart =
+        parts[1];
+
+    const formattedInteger =
+        integerPart.replace(
+            /\B(?=(\d{3})+(?!\d))/g,
+            ","
+        );
+
+    if (hasTrailingDecimal) {
+        return (
+            `${formattedInteger}.`
+        );
     }
+
+    if (
+        decimalPart !== undefined
+    ) {
+        return (
+            `${formattedInteger}.` +
+            decimalPart
+        );
+    }
+
+    return formattedInteger;
+}
 
     function formatResult(result) {
-        if (
-            result === null ||
-            result === undefined ||
-            result === ""
-        ) {
-            return "0";
-        }
 
-        const numeric =
-            Number(result);
-
-        if (!Number.isFinite(numeric)) {
-            return String(result);
-        }
-
-        if (Object.is(numeric, -0)) {
-            return "0";
-        }
-
-        const absolute =
-            Math.abs(numeric);
-
-        if (
-            absolute !== 0 &&
-            (
-                absolute >= 1e12 ||
-                absolute < 1e-9
-            )
-        ) {
-            return numeric
-                .toExponential(10)
-                .replace(
-                    /(\.\d*?[1-9])0+e/,
-                    "$1e"
-                )
-                .replace(
-                    /\.0+e/,
-                    "e"
-                );
-        }
-
-        return String(numeric);
+    if (
+        result === null ||
+        result === undefined ||
+        result === ""
+    ) {
+        return "0";
     }
+
+    const numeric =
+        Number(result);
+
+    if (
+        !Number.isFinite(numeric)
+    ) {
+        return String(result);
+    }
+
+    if (
+        Object.is(numeric, -0)
+    ) {
+        return "0";
+    }
+
+    /*
+    --------------------------------------------------------
+    Use ToolXone shared Number Engine.
+    --------------------------------------------------------
+    */
+
+    if (
+        window.ToolXoneNumberEngine &&
+        typeof
+            window.ToolXoneNumberEngine.format ===
+            "function"
+    ) {
+
+        return (
+            window.ToolXoneNumberEngine.format(
+                numeric,
+                {
+                    maximumFractionDigits: 12,
+                    useGrouping: true
+                }
+            )
+        );
+    }
+
+    /*
+    --------------------------------------------------------
+    Safe fallback if Number Engine is unavailable.
+    --------------------------------------------------------
+    */
+
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            useGrouping: true,
+            maximumFractionDigits: 12
+        }
+    ).format(numeric);
+}
 
     /* =====================================================
        RENDERING
@@ -449,6 +536,71 @@
             );
         }
     }
+
+    function renderNumberWords(state) {
+
+    if (
+        !state ||
+        !elements.numberWords
+    ) {
+        return;
+    }
+
+    const result =
+        state.result;
+
+    /*
+    --------------------------------------------------------
+    Only show words for a valid finite result.
+    --------------------------------------------------------
+    */
+
+    const numeric =
+        Number(result);
+
+    if (
+        !Number.isFinite(numeric)
+    ) {
+
+        elements.numberWords.textContent = "";
+        elements.numberWords.hidden = true;
+
+        return;
+    }
+
+    /*
+    --------------------------------------------------------
+    Use the shared ToolXone Number Engine.
+    --------------------------------------------------------
+    */
+
+    if (
+        !window.ToolXoneNumberEngine ||
+        typeof
+            window.ToolXoneNumberEngine.words !==
+            "function"
+    ) {
+
+        elements.numberWords.textContent = "";
+        elements.numberWords.hidden = true;
+
+        return;
+    }
+
+    const words =
+        window.ToolXoneNumberEngine.words(
+            numeric,
+            {
+                decimalLimit: 12
+            }
+        );
+
+    elements.numberWords.textContent =
+        words || "";
+
+    elements.numberWords.hidden =
+        !words;
+}
 
     function renderMode(state) {
         if (!state) {
@@ -721,6 +873,7 @@ function renderScientificFunctionDeck(state) {
 
         renderExpression(state);
         renderResult(state);
+        renderNumberWords(state);
         renderMode(state);
         renderAngle(state);
         renderShift(state);
@@ -998,6 +1151,12 @@ function permutation() {
         );
     }
 
+    function recallGrandTotal() {
+        return execute(
+            "recallGrandTotal"
+        );
+    }
+
     /* =====================================================
        DECLARATIVE BUTTON DISPATCH
        -----------------------------------------------------
@@ -1031,6 +1190,7 @@ function permutation() {
                 return decimal();
 
             case "equals":
+            case "evaluate":
                 return equals();
 
             case "delete":
@@ -1134,6 +1294,9 @@ function permutation() {
             case "history-down":
                 return historyDown();
 
+            case "gt":
+                return recallGrandTotal();
+
             case "gt-clear":
                 return clearGrandTotal();
 
@@ -1211,37 +1374,76 @@ return dispatchAction(
 }
 
     /* =====================================================
-       CLICK HANDLER
-       ===================================================== */
+   CLICK HANDLER
+   Robust pointer/click delegation
+   ===================================================== */
 
-    function handleClick(event) {
-        const button =
-            event.target.closest(
-                "[data-sci-action]"
-            );
+function handleClick(event) {
 
-        if (!button) {
-            return;
-        }
-
-        if (
-            rootElement &&
-            !rootElement.contains(button)
-        ) {
-            return;
-        }
-
-        const action =
-            button.dataset.sciAction;
-
-        const value =
-            button.dataset.sciValue;
-
-        dispatchAction(
-            action,
-            value
-        );
+    if (!initialized) {
+        return;
     }
+
+    const target = event.target;
+
+    if (
+        !target ||
+        typeof target.closest !== "function"
+    ) {
+        return;
+    }
+
+    const button =
+        target.closest(
+            "[data-sci-action]"
+        );
+
+        if (button) {
+
+    console.log(
+        "[ToolXone Scientific UI] " +
+        "Pointer click detected:",
+        {
+            action: button.dataset.sciAction,
+            value: button.dataset.sciValue,
+            text: button.textContent.trim()
+        }
+    );
+}
+
+    if (!button) {
+        return;
+    }
+
+    if (
+        rootElement &&
+        !rootElement.contains(button)
+    ) {
+        return;
+    }
+
+    if (
+        button.disabled ||
+        button.getAttribute("aria-disabled") === "true"
+    ) {
+        return;
+    }
+
+    const action =
+        button.dataset.sciAction;
+
+    const value =
+        button.dataset.sciValue;
+
+    if (!action) {
+        return;
+    }
+
+    dispatchAction(
+        action,
+        value
+    );
+}
 
     /* =====================================================
        KEYBOARD HANDLER
@@ -1353,28 +1555,32 @@ return dispatchAction(
        ===================================================== */
 
     function bindEvents() {
-        document.addEventListener(
-            "click",
-            handleClick
-        );
 
-        document.addEventListener(
-            "keydown",
-            handleKeyboard
-        );
-    }
+    document.addEventListener(
+        "click",
+        handleClick,
+        true
+    );
+
+    document.addEventListener(
+        "keydown",
+        handleKeyboard
+    );
+}
 
     function unbindEvents() {
-        document.removeEventListener(
-            "click",
-            handleClick
-        );
 
-        document.removeEventListener(
-            "keydown",
-            handleKeyboard
-        );
-    }
+    document.removeEventListener(
+        "click",
+        handleClick,
+        true
+    );
+
+    document.removeEventListener(
+        "keydown",
+        handleKeyboard
+    );
+}
 
     /* =====================================================
        INITIALIZATION

@@ -631,43 +631,60 @@ function renderInto(container, faq){
 
     }
 
+    /*
+    ---------------------------------------------------------
+    Normalize FAQ data
+    ---------------------------------------------------------
+    Supports both:
+
+    1. Content Platform object:
+       {
+           title,
+           questions
+       }
+
+    2. Direct FAQ array:
+       [
+           {
+               question,
+               answer
+           }
+       ]
+    ---------------------------------------------------------
+    */
+
+    const normalized =
+        normalizeFAQData(
+            faq
+        );
+
     const title =
-        faq.title ||
-        "Frequently Asked Questions";
+        escapeHTML(
+            normalized.title
+        );
 
     const questions =
-        Array.isArray(faq.questions)
-            ? faq.questions
-            : [];
+        normalized.questions;
 
-    container.innerHTML = `
+    /*
+    ---------------------------------------------------------
+    Reset render counters for this operation
+    ---------------------------------------------------------
+    */
 
-        <section class="tx-faq-section">
+    statistics.renderOperations++;
 
-            <div class="tx-faq-header">
+    container.innerHTML =
+        buildFAQ(
+            normalized
+        );
 
-                <h2>
-                    ${title}
-                </h2>
+    attachInteractions(
+        container
+    );
 
-                <p class="tx-faq-subtitle">
-                    Find quick answers to the most common questions
-                    about this ToolXone tool.
-                </p>
-
-            </div>
-
-            <div class="tx-faq-list">
-
-                ${renderAll(questions)}
-
-            </div>
-
-        </section>
-
-    `;
-
-    state.lastUpdated = Date.now();
+    state.lastUpdated =
+        Date.now();
 
     if(configuration.animate){
 
@@ -684,6 +701,7 @@ function renderInto(container, faq){
     );
 
     return true;
+
 }
 
     
