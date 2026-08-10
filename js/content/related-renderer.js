@@ -320,11 +320,37 @@ function renderInto(container, related) {
     }
 
 
-    const items = Array.isArray(related)
+    let items = [];
 
-        ? related
+if(Array.isArray(related)){
 
-        : related?.items;
+    items = related;
+
+}
+
+else if(
+
+    related &&
+
+    Array.isArray(related.items)
+
+){
+
+    items = related.items;
+
+}
+
+else if(
+
+    related &&
+
+    Array.isArray(related.tools)
+
+){
+
+    items = related.tools;
+
+}
 
 
     if (!Array.isArray(items)) {

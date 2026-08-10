@@ -117,11 +117,27 @@ function discover(){
 
 function validate(content){
 
-    return (
+    if(Array.isArray(content)){
 
-        Array.isArray(content)
+        return true;
 
-    );
+    }
+
+    if(
+
+        content &&
+
+        typeof content === "object" &&
+
+        Array.isArray(content.tools)
+
+    ){
+
+        return true;
+
+    }
+
+    return false;
 
 }
 

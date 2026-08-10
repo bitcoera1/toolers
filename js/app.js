@@ -46,9 +46,7 @@ if (typeof initializeCategoryToolSections === "function") {
 }
 const currentToolId = document.body.dataset.tool;
 
-if (typeof initializeRelatedTools === "function" && currentToolId) {
-    initializeRelatedTools(currentToolId);
-}
+
 function revealOnScroll() {
     const reveals = document.querySelectorAll(".reveal");
 

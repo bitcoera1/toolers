@@ -235,22 +235,3 @@ function initializeCategoryToolSections() {
         </section>
     `).join("");
 }
-function initializeRelatedTools(currentToolId) {
-    const container = document.getElementById("relatedTools");
-
-    if (!container || typeof TOOLXONE === "undefined") return;
-
-    const currentTool = getToolById(currentToolId);
-
-    if (!currentTool || !currentTool.related) return;
-
-    const relatedTools = currentTool.related
-        .map(id => getToolById(id))
-        .filter(Boolean);
-
-    container.innerHTML = relatedTools.map(tool => {
-        return createToolCard(tool, {
-            description: `Related to ${currentTool.name}.`
-        });
-    }).join("");
-}

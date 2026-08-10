@@ -37,6 +37,5 @@ renderFinanceFeedback(
 );
 
     // Related Tools
-    initializeRelatedTools(config.id);
 
 }
