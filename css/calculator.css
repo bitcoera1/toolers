@@ -5,7 +5,8 @@
 }
 
 .tx-calculator-card{
-    width:340px;
+    width:100%;
+    box-sizing:border-box;
     background:white;
     padding:25px;
     border-radius:20px;

@@ -115,26 +115,18 @@
      *=========================================================*/
 
     function sanitizeURL(url) {
+    const value = String(url || "#").trim();
+    const normalized = value.toLowerCase();
 
-        const value = String(url || "#").trim();
-
-        if (
-
-            value.startsWith("javascript:")
-
-            ||
-
-            value.startsWith("data:")
-
-        ) {
-
-            return "#";
-
-        }
-
-        return value;
-
+    if (
+        normalized.startsWith("javascript:") ||
+        normalized.startsWith("data:")
+    ) {
+        return "#";
     }
+
+    return value;
+}
 
 
     /*=========================================================*
@@ -275,28 +267,132 @@
 
 
     /*=========================================================*
-     * Render Multiple Cards
-     *=========================================================*/
+ * Resolve Related Tool
+ *=========================================================*/
 
-    function renderAll(items) {
+function resolveRelatedItem(item) {
 
-        if (!Array.isArray(items)) {
+    /*
+     * Already normalized renderer object.
+     */
+    if (
+        item &&
+        typeof item === "object" &&
+        item.title &&
+        item.url
+    ) {
 
-            return "";
+        return item;
+
+    }
+
+
+    /*
+     * Resolve a ToolXone tool ID.
+     *
+     * The existing centralized tool registry
+     * already exposes getToolById().
+     */
+    let tool = null;
+
+    if (typeof item === "string") {
+
+        if (typeof getToolById === "function") {
+
+            tool = getToolById(item);
 
         }
 
-        return items
+    }
 
-            .map(function (item) {
+    else if (
+        item &&
+        typeof item === "object" &&
+        item.id
+    ) {
 
-                return render(item);
+        if (typeof getToolById === "function") {
 
-            })
+            tool = getToolById(item.id);
 
-            .join("");
+        }
 
     }
+
+
+    if (!tool) {
+
+        return null;
+
+    }
+
+
+    /*
+     * Convert the existing ToolXone tool object
+     * into the renderer's normalized card format.
+     */
+    return {
+
+        id: tool.id,
+
+        icon: tool.icon || "🧮",
+
+        title: tool.name || "",
+
+        description:
+            tool.description ||
+            `Quick access to ${String(
+                tool.name || "this tool"
+            ).toLowerCase()}.`,
+
+        category:
+            tool.categoryName ||
+            "ToolXone Tools",
+
+        url:
+            tool.link ||
+            tool.url ||
+            "#"
+
+    };
+
+}
+
+
+/*=========================================================*
+ * Render Multiple Cards
+ *=========================================================*/
+
+function renderAll(items) {
+
+    if (!Array.isArray(items)) {
+
+        return "";
+
+    }
+
+
+    return items
+
+        .map(function (item) {
+
+            const resolved = resolveRelatedItem(item);
+
+            if (!resolved) {
+
+                state.failed++;
+
+                return "";
+
+            }
+
+            return render(resolved);
+
+        })
+
+        .join("");
+
+}
 
 
     /*=========================================================*
