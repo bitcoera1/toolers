@@ -1,3 +1,12 @@
+/* ==========================================================
+   PERCENTAGE CALCULATOR LAYOUT
+   ========================================================== */
+
+.percentage-calculator-wrapper {
+    width: min(100%, 650px);
+    margin: 0 auto;
+}
+
 .percentage-card{
     width:100%;
     max-width:650px;
@@ -101,17 +110,22 @@
     background:#334155;
 }
 
-.percent-result{
-    margin-top:25px;
-    padding:20px;
-    border-radius:16px;
-    background:#f0fdf4;
-    color:#064e3b;
-    font-weight:700;
-    line-height:1.8;
-    display:none;
-    text-align:center;
-    font-size:18px;
+.percent-result {
+    margin-top: 25px;
+    padding: 0;
+    border-radius: 16px;
+    background: transparent;
+    color: #064e3b;
+    font-weight: 700;
+    line-height: 1.8;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Show result container whenever JavaScript has inserted a result */
+.percent-result:not(:empty) {
+    display: block;
 }
 
 body.dark-mode .percentage-card{
@@ -259,4 +273,36 @@ body.dark-mode
 .percentage-neutral
 .percentage-main-value{
     color:#f59e0b;
+}
+
+/* =====================================================
+   PERCENTAGE CALCULATOR
+   RELATED TOOLS HEADER ALIGNMENT
+   ===================================================== */
+
+#related-tools-section .featured-header {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    padding: 0 20px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+#related-tools-section .featured-badge-title {
+    text-align: center;
+}
+
+#related-tools-section .featured-header h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#related-tools-section .featured-header p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }

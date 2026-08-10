@@ -1,225 +1,324 @@
 /*
-==========================================================
- ToolXone Related Content Renderer
- Dynamic Related Content Rendering Platform
- Version: 1.0.0
-==========================================================
-*/
+ * ToolXone Related Renderer
+ * Global related-tools card renderer
+ */
 
-(function(){
+(function () {
 
-"use strict";
+    "use strict";
 
-/*=========================================================
-Constants
-=========================================================*/
+    /*=========================================================*
+     * Constants
+     *=========================================================*/
 
-const RENDERER_NAME = "ToolXone Related Renderer";
+    const RENDERER_NAME = "ToolXone Related Renderer";
+    const RENDERER_VERSION = "1.1.0";
 
-const RENDERER_VERSION = "1.0.0";
 
-/*=========================================================
-Configuration
-=========================================================*/
+    /*=========================================================*
+     * Configuration
+     *=========================================================*/
 
-const configuration = {
+    const configuration = {
 
-    autoInitialize : true,
+        autoInitialize: true,
 
-    animate : true,
+        animate: true,
 
-    sanitize : true,
+        sanitize: true,
 
-    debug : false
+        debug: false
 
-};
+    };
 
-/*=========================================================
-State
-=========================================================*/
 
-const state = {
+    /*=========================================================*
+     * State
+     *=========================================================*/
 
-    initialized : false,
+    const state = {
 
-    rendered : 0,
+        initialized: false,
 
-    failed : 0,
+        rendered: 0,
 
-    lastUpdated : null
+        failed: 0,
 
-};
+        lastUpdated: null
 
-/*=========================================================
-Statistics
-=========================================================*/
+    };
 
-const statistics = {
 
-    renderedCards : 0,
+    /*=========================================================*
+     * Statistics
+     *=========================================================*/
 
-    renderOperations : 0
+    const statistics = {
 
-};
+        renderedCards: 0,
 
-/*=========================================================
-Logger
-=========================================================*/
+        renderOperations: 0
 
-function log(...message){
+    };
 
-    if(configuration.debug){
 
-    }
+    /*=========================================================*
+     * Logger
+     *=========================================================*/
 
-}
+    function log(...message) {
 
-/*=========================================================
-HTML Sanitizer
-=========================================================*/
+        if (configuration.debug) {
 
-function sanitize(text){
+            console.log(
 
-    if(!configuration.sanitize){
+                `[${RENDERER_NAME}]`,
 
-        return text;
+                ...message
+
+            );
+
+        }
 
     }
 
-    return String(text)
 
-        .replace(/</g,"&lt;")
+    /*=========================================================*
+     * HTML Sanitizer
+     *=========================================================*/
 
-        .replace(/>/g,"&gt;");
+    function sanitize(text) {
 
-}
+        if (!configuration.sanitize) {
 
-/*=========================================================
-Create Related Card
-=========================================================*/
+            return String(text ?? "");
 
-function createCard(item){
+        }
 
-    return `
+        return String(text ?? "")
 
-<div class="toolxone-related-card">
+            .replace(/&/g, "&amp;")
 
-    <div class="toolxone-related-icon">
+            .replace(/</g, "&lt;")
 
-        ${sanitize(item.icon || "🧮")}
+            .replace(/>/g, "&gt;")
 
-    </div>
+            .replace(/"/g, "&quot;")
 
-    <h3>
+            .replace(/'/g, "&#039;");
 
-        ${sanitize(item.title || "")}
+    }
 
-    </h3>
 
-    <p>
+    /*=========================================================*
+     * URL Sanitizer
+     *=========================================================*/
 
-        ${sanitize(item.description || "")}
+    function sanitizeURL(url) {
 
-    </p>
+        const value = String(url || "#").trim();
 
-    <a
-        href="${item.url || "#"}"
-        class="toolxone-related-link"
-    >
+        if (
 
-        View Tool →
+            value.startsWith("javascript:")
 
-    </a>
+            ||
 
-</div>
+            value.startsWith("data:")
 
-`;
+        ) {
 
-}
+            return "#";
 
-/*=========================================================
-Render One Card
-=========================================================*/
+        }
 
-function render(item){
+        return value;
 
-    try{
+    }
 
-        const html = createCard(
 
-            item
+    /*=========================================================*
+     * Create Related Card
+     *=========================================================*/
+
+    function createCard(item) {
+
+        if (!item || typeof item !== "object") {
+
+            return "";
+
+        }
+
+        const icon = sanitize(
+
+            item.icon || "🧮"
 
         );
 
-        state.rendered++;
+        const title = sanitize(
 
-        statistics.renderedCards++;
-
-        statistics.renderOperations++;
-
-        return html;
-
-    }
-
-    catch(error){
-
-        state.failed++;
-
-        console.error(error);
-
-        return "";
-
-    }
-
-}
-
-/*=========================================================
-Render Multiple Cards
-=========================================================*/
-
-function renderAll(items){
-
-    if(
-
-        !Array.isArray(items)
-
-    ){
-
-        return "";
-
-    }
-
-    return items.map(function(item){
-
-        return render(
-
-            item
+            item.title || ""
 
         );
 
-    }).join("");
+        const description = sanitize(
 
-}
+            item.description || ""
 
-/*=========================================================
-Render Into Container
-=========================================================*/
+        );
 
-function renderInto(container, related){
+        const category = sanitize(
 
-    if(typeof container === "string"){
+            item.category || "ToolXone Tools"
+
+        );
+
+        const url = sanitizeURL(
+
+            item.url || "#"
+
+        );
+
+
+        return `
+
+            <article class="toolxone-related-card">
+
+                <div class="toolxone-related-category">
+
+                    ${category}
+
+                </div>
+
+                <div class="toolxone-related-icon">
+
+                    ${icon}
+
+                </div>
+
+                <h3 class="toolxone-related-card-title">
+
+                    ${title}
+
+                </h3>
+
+                <p class="toolxone-related-card-description">
+
+                    ${description}
+
+                </p>
+
+                <a
+
+                    href="${url}"
+
+                    class="toolxone-related-link"
+
+                >
+
+                    Open Tool →
+
+                </a>
+
+            </article>
+
+        `;
+
+    }
+
+
+    /*=========================================================*
+     * Render One Card
+     *=========================================================*/
+
+    function render(item) {
+
+        try {
+
+            const html = createCard(item);
+
+            if (!html) {
+
+                state.failed++;
+
+                return "";
+
+            }
+
+            state.rendered++;
+
+            statistics.renderedCards++;
+
+            statistics.renderOperations++;
+
+            return html;
+
+        }
+
+        catch (error) {
+
+            state.failed++;
+
+            console.error(
+
+                `[${RENDERER_NAME}] Card render failed:`,
+
+                error
+
+            );
+
+            return "";
+
+        }
+
+    }
+
+
+    /*=========================================================*
+     * Render Multiple Cards
+     *=========================================================*/
+
+    function renderAll(items) {
+
+        if (!Array.isArray(items)) {
+
+            return "";
+
+        }
+
+        return items
+
+            .map(function (item) {
+
+                return render(item);
+
+            })
+
+            .join("");
+
+    }
+
+
+    /*=========================================================*
+ * Render Into Container
+ *=========================================================*/
+
+function renderInto(container, related) {
+
+    if (typeof container === "string") {
 
         container = document.querySelector(container);
 
     }
 
-    if(!container){
+    if (!container) {
 
         state.failed++;
 
         return false;
 
     }
+
 
     const items = Array.isArray(related)
 
@@ -227,7 +326,8 @@ function renderInto(container, related){
 
         : related?.items;
 
-    if(!Array.isArray(items)){
+
+    if (!Array.isArray(items)) {
 
         state.failed++;
 
@@ -235,33 +335,26 @@ function renderInto(container, related){
 
     }
 
+
+    /*
+     * The parent page owns the Related Tools heading.
+     *
+     * This renderer is responsible ONLY for
+     * rendering the dynamic related-tool cards.
+     */
+
     container.innerHTML = `
 
-<section class="toolxone-related-tools">
+        <div class="toolxone-related-grid">
 
-    <h2 class="toolxone-related-title">
+            ${renderAll(items)}
 
-        Explore More ToolXone Calculators
+        </div>
 
-    </h2>
+    `;
 
-    <p class="toolxone-related-subtitle">
 
-        Continue with more free calculators and productivity tools.
-
-    </p>
-
-    <div class="toolxone-related-grid">
-
-        ${renderAll(items)}
-
-    </div>
-
-</section>
-
-`;
-
-    if(configuration.animate){
+    if (configuration.animate) {
 
         container.classList.add(
 
@@ -270,6 +363,7 @@ function renderInto(container, related){
         );
 
     }
+
 
     log(
 
@@ -281,144 +375,178 @@ function renderInto(container, related){
 
     );
 
+
     return true;
 
 }
 
-/*=========================================================
-Refresh
-=========================================================*/
 
-function refresh(){
+    /*=========================================================*
+     * Refresh
+     *=========================================================*/
 
-    state.rendered = 0;
+    function refresh() {
 
-    state.failed = 0;
+        state.rendered = 0;
 
-    statistics.renderedCards = 0;
+        state.failed = 0;
 
-    statistics.renderOperations = 0;
+        statistics.renderedCards = 0;
 
-    state.lastUpdated =
+        statistics.renderOperations = 0;
 
-        Date.now();
-
-}
-
-/*=========================================================
-Initialize
-=========================================================*/
-
-async function initialize(){
-
-    if(state.initialized){
-
-        return;
+        state.lastUpdated = Date.now();
 
     }
 
-    state.initialized = true;
 
-    state.lastUpdated = Date.now();
+    /*=========================================================*
+     * Initialize
+     *=========================================================*/
 
-    log("Initialized");
+    async function initialize() {
 
-}
+        if (state.initialized) {
 
-/*=========================================================
-Information
-=========================================================*/
+            return;
 
-function info(){
+        }
 
-    return {
+        state.initialized = true;
 
-        name : RENDERER_NAME,
+        state.lastUpdated = Date.now();
 
-        version : RENDERER_VERSION,
+        log("Initialized");
+
+    }
+
+
+    /*=========================================================*
+     * Information
+     *=========================================================*/
+
+    function info() {
+
+        return {
+
+            name: RENDERER_NAME,
+
+            version: RENDERER_VERSION,
+
+            configuration,
+
+            state,
+
+            statistics
+
+        };
+
+    }
+
+
+    /*=========================================================*
+     * Report
+     *=========================================================*/
+
+    function report() {
+
+        console.group(
+
+            RENDERER_NAME
+
+        );
+
+        console.log(
+
+            "Version:",
+
+            RENDERER_VERSION
+
+        );
+
+        console.log(
+
+            "Rendered Cards:",
+
+            statistics.renderedCards
+
+        );
+
+        console.log(
+
+            "Render Operations:",
+
+            statistics.renderOperations
+
+        );
+
+        console.log(
+
+            "Failed:",
+
+            state.failed
+
+        );
+
+        console.groupEnd();
+
+    }
+
+
+    /*=========================================================*
+     * Public API
+     *=========================================================*/
+
+    window.ToolXoneRelatedRenderer = {
+
+        name: RENDERER_NAME,
+
+        version: RENDERER_VERSION,
 
         configuration,
 
         state,
 
-        statistics
+        statistics,
+
+        initialize,
+
+        render,
+
+        renderAll,
+
+        renderInto,
+
+        refresh,
+
+        report,
+
+        info
 
     };
 
-}
 
-/*=========================================================
-Report
-=========================================================*/
+    /*=========================================================*
+     * Auto Initialize
+     *=========================================================*/
 
-function report(){
+    if (configuration.autoInitialize) {
 
-    console.group(
+        initialize();
 
-        RENDERER_NAME
+    }
+
+
+    console.info(
+
+        RENDERER_NAME +
+
+        " v" +
+
+        RENDERER_VERSION +
+
+        " initialized"
 
     );
-
-    console.groupEnd();
-
-}
-
-/*=========================================================
-Public API
-=========================================================*/
-
-window.ToolXoneRelatedRenderer = {
-
-    name : RENDERER_NAME,
-
-    version : RENDERER_VERSION,
-
-    configuration,
-
-    state,
-
-    statistics,
-
-    initialize,
-
-    render,
-
-    renderAll,
-
-    renderInto,
-
-    refresh,
-
-    report,
-
-    info
-
-};
-
-/*=========================================================
-Auto Initialize
-=========================================================*/
-
-if(
-
-    configuration.autoInitialize
-
-){
-
-    initialize();
-
-}
-
-console.info(
-
-    RENDERER_NAME +
-
-    " v" +
-
-    RENDERER_VERSION +
-
-    " initialized"
-
-);
 
 })();

@@ -242,19 +242,23 @@ return `
 
         <div class="tx-tool-actions">
 
-      <button class="tx-primary-button">
+    <button
+        type="button"
+        class="tx-primary-button"
+        data-hero-action="start-calculating"
+    >
+        ${escapeHTML(hero.cta?.primary || "Start Calculating")}
+    </button>
 
-    ${escapeHTML(hero.cta?.primary || "Start")}
+    <button
+        type="button"
+        class="tx-secondary-button"
+        data-hero-action="learn-more"
+    >
+        ${escapeHTML(hero.cta?.secondary || "Learn More")}
+    </button>
 
-</button>
-
-<button class="tx-secondary-button">
-
-    ${escapeHTML(hero.cta?.secondary || "Learn More")}
-
-</button>
-
-        </div>
+</div>
 
     </div>
 
@@ -269,6 +273,81 @@ return `
 `;
 
 }
+
+/*==========================================================
+Hero CTA Actions
+==========================================================*/
+
+function bindCTAActions(){
+
+    const container = getContainer();
+
+    if(!container){
+        return;
+    }
+
+    const startButton =
+        container.querySelector(
+            '[data-hero-action="start-calculating"]'
+        );
+
+    const learnButton =
+        container.querySelector(
+            '[data-hero-action="learn-more"]'
+        );
+
+    if(startButton){
+
+        startButton.addEventListener(
+            "click",
+            function(){
+
+                const calculator =
+                    document.querySelector(
+                        ".tx-calculator-section"
+                    );
+
+                if(calculator){
+
+                    calculator.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+    if(learnButton){
+
+        learnButton.addEventListener(
+            "click",
+            function(){
+
+                const information =
+                    document.getElementById(
+                        "financeInfo"
+                    );
+
+                if(information){
+
+                    information.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
 
 /*==========================================================
 Render Hero
@@ -297,6 +376,8 @@ function render(tool){
     }
 
     container.innerHTML = buildHero(hero);
+
+    bindCTAActions();
 
     state.currentTool = tool;
 
