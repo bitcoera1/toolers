@@ -298,28 +298,28 @@ function bindCTAActions(){
 
     if(startButton){
 
-        startButton.addEventListener(
-            "click",
-            function(){
+    startButton.addEventListener(
+        "click",
+        function(){
 
-                const calculator =
-                    document.querySelector(
-                        ".tx-calculator-section"
-                    );
+            const calculator =
+                document.querySelector(
+                    ".calculator-title"
+                );
 
-                if(calculator){
+            if(calculator){
 
-                    calculator.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
+                calculator.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
             }
-        );
 
-    }
+        }
+    );
+
+}
 
     if(learnButton){
 

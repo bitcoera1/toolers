@@ -29,9 +29,37 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
+<!-- ======================================================
+     Core Framework
+====================================================== -->
+
 <link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
 <link rel="stylesheet" href="css/currency-converter.css">
-<link rel="stylesheet" href="css/feedback.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link rel="stylesheet" href="css/validation.css">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -82,11 +110,13 @@ Fast • Accurate • Free
 
 <div id="navbar"></div>
 
+<div id="toolHero"></div>
+
 <div class="tool-page">
 
 <div class="container">
 
-<h1>Live Currency Converter</h1>
+<h2 class="calculator-title">Currency Converter</h2>
 
 <input type="number" id="amount" placeholder="Enter Amount" value="1">
 
@@ -159,6 +189,10 @@ Live exchange rates powered by ExchangeRate API.
 
 <div id="financeInfo"></div>
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -195,6 +229,82 @@ Live exchange rates powered by ExchangeRate API.
 <script src="js/statistics/statistics-loader.js"></script>
 
 <script src="js/currency-converter.js"></script>
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/currency-converter-schema.js"></script>
+
+<script>
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "CurrencyConverter"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+</script>
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-currency.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
 
@@ -222,6 +332,13 @@ renderFinanceFAQ(
             answer: "Currency exchange rates change because of market demand, inflation, interest rates and global economic conditions."
         }
     ]
+);
+
+ToolXoneHeroRenderer.render("currency-converter");
+
+renderToolReviews(
+    "tool-reviews",
+    "Currency Converter",
 );
 
 renderFinanceFeedback("financeFeedback", "Currency Converter");

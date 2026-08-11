@@ -223,6 +223,57 @@
 <script src="js/backend/tool-usage-api.js"></script>
 <script src="js/backend/backend.js"></script>
 
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/percentage-calculator-schema.js"></script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "PercentageCalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+}
+
+</script>
+
+
+<!-- ======================================================
+     ToolXone Performance Framework
+====================================================== -->
+
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
 <!-- Statistics -->
 <script src="js/config/tools-registry.js"></script>
 

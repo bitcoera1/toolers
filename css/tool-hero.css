@@ -71,7 +71,7 @@ Tool Hero Layout
 Hero Columns
 =========================================================*/
 
-.toolxone-tool-hero-content{
+.tx-tool-hero-content{
 
     display:flex;
 
@@ -439,7 +439,7 @@ body.dark-mode .tx-tool-description{
     min-width: 0;
 }
 
-.toolxone-tool-hero-content,
+.tx-tool-hero-content,
 .tx-tool-hero-preview {
     min-width: 0;
     max-width: 100%;

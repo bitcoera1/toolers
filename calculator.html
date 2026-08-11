@@ -155,7 +155,13 @@
 
 <div id="navbar"></div>
 
-<main class="tx-tool-page">
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<div id="toolHero"></div>
+
+<div class="tool-page">
 
     <section
         id="toolHero"
@@ -308,7 +314,25 @@
 <!-- Tool-specific schema -->
 <script src="js/seo/schemas/basic-calculator-schema.js"></script>
 
-<script>
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "BasicCalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+}
+
+</script>
+
 /*
 ==========================================================
 ToolXone Basic Calculator SEO Initialization
