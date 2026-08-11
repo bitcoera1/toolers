@@ -467,27 +467,11 @@ else if(
 
     container.innerHTML = `
 
-    <div class="toolxone-related-header">
+<div class="toolxone-related-grid">
 
-        <div class="toolxone-related-label">
-            ToolXone Tools
-        </div>
+    ${renderAll(items)}
 
-        <h2 class="toolxone-related-title">
-            Related Tools
-        </h2>
-
-        <p class="toolxone-related-subtitle">
-            Explore more useful ToolXone calculators, converters and productivity tools.
-        </p>
-
-    </div>
-
-    <div class="toolxone-related-grid">
-
-        ${renderAll(items)}
-
-    </div>
+</div>
 
 `;
 

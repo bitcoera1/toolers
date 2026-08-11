@@ -170,7 +170,9 @@ function parse(markdown){
 
 function createFAQ(question, answer){
 
-    const safeQuestion = String(question ?? "");
+    const safeQuestion = escapeHTML(
+        String(question ?? "")
+    );
 
     const parsedAnswer = parse(
         String(answer ?? "")
@@ -426,11 +428,14 @@ function buildFAQ(data){
 
 }
 
-/*=========================================================*
-*Attach FAQ Interactions*
-*=========================================================*/
+/*=========================================================
+ Accordion Behavior
+ ---------------------------------------------------------
+ Uses native <details> elements while ensuring that only
+ one FAQ item remains open at a time.
+=========================================================*/
 
-function attachInteractions(container){
+function attachAccordion(container){
 
     if(!container){
 
@@ -438,165 +443,43 @@ function attachInteractions(container){
 
     }
 
-    const buttons =
-
+    const items =
         container.querySelectorAll(
-
-            ".tx-faq-question"
-
+            ".toolxone-faq-item"
         );
 
-    buttons.forEach(function(button){
+    items.forEach(function(item){
 
-        if(button.dataset.faqBound === "true"){
-
-            return;
-
-        }
-
-        button.dataset.faqBound = "true";
-
-        button.addEventListener(
-
-            "click",
-
+        item.addEventListener(
+            "toggle",
             function(){
 
-                const answerId =
-
-                    button.getAttribute(
-
-                        "aria-controls"
-
-                    );
-
-                const answer =
-
-                    container.querySelector(
-
-                        "#" + answerId
-
-                    );
-
-                if(!answer){
+                if(!item.open){
 
                     return;
 
                 }
 
-                const expanded =
+                items.forEach(function(other){
 
-                    button.getAttribute(
+                    if(
+                        other !== item &&
+                        other.open
+                    ){
 
-                        "aria-expanded"
+                        other.open = false;
 
-                    ) === "true";
+                    }
 
-                /*
-                ------------------------------------------------
-                Close other FAQ items
-                ------------------------------------------------
-                */
-
-                container
-
-                    .querySelectorAll(
-
-                        ".tx-faq-question"
-
-                    )
-
-                    .forEach(function(otherButton){
-
-                        if(otherButton !== button){
-
-                            otherButton.setAttribute(
-
-                                "aria-expanded",
-
-                                "false"
-
-                            );
-
-                            const otherId =
-
-                                otherButton.getAttribute(
-
-                                    "aria-controls"
-
-                                );
-
-                            const otherAnswer =
-
-                                container.querySelector(
-
-                                    "#" + otherId
-
-                                );
-
-                            if(otherAnswer){
-
-                                otherAnswer.hidden = true;
-
-                            }
-
-                            const otherIcon =
-
-                                otherButton.querySelector(
-
-                                    ".tx-faq-icon"
-
-                                );
-
-                            if(otherIcon){
-
-                                otherIcon.textContent = "+";
-
-                            }
-
-                        }
-
-                    });
-
-                /*
-                ------------------------------------------------
-                Toggle selected FAQ
-                ------------------------------------------------
-                */
-
-                button.setAttribute(
-
-                    "aria-expanded",
-
-                    String(!expanded)
-
-                );
-
-                answer.hidden = expanded;
-
-                const icon =
-
-                    button.querySelector(
-
-                        ".tx-faq-icon"
-
-                    );
-
-                if(icon){
-
-                    icon.textContent =
-
-                        expanded ? "+" : "−";
-
-                }
+                });
 
             }
-
         );
 
     });
 
 }
+
 
 /*=========================================================*
 *Render Into Container*
@@ -675,11 +558,11 @@ function renderInto(container, faq){
     statistics.renderOperations++;
 
     container.innerHTML =
-        buildFAQ(
-            normalized
-        );
+    buildFAQ(
+        normalized
+    );
 
-    attachInteractions(
+    attachAccordion(
         container
     );
 

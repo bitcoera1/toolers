@@ -41,7 +41,7 @@ Reusable educational-content design for:
    2. MAIN ARTICLE HEADING
    ===================================================== */
 
-.tool-article > h2 {
+.tool-article > h1 {
     margin: 0 0 26px;
 
     color: #10b981;
@@ -55,10 +55,10 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   3. SECTION HEADINGS
+   3. ARTICLE SECTION HEADINGS
    ===================================================== */
 
-.tool-article h3 {
+.tool-article > h2 {
     margin: 38px 0 14px;
 
     color: #0f172a;
@@ -68,13 +68,28 @@ Reusable educational-content design for:
     font-weight: 700;
 }
 
-.tool-article h3:first-of-type {
+.tool-article > h2:first-of-type {
     margin-top: 30px;
 }
 
 
 /* =====================================================
-   4. PARAGRAPHS
+   4. OPTIONAL SUBSECTION HEADINGS
+   ===================================================== */
+
+.tool-article h3 {
+    margin: 28px 0 12px;
+
+    color: #0f172a;
+
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   5. PARAGRAPHS
    ===================================================== */
 
 .tool-article p {
@@ -87,7 +102,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   5. LISTS
+   6. LISTS
    ===================================================== */
 
 .tool-article ul,
@@ -112,7 +127,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   6. STRONG / IMPORTANT TEXT
+   7. STRONG / IMPORTANT TEXT
    ===================================================== */
 
 .tool-article strong {
@@ -122,7 +137,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   7. LINKS
+   8. LINKS
    ===================================================== */
 
 .tool-article a {
@@ -149,7 +164,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   8. SECTION RHYTHM
+   9. SECTION RHYTHM
    ===================================================== */
 
 .tool-article h3 + p {
@@ -164,7 +179,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   9. OPTIONAL ARTICLE CALLOUTS
+   10. OPTIONAL ARTICLE CALLOUTS
    -----------------------------------------------------
    Available for future articles:
 
@@ -196,7 +211,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   10. TABLE SUPPORT
+   11. TABLE SUPPORT
    -----------------------------------------------------
    Ready for future educational articles.
    ===================================================== */
@@ -241,7 +256,7 @@ Reusable educational-content design for:
 
 
 /* =====================================================
-   11. DARK MODE
+   12. DARK MODE
    ===================================================== */
 
 body.dark-mode .tool-article,
@@ -256,10 +271,16 @@ body.dark .tool-article,
         0 14px 35px rgba(0, 0, 0, 0.22);
 }
 
+body.dark-mode .tool-article > h1,
+body.dark .tool-article > h1,
+[data-theme="dark"] .tool-article > h1 {
+    color: #34d399;
+}
+
 body.dark-mode .tool-article > h2,
 body.dark .tool-article > h2,
 [data-theme="dark"] .tool-article > h2 {
-    color: #34d399;
+    color: #f1f5f9;
 }
 
 body.dark-mode .tool-article h3,
@@ -324,7 +345,7 @@ body.dark .tool-article td,
 
 
 /* =====================================================
-   12. TABLET
+   13. TABLET
    ===================================================== */
 
 @media (max-width: 768px) {
@@ -361,7 +382,7 @@ body.dark .tool-article td,
 
 
 /* =====================================================
-   13. MOBILE
+   14. MOBILE
    ===================================================== */
 
 @media (max-width: 480px) {

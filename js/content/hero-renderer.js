@@ -299,25 +299,31 @@ function bindCTAActions(){
     if(startButton){
 
     startButton.addEventListener(
-        "click",
-        function(){
+    "click",
+    function(){
 
-            const calculator =
-                document.querySelector(
-                    ".calculator-title"
-                );
+        const target =
+            document.querySelector(
+                ".calculator-title"
+            ) ||
+            document.querySelector(
+                ".weight-input-group"
+            ) ||
+            document.querySelector(
+                "#convertButton"
+            );
 
-            if(calculator){
+        if(target){
 
-                calculator.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
         }
-    );
+
+    }
+);
 
 }
 

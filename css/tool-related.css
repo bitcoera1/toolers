@@ -26,7 +26,7 @@
    Aligns the parent heading with the related-tools grid
    ========================================================= */
 
-#related-tools-section .featured-header {
+#related-tools-section .toolxone-related-header {
 
     width: 100%;
     max-width: 1200px;
@@ -36,15 +36,14 @@
 
     box-sizing: border-box;
 
-    text-align: left;
-
+    text-align: center;
 }
 
 /* =========================================================
    RELATED TOOLS HEADER
    ========================================================= */
 
-#relatedTools .toolxone-related-header {
+#related-tools-section .toolxone-related-header {
 
     width: 100%;
 
@@ -55,7 +54,7 @@
 }
 
 
-#relatedTools .toolxone-related-label {
+#related-tools-section .toolxone-related-label {
 
     display: inline-flex;
 
@@ -76,7 +75,7 @@
 }
 
 
-#relatedTools .toolxone-related-title {
+#related-tools-section .toolxone-related-title {
 
     margin: 0 0 10px;
 
@@ -90,7 +89,7 @@
 }
 
 
-#relatedTools .toolxone-related-subtitle {
+#related-tools-section .toolxone-related-subtitle {
 
     max-width: 700px;
 
@@ -372,21 +371,21 @@
    DARK MODE
    ========================================================= */
 
-body.dark-mode #relatedTools .toolxone-related-label {
+body.dark-mode #related-tools-section .toolxone-related-label {
 
     color: #34d399;
 
 }
 
 
-body.dark-mode #relatedTools .toolxone-related-title {
+body.dark-mode #related-tools-section .toolxone-related-title {
 
     color: #f8fafc;
 
 }
 
 
-body.dark-mode #relatedTools .toolxone-related-subtitle {
+body.dark-mode #related-tools-section .toolxone-related-subtitle {
 
     color: #94a3b8;
 
@@ -507,7 +506,7 @@ body.dark-mode #relatedTools .toolxone-related-link:hover {
     }
 
 
-    #relatedTools .toolxone-related-title {
+    #related-tools-section .toolxone-related-title {
 
         font-size: 1.75rem;
 
@@ -529,21 +528,21 @@ body.dark-mode #relatedTools .toolxone-related-link:hover {
     }
 
 
-    #relatedTools .toolxone-related-header {
+    #related-tools-section .toolxone-related-header {
 
         margin-bottom: 28px;
 
     }
 
 
-    #relatedTools .toolxone-related-title {
+    #related-tools-section .toolxone-related-title {
 
         font-size: 1.5rem;
 
     }
 
 
-    #relatedTools .toolxone-related-subtitle {
+    #related-tools-section .toolxone-related-subtitle {
 
         font-size: 0.92rem;
 

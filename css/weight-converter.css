@@ -1,64 +1,635 @@
-.tool-area{
-    padding:60px 20px;
+/* =========================================================
+   ToolXone Weight Converter 2.0
+========================================================= */
+
+.tool-area {
+
+    padding:
+        60px 20px;
+
 }
 
-.weight-card{
-    max-width:560px;
-    margin:0 auto;
-    background:white;
-    padding:35px;
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
-    text-align:center;
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.weight-card {
+
+    width: 100%;
+    max-width: 560px;
+
+    margin:
+        0 auto;
+
+    padding:
+        36px;
+
+    box-sizing:
+        border-box;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        rgba(15, 23, 42, 0.08);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 14px 40px
+        rgba(15, 23, 42, 0.10);
+
 }
 
-.weight-card h1{
-    color:#4CAF50;
-    margin-bottom:25px;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.weight-card-header {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        30px;
+
 }
+
+
+.weight-icon {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    margin:
+        0 auto 16px;
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #2563eb
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        30px;
+
+}
+
+
+.weight-card h1 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        #0f172a;
+
+    font-size:
+        2rem;
+
+    line-height:
+        1.2;
+
+}
+
+
+.weight-card-header p {
+
+    margin:
+        0 auto;
+
+    max-width:
+        460px;
+
+    color:
+        #64748b;
+
+    font-size:
+        0.98rem;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   FORM GROUPS
+========================================================= */
+
+.weight-input-group,
+.weight-unit-group {
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.weight-input-group label,
+.weight-unit-group label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #334155;
+
+    font-size:
+        0.92rem;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+========================================================= */
 
 .weight-card input,
-.weight-card select{
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:8px;
+.weight-card select {
+
+    width:
+        100%;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        14px 16px;
+
+    margin:
+        0;
+
+    font-size:
+        16px;
+
+    font-family:
+        inherit;
+
+    color:
+        #0f172a;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        #cbd5e1;
+
+    border-radius:
+        12px;
+
+    outline:
+        none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
 }
 
-.convert-btn{
-    width:100%;
-    padding:14px;
-    margin-top:12px;
-    border:none;
-    border-radius:10px;
-    background:#4CAF50;
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
+
+.weight-card input:focus,
+.weight-card select:focus {
+
+    border-color:
+        #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, 0.15);
+
 }
 
-.convert-btn:hover{
-    background:#059669;
+
+/* =========================================================
+   SWAP BUTTON
+========================================================= */
+
+.swap-btn {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        100%;
+
+    padding:
+        11px 16px;
+
+    margin:
+        -4px 0 20px;
+
+    border:
+        1px solid
+        rgba(16, 185, 129, 0.35);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(16, 185, 129, 0.08);
+
+    color:
+        #059669;
+
+    font-size:
+        0.94rem;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
 }
 
-.result{
-    margin-top:22px;
-    font-size:22px;
-    font-weight:bold;
-    color:#10B981;
+
+.swap-btn:hover {
+
+    background:
+        rgba(16, 185, 129, 0.14);
+
+    border-color:
+        #10b981;
+
+    transform:
+        translateY(-1px);
+
 }
 
-body.dark-mode .weight-card{
-    background:#1f2937;
-    color:#e5e7eb;
+
+.swap-btn:active {
+
+    transform:
+        translateY(0);
+
 }
+
+
+/* =========================================================
+   CONVERT BUTTON
+========================================================= */
+
+.convert-btn {
+
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    margin-top:
+        4px;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #059669
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(16, 185, 129, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.convert-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 26px
+        rgba(16, 185, 129, 0.28);
+
+}
+
+
+.convert-btn:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result {
+
+    min-height:
+        30px;
+
+    margin-top:
+        24px;
+
+    padding:
+        0;
+
+    text-align:
+        center;
+
+}
+
+
+.weight-result-label {
+
+    margin-bottom:
+        8px;
+
+    color:
+        #64748b;
+
+    font-size:
+        0.82rem;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.06em;
+
+}
+
+
+.weight-result-value {
+
+    padding:
+        18px;
+
+    border-radius:
+        16px;
+
+    background:
+        rgba(16, 185, 129, 0.08);
+
+    color:
+        #059669;
+
+    font-size:
+        1.45rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.4;
+
+    word-break:
+        break-word;
+
+}
+
+
+.weight-result-details {
+
+    margin-top:
+        8px;
+
+    color:
+        #64748b;
+
+    font-size:
+        0.9rem;
+
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode .weight-card {
+
+    background:
+        #1f2937;
+
+    color:
+        #e5e7eb;
+
+    border-color:
+        rgba(148, 163, 184, 0.16);
+
+    box-shadow:
+        0 14px 40px
+        rgba(0, 0, 0, 0.25);
+
+}
+
+
+body.dark-mode .weight-card h1 {
+
+    color:
+        #f8fafc;
+
+}
+
+
+body.dark-mode .weight-card-header p {
+
+    color:
+        #94a3b8;
+
+}
+
+
+body.dark-mode .weight-input-group label,
+body.dark-mode .weight-unit-group label {
+
+    color:
+        #cbd5e1;
+
+}
+
 
 body.dark-mode .weight-card input,
-body.dark-mode .weight-card select{
-    background:#111827;
-    color:#e5e7eb;
-    border:1px solid #374151;
+body.dark-mode .weight-card select {
+
+    background:
+        #111827;
+
+    color:
+        #e5e7eb;
+
+    border-color:
+        #374151;
+
+}
+
+
+body.dark-mode .weight-card input:focus,
+body.dark-mode .weight-card select:focus {
+
+    border-color:
+        #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, 0.18);
+
+}
+
+
+body.dark-mode .swap-btn {
+
+    background:
+        rgba(16, 185, 129, 0.10);
+
+    border-color:
+        rgba(52, 211, 153, 0.35);
+
+    color:
+        #34d399;
+
+}
+
+
+body.dark-mode .swap-btn:hover {
+
+    background:
+        rgba(16, 185, 129, 0.16);
+
+}
+
+
+body.dark-mode .weight-result-label {
+
+    color:
+        #94a3b8;
+
+}
+
+
+body.dark-mode .weight-result-value {
+
+    background:
+        rgba(16, 185, 129, 0.12);
+
+    color:
+        #34d399;
+
+}
+
+
+body.dark-mode .weight-result-details {
+
+    color:
+        #94a3b8;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .tool-area {
+
+        padding:
+            36px 16px;
+
+    }
+
+
+    .weight-card {
+
+        padding:
+            26px 20px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .weight-card h1 {
+
+        font-size:
+            1.7rem;
+
+    }
+
+
+    .weight-result-value {
+
+        font-size:
+            1.2rem;
+
+        padding:
+            16px;
+
+    }
+
 }
