@@ -1242,3 +1242,11 @@ body.dark-mode .scientific-memory-pad .sci-btn {
     user-select: none;
     cursor: pointer;
 }
+
+/* =========================================================
+   Scientific Calculator — Related Tools Spacing
+   ========================================================= */
+
+body[data-tool="scientific"] #related-tools-section {
+    margin-top: 48px;
+}

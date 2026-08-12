@@ -304,12 +304,10 @@ if (
 ){
 
     this.modules.relatedRenderer.renderInto(
-
-        "#relatedTools",
-
-        related
-
-    );
+    "#relatedTools",
+    related,
+    tool
+);
 
     this.statistics.renderedSections++;
 

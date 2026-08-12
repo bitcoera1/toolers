@@ -266,34 +266,26 @@
     }
 
 
-    /*=========================================================*
+/*=========================================================
  * Resolve Related Tool
+ *---------------------------------------------------------
+ * Resolves related items through the centralized ToolXone
+ * tool registry whenever possible.
  *=========================================================*/
 
 function resolveRelatedItem(item) {
 
-    /*
-     * Already normalized renderer object.
-     */
-    if (
-        item &&
-        typeof item === "object" &&
-        item.title &&
-        item.url
-    ) {
-
-        return item;
-
+    if (!item) {
+        return null;
     }
 
+    let tool = null;
 
     /*
-     * Resolve a ToolXone tool ID.
-     *
-     * The existing centralized tool registry
-     * already exposes getToolById().
+     * -----------------------------------------------------
+     * 1. Resolve by Tool ID
+     * -----------------------------------------------------
      */
-    let tool = null;
 
     if (typeof item === "string") {
 
@@ -305,8 +297,13 @@ function resolveRelatedItem(item) {
 
     }
 
+    /*
+     * -----------------------------------------------------
+     * 2. Resolve object by ID
+     * -----------------------------------------------------
+     */
+
     else if (
-        item &&
         typeof item === "object" &&
         item.id
     ) {
@@ -319,42 +316,240 @@ function resolveRelatedItem(item) {
 
     }
 
+    /*
+     * -----------------------------------------------------
+     * 3. Resolve object by URL
+     * -----------------------------------------------------
+     */
 
-    if (!tool) {
+    if (
+        !tool &&
+        typeof item === "object" &&
+        item.url
+    ) {
 
-        return null;
+        const targetURL =
+            String(item.url)
+                .split("/")
+                .pop();
+
+        if (typeof getAllTools === "function") {
+
+            tool = getAllTools().find(function(candidate) {
+
+                return (
+                    candidate.link === targetURL ||
+                    candidate.url === targetURL
+                );
+
+            });
+
+        }
 
     }
 
+    /*
+     * -----------------------------------------------------
+     * 4. If centralized tool data exists, use it.
+     * -----------------------------------------------------
+     */
+
+    if (tool) {
+
+        return {
+
+            id:
+                tool.id,
+
+            icon:
+                tool.icon ||
+                item.icon ||
+                "🧮",
+
+            title:
+                tool.name ||
+                item.title ||
+                "",
+
+            description:
+                item.description ||
+                tool.description ||
+                `Quick access to ${
+                    String(
+                        tool.name || "this tool"
+                    ).toLowerCase()
+                }.`,
+
+            category:
+                tool.categoryName ||
+                item.category ||
+                "ToolXone Tools",
+
+            url:
+                tool.link ||
+                tool.url ||
+                item.url ||
+                "#"
+
+        };
+
+    }
 
     /*
-     * Convert the existing ToolXone tool object
-     * into the renderer's normalized card format.
+     * -----------------------------------------------------
+     * 5. Fallback for legacy related objects
+     * -----------------------------------------------------
      */
-    return {
 
-        id: tool.id,
+    if (
+        typeof item === "object" &&
+        item.title &&
+        item.url
+    ) {
 
-        icon: tool.icon || "🧮",
+        return {
 
-        title: tool.name || "",
+            id:
+                item.id || "",
 
-        description:
-            tool.description ||
-            `Quick access to ${String(
-                tool.name || "this tool"
-            ).toLowerCase()}.`,
+            icon:
+                item.icon || "🧮",
 
-        category:
-            tool.categoryName ||
-            "ToolXone Tools",
+            title:
+                item.title,
 
-        url:
-            tool.link ||
-            tool.url ||
-            "#"
+            description:
+                item.description || "",
 
-    };
+            category:
+                item.category ||
+                "ToolXone Tools",
+
+            url:
+                item.url
+
+        };
+
+    }
+
+    return null;
+
+}
+
+/*=========================================================
+ * Build Four Related Tools
+ *---------------------------------------------------------
+ * Ensures every ToolXone page displays exactly four
+ * related tools.
+ *=========================================================*/
+
+function buildRelatedItems(items, currentToolId) {
+
+    const resolved = [];
+
+    /*
+     * -----------------------------------------------------
+     * Resolve page-specific related tools
+     * -----------------------------------------------------
+     */
+
+    if (Array.isArray(items)) {
+
+        items.forEach(function(item) {
+
+            const tool =
+                resolveRelatedItem(item);
+
+            if (!tool) {
+                return;
+            }
+
+            if (
+                currentToolId &&
+                tool.id === currentToolId
+            ) {
+                return;
+            }
+
+            if (
+                resolved.some(
+                    existing =>
+                        existing.id &&
+                        existing.id === tool.id
+                )
+            ) {
+                return;
+            }
+
+            resolved.push(tool);
+
+        });
+
+    }
+
+    /*
+     * -----------------------------------------------------
+     * Fill remaining slots from the central ToolXone
+     * registry.
+     * -----------------------------------------------------
+     */
+
+    if (resolved.length < 4) {
+
+        if (typeof getAllTools === "function") {
+
+            const allTools =
+                getAllTools();
+
+            for (const candidate of allTools) {
+
+                if (resolved.length >= 4) {
+                    break;
+                }
+
+                if (
+                    !candidate ||
+                    !candidate.id
+                ) {
+                    continue;
+                }
+
+                if (
+                    currentToolId &&
+                    candidate.id === currentToolId
+                ) {
+                    continue;
+                }
+
+                if (
+                    resolved.some(
+                        existing =>
+                            existing.id === candidate.id
+                    )
+                ) {
+                    continue;
+                }
+
+                const normalized =
+                    resolveRelatedItem(
+                        candidate.id
+                    );
+
+                if (normalized) {
+
+                    resolved.push(
+                        normalized
+                    );
+
+                }
+
+            }
+
+        }
+
+    }
+
+    return resolved.slice(0, 4);
 
 }
 
@@ -395,15 +590,23 @@ function renderAll(items) {
 }
 
 
-    /*=========================================================*
+/*=========================================================
  * Render Into Container
+ *---------------------------------------------------------
+ * The renderer owns the complete Related Tools section:
+ *
+ *     Label
+ *     Heading
+ *     Subtitle
+ *     Four related cards
  *=========================================================*/
 
-function renderInto(container, related) {
+function renderInto(container, related, currentToolId) {
 
     if (typeof container === "string") {
 
-        container = document.querySelector(container);
+        container =
+            document.querySelector(container);
 
     }
 
@@ -415,41 +618,41 @@ function renderInto(container, related) {
 
     }
 
-
     let items = [];
 
-if(Array.isArray(related)){
+    if (Array.isArray(related)) {
 
-    items = related;
+        items = related;
 
-}
+    }
 
-else if(
+    else if (
+        related &&
+        Array.isArray(related.items)
+    ) {
 
-    related &&
+        items = related.items;
 
-    Array.isArray(related.items)
+    }
 
-){
+    else if (
+        related &&
+        Array.isArray(related.tools)
+    ) {
 
-    items = related.items;
+        items = related.tools;
 
-}
+    }
 
-else if(
+    const finalItems =
+        buildRelatedItems(
+            items,
+            currentToolId ||
+            document.body.dataset.tool ||
+            ""
+        );
 
-    related &&
-
-    Array.isArray(related.tools)
-
-){
-
-    items = related.tools;
-
-}
-
-
-    if (!Array.isArray(items)) {
+    if (!finalItems.length) {
 
         state.failed++;
 
@@ -457,51 +660,55 @@ else if(
 
     }
 
-
     /*
-     * The parent page owns the Related Tools heading.
-     *
-     * This renderer is responsible ONLY for
-     * rendering the dynamic related-tool cards.
+     * -----------------------------------------------------
+     * Shared Related Tools section
+     * -----------------------------------------------------
      */
 
     container.innerHTML = `
 
-<div class="toolxone-related-grid">
+        <div class="toolxone-related-header">
 
-    ${renderAll(items)}
+            <div class="toolxone-related-label">
+                💡 RELATED TOOLS
+            </div>
 
-</div>
+            <h2 class="toolxone-related-title">
+                Related Tools
+            </h2>
 
-`;
+            <p class="toolxone-related-subtitle">
+                Explore more useful ToolXone calculators, converters and productivity tools.
+            </p>
 
+        </div>
+
+        <div class="toolxone-related-grid">
+
+            ${renderAll(finalItems)}
+
+        </div>
+
+    `;
 
     if (configuration.animate) {
 
         container.classList.add(
-
             "toolxone-fade-in"
-
         );
 
     }
 
-
     log(
-
         "Rendered",
-
-        items.length,
-
+        finalItems.length,
         "related cards"
-
     );
-
 
     return true;
 
 }
-
 
     /*=========================================================*
      * Refresh
