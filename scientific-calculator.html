@@ -198,7 +198,7 @@ content="@ToolXone"
 
 </head>
 
-<body data-tool="scientific">
+<body data-tool="scientific-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" alt="ToolXone Logo" class="site-logo">
@@ -208,14 +208,18 @@ content="@ToolXone"
 
 <div id="navbar"></div>
 
-<main class="tool-page">
 
+<!-- ============================================= -->
+<!-- ToolXone Shared Hero                         -->
+<!-- ============================================= -->
 
-    <!-- =========================================
-         TOOL HERO
-    ========================================== -->
+<section
+    id="toolHero"
+    class="tx-hero-section">
+</section>
 
-    <section id="toolHero"></section>
+<div class="tool-page">
+
 
     <div
         class="scientific-card scientific-calculator"
@@ -1049,6 +1053,29 @@ content="@ToolXone"
 <script src="js/seo/seo-platform.js"></script>
 <script src="js/seo/schemas/scientific-calculator-schema.js"></script>
 
+<script>
+
+/* ======================================================
+   ToolXone SEO Framework
+====================================================== */
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "ScientificCalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+    </script>
+
 <script src="js/performance/performance-registry.js"></script>
 <script src="js/performance/performance-engine.js"></script>
 <script src="js/performance/core-web-vitals.js"></script>
@@ -1090,8 +1117,6 @@ content="@ToolXone"
 
 <script>
 
-
-
 renderToolReviews(
     "tool-reviews",
     "Scientific Calculator"
@@ -1101,25 +1126,6 @@ renderFinanceFeedback(
     "financeFeedback",
     "Scientific Calculator"
 );
-
-/* ======================================================
-   ToolXone SEO Framework
-====================================================== */
-
-const pageSchema =
-    ToolXoneSchemaRegistry.get(
-        "ScientificCalculator"
-    );
-
-if (pageSchema) {
-
-    ToolXoneSchema.render(
-        pageSchema.schema
-    );
-
-    ToolXoneMeta.render(
-        pageSchema.meta
-    );
 
 }
 

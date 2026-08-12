@@ -29,9 +29,38 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
+<!-- ======================================================
+     Core Framework
+====================================================== -->
+
 <link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
 <link rel="stylesheet" href="css/bmi.css">
-<link rel="stylesheet" href="css/feedback.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link rel="stylesheet" href="css/validation.css">
+
 
 <script type="application/ld+json">
 {
@@ -57,6 +86,8 @@
 
 </head>
 
+<body data-tool="bmi-calculator">
+
 <body>
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" alt="ToolXone Logo" class="site-logo">
@@ -65,6 +96,18 @@
 </header>
 
 <div id="navbar"></div>
+
+<!-- ============================================= -->
+<!-- ToolXone Shared Hero                         -->
+<!-- ============================================= -->
+
+<section
+    id="toolHero"
+    class="tx-hero-section">
+</section>
+
+<div class="tool-page">
+
 
 <main class="bmi-page">
 
@@ -147,181 +190,13 @@ Calculate your Body Mass Index (BMI) from height and weight using metric or impe
     <section id="relatedTools"></section>
 </section>
 
+
 <div id="financeInfo"></div>
 
-<section class="bmi-guide">
-
-    <h2>How BMI Is Calculated and What Your Result Means</h2>
-
-    <p>
-        Body Mass Index (BMI) is a screening measure that relates an adult's
-        weight to their height. It provides a numerical value that can be
-        compared with commonly used adult BMI ranges. BMI is simple to
-        calculate, but it should be interpreted as a screening measure rather
-        than a complete assessment of health or body composition.
-    </p>
-
-    <h3>BMI Formula Using Kilograms and Meters</h3>
-
-    <p>
-        When weight is measured in kilograms and height is measured in meters,
-        BMI is calculated using the following formula:
-    </p>
-
-    <div class="bmi-formula">
-        BMI = weight (kg) ÷ height² (m²)
-    </div>
-
-    <p>
-        For example, an adult who weighs 70 kg and is 1.75 meters tall would
-        have a BMI of approximately 22.9:
-    </p>
-
-    <div class="bmi-formula bmi-formula-example">
-        BMI = 70 ÷ (1.75 × 1.75) ≈ 22.9
-    </div>
-
-    <p>
-        ToolXone's metric mode accepts height in centimeters, so the calculator
-        converts the entered height to meters before calculating BMI.
-    </p>
-
-    <h3>BMI Formula Using Pounds and Inches</h3>
-
-    <p>
-        When weight is entered in pounds and height is measured in inches,
-        the BMI formula used by this calculator is:
-    </p>
-
-    <div class="bmi-formula">
-        BMI = [weight (lb) ÷ height² (in²)] × 703
-    </div>
-
-    <p>
-        ToolXone's Feet / Pounds mode allows height to be entered as feet and
-        inches. The calculator converts the height to total inches before
-        applying the formula.
-    </p>
-
-    <h3>Adult BMI Ranges</h3>
-
-    <p>
-        This calculator groups adult BMI results into four ranges:
-    </p>
-
-    <div class="bmi-range-table">
-        <div class="bmi-range-row">
-            <strong>Underweight</strong>
-            <span>Below 18.5</span>
-        </div>
-
-        <div class="bmi-range-row">
-            <strong>Healthy Weight Range</strong>
-            <span>18.5 to below 25</span>
-        </div>
-
-        <div class="bmi-range-row">
-            <strong>Overweight</strong>
-            <span>25 to below 30</span>
-        </div>
-
-        <div class="bmi-range-row">
-            <strong>Obesity Range</strong>
-            <span>30 or higher</span>
-        </div>
-    </div>
-
-    <p>
-        These ranges are used for adult BMI screening. A BMI result identifies
-        the range in which the calculated value falls; it does not by itself
-        determine a person's overall health.
-    </p>
-
-    <h3>How to Use the BMI Calculator</h3>
-
-    <p>
-        Choose Metric if you want to enter height in centimeters and weight in
-        kilograms. Choose Feet / Pounds if you want to enter height in feet and
-        inches and weight in pounds. Enter your measurements and select
-        Calculate BMI.
-    </p>
-
-    <p>
-        The calculator displays your BMI rounded to one decimal place, the
-        corresponding adult BMI range, and a visual marker showing where the
-        result falls on the calculator's BMI scale.
-    </p>
-
-    <h3>What Does a BMI Result Tell You?</h3>
-
-    <p>
-        BMI compares weight with height and provides a convenient screening
-        value. It can be useful for looking at weight-related categories at a
-        general level because the calculation requires only height and weight.
-    </p>
-
-    <p>
-        However, BMI does not directly measure body fat and does not explain
-        why a person has a particular weight. The same BMI value can occur in
-        people with different body compositions.
-    </p>
-
-    <h3>Limitations of BMI</h3>
-
-    <p>
-        BMI uses only height and weight. It does not distinguish between body
-        fat, muscle, bone and other components of body mass. As a result, two
-        adults with the same height and weight can have the same BMI while
-        having different body compositions.
-    </p>
-
-    <p>
-        BMI also does not directly measure fitness, nutrition, body-fat
-        distribution or overall health. For these reasons, the result should
-        be treated as a screening value rather than a diagnosis or complete
-        health assessment.
-    </p>
-
-    <h3>Adult BMI and BMI for Children Are Not Interpreted the Same Way</h3>
-
-    <p>
-        The fixed ranges shown by this calculator are intended for adults.
-        BMI for children and teenagers is interpreted differently and should
-        not be classified using these adult ranges.
-    </p>
-
-    <h3>Metric vs. Imperial BMI</h3>
-
-    <p>
-        Metric and imperial calculations are two ways of expressing the same
-        height-and-weight relationship. If equivalent measurements are entered
-        correctly, both methods should produce approximately the same BMI,
-        allowing for normal rounding differences.
-    </p>
-
-    <p>
-        If you need to convert a weight measurement before using a calculator,
-        ToolXone's <a href="weight-converter.html">Weight Converter</a> can help
-        convert between common weight units.
-    </p>
-
-    <h3>How to Interpret Your BMI Estimate</h3>
-
-    <p>
-        Use the result to understand which adult BMI range corresponds to the
-        height and weight entered. Avoid interpreting the number as a complete
-        description of health, fitness or body composition.
-    </p>
-
-    <p>
-        If an individual health assessment is needed, factors beyond BMI may
-        need to be considered by an appropriately qualified healthcare
-        professional.
-    </p>
-
-</section>
-
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
 
 <div id="financeFeedback"></div>
 
@@ -336,6 +211,7 @@ Calculate your Body Mass Index (BMI) from height and weight using metric or impe
 <script src="js/tools.js"></script>
 <script src="js/finance-components.js"></script>
 <script src="js/number-engine.js"></script>
+
 
 <!-- Backend -->
 <script src="js/backend/backend-config.js"></script>
@@ -355,13 +231,102 @@ Calculate your Body Mass Index (BMI) from height and weight using metric or impe
 <script src="js/statistics/statistics-engine.js"></script>
 <script src="js/statistics/statistics-events.js"></script>
 <script src="js/statistics/statistics-api.js"></script>
+<script src="js/statistics/statistics-intelligence.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<!-- Tool-specific schema -->
+<script src="js/seo/schemas/bmi-calculator-schema.js"></script>
+
+<script>
+
+/*
+==========================================================
+ToolXone BMI Calculator SEO Initialization
+==========================================================
+*/
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "BMICalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+}
+
+</script>
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+<!-- Content Framework -->
+<script src="js/content/content-registry.js"></script>
+<script src="js/content/content-engine.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/article-renderer.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+<script src="js/content/related-renderer.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/content-data-bmi.js"></script>
+
+
+<!-- Hero -->
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
 
 <script src="js/bmi.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
 
+<script>
 
 renderFinanceInfo(
     "financeInfo",
@@ -369,43 +334,9 @@ renderFinanceInfo(
     "Body Mass Index (BMI) is a screening measure based on a person's height and weight. This calculator estimates BMI for adults and shows the corresponding BMI range. BMI can be useful for general screening, but it does not directly measure body fat, fitness, body composition or overall health."
 );
 
-renderFinanceFAQ(
-    "financeFAQ",
-    [
-        {
-            question: "What is BMI?",
-            answer: "BMI stands for Body Mass Index. It is a screening measure calculated from a person's height and weight and is commonly used to group adult BMI values into ranges."
-        },
-        {
-            question: "How is BMI calculated?",
-            answer: "In metric units, BMI is calculated by dividing weight in kilograms by height in meters squared. In imperial units, weight in pounds is divided by height in inches squared and the result is multiplied by 703."
-        },
-        {
-            question: "What are the adult BMI ranges?",
-            answer: "The ranges used by this calculator are below 18.5 for underweight, 18.5 to below 25 for the healthy weight range, 25 to below 30 for overweight, and 30 or higher for the obesity range."
-        },
-        {
-            question: "Can I calculate BMI using feet and pounds?",
-            answer: "Yes. ToolXone's BMI Calculator supports both metric units using centimeters and kilograms and imperial units using feet, inches and pounds."
-        },
-        {
-            question: "Does BMI directly measure body fat?",
-            answer: "No. BMI is calculated from height and weight and does not directly measure body fat or distinguish between fat, muscle, bone and other components of body composition."
-        },
-        {
-            question: "Is BMI the same as a medical diagnosis?",
-            answer: "No. BMI is a screening measure and does not diagnose a medical condition or determine a person's overall health."
-        },
-        {
-            question: "Can people with the same BMI have different body compositions?",
-            answer: "Yes. Two people with the same BMI can have different amounts of muscle, body fat and other body composition characteristics because BMI uses only height and weight."
-        },
-        {
-            question: "Is this BMI Calculator intended for adults?",
-            answer: "Yes. The BMI ranges displayed by this calculator are intended for adults. BMI assessment for children and teenagers is interpreted differently and should not use these adult ranges."
-        }
-    ]
-
+renderToolReviews(
+    "tool-reviews",
+    "BMI Calculator"
 );
 
 renderFinanceFeedback("financeFeedback", "BMI Calculator");
@@ -413,4 +344,5 @@ renderFinanceFeedback("financeFeedback", "BMI Calculator");
 </script>
 
 </body>
+
 </html>

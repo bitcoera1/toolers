@@ -159,14 +159,13 @@
      ToolXone Shared Hero
 ====================================================== -->
 
-<div id="toolHero"></div>
-
-<div class="tool-page">
-
-    <section
+<section
         id="toolHero"
         class="tx-hero-section">
     </section>
+
+
+<div class="tool-page">
 
     <section class="tx-calculator-section">
 
@@ -308,24 +307,7 @@
 <!-- Tool-specific schema -->
 <script src="js/seo/schemas/basic-calculator-schema.js"></script>
 
-const pageSchema =
-    ToolXoneSchemaRegistry.get(
-        "BasicCalculator"
-    );
-
-if (pageSchema) {
-
-    ToolXoneSchema.render(
-        pageSchema.schema
-    );
-
-    ToolXoneMeta.render(
-        pageSchema.meta
-    );
-
-}
-
-</script>
+<script>
 
 /*
 ==========================================================

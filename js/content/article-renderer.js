@@ -2,7 +2,7 @@
 ==========================================================
  ToolXone Article Renderer
  Dynamic Markdown Rendering Platform
- Version: 1.0.0
+ Version: 1.1.0
 ==========================================================
 */
 
@@ -16,7 +16,7 @@ Constants
 
 const RENDERER_NAME = "ToolXone Article Renderer";
 
-const RENDERER_VERSION = "1.0.0";
+const RENDERER_VERSION = "1.1.0";
 
 /*=========================================================
 Configuration
@@ -63,7 +63,6 @@ const statistics = {
 };
 
 
-
 /*=========================================================
 Markdown Parser
 =========================================================*/
@@ -85,7 +84,7 @@ function parse(markdown){
     let html = markdown;
 
     /*-----------------------------------------------------
-      Escape
+      Normalize Line Endings
     -----------------------------------------------------*/
 
     html = html.replace(
@@ -173,34 +172,34 @@ function parse(markdown){
     );
 
     /*-----------------------------------------------------
-  Images
------------------------------------------------------*/
+      Images
+    -----------------------------------------------------*/
 
-html = html.replace(
+    html = html.replace(
 
-    /!\[(.*?)\]\((.*?)\)/g,
+        /!\[(.*?)\]\((.*?)\)/g,
 
-    `<img
+        `<img
         src="$2"
         alt="$1"
         loading="lazy">`
 
-);
+    );
 
-/*-----------------------------------------------------
-  Links
------------------------------------------------------*/
+    /*-----------------------------------------------------
+      Links
+    -----------------------------------------------------*/
 
-html = html.replace(
+    html = html.replace(
 
-    /\[(.*?)\]\((.*?)\)/g,
+        /\[(.*?)\]\((.*?)\)/g,
 
-    `<a
+        `<a
         href="$2"
         target="_blank"
         rel="noopener noreferrer">$1</a>`
 
-);
+    );
 
     /*-----------------------------------------------------
       Horizontal Rule
@@ -228,11 +227,28 @@ html = html.replace(
 
     /*-----------------------------------------------------
       Paragraphs
+
+      IMPORTANT:
+
+      Existing HTML lines are intentionally preserved.
+
+      This allows article content to contain controlled
+      HTML such as:
+
+          <p>...</p>
+          <div>...</div>
+          <table>...</table>
+          <ul>...</ul>
+
+      without the Markdown paragraph processor wrapping
+      those elements again.
+
+      Normal text lines are still converted to <p>.
     -----------------------------------------------------*/
 
     html = html.replace(
 
-        /^(?!<h|<ul|<ol|<li|<img|<blockquote|<hr)(.+)$/gm,
+        /^(?!<)(.+)$/gm,
 
         "<p>$1</p>"
 
@@ -276,19 +292,25 @@ function render(container,markdown){
 
     ${html}
 
-</section>
+    </section>
 
-`;
+    `;
 
-      
-    if (
-    configuration.animate &&
-    element instanceof HTMLElement
-) {
-    element.classList.add(
-        "tx-article-loaded"
-    );
-}
+    if(
+
+        configuration.animate &&
+
+        element instanceof HTMLElement
+
+    ){
+
+        element.classList.add(
+
+            "tx-article-loaded"
+
+        );
+
+    }
 
     state.rendered++;
 
@@ -304,8 +326,7 @@ function render(container,markdown){
 Render Complete Article
 =========================================================*/
 
-function renderArticle(container, article){
-
+function renderArticle(container,article){
 
     if(!article){
 
@@ -317,13 +338,23 @@ function renderArticle(container, article){
 
     if(article.title){
 
-        markdown += "# " + article.title + "\n\n";
+        markdown +=
+
+            "# " +
+
+            article.title +
+
+            "\n\n";
 
     }
 
     if(article.introduction){
 
-        markdown += article.introduction + "\n\n";
+        markdown +=
+
+            article.introduction +
+
+            "\n\n";
 
     }
 
@@ -332,10 +363,18 @@ function renderArticle(container, article){
         article.sections.forEach(function(section){
 
             markdown +=
-                "## " + section.heading + "\n\n";
+
+                "## " +
+
+                section.heading +
+
+                "\n\n";
 
             markdown +=
-                section.content + "\n\n";
+
+                section.content +
+
+                "\n\n";
 
         });
 
@@ -451,6 +490,38 @@ function report(){
 
     );
 
+    console.log(
+
+        "Version:",
+
+        RENDERER_VERSION
+
+    );
+
+    console.log(
+
+        "Configuration:",
+
+        configuration
+
+    );
+
+    console.log(
+
+        "State:",
+
+        state
+
+    );
+
+    console.log(
+
+        "Statistics:",
+
+        statistics
+
+    );
+
     console.groupEnd();
 
 }
@@ -493,7 +564,11 @@ window.ToolXoneArticleRenderer = {
 Auto Initialize
 =========================================================*/
 
-if(configuration.autoInitialize){
+if(
+
+    configuration.autoInitialize
+
+){
 
     initialize();
 
