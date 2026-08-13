@@ -1,18 +1,21 @@
 /*
-====================================================
-
+==========================================================
 ToolXone Backend
-
 Cloudflare Worker
-
-Version:
-1.0.0
-
+Version: 1.1.0
+==========================================================
 Responsibility
 
 Main backend entry point.
 
-====================================================
+Handles:
+
+- Statistics
+- Tool Usage
+- Feedback
+- Reviews
+
+==========================================================
 */
 
 export default {
@@ -20,154 +23,1118 @@ export default {
     async fetch(request, env, ctx) {
 
         return WorkerRouter.handle(
-
             request,
             env,
             ctx
-
         );
 
     }
 
 };
 
+
 const WorkerRouter = {
 
-    async handle(
+    // ==================================================
+    // MAIN REQUEST HANDLER
+    // ==================================================
 
+    async handle(
         request,
         env,
         ctx
-
     ) {
 
         try {
 
-            const url = new URL(request.url);
+            const url = new URL(
+                request.url
+            );
 
-const path = url.pathname;
+            const path =
+                url.pathname;
 
-const method = request.method;
+            const method =
+                request.method;
 
-if (method === "OPTIONS") {
+            // ------------------------------------------
+            // CORS
+            // ------------------------------------------
 
-    return this.cors();
+            if (
+                method === "OPTIONS"
+            ) {
 
-}
+                return this.cors();
 
-return this.dispatch(
+            }
 
-    path,
-    method,
-    request,
-    env,
-    ctx
+            return this.dispatch(
+                path,
+                method,
+                request,
+                env,
+                ctx
+            );
 
-);
-
-
-  }
+        }
 
         catch (error) {
 
             return this.serverError(
-
                 error
-
             );
 
         }
 
     },
 
-    async dispatch(
-    path,
-    method,
-    request,
-    env,
-    ctx
-) {
 
-    // Get all statistics
-    if (
-        path === "/statistics" &&
-        method === "GET"
+    // ==================================================
+    // ROUTER
+    // ==================================================
+
+    async dispatch(
+        path,
+        method,
+        request,
+        env,
+        ctx
     ) {
 
-        return this.getStatistics(env);
+        // =============================================
+        // STATISTICS
+        // =============================================
 
-    }
+        if (
+            path === "/statistics" &&
+            method === "GET"
+        ) {
 
-    // Increment a statistic
-    // Increment a statistic
+            return this.getStatistics(
+                env
+            );
+
+        }
+
+
+        if (
+            path === "/statistics/increment" &&
+            method === "POST"
+        ) {
+
+            return this.incrementStatistic(
+                request,
+                env
+            );
+
+        }
+
+
+        if (
+            path === "/statistics/tool" &&
+            method === "POST"
+        ) {
+
+            return this.recordToolUsage(
+                request,
+                env
+            );
+
+        }
+
+
+        // =============================================
+        // FEEDBACK / REVIEWS
+        // =============================================
+
+        if (
+            path === "/feedback" &&
+            method === "POST"
+        ) {
+
+            return this.createFeedback(
+                request,
+                env
+            );
+
+        }
+
+
+        if (
+            path === "/feedback" &&
+            method === "GET"
+        ) {
+
+            return this.getFeedback(
+                request,
+                env
+            );
+
+        }
+
+        // =============================================
+        //      MARK FEEDBACK AS HELPFUL
+        // =============================================
+
 if (
-    path === "/statistics/increment" &&
+    path.startsWith("/feedback/") &&
+    path.endsWith("/helpful") &&
     method === "POST"
 ) {
 
-    return this.incrementStatistic(
-        request,
+    const id =
+        path.split("/")[2];
+
+    return this.markFeedbackHelpful(
+        id,
         env
     );
 
 }
 
-// Record individual tool usage
-if (
-    path === "/statistics/tool" &&
-    method === "POST"
-) {
+        // ---------------------------------------------
+        // Single review
+        // ---------------------------------------------
 
-    return this.recordToolUsage(
-        request,
-        env
-    );
+        const feedbackMatch =
+            path.match(
+                /^\/feedback\/(\d+)$/
+            );
 
-}
+        if (
+            feedbackMatch &&
+            method === "GET"
+        ) {
 
-    return this.notFound();
+            return this.getFeedbackById(
+                feedbackMatch[1],
+                env
+            );
 
-},
+        }
+
+
+        // ---------------------------------------------
+        // Delete review
+        // ---------------------------------------------
+
+        if (
+            feedbackMatch &&
+            method === "DELETE"
+        ) {
+
+            return this.deleteFeedback(
+                feedbackMatch[1],
+                request,
+                env
+            );
+
+        }
+
+
+        // =============================================
+        // NOT FOUND
+        // =============================================
+
+        return this.notFound();
+
+    },
+
+
+    // ==================================================
+    // STATISTICS
+    // ==================================================
 
     async getStatistics(env) {
 
-    try {
+        try {
 
-        // Get summary statistics
-        const { results: summary } = await env.DB
-            .prepare(`
+            const {
+                results: summary
+            } = await env.DB
+                .prepare(`
+                    SELECT
+                        stat_key,
+                        stat_value
+                    FROM
+                        statistics
+                    ORDER BY
+                        id
+                `)
+                .all();
+
+
+            const {
+                results: tools
+            } = await env.DB
+                .prepare(`
+                    SELECT
+                        tool_id,
+                        tool_name,
+                        usage_count,
+                        last_used
+                    FROM
+                        tool_usage
+                    ORDER BY
+                        usage_count DESC
+                `)
+                .all();
+
+
+            return this.json({
+
+                success: true,
+
+                summary,
+
+                tools
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+
+    // ==================================================
+    // INCREMENT STATISTIC
+    // ==================================================
+
+    async incrementStatistic(
+        request,
+        env
+    ) {
+
+        try {
+
+            const {
+                statKey
+            } = await request.json();
+
+
+            if (!statKey) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Statistic key is required."
+
+                }, 400);
+
+            }
+
+
+            await env.DB
+                .prepare(`
+                    UPDATE statistics
+                    SET
+                        stat_value =
+                            stat_value + 1,
+                        updated_at =
+                            CURRENT_TIMESTAMP
+                    WHERE
+                        stat_key = ?
+                `)
+                .bind(
+                    statKey
+                )
+                .run();
+
+
+            return this.json({
+
+                success: true,
+
+                statKey
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+
+    // ==================================================
+    // TOOL USAGE
+    // ==================================================
+
+    async recordToolUsage(
+        request,
+        env
+    ) {
+
+        try {
+
+            const {
+                toolId,
+                toolName
+            } = await request.json();
+
+
+            if (
+                !toolId ||
+                !toolName
+            ) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Tool ID and Tool Name are required."
+
+                }, 400);
+
+            }
+
+
+            await env.DB
+                .prepare(`
+                    INSERT INTO tool_usage (
+                        tool_id,
+                        tool_name,
+                        usage_count
+                    )
+
+                    VALUES (
+                        ?, ?, 1
+                    )
+
+                    ON CONFLICT(tool_id)
+
+                    DO UPDATE SET
+
+                        usage_count =
+                            usage_count + 1,
+
+                        last_used =
+                            CURRENT_TIMESTAMP
+                `)
+                .bind(
+                    toolId,
+                    toolName
+                )
+                .run();
+
+
+            return this.json({
+
+                success: true,
+
+                toolId
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+
+    // ==================================================
+    // CREATE FEEDBACK
+    // ==================================================
+
+    async createFeedback(
+        request,
+        env
+    ) {
+
+        try {
+
+            const data =
+                await request.json();
+
+
+            const {
+    toolId,
+    toolName,
+    rating,
+    feedbackType,
+    name,
+    email,
+    message
+} = data;
+
+
+            // ------------------------------------------
+            // Required fields
+            // ------------------------------------------
+
+            if (
+                !toolId ||
+                !toolName ||
+                !rating ||
+                !feedbackType ||
+                !message
+            ) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Tool ID, Tool Name, Rating, Feedback Type and Message are required."
+
+                }, 400);
+
+            }
+
+
+            // ------------------------------------------
+            // Rating validation
+            // ------------------------------------------
+
+            const numericRating =
+                Number(rating);
+
+
+            if (
+                !Number.isInteger(
+                    numericRating
+                ) ||
+                numericRating < 1 ||
+                numericRating > 5
+            ) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Rating must be an integer between 1 and 5."
+
+                }, 400);
+
+            }
+
+
+            // ------------------------------------------
+            // Message validation
+            // ------------------------------------------
+
+            const cleanMessage =
+                String(message)
+                    .trim();
+
+
+            if (
+                cleanMessage.length < 10
+            ) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Feedback message must contain at least 10 characters."
+
+                }, 400);
+
+            }
+
+
+            // ------------------------------------------
+            // Safe defaults
+            // ------------------------------------------
+
+            const cleanName =
+                name &&
+                String(name).trim()
+                    ? String(name).trim()
+                    : "Anonymous";
+
+
+            const cleanEmail =
+                email &&
+                String(email).trim()
+                    ? String(email).trim()
+                    : null;
+
+
+            /*
+
+/* ------------------------------------------
+   Automatic Country Detection
+   ------------------------------------------
+
+   Cloudflare provides the visitor's
+   two-letter country code through
+   request.cf.country.
+
+   The server value is authoritative.
+   Never trust a client-supplied country.
+------------------------------------------ */
+
+const detectedCountryCode =
+    request.cf?.country || null;
+
+const cleanCountryCode =
+    detectedCountryCode &&
+    String(
+        detectedCountryCode
+    )
+        .trim()
+        .toUpperCase()
+        .slice(0, 2)
+    || null;
+
+
+            // ------------------------------------------
+            // Insert review
+            // ------------------------------------------
+
+            const result =
+                await env.DB
+                    .prepare(`
+                        INSERT INTO tool_feedback (
+
+                            tool_id,
+                            tool_name,
+                            rating,
+                            feedback_type,
+                            name,
+                            email,
+                            message,
+                            country_code,
+                            helpful_count,
+                            status
+
+                        )
+
+                        VALUES (
+
+                            ?, ?, ?, ?, ?, ?, ?, ?, 0, 'published'
+
+                        )
+
+                    `)
+                    .bind(
+
+                        toolId,
+                        toolName,
+                        numericRating,
+                        feedbackType,
+                        cleanName,
+                        cleanEmail,
+                        cleanMessage,
+                        cleanCountryCode
+
+                    )
+                    .run();
+
+
+            return this.json({
+
+                success: true,
+
+                message:
+                    "Feedback submitted successfully.",
+
+                feedbackId:
+                    result.meta
+                        ?.last_row_id || null
+
+            }, 201);
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+
+    // ==================================================
+    // GET FEEDBACK / REVIEWS
+    // ==================================================
+
+    async getFeedback(
+        request,
+        env
+    ) {
+
+        try {
+
+            const url =
+                new URL(
+                    request.url
+                );
+
+
+            const toolId =
+                url.searchParams.get(
+                    "toolId"
+                );
+
+
+            // ------------------------------------------
+            // Rating summary
+            // ------------------------------------------
+
+            let summaryQuery = `
                 SELECT
-                    stat_key,
-                    stat_value
+
+                    COUNT(*) AS total_reviews,
+
+                    ROUND(
+                        AVG(rating),
+                        1
+                    ) AS average_rating,
+
+                    SUM(
+                        CASE
+                            WHEN rating = 5
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) AS rating_5,
+
+                    SUM(
+                        CASE
+                            WHEN rating = 4
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) AS rating_4,
+
+                    SUM(
+                        CASE
+                            WHEN rating = 3
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) AS rating_3,
+
+                    SUM(
+                        CASE
+                            WHEN rating = 2
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) AS rating_2,
+
+                    SUM(
+                        CASE
+                            WHEN rating = 1
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) AS rating_1
+
                 FROM
-                    statistics
-                ORDER BY
-                    id
-            `)
-            .all();
+                    tool_feedback
 
-        // Get individual tool usage
-        const { results: tools } = await env.DB
-            .prepare(`
+                WHERE
+                    status = 'published'
+            `;
+
+
+            let summaryStatement;
+
+
+            if (toolId) {
+
+                summaryQuery += `
+                    AND tool_id = ?
+                `;
+
+                summaryStatement =
+                    env.DB
+                        .prepare(
+                            summaryQuery
+                        )
+                        .bind(toolId);
+
+            }
+
+            else {
+
+                summaryStatement =
+                    env.DB
+                        .prepare(
+                            summaryQuery
+                        );
+
+            }
+
+
+            const {
+                results: summary
+            } = await summaryStatement.all();
+
+
+            // ------------------------------------------
+            // Reviews
+            // ------------------------------------------
+
+            let reviewsQuery = `
                 SELECT
+
+                    id,
                     tool_id,
                     tool_name,
-                    usage_count,
-                    last_used
+                    rating,
+                    feedback_type,
+                    name,
+                    message,
+                    country_code,
+                    helpful_count,
+                    created_at
+
                 FROM
-                    tool_usage
+                    tool_feedback
+
+                WHERE
+                    status = 'published'
+            `;
+
+
+            if (toolId) {
+
+                reviewsQuery += `
+                    AND tool_id = ?
+                `;
+
+            }
+
+
+            reviewsQuery += `
                 ORDER BY
-                    usage_count DESC
+                    created_at DESC
+            `;
+
+
+            reviewsQuery += `
+                LIMIT 50
+            `;
+
+
+            let reviewsStatement =
+                env.DB.prepare(
+                    reviewsQuery
+                );
+
+
+            if (toolId) {
+
+                reviewsStatement =
+                    reviewsStatement.bind(
+                        toolId
+                    );
+
+            }
+
+
+            const {
+                results: reviews
+            } = await reviewsStatement.all();
+
+
+            return this.json({
+
+                success: true,
+
+                summary:
+                    summary[0] || {
+
+                        total_reviews: 0,
+
+                        average_rating: 0,
+
+                        rating_5: 0,
+
+                        rating_4: 0,
+
+                        rating_3: 0,
+
+                        rating_2: 0,
+
+                        rating_1: 0
+
+                    },
+
+                reviews
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+
+    // ==================================================
+    // GET SINGLE FEEDBACK
+    // ==================================================
+
+    async getFeedbackById(
+        id,
+        env
+    ) {
+
+        try {
+
+            const {
+                results
+            } = await env.DB
+                .prepare(`
+                    SELECT
+
+                        id,
+                        tool_id,
+                        tool_name,
+                        rating,
+                        feedback_type,
+                        name,
+                        message,
+                        country_code,
+                        helpful_count,
+                        status,
+                        created_at
+
+                    FROM
+                        tool_feedback
+
+                    WHERE
+                        id = ?
+
+                    LIMIT 1
+                `)
+                .bind(id)
+                .all();
+
+
+            if (
+                !results.length
+            ) {
+
+                return this.json({
+
+                    success: false,
+
+                    message:
+                        "Feedback not found."
+
+                }, 404);
+
+            }
+
+
+            return this.json({
+
+                success: true,
+
+                feedback:
+                    results[0]
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
+            );
+
+        }
+
+    },
+
+// ==================================================
+// MARK FEEDBACK AS HELPFUL
+// ==================================================
+
+async markFeedbackHelpful(
+    id,
+    env
+) {
+
+    try {
+
+        // ------------------------------------------
+        // Validate ID
+        // ------------------------------------------
+
+        const numericId =
+            Number(id);
+
+
+        if (
+            !Number.isInteger(
+                numericId
+            ) ||
+            numericId <= 0
+        ) {
+
+            return this.json({
+
+                success: false,
+
+                message:
+                    "Invalid feedback ID."
+
+            }, 400);
+
+        }
+
+
+        // ------------------------------------------
+        // Check feedback exists
+        // ------------------------------------------
+
+        const {
+            results
+        } = await env.DB
+            .prepare(`
+                SELECT
+                    id,
+                    helpful_count,
+                    status
+
+                FROM
+                    tool_feedback
+
+                WHERE
+                    id = ?
+
+                LIMIT 1
             `)
+            .bind(numericId)
             .all();
+
+
+        if (
+            !results.length
+        ) {
+
+            return this.json({
+
+                success: false,
+
+                message:
+                    "Feedback not found."
+
+            }, 404);
+
+        }
+
+
+        // ------------------------------------------
+        // Only published reviews
+        // ------------------------------------------
+
+        if (
+            results[0].status !== "published"
+        ) {
+
+            return this.json({
+
+                success: false,
+
+                message:
+                    "This feedback is not available."
+
+            }, 404);
+
+        }
+
+
+        // ------------------------------------------
+        // Increment helpful count
+        // ------------------------------------------
+
+        await env.DB
+            .prepare(`
+                UPDATE
+                    tool_feedback
+
+                SET
+                    helpful_count =
+                        helpful_count + 1
+
+                WHERE
+                    id = ?
+            `)
+            .bind(numericId)
+            .run();
+
+
+        // ------------------------------------------
+        // Get updated count
+        // ------------------------------------------
+
+        const {
+            results: updated
+        } = await env.DB
+            .prepare(`
+                SELECT
+                    id,
+                    helpful_count
+
+                FROM
+                    tool_feedback
+
+                WHERE
+                    id = ?
+
+                LIMIT 1
+            `)
+            .bind(numericId)
+            .all();
+
 
         return this.json({
 
             success: true,
 
-            summary,
+            message:
+                "Feedback marked as helpful.",
 
-            tools
+            feedbackId:
+                numericId,
+
+            helpfulCount:
+                updated[0]?.helpful_count || 0
 
         });
 
@@ -175,212 +1142,121 @@ if (
 
     catch (error) {
 
-        return this.serverError(error);
+        return this.serverError(
+            error
+        );
 
     }
 
 },
 
-async incrementStatistic(
-    request,
-    env
-) {
 
-    try {
+    // ==================================================
+    // DELETE FEEDBACK
+    // ==================================================
 
-        const {
+    async deleteFeedback(
+        id,
+        request,
+        env
+    ) {
 
-            statKey
+        try {
 
-        } = await request.json();
+            // ------------------------------------------
+            // Admin authentication
+            // ------------------------------------------
 
-        if (
+            const adminKey =
+                request.headers.get(
+                    "X-Admin-Key"
+                );
 
-            !statKey
 
-        ) {
+            if (
+                !env.ADMIN_KEY ||
+                adminKey !== env.ADMIN_KEY
+            ) {
 
-            return this.json(
-
-                {
+                return this.json({
 
                     success: false,
 
                     message:
-                        "Statistic key is required."
+                        "Unauthorized."
 
-                },
-
-                400
-
-            );
-
-        }
-
-        await env.DB
-
-            .prepare(
-
-                `
-                UPDATE statistics
-                SET stat_value = stat_value + 1
-                WHERE stat_key = ?
-                `
-
-            )
-
-            .bind(
-
-                statKey
-
-            )
-
-            .run();
-
-        return this.json(
-
-            {
-
-                success: true,
-
-                statKey
+                }, 401);
 
             }
 
-        );
 
-    }
+            const result =
+                await env.DB
+                    .prepare(`
+                        DELETE FROM
+                            tool_feedback
 
-    catch (error) {
+                        WHERE
+                            id = ?
+                    `)
+                    .bind(id)
+                    .run();
 
-        return this.serverError(
 
-            error
+            if (
+                !result.meta
+                    ?.changes
+            ) {
 
-        );
-
-    }
-
-},
-
-async recordToolUsage(
-    request,
-    env
-) {
-
-    try {
-
-        const {
-
-            toolId,
-            toolName
-
-        } = await request.json();
-
-        if (
-
-            !toolId ||
-
-            !toolName
-
-        ) {
-
-            return this.json(
-
-                {
+                return this.json({
 
                     success: false,
 
                     message:
-                        "Tool ID and Tool Name are required."
+                        "Feedback not found."
 
-                },
+                }, 404);
 
-                400
+            }
 
+
+            return this.json({
+
+                success: true,
+
+                message:
+                    "Feedback deleted successfully.",
+
+                id
+
+            });
+
+        }
+
+        catch (error) {
+
+            return this.serverError(
+                error
             );
 
         }
 
-        await env.DB
+    },
 
-            .prepare(
 
-                `
-                INSERT INTO tool_usage (
-
-                    tool_id,
-                    tool_name,
-                    usage_count
-
-                )
-
-                VALUES (
-
-                    ?, ?, 1
-
-                )
-
-                ON CONFLICT(tool_id)
-
-                DO UPDATE SET
-
-                    usage_count = usage_count + 1,
-
-                    last_used = CURRENT_TIMESTAMP
-                `
-
-            )
-
-            .bind(
-
-                toolId,
-                toolName
-
-            )
-
-            .run();
-
-        return this.json(
-
-            {
-
-                success: true,
-
-                toolId
-
-            }
-
-        );
-
-    }
-
-    catch (error) {
-
-        return this.serverError(
-
-            error
-
-        );
-
-    }
-
-},
+    // ==================================================
+    // JSON RESPONSE
+    // ==================================================
 
     json(
-
         data,
-
         status = 200
-
     ) {
 
         return new Response(
 
             JSON.stringify(
-
                 data
-
             ),
 
             {
@@ -396,7 +1272,7 @@ async recordToolUsage(
                         "*",
 
                     "Access-Control-Allow-Headers":
-                        "*",
+                        "Content-Type, X-Admin-Key",
 
                     "Access-Control-Allow-Methods":
                         "GET,POST,PUT,DELETE,OPTIONS"
@@ -408,6 +1284,11 @@ async recordToolUsage(
         );
 
     },
+
+
+    // ==================================================
+    // CORS
+    // ==================================================
 
     cors() {
 
@@ -425,7 +1306,7 @@ async recordToolUsage(
                         "*",
 
                     "Access-Control-Allow-Headers":
-                        "*",
+                        "Content-Type, X-Admin-Key",
 
                     "Access-Control-Allow-Methods":
                         "GET,POST,PUT,DELETE,OPTIONS"
@@ -438,47 +1319,46 @@ async recordToolUsage(
 
     },
 
+
+    // ==================================================
+    // NOT FOUND
+    // ==================================================
+
     notFound() {
 
-        return this.json(
+        return this.json({
 
-            {
+            success: false,
 
-                success: false,
+            message:
+                "Endpoint not found."
 
-                message:
-
-                    "Endpoint not found."
-
-            },
-
-            404
-
-        );
+        }, 404);
 
     },
 
+
+    // ==================================================
+    // SERVER ERROR
+    // ==================================================
+
     serverError(error) {
 
-        return this.json(
-
-            {
-
-                success: false,
-
-                message:
-
-                    error.message
-
-            },
-
-            500
-
+        console.error(
+            "[ToolXone Worker Error]",
+            error
         );
 
-        
+
+        return this.json({
+
+            success: false,
+
+            message:
+                "Internal server error."
+
+        }, 500);
+
     }
 
-    
 };
-

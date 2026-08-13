@@ -21,21 +21,21 @@ const FeedbackAPI = {
     async submit(data) {
 
         return APIClient.post(
-
             BackendConfig.ENDPOINTS.FEEDBACK,
-
             data
-
         );
 
     },
 
-    async getAll() {
+    async getAll(toolId = null) {
+
+        const endpoint =
+            toolId
+                ? `${BackendConfig.ENDPOINTS.FEEDBACK}?toolId=${encodeURIComponent(toolId)}`
+                : BackendConfig.ENDPOINTS.FEEDBACK;
 
         return APIClient.get(
-
-            BackendConfig.ENDPOINTS.FEEDBACK
-
+            endpoint
         );
 
     },
@@ -43,19 +43,23 @@ const FeedbackAPI = {
     async getById(id) {
 
         return APIClient.get(
-
             `${BackendConfig.ENDPOINTS.FEEDBACK}/${id}`
-
         );
 
     },
 
+        async helpful(id) {
+
+        return APIClient.post(
+            `${BackendConfig.ENDPOINTS.FEEDBACK}/${id}/helpful`
+        );
+
+    },
+    
     async delete(id) {
 
         return APIClient.delete(
-
             `${BackendConfig.ENDPOINTS.FEEDBACK}/${id}`
-
         );
 
     }

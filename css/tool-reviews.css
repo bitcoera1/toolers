@@ -350,6 +350,32 @@
 
 }
 
+
+/*=========================================================
+  Reviewer Country Flag
+=========================================================*/
+
+.tx-review-country-flag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-left:8px;
+
+    font-size:1rem;
+
+    line-height:1;
+
+    vertical-align:middle;
+
+    cursor:default;
+
+}
+
+
 .tx-review-user span{
 
     color:#94a3b8;
@@ -443,7 +469,117 @@ body:not(.dark-mode) .tx-review-section{
     border:1px solid #e5e7eb;
 
     box-shadow:
-        0 16px 40px rgba(15,23,42,.08);
+        0 12px 35px rgba(15,23,42,.08);
+
+}
+
+
+/* Review Summary Card */
+
+body:not(.dark-mode) .tx-review-score{
+
+    background:#f8fafc;
+
+    color:#1f2937;
+
+    border:1px solid #e5e7eb;
+
+}
+
+
+/* Individual Review Cards */
+
+body:not(.dark-mode) .tx-review-card{
+
+    background:#ffffff;
+
+    color:#1f2937;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.08);
+
+}
+
+
+/* Reviewer Name */
+
+body:not(.dark-mode) .tx-review-user h4{
+
+    color:#1f2937;
+
+}
+
+
+/* Reviewer Metadata */
+
+body:not(.dark-mode) .tx-review-user span,
+body:not(.dark-mode) .tx-review-date{
+
+    color:#64748b;
+
+}
+
+
+/* Review Message */
+
+body:not(.dark-mode) .tx-review-message{
+
+    color:#475569;
+
+}
+
+
+/* Rating Text */
+
+body:not(.dark-mode) .tx-rating-text{
+
+    color:#475569;
+
+}
+
+
+/* Rating Bar Background */
+
+body:not(.dark-mode) .tx-rating-bar{
+
+    background:#e2e8f0;
+
+}
+
+
+/* Helpful Button */
+
+body:not(.dark-mode) .tx-review-helpful{
+
+    background:#f1f5f9;
+
+    color:#1f2937;
+
+    border:1px solid #e2e8f0;
+
+}
+
+
+/* Helpful Hover */
+
+body:not(.dark-mode) .tx-review-helpful:hover{
+
+    background:#10b981;
+
+    color:#ffffff;
+
+    border-color:#10b981;
+
+}
+
+
+/* Country Flag */
+
+body:not(.dark-mode) .tx-review-country-flag{
+
+    opacity:1;
 
 }
 
