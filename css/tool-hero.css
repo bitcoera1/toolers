@@ -967,3 +967,101 @@ body.dark-mode .tx-tool-description{
     }
 
 }
+
+/* ==========================================================
+   ToolXone Hero Preview Image
+   Constrain generated tool preview images
+========================================================== */
+
+.tx-tool-hero-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.tx-tool-hero-preview-content {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.tx-tool-hero-preview-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 430px;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+/* ==========================================================
+   Preview Text
+========================================================== */
+
+.tx-hero-preview-title {
+    margin-top: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tx-hero-preview-description {
+    margin-top: 6px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* ==========================================================
+   Mobile
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .tx-tool-hero-preview {
+        width: 100%;
+    }
+
+    .tx-tool-hero-preview-image {
+        width: 100%;
+        max-width: 100%;
+        max-height: 320px;
+    }
+
+}
+
+/* ==========================================================
+   ToolXone Hero Preview — Image Containment Fix
+========================================================== */
+
+.tx-tool-hero-preview {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tx-tool-hero-preview img {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+    max-height: 430px;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    margin: 0 auto !important;
+}

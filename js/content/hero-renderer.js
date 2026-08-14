@@ -141,6 +141,114 @@ ${escapeHTML(item)}
 }
 
 /*==========================================================
+Render Hero Preview
+==========================================================*/
+
+function renderPreview(preview){
+
+    if(!preview){
+
+        return "";
+
+    }
+
+    /*------------------------------------------------------
+      Legacy / Existing HTML Preview
+    ------------------------------------------------------*/
+
+    if(typeof preview === "string"){
+
+        return preview;
+
+    }
+
+    /*------------------------------------------------------
+      Object-Based Preview
+    ------------------------------------------------------*/
+
+    if(typeof preview === "object"){
+
+        const image = preview.image || "";
+
+        const title =
+            preview.title || "";
+
+        const description =
+            preview.description || "";
+
+        const icon =
+            preview.icon || "";
+
+        return `
+
+            <div class="tx-hero-preview-content">
+
+                ${
+                    image
+                    ?
+                    `
+                    <img
+                        src="${escapeHTML(image.src || image)}"
+                        alt="${escapeHTML(
+                            image.alt ||
+                            title ||
+                            "ToolXone Tool Preview"
+                        )}"
+                        class="tx-hero-preview-image"
+                        loading="eager"
+                    >
+                    `
+                    :
+                    ""
+                }
+
+                ${
+                    !image && icon
+                    ?
+                    `
+                    <div class="tx-hero-preview-icon">
+                        ${escapeHTML(icon)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                ${
+                    title
+                    ?
+                    `
+                    <div class="tx-hero-preview-title">
+                        ${escapeHTML(title)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                ${
+                    description
+                    ?
+                    `
+                    <div class="tx-hero-preview-description">
+                        ${escapeHTML(description)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+    }
+
+    return "";
+
+}
+
+/*==========================================================
 Build Hero HTML
 ==========================================================*/
 
@@ -264,9 +372,9 @@ return `
 
     <div class="tx-tool-hero-preview">
 
-        ${hero.preview || ""}
+    ${renderPreview(hero.preview)}
 
-    </div>
+</div>
 
 </div>
 

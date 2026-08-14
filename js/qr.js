@@ -196,3 +196,77 @@ function addEnterSupport() {
 }
 
 addEnterSupport();
+
+/* ==========================================================
+   HERO ACTION HANDLER
+   QR Code Generator
+========================================================== */
+
+document.addEventListener("click", function (event) {
+
+    const button =
+        event.target.closest(
+            "[data-hero-action]"
+        );
+
+    if (!button) {
+        return;
+    }
+
+    const action =
+        button.dataset.heroAction;
+
+    /* ------------------------------------------------------
+       Generate QR Code
+    ------------------------------------------------------ */
+
+    if (action === "start-calculating") {
+
+        const qrCard =
+            document.querySelector(".qr-card");
+
+        if (qrCard) {
+
+            qrCard.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+        setTimeout(function () {
+
+            const qrType =
+                document.getElementById("qrType");
+
+            if (qrType) {
+
+                qrType.focus();
+
+            }
+
+        }, 500);
+
+    }
+
+    /* ------------------------------------------------------
+       Learn More
+    ------------------------------------------------------ */
+
+    if (action === "learn-more") {
+
+        const article =
+            document.getElementById("financeInfo");
+
+        if (article) {
+
+            article.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    }
+
+});
