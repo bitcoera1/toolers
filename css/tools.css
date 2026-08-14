@@ -298,8 +298,7 @@ body.dark-mode .tool-card{
     background:#ffffff;
     padding:14px 18px;
     box-shadow:0 3px 12px rgba(0,0,0,.10);
-    position:sticky;
-    top:0;
+    position:static;
     z-index:2000;
 }
 
@@ -662,16 +661,20 @@ body.dark-mode .footer-bottom{
     border-top:1px solid rgba(255,255,255,.12);
 
 }
+
 /* ==========================
    STICKY NAVBAR
 ========================== */
 
 #navbar{
-    position:sticky;
+    position:fixed;
     top:0;
+    left:0;
+    width:100%;
     z-index:9999;
     box-shadow:0 6px 20px rgba(0,0,0,.12);
 }
+
 /* ==================================================
    TOOLXONE MOBILE NAVBAR v3.0
    Sticky brand + search + hamburger

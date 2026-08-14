@@ -30,13 +30,35 @@ const configuration = {
 
     autoInitialize : true,
 
+actions : {
+
     /*
-    ---------------------------------------------------------
-    Tool-specific action targets
-    ---------------------------------------------------------
+    =========================================================
+      Universal Default Action Targets
+    =========================================================
+
+      Most ToolXone calculator/converter pages use the
+      standard calculator section and finance information
+      section.
+
+      Individual tools can override these defaults below.
+    =========================================================
     */
 
-    actions : {
+    default : {
+
+        startCalculating : ".tx-calculator-section",
+
+        learnMore : "#financeInfo"
+
+    },
+
+
+    /*
+    =========================================================
+      Tool-Specific Overrides
+    =========================================================
+    */
 
     basic : {
 
@@ -46,6 +68,7 @@ const configuration = {
 
     },
 
+
     scientific : {
 
         startCalculating : ".scientific-card",
@@ -53,6 +76,7 @@ const configuration = {
         learnMore : "#financeInfo"
 
     },
+
 
     "scientific-calculator" : {
 
@@ -62,6 +86,7 @@ const configuration = {
 
     },
 
+
     "bmi-calculator" : {
 
         startCalculating : ".bmi-card",
@@ -70,12 +95,21 @@ const configuration = {
 
     },
 
+
     "currency" : {
 
         startCalculating : ".tool-page .container",
 
         learnMore : "#financeInfo"
 
+    },
+
+    "weight-converter" : {
+    
+        startCalculating : ".tool-area",
+    
+        learnMore : "#financeInfo"
+    
     }
 
 }
@@ -127,7 +161,33 @@ function getToolActions(tool){
 
     }
 
-    return configuration.actions[tool] || null;
+    /*
+    =========================================================
+      Tool-Specific Configuration
+    =========================================================
+
+      If a tool has its own configuration, use it.
+    =========================================================
+    */
+
+    if(configuration.actions[tool]){
+
+        return configuration.actions[tool];
+
+    }
+
+
+    /*
+    =========================================================
+      Universal Default Configuration
+    =========================================================
+
+      Tools without a special configuration automatically
+      receive the standard ToolXone Hero actions.
+    =========================================================
+    */
+
+    return configuration.actions.default || null;
 
 }
 
