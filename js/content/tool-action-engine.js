@@ -60,6 +60,22 @@ const configuration = {
 
         learnMore : "#financeInfo"
 
+    },
+
+    "bmi-calculator" : {
+
+        startCalculating : ".bmi-card",
+
+        learnMore : "#financeInfo"
+
+    },
+
+    "currency" : {
+
+        startCalculating : ".tool-page .container",
+
+        learnMore : "#financeInfo"
+
     }
 
 }
@@ -175,13 +191,43 @@ function scrollTo(selector){
 
     }
 
-    element.scrollIntoView({
+    /*
+    ---------------------------------------------------------
+    Sticky navigation offset
+    ---------------------------------------------------------
+    ToolXone navbar uses position: sticky.
+
+    scrollIntoView() places the target at viewport top,
+    which can hide it underneath the sticky navbar.
+
+    Measure the navbar dynamically instead of using
+    a hard-coded height.
+    ---------------------------------------------------------
+    */
+
+    const navbar =
+        document.getElementById("navbar");
+
+    const navbarHeight =
+        navbar
+            ? navbar.getBoundingClientRect().height
+            : 0;
+
+    const scrollGap = 16;
+
+    const targetY =
+        element.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight -
+        scrollGap;
+
+    window.scrollTo({
+
+        top: Math.max(0, targetY),
 
         behavior : configuration.smooth
             ? "smooth"
-            : "auto",
-
-        block : "start"
+            : "auto"
 
     });
 

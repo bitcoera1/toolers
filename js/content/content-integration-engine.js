@@ -296,18 +296,14 @@ Related
 =========================================================*/
 
 if (
-
-    related &&
-
     this.modules.relatedRenderer
-
 ){
 
     this.modules.relatedRenderer.renderInto(
-    "#relatedTools",
-    related,
-    tool
-);
+        "#relatedTools",
+        related || [],
+        tool
+    );
 
     this.statistics.renderedSections++;
 

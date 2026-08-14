@@ -2,7 +2,7 @@
 ==========================================================
  ToolXone FAQ Loader
  Dynamic FAQ Loading Platform
- Version: 2.0.0
+ Version: 2.1.0
 ==========================================================
 */
 
@@ -14,9 +14,12 @@
  Constants
 =========================================================*/
 
-const LOADER_NAME = "ToolXone FAQ Loader";
+const LOADER_NAME =
+    "ToolXone FAQ Loader";
 
-const LOADER_VERSION = "2.0.0";
+const LOADER_VERSION =
+    "2.1.0";
+
 
 /*=========================================================
  Configuration
@@ -24,7 +27,7 @@ const LOADER_VERSION = "2.0.0";
 
 const configuration = {
 
-    autoInitialize : true,
+    autoInitialize : false,
 
     cacheFAQs : true,
 
@@ -33,6 +36,7 @@ const configuration = {
     debug : false
 
 };
+
 
 /*=========================================================
  State
@@ -54,11 +58,13 @@ const state = {
 
 };
 
+
 /*=========================================================
  Cache
 =========================================================*/
 
 const cache = new Map();
+
 
 /*=========================================================
  Statistics
@@ -78,6 +84,7 @@ const statistics = {
 
 };
 
+
 /*=========================================================
  Debug Logger
 =========================================================*/
@@ -86,10 +93,15 @@ function log(...message){
 
     if(configuration.debug){
 
-        
+        console.log(
+            "[FAQ Loader]",
+            ...message
+        );
+
     }
 
 }
+
 
 /*=========================================================
  Discover FAQs
@@ -97,54 +109,74 @@ function log(...message){
 
 function discover(){
 
-    if(!window.ToolXoneContentRegistry){
+    if(
+        !window.ToolXoneContentRegistry
+    ){
 
         return [];
 
     }
 
     return window.ToolXoneContentRegistry.list(
-
         "faq"
-
     );
 
 }
 
+
 /*=========================================================
- Fetch FAQ
+ Fetch External FAQ
+ ---------------------------------------------------------
+ Legacy compatibility only.
 =========================================================*/
 
 async function fetchFAQ(path){
 
-    log("Loading:", path);
-
-    try{
-
-    const response = await fetch(path);
-
-    if(!response.ok){
+    if(
+        typeof path !== "string" ||
+        !path.trim()
+    ){
 
         throw new Error(
-            "Unable to load FAQ: " + path
+            "Invalid FAQ path."
         );
 
     }
 
-    return await response.text();
-
-}
-
-catch(error){
-
-    throw new Error(
-        "FAQ fetch failed: " +
-        error.message
+    log(
+        "Loading external FAQ:",
+        path
     );
 
-}
+    try{
+
+        const response =
+            await fetch(path);
+
+        if(!response.ok){
+
+            throw new Error(
+                "Unable to load FAQ: " +
+                path
+            );
+
+        }
+
+        return await response.text();
+
+    }
+
+    catch(error){
+
+        throw new Error(
+            "FAQ fetch failed: " +
+            error.message
+        );
+
+    }
 
 }
+
 
 /*=========================================================
  Validation
@@ -152,15 +184,63 @@ catch(error){
 
 function validate(content){
 
-    return (
+    /*-----------------------------------------------------
+      Legacy external FAQ
+    -----------------------------------------------------*/
 
-        typeof content === "string" &&
+    if(
+        typeof content === "string"
+    ){
 
-        content.trim().length > 0
+        return (
+            content.trim().length > 0
+        );
 
+    }
+
+
+    /*-----------------------------------------------------
+      Current structured FAQ
+    -----------------------------------------------------*/
+
+    if(
+        !Array.isArray(content)
+    ){
+
+        return false;
+
+    }
+
+
+    return content.every(
+        item => {
+
+            if(
+                typeof item !== "object" ||
+                item === null
+            ){
+
+                return false;
+
+            }
+
+            return (
+
+                typeof item.question === "string" &&
+
+                item.question.trim().length > 0 &&
+
+                typeof item.answer === "string" &&
+
+                item.answer.trim().length > 0
+
+            );
+
+        }
     );
 
 }
+
 
 /*=========================================================
  Cache Manager
@@ -168,17 +248,24 @@ function validate(content){
 
 function saveCache(id, content){
 
-    cache.set(id, content);
+    cache.set(
+        id,
+        content
+    );
 
     state.cached++;
 
 }
 
+
 function getCache(id){
 
-    return cache.get(id) || null;
+    return cache.has(id)
+        ? cache.get(id)
+        : null;
 
 }
+
 
 function clearCache(){
 
@@ -188,79 +275,165 @@ function clearCache(){
 
 }
 
+
 /*=========================================================
  Load Single FAQ
 =========================================================*/
 
 async function load(id){
 
-    if(configuration.cacheFAQs){
+    /*-----------------------------------------------------
+      Cache
+    -----------------------------------------------------*/
 
-        const cached = getCache(id);
+    if(
+        configuration.cacheFAQs &&
+        cache.has(id)
+    ){
 
-        if(cached){
+        statistics.cacheHits++;
 
-            statistics.cacheHits++;
-
-            return cached;
-
-        }
+        return getCache(id);
 
     }
+
 
     statistics.cacheMisses++;
 
-    const faq = window.ToolXoneContentRegistry.get(
 
-        "faq",
-
-        id
-
-    );
-
-    if(!faq){
-
-        return null;
-
-    }
-
-    const content = await fetchFAQ(
-
-        faq.path
-
-    );
+    /*-----------------------------------------------------
+      Registry
+    -----------------------------------------------------*/
 
     if(
-
-        configuration.validateFAQs &&
-
-        !validate(content)
-
+        !window.ToolXoneContentRegistry
     ){
 
         throw new Error(
-
-            "Invalid FAQ: " + id
-
+            "ToolXone Content Registry unavailable."
         );
 
     }
 
-    saveCache(
 
-        id,
+    const faq =
+        window.ToolXoneContentRegistry.get(
+            "faq",
+            id
+        );
 
-        content
 
+    if(!faq){
+
+        throw new Error(
+            "FAQ not registered: " + id
+        );
+
+    }
+
+
+    /*=====================================================
+      CURRENT TOOLXONE STRUCTURED FAQ
+      -----------------------------------------------------
+      Example:
+
+      [
+          {
+              question: "...",
+              answer: "..."
+          }
+      ]
+    =====================================================*/
+
+    if(
+        Array.isArray(faq)
+    ){
+
+        if(
+            configuration.validateFAQs &&
+            !validate(faq)
+        ){
+
+            throw new Error(
+                "Invalid structured FAQ: " + id
+            );
+
+        }
+
+
+        saveCache(
+            id,
+            faq
+        );
+
+        state.loaded++;
+
+        statistics.successfulLoads++;
+
+        return faq;
+
+    }
+
+
+    /*=====================================================
+      LEGACY EXTERNAL FAQ
+      -----------------------------------------------------
+      Example:
+
+      {
+          path: "content/example-faq.md"
+      }
+    =====================================================*/
+
+    if(
+        typeof faq === "object" &&
+        faq !== null &&
+        typeof faq.path === "string" &&
+        faq.path.trim()
+    ){
+
+        const content =
+            await fetchFAQ(
+                faq.path
+            );
+
+
+        if(
+            configuration.validateFAQs &&
+            !validate(content)
+        ){
+
+            throw new Error(
+                "Invalid external FAQ: " + id
+            );
+
+        }
+
+
+        saveCache(
+            id,
+            content
+        );
+
+        state.loaded++;
+
+        statistics.successfulLoads++;
+
+        return content;
+
+    }
+
+
+    /*-----------------------------------------------------
+      Invalid registration
+    -----------------------------------------------------*/
+
+    throw new Error(
+        "Invalid FAQ registration: " + id
     );
 
-    state.loaded++;
-
-    statistics.successfulLoads++;
-
-    return content;
-
 }
+
 
 /*=========================================================
  Load All FAQs
@@ -270,15 +443,22 @@ async function loadAll(){
 
     const ids = discover();
 
-    statistics.totalFAQs = ids.length;
+    statistics.totalFAQs =
+        ids.length;
 
-    if(ids.length === 0){
+
+    if(
+        ids.length === 0
+    ){
 
         return;
 
     }
 
-    for(const id of ids){
+
+    for(
+        const id of ids
+    ){
 
         try{
 
@@ -292,13 +472,17 @@ async function loadAll(){
 
             statistics.failedLoads++;
 
-            console.error(error);
+            console.error(
+                "[FAQ Loader]",
+                error
+            );
 
         }
 
     }
 
 }
+
 
 /*=========================================================
  Refresh
@@ -312,6 +496,7 @@ async function refresh(){
 
     clearCache();
 
+
     statistics.totalFAQs = 0;
 
     statistics.successfulLoads = 0;
@@ -322,11 +507,14 @@ async function refresh(){
 
     statistics.cacheMisses = 0;
 
-    await loadAll();
 
-    state.lastUpdated = Date.now();
+    state.initialized = false;
+
+
+    await initialize();
 
 }
+
 
 /*=========================================================
  Initialize
@@ -335,28 +523,59 @@ async function refresh(){
 async function initialize(){
 
     if(
+        state.initialized ||
+        state.loading
+    ){
 
-    state.initialized ||
+        return;
 
-    state.loading
+    }
 
-){
-
-    return;
-
-}
 
     state.loading = true;
 
-    await loadAll();
 
-    state.loading = false;
+    try{
 
-    state.initialized = true;
+        await loadAll();
 
-    state.lastUpdated = Date.now();
+        state.initialized = true;
+
+        state.lastUpdated =
+            Date.now();
+
+    }
+
+    finally{
+
+        state.loading = false;
+
+    }
 
 }
+
+
+/*=========================================================
+ Exists
+=========================================================*/
+
+function exists(id){
+
+    if(
+        !window.ToolXoneContentRegistry
+    ){
+
+        return false;
+
+    }
+
+    return !!window.ToolXoneContentRegistry.get(
+        "faq",
+        id
+    );
+
+}
+
 
 /*=========================================================
  Information
@@ -366,9 +585,11 @@ function info(){
 
     return {
 
-        name : LOADER_NAME,
+        name :
+            LOADER_NAME,
 
-        version : LOADER_VERSION,
+        version :
+            LOADER_VERSION,
 
         configuration,
 
@@ -380,6 +601,7 @@ function info(){
 
 }
 
+
 /*=========================================================
  Report
 =========================================================*/
@@ -387,14 +609,28 @@ function info(){
 function report(){
 
     console.group(
+        "❓ " + LOADER_NAME
+    );
 
-        LOADER_NAME
+    console.log(
+        "Version:",
+        LOADER_VERSION
+    );
 
+    console.log(
+        "State:",
+        state
+    );
+
+    console.log(
+        "Statistics:",
+        statistics
     );
 
     console.groupEnd();
 
 }
+
 
 /*=========================================================
  Public API
@@ -402,9 +638,11 @@ function report(){
 
 window.ToolXoneFAQLoader = {
 
-    name : LOADER_NAME,
+    name :
+        LOADER_NAME,
 
-    version : LOADER_VERSION,
+    version :
+        LOADER_VERSION,
 
     configuration,
 
@@ -422,6 +660,8 @@ window.ToolXoneFAQLoader = {
 
     loadAll,
 
+    exists,
+
     validate,
 
     report,
@@ -434,8 +674,14 @@ window.ToolXoneFAQLoader = {
 
 };
 
+
 /*=========================================================
- Auto Initialize
+ Initialization
+ ---------------------------------------------------------
+ Intentionally disabled here.
+
+ Content Platform / Integration Engine should control
+ initialization after all content-data files are registered.
 =========================================================*/
 
 if(configuration.autoInitialize){
@@ -443,6 +689,7 @@ if(configuration.autoInitialize){
     initialize();
 
 }
+
 
 console.info(
 

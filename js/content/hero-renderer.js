@@ -274,86 +274,6 @@ return `
 
 }
 
-/*==========================================================
-Hero CTA Actions
-==========================================================*/
-
-function bindCTAActions(){
-
-    const container = getContainer();
-
-    if(!container){
-        return;
-    }
-
-    const startButton =
-        container.querySelector(
-            '[data-hero-action="start-calculating"]'
-        );
-
-    const learnButton =
-        container.querySelector(
-            '[data-hero-action="learn-more"]'
-        );
-
-    if(startButton){
-
-    startButton.addEventListener(
-    "click",
-    function(){
-
-        const target =
-            document.querySelector(
-                ".calculator-title"
-            ) ||
-            document.querySelector(
-                ".weight-input-group"
-            ) ||
-            document.querySelector(
-                "#convertButton"
-            );
-
-        if(target){
-
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        }
-
-    }
-);
-
-}
-
-    if(learnButton){
-
-        learnButton.addEventListener(
-            "click",
-            function(){
-
-                const information =
-                    document.getElementById(
-                        "financeInfo"
-                    );
-
-                if(information){
-
-                    information.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-
-            }
-        );
-
-    }
-
-}
-
 
 /*==========================================================
 Render Hero
@@ -382,8 +302,6 @@ function render(tool){
     }
 
     container.innerHTML = buildHero(hero);
-
-    bindCTAActions();
 
     state.currentTool = tool;
 

@@ -26,24 +26,21 @@ const StatisticsService = {
 
     async incrementToolAction() {
 
-        return StatisticsAPI.increment(
-            "tool_actions"
-        );
+    return StatisticsAPI.increment(
+        "tool_actions"
+    );
 
-    },
+},
 
-    
-    async incrementCalculation() {
+async incrementCalculation() {
 
-        await StatisticsAPI.increment(
-            "calculations"
-        );
+    return StatisticsAPI.increment(
+        "calculations"
+    );
 
-        await this.incrementToolAction();
+},
 
-    },
-
-    async incrementUtility() {
+async incrementUtility() {
 
     return StatisticsAPI.increment(
         "utilities"
@@ -51,178 +48,183 @@ const StatisticsService = {
 
 },
 
-    async incrementConversion() {
+async incrementConversion() {
 
-        await StatisticsAPI.increment(
-            "conversions"
-        );
+    return StatisticsAPI.increment(
+        "conversions"
+    );
 
-        await this.incrementToolAction();
+},
 
-    },
+async incrementFinanceTool() {
 
-    async incrementFinanceTool() {
+    return StatisticsAPI.increment(
+        "finance_tools"
+    );
 
-        await StatisticsAPI.increment(
-            "finance_tools"
-        );
+},
 
-        await this.incrementToolAction();
+async incrementHealthTool() {
 
-    },
+    return StatisticsAPI.increment(
+        "health_tools"
+    );
 
-    async incrementHealthTool() {
+},
 
-        await StatisticsAPI.increment(
-            "health_tools"
-        );
+async incrementQRCode() {
 
-        await this.incrementToolAction();
+    return StatisticsAPI.increment(
+        "qr_codes"
+    );
 
-    },
+},
 
-    async incrementQRCode() {
+async incrementAIBanner() {
 
-        await StatisticsAPI.increment(
-            "qr_codes"
-        );
+    return StatisticsAPI.increment(
+        "ai_banners"
+    );
 
-        await this.incrementToolAction();
+},
 
-    },
+async incrementPDFTool() {
 
-    async incrementAIBanner() {
+    return StatisticsAPI.increment(
+        "pdf_tools"
+    );
 
-        await StatisticsAPI.increment(
-            "ai_banners"
-        );
+},
 
-        await this.incrementToolAction();
+async incrementTextTool() {
 
-    },
+    return StatisticsAPI.increment(
+        "text_tools"
+    );
 
-    async incrementPDFTool() {
-
-        await StatisticsAPI.increment(
-            "pdf_tools"
-        );
-
-        await this.incrementToolAction();
-
-    },
-
-    async incrementTextTool() {
-
-        await StatisticsAPI.increment(
-            "text_tools"
-        );
-
-        await this.incrementToolAction();
-
-    },
+},
 
     async recordTool(toolId) {
 
     const tool = ToolXoneToolsRegistry.find(
-
         item => item.id === toolId
-
     );
 
     if (!tool) {
 
         console.warn(
-
             "Statistics Router: Unknown tool:",
-
             toolId
-
         );
 
-        
         return;
 
     }
 
-    await StatisticsAPI.recordTool(
-    tool.id,
-    tool.name
-);
+    /*
+    ----------------------------------------
+    Record individual tool usage
+    ----------------------------------------
+    */
 
-    const statisticsCategory = tool.statisticsCategory;
+    await StatisticsAPI.recordTool(
+        tool.id,
+        tool.name
+    );
+
+    /*
+    ----------------------------------------
+    Determine statistics category
+    ----------------------------------------
+    */
+
+    const statisticsCategory =
+        tool.statisticsCategory;
+
+    /*
+    ----------------------------------------
+    Category statistics
+    ----------------------------------------
+    */
 
     switch (statisticsCategory) {
 
-    case "calculator":
+        case "calculator":
 
-        await this.incrementCalculation();
+            await this.incrementCalculation();
 
-        break;
+            break;
 
-    case "finance":
+        case "finance":
 
-        await this.incrementCalculation();
+            await this.incrementCalculation();
 
-        await this.incrementFinanceTool();
+            await this.incrementFinanceTool();
 
-        break;
+            break;
 
-    case "health":
+        case "health":
 
-        await this.incrementCalculation();
+            await this.incrementCalculation();
 
-        await this.incrementHealthTool();
+            await this.incrementHealthTool();
 
-        break;
+            break;
 
-    case "converter":
+        case "converter":
 
-        await this.incrementConversion();
+            await this.incrementConversion();
 
-        break;
+            break;
 
-    case "utility":
+        case "utility":
 
-    await this.incrementUtility();
+            await this.incrementUtility();
+
+            break;
+
+        case "qr":
+
+            await this.incrementQRCode();
+
+            break;
+
+        case "ai":
+
+            await this.incrementAIBanner();
+
+            break;
+
+        case "pdf":
+
+            await this.incrementPDFTool();
+
+            break;
+
+        case "text":
+
+            await this.incrementTextTool();
+
+            break;
+
+        default:
+
+            console.warn(
+                "Statistics Router: Unknown statistics category:",
+                statisticsCategory
+            );
+
+            return;
+
+    }
+
+    /*
+    ----------------------------------------
+    EXACTLY ONE tool action
+    ----------------------------------------
+    */
+
     await this.incrementToolAction();
-
-    break;
-
-    case "qr":
-
-        await this.incrementQRCode();
-
-        break;
-
-    case "ai":
-
-        await this.incrementAIBanner();
-
-        break;
-
-    case "pdf":
-
-        await this.incrementPDFTool();
-
-        break;
-
-    case "text":
-
-        await this.incrementTextTool();
-
-        break;
-
-    default:
-
-        console.warn(
-
-            "Statistics Router: Unknown statistics category:",
-
-            statisticsCategory
-
-        );
-
-}
 
 },
 

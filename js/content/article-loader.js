@@ -112,15 +112,46 @@ async function fetchArticle(path){
 
 function validate(content){
 
-    return (
+    /*=====================================================
+      Markdown Article
+    =====================================================*/
 
-        typeof content === "string" &&
+    if(typeof content === "string"){
 
-        content.trim().length > 0
+        return content.trim().length > 0;
 
-    );
+    }
+
+
+    /*=====================================================
+      Structured Registry Article
+    =====================================================*/
+
+    if(
+
+        typeof content === "object" &&
+
+        content !== null
+
+    ){
+
+        return (
+
+            typeof content.title === "string" &&
+
+            content.title.trim().length > 0 &&
+
+            Array.isArray(content.sections)
+
+        );
+
+    }
+
+
+    return false;
 
 }
+
 
 function saveCache(id, content){
 
@@ -139,6 +170,10 @@ function getCache(id){
 
 async function load(id){
 
+    /*=====================================================
+      CACHE
+    =====================================================*/
+
     if(configuration.cacheArticles){
 
         const cached = getCache(id);
@@ -155,15 +190,17 @@ async function load(id){
 
     statistics.cacheMisses++;
 
+
+    /*=====================================================
+      GET REGISTERED ARTICLE
+    =====================================================*/
+
     const article =
-
         window.ToolXoneContentRegistry.get(
-
             "articles",
-
             id
-
         );
+
 
     if(!article){
 
@@ -171,41 +208,93 @@ async function load(id){
 
     }
 
-    const markdown =
 
-        await fetchArticle(
-
-            article.path
-
-        );
+    /*=====================================================
+      INLINE REGISTRY ARTICLE
+      -----------------------------------------------------
+      Current ToolXone Content Platform architecture
+    =====================================================*/
 
     if(
 
-        !validate(markdown)
+        typeof article === "object" &&
+
+        article !== null &&
+
+        typeof article.title === "string" &&
+
+        Array.isArray(article.sections)
 
     ){
 
-        throw new Error(
-
-            "Invalid article."
-
+        saveCache(
+            id,
+            article
         );
+
+        state.loaded++;
+
+        statistics.successfulLoads++;
+
+        return article;
 
     }
 
-    saveCache(
 
-        id,
+    /*=====================================================
+      LEGACY EXTERNAL MARKDOWN ARTICLE
+      -----------------------------------------------------
+      Backward compatibility
+    =====================================================*/
 
-        markdown
+    if(
 
+        typeof article === "object" &&
+
+        typeof article.path === "string" &&
+
+        article.path.trim()
+
+    ){
+
+        const markdown =
+            await fetchArticle(
+                article.path
+            );
+
+
+        if(
+            !validate(markdown)
+        ){
+
+            throw new Error(
+                "Invalid article."
+            );
+
+        }
+
+
+        saveCache(
+            id,
+            markdown
+        );
+
+        state.loaded++;
+
+        statistics.successfulLoads++;
+
+        return markdown;
+
+    }
+
+
+    /*=====================================================
+      INVALID ARTICLE
+    =====================================================*/
+
+    throw new Error(
+        "Invalid article registration: " + id
     );
-
-    state.loaded++;
-
-    statistics.successfulLoads++;
-
-    return markdown;
 
 }
 

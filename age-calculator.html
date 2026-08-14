@@ -29,35 +29,43 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
-<link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/age-calculator.css">
-<link rel="stylesheet" href="css/feedback.css">
+<!-- ======================================================
+     Core Framework
+====================================================== -->
 
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":"Age Calculator",
-  "applicationCategory":"UtilitiesApplication",
-  "operatingSystem":"Any",
-  "url":"https://www.toolxone.com/age-calculator.html",
-  "description":"Free online age calculator to calculate exact age in years, months, weeks, days, hours, minutes and seconds.",
-  "offers":{
-    "@type":"Offer",
-    "price":"0",
-    "priceCurrency":"USD"
-  },
-  "publisher":{
-    "@type":"Organization",
-    "name":"ToolXone",
-    "url":"https://www.toolxone.com"
-  }
-}
-</script>
+<link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
+<link rel="stylesheet" href="css/age-calculator.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link rel="stylesheet" href="css/validation.css">
+
 
 </head>
 
-<body data-tool="age">
+<body data-tool="age-calculator">
+
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" alt="ToolXone Logo" class="site-logo">
     <p>Free Online Calculators, Converters & Utility Tools</p>
@@ -66,7 +74,20 @@
 
 <div id="navbar"></div>
 
-<main class="tool-area">
+
+<!-- ============================================= -->
+<!-- ToolXone Shared Hero                         -->
+<!-- ============================================= -->
+
+<section
+    id="toolHero"
+    class="tx-hero-section">
+</section>
+
+<div class="tool-page">
+
+
+<main class="tool-area tx-calculator-section">
 
     <div class="age-card">
 
@@ -137,15 +158,6 @@
             Reset
         </button>
 
-        <div
-            class="age-result"
-            id="ageResult"
-            aria-live="polite">
-        </div>
-
-    </div>
-
-</main>
 
                 <div class="age-result" id="ageResult"></div>
     </div>
@@ -156,7 +168,12 @@
 </section>
 
 <div id="financeInfo"></div>
+
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -168,6 +185,7 @@
 <script src="js/search.js"></script>
 <script src="js/tool-cards.js"></script>
 <script src="js/tools.js"></script>
+<script src="js/config/tool-identity.js"></script>
 <script src="js/finance-components.js"></script>
 
 <!-- Backend -->
@@ -188,8 +206,96 @@
 <script src="js/statistics/statistics-engine.js"></script>
 <script src="js/statistics/statistics-events.js"></script>
 <script src="js/statistics/statistics-api.js"></script>
+<script src="js/statistics/statistics-intelligence.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<!-- Tool-specific schema -->
+<script src="js/seo/schemas/age-calculator-schema.js"></script>
+
+<script>
+
+/*
+==========================================================
+ToolXone Age Calculator SEO Initialization
+==========================================================
+*/
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "AgeCalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+}
+
+</script>
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+<!-- Content Framework -->
+<script src="js/content/content-registry.js"></script>
+<script src="js/content/content-engine.js"></script>
+
+<script src="js/content/content-data-age.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/article-renderer.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+<script src="js/content/related-renderer.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+
+<!-- Hero -->
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
 
 <script src="js/age-calculator.js"></script>
 <script src="js/footer.js"></script>
@@ -203,22 +309,9 @@ renderFinanceInfo(
     "An age calculator helps you calculate your exact age in years, months and days, along with the number of days left until your next birthday."
 );
 
-renderFinanceFAQ(
-    "financeFAQ",
-    [
-        {
-            question: "What does this age calculator show?",
-            answer: "It shows your exact age in years, months and days, plus days remaining until your next birthday."
-        },
-        {
-            question: "Can I calculate age from any date of birth?",
-            answer: "Yes. You can select any valid past date of birth."
-        },
-        {
-            question: "Does it allow future dates?",
-            answer: "No. Future dates are not accepted as a valid date of birth."
-        }
-    ]
+renderToolReviews(
+    "tool-reviews",
+    "Age Calculator"
 );
 
 renderFinanceFeedback("financeFeedback", "Age Calculator");
@@ -226,4 +319,5 @@ renderFinanceFeedback("financeFeedback", "Age Calculator");
 </script>
 
 </body>
+
 </html>
