@@ -67,195 +67,518 @@ const statistics = {
 Markdown Parser
 =========================================================*/
 
-function parse(markdown){
+function parse(markdown) {
 
     statistics.parseOperations++;
 
-    if(
-
-        typeof markdown !== "string"
-
-    ){
-
+    if (typeof markdown !== "string") {
         return "";
-
     }
 
-    let html = markdown;
+    let source = markdown;
 
-    /*-----------------------------------------------------
-      Normalize Line Endings
-    -----------------------------------------------------*/
+    /* -----------------------------------------------------
+       NORMALIZE LINE ENDINGS
+    ----------------------------------------------------- */
 
-    html = html.replace(
+    source = source.replace(/\r\n/g, "\n");
+    source = source.replace(/\r/g, "\n");
 
-        /\r\n/g,
 
-        "\n"
+    /* -----------------------------------------------------
+       PROCESS MARKDOWN TEXT
+       -----------------------------------------------------
+       Important:
+       - Consecutive normal text lines become ONE paragraph.
+       - Headings remain headings.
+       - HTML blocks are never passed through paragraph
+         conversion.
+    ----------------------------------------------------- */
 
-    );
+    function processMarkdownText(text) {
 
-    /*-----------------------------------------------------
-      Headings
-    -----------------------------------------------------*/
+        const lines = text.split("\n");
+        const output = [];
 
-    html = html.replace(
+        let paragraphLines = [];
+        let blockquoteLines = [];
 
-        /^###### (.*)$/gm,
+        function flushParagraph() {
 
-        "<h6>$1</h6>"
+            if (!paragraphLines.length) {
+                return;
+            }
 
-    );
+            const paragraph = paragraphLines
+                .join(" ")
+                .replace(/\s+/g, " ")
+                .trim();
 
-    html = html.replace(
+            if (paragraph) {
+                output.push("<p>" + paragraph + "</p>");
+            }
 
-        /^##### (.*)$/gm,
+            paragraphLines = [];
+        }
 
-        "<h5>$1</h5>"
 
-    );
+        function flushBlockquote() {
 
-    html = html.replace(
+            if (!blockquoteLines.length) {
+                return;
+            }
 
-        /^#### (.*)$/gm,
+            const quote = blockquoteLines
+                .join(" ")
+                .replace(/\s+/g, " ")
+                .trim();
 
-        "<h4>$1</h4>"
+            if (quote) {
+                output.push(
+                    "<blockquote>" +
+                    quote +
+                    "</blockquote>"
+                );
+            }
 
-    );
+            blockquoteLines = [];
+        }
 
-    html = html.replace(
 
-        /^### (.*)$/gm,
+        lines.forEach(function(line) {
 
-        "<h3>$1</h3>"
+            const trimmed = line.trim();
 
-    );
 
-    html = html.replace(
+            /* ---------------------------------------------
+               EMPTY LINE
+               --------------------------------------------- */
 
-        /^## (.*)$/gm,
+            if (!trimmed) {
 
-        "<h2>$1</h2>"
+                flushParagraph();
+                flushBlockquote();
 
-    );
+                return;
+            }
 
-    html = html.replace(
 
-        /^# (.*)$/gm,
+            /* ---------------------------------------------
+               BLOCKQUOTE
+               --------------------------------------------- */
 
-        "<h1>$1</h1>"
+            if (/^>\s?/.test(trimmed)) {
 
-    );
+                flushParagraph();
 
-    /*-----------------------------------------------------
-      Bold
-    -----------------------------------------------------*/
+                blockquoteLines.push(
+                    trimmed.replace(/^>\s?/, "")
+                );
 
-    html = html.replace(
+                return;
+            }
 
-        /\*\*(.*?)\*\*/g,
 
-        "<strong>$1</strong>"
+            /* ---------------------------------------------
+               HEADINGS
+               --------------------------------------------- */
 
-    );
+            let match;
 
-    /*-----------------------------------------------------
-      Italic
-    -----------------------------------------------------*/
 
-    html = html.replace(
+            match = trimmed.match(/^###### (.*)$/);
 
-        /\*(.*?)\*/g,
+            if (match) {
 
-        "<em>$1</em>"
+                flushParagraph();
+                flushBlockquote();
 
-    );
+                output.push(
+                    "<h6>" + match[1] + "</h6>"
+                );
 
-    /*-----------------------------------------------------
-      Images
-    -----------------------------------------------------*/
+                return;
+            }
 
-    html = html.replace(
 
-        /!\[(.*?)\]\((.*?)\)/g,
+            match = trimmed.match(/^##### (.*)$/);
 
-        `<img
-        src="$2"
-        alt="$1"
-        loading="lazy">`
+            if (match) {
 
-    );
+                flushParagraph();
+                flushBlockquote();
 
-    /*-----------------------------------------------------
-      Links
-    -----------------------------------------------------*/
+                output.push(
+                    "<h5>" + match[1] + "</h5>"
+                );
 
-    html = html.replace(
+                return;
+            }
 
-        /\[(.*?)\]\((.*?)\)/g,
 
-        `<a
-        href="$2"
-        target="_blank"
-        rel="noopener noreferrer">$1</a>`
+            match = trimmed.match(/^#### (.*)$/);
 
-    );
+            if (match) {
 
-    /*-----------------------------------------------------
-      Horizontal Rule
-    -----------------------------------------------------*/
+                flushParagraph();
+                flushBlockquote();
 
-    html = html.replace(
+                output.push(
+                    "<h4>" + match[1] + "</h4>"
+                );
 
-        /^---$/gm,
+                return;
+            }
 
-        "<hr>"
 
-    );
+            match = trimmed.match(/^### (.*)$/);
 
-    /*-----------------------------------------------------
-      Blockquotes
-    -----------------------------------------------------*/
+            if (match) {
 
-    html = html.replace(
+                flushParagraph();
+                flushBlockquote();
 
-        /^> (.*)$/gm,
+                output.push(
+                    "<h3>" + match[1] + "</h3>"
+                );
 
-        "<blockquote>$1</blockquote>"
+                return;
+            }
 
-    );
 
-    /*-----------------------------------------------------
-      Paragraphs
+            match = trimmed.match(/^## (.*)$/);
 
-      IMPORTANT:
+            if (match) {
 
-      Existing HTML lines are intentionally preserved.
+                flushParagraph();
+                flushBlockquote();
 
-      This allows article content to contain controlled
-      HTML such as:
+                output.push(
+                    "<h2>" + match[1] + "</h2>"
+                );
 
-          <p>...</p>
-          <div>...</div>
-          <table>...</table>
-          <ul>...</ul>
+                return;
+            }
 
-      without the Markdown paragraph processor wrapping
-      those elements again.
 
-      Normal text lines are still converted to <p>.
-    -----------------------------------------------------*/
+            match = trimmed.match(/^# (.*)$/);
 
-    html = html.replace(
+            if (match) {
 
-        /^(?!<)(.+)$/gm,
+                flushParagraph();
+                flushBlockquote();
 
-        "<p>$1</p>"
+                output.push(
+                    "<h1>" + match[1] + "</h1>"
+                );
 
-    );
+                return;
+            }
+
+
+            /* ---------------------------------------------
+               HORIZONTAL RULE
+               --------------------------------------------- */
+
+            if (/^---+$/.test(trimmed)) {
+
+                flushParagraph();
+                flushBlockquote();
+
+                output.push("<hr>");
+
+                return;
+            }
+
+
+            /* ---------------------------------------------
+               NORMAL TEXT
+               --------------------------------------------- */
+
+            flushBlockquote();
+
+            paragraphLines.push(trimmed);
+
+        });
+
+
+        flushParagraph();
+        flushBlockquote();
+
+
+        return output.join("\n");
+    }
+
+
+    /* -----------------------------------------------------
+       EXTRACT RAW HTML BLOCKS
+       -----------------------------------------------------
+       This is the important part.
+
+       Rich ToolXone articles contain HTML such as:
+
+           <div class="loan-info-grid">
+               <div class="loan-info-box">
+                   ...
+               </div>
+           </div>
+
+       Those blocks must NEVER be converted into paragraphs.
+    ----------------------------------------------------- */
+
+    const lines = source.split("\n");
+
+    const chunks = [];
+
+    let markdownBuffer = [];
+
+    let htmlBuffer = [];
+
+    let htmlDepth = 0;
+
+    let inHtmlBlock = false;
+
+
+    function flushMarkdownBuffer() {
+
+        if (!markdownBuffer.length) {
+            return;
+        }
+
+        const text = markdownBuffer.join("\n");
+
+        if (text.trim()) {
+
+            chunks.push({
+                type: "markdown",
+                content: text
+            });
+
+        }
+
+        markdownBuffer = [];
+    }
+
+
+    function flushHtmlBuffer() {
+
+        if (!htmlBuffer.length) {
+            return;
+        }
+
+        chunks.push({
+            type: "html",
+            content: htmlBuffer.join("\n")
+        });
+
+        htmlBuffer = [];
+        htmlDepth = 0;
+        inHtmlBlock = false;
+    }
+
+
+    function calculateHtmlDepth(line) {
+
+        let depth = 0;
+
+        const tagPattern =
+            /<\s*(\/?)\s*([a-zA-Z][\w:-]*)\b[^>]*>/g;
+
+        let match;
+
+        while ((match = tagPattern.exec(line)) !== null) {
+
+            const closing = match[1] === "/";
+            const tagName = match[2].toLowerCase();
+
+            const voidTags = [
+                "area",
+                "base",
+                "br",
+                "col",
+                "embed",
+                "hr",
+                "img",
+                "input",
+                "link",
+                "meta",
+                "param",
+                "source",
+                "track",
+                "wbr"
+            ];
+
+            if (voidTags.includes(tagName)) {
+                continue;
+            }
+
+            if (closing) {
+                depth--;
+            } else {
+                depth++;
+            }
+        }
+
+        return depth;
+    }
+
+
+    lines.forEach(function(line) {
+
+        const trimmed = line.trim();
+
+
+        /* -------------------------------------------------
+           ALREADY INSIDE HTML BLOCK
+           ------------------------------------------------- */
+
+        if (inHtmlBlock) {
+
+            htmlBuffer.push(line);
+
+            htmlDepth += calculateHtmlDepth(line);
+
+            if (htmlDepth <= 0) {
+                flushHtmlBuffer();
+            }
+
+            return;
+        }
+
+
+        /* -------------------------------------------------
+           HTML BLOCK START
+           -------------------------------------------------
+           We intentionally allow indentation before <tag>.
+        ------------------------------------------------- */
+
+        const startsWithHtmlTag =
+            /^\s*<(?:[a-zA-Z][\w:-]*|\/?[a-zA-Z][\w:-]*|!--|!DOCTYPE\b)/.test(line);
+
+
+        if (startsWithHtmlTag) {
+
+            flushMarkdownBuffer();
+
+            htmlBuffer.push(line);
+
+            htmlDepth = calculateHtmlDepth(line);
+
+            /*
+             * Self-contained HTML such as:
+             *
+             * <p>Hello</p>
+             * <div>...</div>
+             * <img ...>
+             *
+             * can finish immediately.
+             */
+
+            if (htmlDepth <= 0) {
+                flushHtmlBuffer();
+            } else {
+                inHtmlBlock = true;
+            }
+
+            return;
+        }
+
+
+        /* -------------------------------------------------
+           NORMAL MARKDOWN
+        ------------------------------------------------- */
+
+        markdownBuffer.push(line);
+
+    });
+
+
+    flushMarkdownBuffer();
+
+    if (inHtmlBlock) {
+        flushHtmlBuffer();
+    }
+
+
+    /* -----------------------------------------------------
+       RENDER CHUNKS
+    ----------------------------------------------------- */
+
+    let html = "";
+
+
+    chunks.forEach(function(chunk) {
+
+        if (chunk.type === "html") {
+
+            /*
+             * Preserve HTML EXACTLY as supplied.
+             */
+            html += chunk.content + "\n";
+
+            return;
+        }
+
+
+        if (chunk.type === "markdown") {
+
+            let text = chunk.content;
+
+
+            /* ---------------------------------------------
+               IMAGES
+               --------------------------------------------- */
+
+            text = text.replace(
+                /!\[(.*?)\]\((.*?)\)/g,
+                `<img
+                    src="$2"
+                    alt="$1"
+                    loading="lazy">`
+            );
+
+
+            /* ---------------------------------------------
+               LINKS
+               --------------------------------------------- */
+
+            text = text.replace(
+                /\[(.*?)\]\((.*?)\)/g,
+                `<a
+                    href="$2"
+                    target="_blank"
+                    rel="noopener noreferrer">$1</a>`
+            );
+
+
+            /* ---------------------------------------------
+               BOLD
+               --------------------------------------------- */
+
+            text = text.replace(
+                /\*\*(.*?)\*\*/g,
+                "<strong>$1</strong>"
+            );
+
+
+            /* ---------------------------------------------
+               ITALIC
+               --------------------------------------------- */
+
+            text = text.replace(
+                /\*(.*?)\*/g,
+                "<em>$1</em>"
+            );
+
+
+            html += processMarkdownText(text) + "\n";
+
+        }
+
+    });
+
 
     return html;
-
 }
 
 /*=========================================================
@@ -323,10 +646,75 @@ function render(container,markdown){
 }
 
 /*=========================================================
+Render Raw HTML
+=========================================================*/
+
+function renderHTML(container, html){
+
+    const element =
+
+        typeof container === "string"
+
+            ? document.querySelector(
+                container
+            )
+
+            : container;
+
+
+    if(!element){
+
+        state.failed++;
+
+        return false;
+
+    }
+
+
+    element.innerHTML = `
+
+        <section class="tool-article">
+
+            ${html}
+
+        </section>
+
+    `;
+
+
+    if(
+
+        configuration.animate &&
+
+        element instanceof HTMLElement
+
+    ){
+
+        element.classList.add(
+
+            "tx-article-loaded"
+
+        );
+
+    }
+
+
+    state.rendered++;
+
+    statistics.renderedArticles++;
+
+    state.lastUpdated = Date.now();
+
+
+    return true;
+
+}
+
+/*=========================================================
 Render Complete Article
 =========================================================*/
 
-function renderArticle(container,article){
+function renderArticle(container, article){
 
     if(!article){
 
@@ -334,16 +722,47 @@ function renderArticle(container,article){
 
     }
 
+
+    /*=========================================================
+      RAW HTML ARTICLE
+      ---------------------------------------------------------
+      Used for rich educational articles that contain:
+      - custom HTML
+      - contextual links
+      - grids
+      - cards
+      - formulas
+      - lists
+      - custom ToolXone article components
+    =========================================================*/
+
+    if(
+        typeof article.html === "string" &&
+        article.html.trim()
+    ){
+
+        return renderHTML(
+            container,
+            article.html
+        );
+
+    }
+
+
+    /*=========================================================
+      STANDARD MARKDOWN ARTICLE
+      ---------------------------------------------------------
+      Existing content-data files continue to work exactly
+      as before.
+    =========================================================*/
+
     let markdown = "";
 
     if(article.title){
 
         markdown +=
-
             "# " +
-
             article.title +
-
             "\n\n";
 
     }
@@ -351,9 +770,7 @@ function renderArticle(container,article){
     if(article.introduction){
 
         markdown +=
-
             article.introduction +
-
             "\n\n";
 
     }
@@ -363,17 +780,12 @@ function renderArticle(container,article){
         article.sections.forEach(function(section){
 
             markdown +=
-
                 "## " +
-
                 section.heading +
-
                 "\n\n";
 
             markdown +=
-
                 section.content +
-
                 "\n\n";
 
         });
@@ -381,11 +793,8 @@ function renderArticle(container,article){
     }
 
     return render(
-
         container,
-
         markdown
-
     );
 
 }
@@ -547,6 +956,8 @@ window.ToolXoneArticleRenderer = {
     parse,
 
     render,
+
+    renderHTML,
 
     renderArticle,
 

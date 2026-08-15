@@ -55,90 +55,41 @@
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
 
-<!-- Styles -->
+<!-- ======================================================
+     Core Framework
+====================================================== -->
 
 <link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
 <link rel="stylesheet" href="css/loan.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
 <link rel="stylesheet" href="css/validation.css">
-<link rel="stylesheet" href="css/feedback.css">
-
-
-
-<!-- Software Application Schema -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Loan Calculator",
-  "url": "https://www.toolxone.com/loan-calculator.html",
-  "description": "Free online loan calculator for estimating monthly loan payments, total interest and total repayment for fixed-rate loans.",
-  "applicationCategory": "FinanceApplication",
-  "applicationSubCategory": "Loan Calculator",
-  "operatingSystem": "Any",
-  "isAccessibleForFree": true,
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "ToolXone",
-    "url": "https://www.toolxone.com/"
-  }
-}
-</script>
-
-
-<!-- WebPage Schema -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Loan Calculator",
-  "url": "https://www.toolxone.com/loan-calculator.html",
-  "description": "Calculate monthly loan payments, total interest and total repayment and learn how loan principal, interest rates, repayment terms and amortization work.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "ToolXone",
-    "url": "https://www.toolxone.com/"
-  },
-  "about": {
-    "@type": "Thing",
-    "name": "Loan Calculation"
-  }
-}
-</script>
-
-
-<!-- Breadcrumb Schema -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.toolxone.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Loan Calculator",
-      "item": "https://www.toolxone.com/loan-calculator.html"
-    }
-  ]
-}
-</script>
 
 </head>
 
-<body data-tool="loan">
+<body data-tool="loan-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" alt="ToolXone Logo" class="site-logo">
@@ -147,6 +98,17 @@
 </header>
 
 <div id="navbar"></div>
+
+
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<section
+        id="toolHero"
+        class="tx-hero-section">
+    </section>
+
 
 <main class="loan-page">
 
@@ -204,807 +166,17 @@
 
 <section id="related-tools-section">
 
-    <section class="featured-header">
-
-        <div class="featured-badge-title">
-            💡 RELATED TOOLS
-        </div>
-
-        <h2>You May Also Like</h2>
-
-        <p>
-            Continue exploring related financial calculators.
-        </p>
-
-    </section>
-
-    <div id="relatedTools"></div>
+<div id="relatedTools"></div>
 
 </section>
 
 <div id="financeInfo"></div>
-<!-- ==========================================
-     TOOLXONE LOAN CALCULATOR EDUCATIONAL GUIDE
-     ========================================== -->
 
-<article class="loan-education" aria-labelledby="loan-guide-title">
-
-    <header class="loan-education-header">
-        <span class="loan-education-badge">💰 LOAN GUIDE</span>
-
-        <h2 id="loan-guide-title">
-            How Loan Payments, Interest, and Repayment Are Calculated
-        </h2>
-
-        <p>
-            A loan allows you to borrow money and repay it over an agreed period,
-            usually through regular payments. Understanding how the loan amount,
-            interest rate, and repayment term work together can help you estimate
-            monthly payments and compare different borrowing scenarios.
-        </p>
-
-        <p>
-            ToolXone's Loan Calculator uses the values you enter to estimate your
-            monthly payment, total interest, and total repayment for a standard
-            fixed-rate amortizing loan.
-        </p>
-    </header>
-
-
-    <!-- LOAN INPUTS -->
-
-    <section class="loan-education-section">
-
-        <h3>
-            What Information Does the Loan Calculator Use?
-        </h3>
-
-        <p>
-            The calculation is based on three main financial inputs and the unit
-            used for the repayment term.
-        </p>
-
-        <div class="loan-info-grid">
-
-            <div class="loan-info-box">
-                <strong>Loan Amount</strong>
-                <p>
-                    The principal amount borrowed before interest and other
-                    borrowing costs.
-                </p>
-            </div>
-
-            <div class="loan-info-box">
-                <strong>Annual Interest Rate</strong>
-                <p>
-                    The annual percentage rate entered for calculating interest
-                    on the loan.
-                </p>
-            </div>
-
-            <div class="loan-info-box">
-                <strong>Loan Term</strong>
-                <p>
-                    The length of time over which the loan is scheduled to be
-                    repaid.
-                </p>
-            </div>
-
-            <div class="loan-info-box">
-                <strong>Loan Term Type</strong>
-                <p>
-                    The calculator accepts the repayment term in either years
-                    or months.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRINCIPAL -->
-
-    <section class="loan-education-section">
-
-        <h3>What Is Loan Principal?</h3>
-
-        <p>
-            Loan principal is the amount originally borrowed. It forms the
-            starting balance on which the repayment calculation is based.
-        </p>
-
-        <div class="loan-example-box">
-            <strong>Example:</strong>
-            If you borrow $20,000, the initial loan principal is $20,000.
-        </div>
-
-        <p>
-            As payments are made on a standard amortizing loan, part of each
-            payment reduces the outstanding principal while another part covers
-            interest.
-        </p>
-
-    </section>
-
-
-    <!-- INTEREST -->
-
-    <section class="loan-education-section">
-
-        <h3>How Does Loan Interest Work?</h3>
-
-        <p>
-            Interest is the cost of borrowing money. For the fixed-rate
-            calculation used by this calculator, the entered annual interest
-            rate is converted into a monthly rate.
-        </p>
-
-        <div class="loan-formula-box">
-            Monthly Interest Rate =
-            Annual Interest Rate ÷ 12 ÷ 100
-        </div>
-
-        <p>
-            For example, if the entered annual interest rate is 6%:
-        </p>
-
-        <div class="loan-example-box">
-            <strong>Monthly Rate:</strong>
-            6 ÷ 12 ÷ 100 = 0.005
-        </div>
-
-        <p>
-            This decimal monthly rate is used in the monthly payment formula.
-        </p>
-
-    </section>
-
-
-    <!-- TERM -->
-
-    <section class="loan-education-section">
-
-        <p class="loan-related-note">
-    To explore compounding separately from loan repayment,
-    try ToolXone's
-    <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.
-</p>
-        
-        <h3>How Is the Loan Term Converted?</h3>
-      
-
-        <p>
-            The payment formula needs the total number of monthly payments.
-            When a loan term is entered in years, the calculator converts it
-            into months.
-        </p>
-
-        <div class="loan-formula-box">
-            Number of Payments = Loan Term in Years × 12
-        </div>
-
-        <div class="loan-example-box">
-            <strong>Example:</strong>
-            5 years × 12 = 60 monthly payments
-        </div>
-
-        <p>
-            If the term is already entered in months, that value can be used
-            directly as the number of monthly payments.
-        </p>
-
-    </section>
-
-
-    <!-- PAYMENT FORMULA -->
-
-    <section class="loan-education-section">
-
-        <h3>How Is the Monthly Loan Payment Calculated?</h3>
-
-        <p>
-            For a standard fixed-rate amortizing loan with an interest rate
-            greater than zero, the estimated monthly payment can be calculated
-            using the amortization formula:
-        </p>
-
-        <div class="loan-formula-box loan-formula-large">
-            Monthly Payment =
-            P × r × (1 + r)<sup>n</sup>
-            ÷
-            ((1 + r)<sup>n</sup> − 1)
-        </div>
-
-        <div class="loan-definition-list">
-
-            <div>
-                <strong>P</strong>
-                <span>= Loan principal</span>
-            </div>
-
-            <div>
-                <strong>r</strong>
-                <span>= Monthly interest rate</span>
-            </div>
-
-            <div>
-                <strong>n</strong>
-                <span>= Total number of monthly payments</span>
-            </div>
-
-        </div>
-
-        <p>
-            This formula produces a level monthly payment for the assumptions
-            used by the calculator.
-        </p>
-
-    </section>
-
-
-    <!-- WORKED EXAMPLE -->
-
-    <section class="loan-education-section">
-
-        <p class="loan-related-note">
-        If your main goal is to calculate an equated monthly installment,
-        you can also use ToolXone's
-        <a href="emi-calculator.html">EMI Calculator</a>
-        for an EMI-focused calculation.
-        </p>
-
-    <h3>Example of a Loan Payment Calculation</h3>
-
-        
-        <p>
-            Suppose a borrower evaluates the following loan:
-        </p>
-
-        <div class="loan-example-grid">
-
-            <div class="loan-example-stat">
-                <span>Loan Amount</span>
-                <strong>$20,000</strong>
-            </div>
-
-            <div class="loan-example-stat">
-                <span>Annual Interest Rate</span>
-                <strong>6%</strong>
-            </div>
-
-            <div class="loan-example-stat">
-                <span>Loan Term</span>
-                <strong>5 Years</strong>
-            </div>
-
-            <div class="loan-example-stat">
-                <span>Payments</span>
-                <strong>60 Months</strong>
-            </div>
-
-        </div>
-
-        <p>
-            First, convert the annual rate into a monthly decimal rate:
-        </p>
-
-        <div class="loan-example-box">
-            6 ÷ 12 ÷ 100 = 0.005
-        </div>
-
-        <p>
-            Then apply the monthly payment formula using a principal of
-            $20,000, a monthly rate of 0.005, and 60 payments.
-        </p>
-
-        <div class="loan-result-example">
-            <span>Estimated Monthly Payment</span>
-            <strong>≈ $386.66</strong>
-        </div>
-
-        <p>
-            The exact displayed result may vary slightly because of rounding.
-        </p>
-
-    </section>
-
-
-    <!-- TOTAL PAYMENT -->
-
-    <section class="loan-education-section">
-
-        <h3>How Is Total Repayment Calculated?</h3>
-
-        <p>
-            Once the monthly payment is known, the estimated total repayment
-            can be calculated by multiplying the payment by the number of
-            scheduled monthly payments.
-        </p>
-
-        <div class="loan-formula-box">
-            Total Repayment =
-            Monthly Payment × Number of Payments
-        </div>
-
-        <p>
-            Using the previous example:
-        </p>
-
-        <div class="loan-example-box">
-            <strong>Estimated Total Repayment:</strong>
-            $386.66 × 60 ≈ $23,199.60
-        </div>
-
-        <p>
-            Because the monthly payment shown above is rounded, multiplying
-            that displayed amount can differ slightly from calculations made
-            with the full-precision payment value.
-        </p>
-
-    </section>
-
-
-    <!-- TOTAL INTEREST -->
-
-    <section class="loan-education-section">
-
-        <h3>How Is Total Interest Calculated?</h3>
-
-        <p>
-            Estimated total interest represents the difference between the
-            total amount repaid and the original principal.
-        </p>
-
-        <div class="loan-formula-box">
-            Total Interest =
-            Total Repayment − Loan Principal
-        </div>
-
-        <div class="loan-example-box">
-            <strong>Using the rounded example:</strong>
-            $23,199.60 − $20,000 ≈ $3,199.60
-        </div>
-
-        <p>
-            This shows why the total cost of a loan can be substantially higher
-            than the amount originally borrowed.
-        </p>
-
-    </section>
-
-   
-    <!-- AMORTIZATION -->
-
-    <section class="loan-education-section">
-
-        <h3>What Is Loan Amortization?</h3>
-
-        <p>
-            Amortization is the process of repaying a loan through scheduled
-            payments over time. With a standard fixed-rate amortizing loan, the
-            scheduled monthly payment remains level while the way that payment
-            is divided between principal and interest changes as the balance
-            declines.
-        </p>
-
-        <div class="loan-amortization-grid">
-
-            <div class="loan-amortization-card">
-                <span>Earlier Payments</span>
-                <strong>More Interest</strong>
-                <p>
-                    A larger portion of the payment generally goes toward
-                    interest when the outstanding balance is higher.
-                </p>
-            </div>
-
-            <div class="loan-amortization-arrow">
-                →
-            </div>
-
-            <div class="loan-amortization-card">
-                <span>Later Payments</span>
-                <strong>More Principal</strong>
-                <p>
-                    As the balance falls, less interest accrues and more of the
-                    scheduled payment can reduce principal.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ZERO INTEREST -->
-
-    <section class="loan-education-section">
-
-        <h3>What Happens With a 0% Interest Loan?</h3>
-
-        <p>
-            A zero-interest loan does not require the standard interest-bearing
-            amortization formula. The principal can simply be divided by the
-            number of scheduled payments.
-        </p>
-
-        <div class="loan-formula-box">
-            Monthly Payment =
-            Loan Principal ÷ Number of Payments
-        </div>
-
-        <p>
-            For example, consider a $12,000 loan repaid over 12 months at 0%
-            interest:
-        </p>
-
-        <div class="loan-example-box">
-            <strong>Monthly Payment:</strong>
-            $12,000 ÷ 12 = $1,000
-        </div>
-
-        <div class="loan-zero-grid">
-
-            <div>
-                <span>Principal</span>
-                <strong>$12,000</strong>
-            </div>
-
-            <div>
-                <span>Total Interest</span>
-                <strong>$0</strong>
-            </div>
-
-            <div>
-                <span>Total Repayment</span>
-                <strong>$12,000</strong>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- TERM EFFECT -->
-
-    <section class="loan-education-section">
-
-        <h3>How Does the Loan Term Affect Repayment?</h3>
-
-        <p>
-            The repayment term can significantly affect both the monthly
-            payment and the total amount of interest paid.
-        </p>
-
-        <div class="loan-comparison-grid">
-
-            <div class="loan-comparison-card">
-                <span>Shorter Loan Term</span>
-
-                <strong>Higher Monthly Payment</strong>
-
-                <ul>
-                    <li>Fewer scheduled payments</li>
-                    <li>Principal is repaid faster</li>
-                    <li>Generally less total interest</li>
-                    <li>Higher monthly payment requirement</li>
-                </ul>
-            </div>
-
-            <div class="loan-comparison-card">
-                <span>Longer Loan Term</span>
-
-                <strong>Lower Monthly Payment</strong>
-
-                <ul>
-                    <li>More scheduled payments</li>
-                    <li>Principal is repaid more slowly</li>
-                    <li>Generally more total interest</li>
-                    <li>Lower monthly payment requirement</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="loan-tip-box">
-            <strong>Key idea:</strong>
-            A lower monthly payment does not necessarily mean a lower-cost
-            loan. Extending the repayment period can increase total interest.
-        </div>
-
-    </section>
-
-
-    <!-- RATE EFFECT -->
-
-    <section class="loan-education-section">
-
-        <h3>How Does the Interest Rate Affect a Loan?</h3>
-
-        <p>
-            When the principal and repayment term remain the same, a higher
-            interest rate generally increases both the monthly payment and the
-            total interest paid.
-        </p>
-
-        <div class="loan-rate-grid">
-
-            <div class="loan-rate-card">
-                <span>Lower Interest Rate</span>
-                <strong>↓ Borrowing Cost</strong>
-                <p>
-                    A lower rate generally means less interest is charged under
-                    otherwise identical loan assumptions.
-                </p>
-            </div>
-
-            <div class="loan-rate-card">
-                <span>Higher Interest Rate</span>
-                <strong>↑ Borrowing Cost</strong>
-                <p>
-                    A higher rate generally increases the amount paid for
-                    borrowing over the life of the loan.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRINCIPAL EFFECT -->
-
-    <section class="loan-education-section">
-
-        <h3>How Does the Loan Amount Affect Payments?</h3>
-
-        <p>
-            If the interest rate and loan term remain unchanged, borrowing a
-            larger principal results in a larger monthly payment and greater
-            total interest in dollar terms.
-        </p>
-
-        <div class="loan-tip-box">
-            <strong>Remember:</strong>
-            Loan amount, interest rate, and repayment term work together.
-            Comparing only the monthly payment can hide important differences
-            in total borrowing cost.
-        </div>
-
-    </section>
-
-
-    <!-- USE CASES -->
-
-    <section class="loan-education-section">
-
-        <h3>Where Can a Loan Calculator Be Useful?</h3>
-
-        <p class="loan-related-note">
-    For property-specific borrowing scenarios, ToolXone's
-    <a href="mortgage-calculator.html">Mortgage Calculator</a>
-    provides a calculator focused on mortgage repayment estimates.
-</p>
-
-        <p>
-            A loan calculator can help evaluate many standard fixed-rate
-            borrowing scenarios before reviewing an actual lender offer.
-        </p>
-
-        <div class="loan-use-grid">
-
-            <div class="loan-use-card">
-                <span>🏠</span>
-                <strong>Home Loan Scenarios</strong>
-                <p>
-                    Explore payment estimates for a fixed-rate borrowing
-                    scenario involving a home purchase.
-                </p>
-            </div>
-
-            <div class="loan-use-card">
-                <span>🚗</span>
-                <strong>Auto Loans</strong>
-                <p>
-                    Estimate payments and interest for vehicle financing.
-                </p>
-            </div>
-
-            <div class="loan-use-card">
-                <span>👤</span>
-                <strong>Personal Loans</strong>
-                <p>
-                    Compare different amounts, rates, and repayment terms.
-                </p>
-            </div>
-
-            <div class="loan-use-card">
-                <span>📊</span>
-                <strong>Loan Comparisons</strong>
-                <p>
-                    Test hypothetical loan scenarios before comparing lender
-                    terms.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- LOAN VS EMI -->
-
-    <section class="loan-education-section">
-
-        <h3>Loan Calculator vs. EMI Calculator</h3>
-
-        <p>
-            Loan Calculator and EMI Calculator are closely related because both
-            can use the same standard amortization mathematics. Their emphasis,
-            however, can be different.
-        </p>
-
-        <div class="loan-vs-grid">
-
-            <div class="loan-vs-card">
-                <strong>Loan Calculator</strong>
-
-                <p>
-                    Focuses on the broader cost of borrowing, including the
-                    monthly payment, total interest, and total repayment.
-                </p>
-            </div>
-
-            <div class="loan-vs-card">
-                <strong>EMI Calculator</strong>
-
-                <p>
-                    Focuses specifically on the Equated Monthly Installment
-                    required to repay an installment loan over a selected term.
-                </p>
-            </div>
-
-        </div>
-
-        <p>
-            ToolXone keeps these tools distinct so users can choose the
-            experience that best matches what they want to calculate.
-        </p>
-
-    </section>
-
-
-    <!-- WHAT IS INCLUDED -->
-
-    <section class="loan-education-section">
-
-        <h3>What Does This Loan Calculator Include?</h3>
-
-        <div class="loan-check-grid">
-
-            <div>✓ Loan principal</div>
-            <div>✓ Annual interest rate</div>
-            <div>✓ Loan term</div>
-            <div>✓ Monthly payment estimate</div>
-            <div>✓ Total interest estimate</div>
-            <div>✓ Total repayment estimate</div>
-
-        </div>
-
-    </section>
-
-
-    <!-- WHAT IS NOT INCLUDED -->
-
-    <section class="loan-education-section">
-
-        <h3>What Is Not Automatically Included?</h3>
-
-        <p>
-            Real loan agreements can contain costs and repayment structures
-            beyond the inputs used by this calculator.
-        </p>
-
-        <div class="loan-warning-grid">
-
-            <div>Origination or application fees</div>
-            <div>Taxes</div>
-            <div>Insurance premiums</div>
-            <div>Late-payment charges</div>
-            <div>Prepayment penalties</div>
-            <div>Variable interest-rate changes</div>
-            <div>Balloon payments</div>
-            <div>Interest-only repayment periods</div>
-
-        </div>
-
-        <p>
-            Review the lender's actual agreement and disclosures when
-            evaluating a real loan.
-        </p>
-
-    </section>
-
-
-    <!-- FIXED RATE ASSUMPTION -->
-
-    <section class="loan-education-section">
-
-        <h3>What Type of Loan Does This Calculator Model?</h3>
-
-        <p class="loan-related-note">
-    If you are planning toward a financial target rather than borrowing,
-    you can use ToolXone's
-    <a href="savings-goal-calculator.html">Savings Calculator</a>
-    to estimate progress toward a savings goal.
-</p>
-
-        <p>
-            The calculator is designed around a standard fixed-rate amortizing
-            loan with regular monthly payments. The interest rate remains
-            constant throughout the calculation, and the loan is assumed to be
-            repaid across the selected number of months.
-        </p>
-
-        <div class="loan-tip-box">
-            Loans with variable rates, irregular payments, balloon payments,
-            interest-only periods, or lender-specific repayment structures may
-            require a different calculation.
-        </div>
-
-    </section>
-
-
-    <!-- COMPARISON -->
-
-    <section class="loan-education-section">
-
-        <h3>How to Compare Loan Scenarios</h3>
-
-        <p>
-            Instead of looking only at the monthly payment, compare several
-            parts of each borrowing scenario.
-        </p>
-
-        <div class="loan-check-grid">
-
-            <div>✓ Amount borrowed</div>
-            <div>✓ Interest rate</div>
-            <div>✓ Monthly payment</div>
-            <div>✓ Repayment term</div>
-            <div>✓ Total interest</div>
-            <div>✓ Total repayment</div>
-
-        </div>
-
-        <p>
-            Changing one input at a time can make it easier to see how that
-            factor affects the estimated cost of the loan.
-        </p>
-
-    </section>
-
-
-    <!-- IMPORTANT NOTE -->
-
-    <aside class="loan-important-note">
-
-        <strong>Important Note</strong>
-
-        <p>
-            ToolXone's Loan Calculator provides estimates based on the values
-            entered and the assumptions described above. Actual loan payments,
-            interest charges, repayment amounts, fees, and lender calculations
-            may differ. Results are intended for informational and educational
-            purposes and should not be treated as a loan offer or financial,
-            investment, tax, or legal advice.
-        </p>
-
-    </aside>
-
-</article>
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -1045,6 +217,84 @@
 <script src="js/statistics/statistics-intelligence.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
+
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/loan-calculator-schema.js"></script>
+
+<script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "LoanCalculator"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+</script>
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-finance.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
 
 <script src="js/loan.js"></script>
 <script src="js/footer.js"></script>
@@ -1127,91 +377,13 @@ const loanCalculator = {
     }
 ],
 
-    info: {
-        title: "Understand Your Loan Repayment",
-
-        description:
-            "The Loan Calculator helps you estimate the cost of repaying a loan over time. Enter the amount borrowed, annual interest rate, and loan term to calculate the estimated monthly payment, total interest paid, and total repayment amount. This can help you compare loan scenarios and understand how interest rates and repayment periods affect borrowing costs."
-    },
-
-    faq: [
-        {
-            question: "What is a loan calculator?",
-
-            answer:
-                "A loan calculator is a financial planning tool that estimates loan repayment based on the amount borrowed, interest rate, and repayment term. It can show the estimated monthly payment, total interest, and total amount repaid."
-        },
-
-        {
-            question: "How is the monthly loan payment calculated?",
-
-            answer:
-                "For a standard fixed-rate amortizing loan, the monthly payment is calculated using the loan principal, monthly interest rate, and total number of monthly payments. Each payment contributes toward interest and repayment of the principal."
-        },
-
-        {
-            question: "What does loan principal mean?",
-
-            answer:
-                "The principal is the original amount of money borrowed before interest and other borrowing costs are added."
-        },
-
-        {
-            question: "What is the annual interest rate?",
-
-            answer:
-                "The annual interest rate is the percentage rate charged on the loan each year. This calculator converts the entered annual rate into a monthly rate when estimating monthly payments."
-        },
-
-        {
-            question: "How does the loan term affect my monthly payment?",
-
-            answer:
-                "A longer repayment term generally lowers the monthly payment because repayment is spread across more months, but it can increase the total interest paid. A shorter term generally produces higher monthly payments but can reduce total interest."
-        },
-
-        {
-            question: "Can I enter the loan term in months or years?",
-
-            answer:
-                "Yes. Select Years or Months from the Loan Term Type field. If you enter years, the calculator converts the term into months before calculating the repayment."
-        },
-
-        {
-            question: "Can this calculator handle a 0% interest loan?",
-
-            answer:
-                "Yes. For a zero-interest loan, the borrowed amount is divided evenly across the repayment period, so the total interest is zero and the total repayment equals the original loan amount."
-        },
-
-        {
-            question: "Can I use this calculator for personal, auto, or home loans?",
-
-            answer:
-                "Yes. It can be used to estimate payments for many fixed-rate installment loan scenarios, including personal loans, auto loans, and home loans, provided the loan follows the assumptions used by the calculator."
-        },
-
-        {
-            question: "Does the calculator include fees, taxes, insurance, or other charges?",
-
-            answer:
-                "No. The current calculation is based on the loan amount, entered interest rate, and repayment term. Origination fees, taxes, insurance, penalties, and other lender-specific charges are not automatically included."
-        },
-
-        {
-            question: "Are the Loan Calculator results exact?",
-
-            answer:
-                "The results are estimates based on the values you enter and the calculator's repayment formula. Actual lender payments and total borrowing costs may differ because of fees, rate structures, payment schedules, rounding methods, insurance, taxes, and other loan terms."
-        }
-    ]
 };
 
 createFinanceCalculator(loanCalculator);
 
-renderFinanceFeedback(
-    "financeFeedback",
-    "Loan Calculator");
+ToolXoneHeroRenderer.render("loan-calculator");
+
+
 </script>
 
 </body>

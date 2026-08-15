@@ -109,6 +109,60 @@ function escapeHTML(value){
 }
 
 /*==========================================================
+  Statistics Value
+==========================================================*/
+
+function getStatisticValue(statistic){
+
+    if(
+        statistic === null ||
+        statistic === undefined
+    ){
+
+        return "";
+
+    }
+
+    if(
+        typeof statistic === "object"
+    ){
+
+        return statistic.value ??
+               statistic.text ??
+               statistic.label ??
+               "";
+
+    }
+
+    return statistic;
+
+}
+
+
+/*==========================================================
+  Statistics Label
+==========================================================*/
+
+function getStatisticLabel(
+    statistic,
+    fallback
+){
+
+    if(
+        statistic &&
+        typeof statistic === "object" &&
+        statistic.label
+    ){
+
+        return statistic.label;
+
+    }
+
+    return fallback;
+
+}
+
+/*==========================================================
 Highlight List
 ==========================================================*/
 
@@ -314,39 +368,94 @@ return `
 
         <div class="tx-tool-statistics">
 
-            <div class="tx-tool-stat">
+    <div class="tx-tool-stat">
 
-                <strong>${escapeHTML(hero.statistics?.functions || "")}</strong>
+        <strong>
+            ${escapeHTML(
+                getStatisticValue(
+                    hero.statistics?.functions
+                )
+            )}
+        </strong>
 
-                <span>Functions</span>
+        <span>
+            ${escapeHTML(
+                getStatisticLabel(
+                    hero.statistics?.functions,
+                    "Functions"
+                )
+            )}
+        </span>
 
-            </div>
+    </div>
 
-            <div class="tx-tool-stat">
 
-                <strong>${escapeHTML(hero.statistics?.accuracy || "")}</strong>
+    <div class="tx-tool-stat">
 
-                <span>Accuracy</span>
+        <strong>
+            ${escapeHTML(
+                getStatisticValue(
+                    hero.statistics?.accuracy
+                )
+            )}
+        </strong>
 
-            </div>
+        <span>
+            ${escapeHTML(
+                getStatisticLabel(
+                    hero.statistics?.accuracy,
+                    "Accuracy"
+                )
+            )}
+        </span>
 
-            <div class="tx-tool-stat">
+    </div>
 
-                <strong>${escapeHTML(hero.statistics?.availability || "")}</strong>
 
-                <span>Availability</span>
+    <div class="tx-tool-stat">
 
-            </div>
+        <strong>
+            ${escapeHTML(
+                getStatisticValue(
+                    hero.statistics?.availability
+                )
+            )}
+        </strong>
 
-            <div class="tx-tool-stat">
+        <span>
+            ${escapeHTML(
+                getStatisticLabel(
+                    hero.statistics?.availability,
+                    "Availability"
+                )
+            )}
+        </span>
 
-                <strong>${escapeHTML(hero.statistics?.price || "")}</strong>
+    </div>
 
-                <span>Price</span>
 
-            </div>
+    <div class="tx-tool-stat">
 
-        </div>
+        <strong>
+            ${escapeHTML(
+                getStatisticValue(
+                    hero.statistics?.price
+                )
+            )}
+        </strong>
+
+        <span>
+            ${escapeHTML(
+                getStatisticLabel(
+                    hero.statistics?.price,
+                    "Price"
+                )
+            )}
+        </span>
+
+    </div>
+
+</div>
 
         <div class="tx-tool-actions">
 

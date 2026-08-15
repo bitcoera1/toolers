@@ -104,6 +104,22 @@ actions : {
 
     },
 
+    loan : {
+
+        startCalculating : ".loan-page",
+
+        learnMore : "#financeInfo"
+
+    },
+
+    "loan-calculator" : {
+
+        startCalculating : ".loan-page",
+
+        learnMore : "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",

@@ -11,6 +11,8 @@
 
 #relatedTools {
 
+    display: block;
+
     width: 100%;
     max-width: 1200px;
 
@@ -21,23 +23,6 @@
 
 }
 
-/* =========================================================
-   RELATED TOOLS PAGE HEADER
-   Aligns the parent heading with the related-tools grid
-   ========================================================= */
-
-#related-tools-section .toolxone-related-header {
-
-    width: 100%;
-    max-width: 1200px;
-
-    margin: 40px auto 36px;
-    padding: 0 20px;
-
-    box-sizing: border-box;
-
-    text-align: center;
-}
 
 /* =========================================================
    RELATED TOOLS HEADER
@@ -46,8 +31,12 @@
 #related-tools-section .toolxone-related-header {
 
     width: 100%;
+    max-width: 1200px;
 
-    margin: 0 0 36px;
+    margin: 0 auto 36px;
+    padding: 0 20px;
+
+    box-sizing: border-box;
 
     text-align: center;
 
@@ -582,6 +571,77 @@ body.dark-mode #relatedTools .toolxone-related-link:hover {
     outline-offset: 4px;
 
     border-radius: 6px;
+
+}
+
+/* =========================================================
+   TOOLXONE RELATED TOOLS — FINAL LAYOUT OVERRIDE
+   Forces the shared component into a vertical structure
+   ========================================================= */
+
+#related-tools-section {
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+
+}
+
+
+#related-tools-section > #relatedTools {
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 0 20px;
+
+    box-sizing: border-box;
+
+}
+
+
+#related-tools-section > #relatedTools > .toolxone-related-header {
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100%;
+
+    margin: 0 0 36px;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+}
+
+
+#related-tools-section > #relatedTools > .toolxone-related-grid {
+
+    display: grid !important;
+
+    width: 100% !important;
+    max-width: 100%;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
 
 }
 

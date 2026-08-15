@@ -437,6 +437,85 @@ function resolveRelatedItem(item) {
 }
 
 /*=========================================================
+ * Resolve Current Tool ID
+ *---------------------------------------------------------
+ * Converts page-level tool identifiers/slugs into the
+ * canonical ToolXone tool ID used by the central registry.
+ *=========================================================*/
+
+function resolveCurrentToolId(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    const raw = String(value).trim();
+
+    if (!raw) {
+        return "";
+    }
+
+    /*
+     * 1. Direct canonical ToolXone ID
+     */
+    if (typeof getToolById === "function") {
+
+        const direct = getToolById(raw);
+
+        if (direct && direct.id) {
+            return direct.id;
+        }
+
+    }
+
+    /*
+     * 2. Resolve through the complete ToolXone registry
+     */
+    if (typeof getAllTools === "function") {
+
+        const normalized = raw
+            .toLowerCase()
+            .replace(/\.html$/i, "");
+
+        const tools = getAllTools();
+
+        const match = tools.find(function(tool) {
+
+            if (!tool) {
+                return false;
+            }
+
+            const toolId =
+                String(tool.id || "").toLowerCase();
+
+            const toolLink =
+                String(tool.link || tool.url || "")
+                    .split("/")
+                    .pop()
+                    .replace(/\.html$/i, "")
+                    .toLowerCase();
+
+            return (
+                toolId === normalized ||
+                toolLink === normalized
+            );
+
+        });
+
+        if (match && match.id) {
+            return match.id;
+        }
+
+    }
+
+    /*
+     * 3. Return original value if no canonical match exists
+     */
+    return raw;
+}
+
+
+/*=========================================================
  * Build Four Related Tools
  *---------------------------------------------------------
  * Ensures every ToolXone page displays exactly four
@@ -644,13 +723,19 @@ function renderInto(container, related, currentToolId) {
 
     }
 
+    const rawCurrentToolId =
+    currentToolId ||
+    document.body.dataset.tool ||
+    "";
+
+    const resolvedCurrentToolId =
+    resolveCurrentToolId(rawCurrentToolId);
+
     const finalItems =
-        buildRelatedItems(
-            items,
-            currentToolId ||
-            document.body.dataset.tool ||
-            ""
-        );
+    buildRelatedItems(
+        items,
+        resolvedCurrentToolId
+    );
 
     if (!finalItems.length) {
 
