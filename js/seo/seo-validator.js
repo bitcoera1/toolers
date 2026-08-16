@@ -175,8 +175,6 @@ function engineInfo() {
 
             "Description",
 
-            "Keywords",
-
             "Canonical",
 
             "Robots",
@@ -251,36 +249,6 @@ function validateDescription(result) {
 
 }
 
-/* ==========================================================
-   KEYWORDS VALIDATION
-========================================================== */
-
-function validateKeywords(result) {
-
-    const element = findMeta(
-        'meta[name="keywords"]'
-    );
-
-    if (
-        element &&
-        element.content.trim().length > 0
-    ) {
-
-        pass(
-            result,
-            "Keywords meta tag is present."
-        );
-
-    } else {
-
-        warn(
-            result,
-            "Keywords meta tag is missing."
-        );
-
-    }
-
-}
 
 /* ==========================================================
    CANONICAL VALIDATION
@@ -545,8 +513,6 @@ function run(
     validateTitle(result);
 
     validateDescription(result);
-
-    validateKeywords(result);
 
     validateCanonical(result);
 

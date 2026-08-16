@@ -645,6 +645,165 @@ body.dark-mode #relatedTools .toolxone-related-link:hover {
 
 }
 
+/* =========================================================
+   MOBILE RESPONSIVE — FINAL OVERRIDE
+   Ensures responsive rules win over the final layout override
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 14px;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-header {
+        margin: 0 0 28px;
+        padding: 0;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 12px;
+    }
+
+    #relatedTools .toolxone-related-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    #related-tools-section .toolxone-related-title {
+        font-size: 1.4rem;
+    }
+
+    #related-tools-section .toolxone-related-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    #relatedTools .toolxone-related-icon {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        min-height: 56px;
+        font-size: 26px;
+    }
+
+}
+
+/* =========================================================
+   TOOLXONE RELATED TOOLS
+   FINAL RESPONSIVE OVERRIDES
+   ========================================================= */
+
+/* LARGE TABLET */
+@media (max-width: 1100px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 18px;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 22px;
+    }
+
+}
+
+
+/* TABLET */
+@media (max-width: 800px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 16px;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px;
+    }
+
+    #related-tools-section .toolxone-related-title {
+        font-size: 1.75rem;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 560px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 14px;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-header {
+        margin-bottom: 28px;
+    }
+
+    #related-tools-section > #relatedTools > .toolxone-related-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px;
+    }
+
+    #related-tools-section .toolxone-related-title {
+        font-size: 1.5rem;
+    }
+
+    #related-tools-section .toolxone-related-subtitle {
+        font-size: 0.92rem;
+    }
+
+    #relatedTools .toolxone-related-card {
+        min-height: 0;
+        padding: 22px;
+    }
+
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 380px) {
+
+    #related-tools-section > #relatedTools {
+        padding: 0 12px;
+    }
+
+    #relatedTools .toolxone-related-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    #related-tools-section .toolxone-related-title {
+        font-size: 1.4rem;
+    }
+
+    #related-tools-section .toolxone-related-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    #relatedTools .toolxone-related-icon {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        min-height: 56px;
+        font-size: 26px;
+    }
+
+}
 
 /* =========================================================
    END — TOOLXONE RELATED TOOLS

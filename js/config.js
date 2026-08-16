@@ -1,238 +1,459 @@
 /*
-=========================================
+==========================================================
 TOOLXONE CORE CONFIG
-Version 2.1
-=========================================
+Version 3.1.0
+==========================================================
+
+RESPONSIBILITY
+----------------------------------------------------------
+- Global ToolXone site configuration
+- Theme configuration
+- Featured tool configuration
+- Newest tool configuration
+- Category presentation
+- Legacy compatibility access
+
+IMPORTANT
+----------------------------------------------------------
+Tool definitions are NOT stored here.
+
+The single source of truth is:
+
+    ToolXoneToolsRegistry
+
+This configuration intentionally resolves registry data
+dynamically so script load order cannot create a stale
+empty configuration.
+
+==========================================================
 */
 
-const TOOLXONE = {
-    name: "ToolXone",
-    version: "2.1",
-    founder: "Tahir Aslam",
-    year: 2026,
-    totalTools: 20,
-    defaultTheme: "light",
 
-    categories: [
+(function (window, document) {
+
+    "use strict";
+
+
+    /* ======================================================
+       Registry Access
+       ====================================================== */
+
+    function getRegistry() {
+
+        if (
+            Array.isArray(
+                window.ToolXoneToolsRegistry
+            )
+        ) {
+
+            return window.ToolXoneToolsRegistry;
+
+        }
+
+        return [];
+
+    }
+
+
+    /* ======================================================
+       Canonical Tool Lookup
+       ====================================================== */
+
+    function getTool(id) {
+
+        const registry =
+            getRegistry();
+
+        return registry.find(function (tool) {
+
+            return (
+                tool &&
+                tool.id === id
+            );
+
+        }) || null;
+
+    }
+
+
+    /* ======================================================
+       Category Definitions
+       ====================================================== */
+
+    const categoryDefinitions = [
+
         {
             id: "finance",
             icon: "💰",
-            name: "Finance Tools",
-            tools: [
-                { 
-    id: "loan", 
-    icon: "💰", 
-    name: "Loan Calculator", 
-    link: "loan-calculator.html",
-    related: ["emi", "mortgage", "compound", "roi"]
-},
-{ 
-    id: "mortgage", 
-    icon: "🏡", 
-    name: "Mortgage Calculator", 
-    link: "mortgage-calculator.html",
-    related: ["loan", "emi", "retirement", "compound"]
-},
-{ 
-    id: "emi", 
-    icon: "💳", 
-    name: "EMI Calculator", 
-    link: "emi-calculator.html",
-    related: ["loan", "mortgage", "compound", "roi"]
-},
-{ 
-    id: "compound", 
-    icon: "📈", 
-    name: "Compound Interest Calculator", 
-    link: "compound-interest-calculator.html",
-    related: ["savings-goal", "retirement", "roi", "inflation"]
-},
-                {
-    id: "discount",
-    icon: "🏷️",
-    name: "Discount Calculator",
-    link: "discount-calculator.html",
-    related: ["profit-margin", "gst-vat", "roi", "currency-profit"]
-},
-{
-    id: "gst-vat",
-    icon: "🧾",
-    name: "GST / VAT Calculator",
-    link: "gst-vat-calculator.html",
-    related: ["discount", "profit-margin", "currency-profit", "roi"]
-},
-{
-    id: "profit-margin",
-    icon: "💹",
-    name: "Profit Margin Calculator",
-    link: "profit-margin-calculator.html",
-    related: ["discount", "gst-vat", "roi", "currency-profit"]
-},
-{
-    id: "roi",
-    icon: "📈",
-    name: "ROI Calculator",
-    link: "roi-calculator.html",
-    related: ["compound", "profit-margin", "loan", "retirement"]
-},
-{
-    id: "savings-goal",
-    icon: "🎯",
-    name: "Savings Goal Calculator",
-    link: "savings-goal-calculator.html",
-    related: ["compound", "retirement", "inflation", "currency-profit"]
-},
-{
-    id: "inflation",
-    icon: "📉",
-    name: "Inflation Calculator",
-    link: "inflation-calculator.html",
-    related: ["compound", "savings-goal", "retirement", "currency-profit"]
-},
-{
-    id: "currency-profit",
-    icon: "💱",
-    name: "Currency Profit Calculator",
-    link: "currency-profit-calculator.html",
-    related: ["profit-margin", "roi", "inflation", "currency"]
-},
-{
-    id: "retirement",
-    icon: "🏆",
-    name: "Retirement Calculator",
-    link: "retirement-calculator.html",
-    related: ["compound", "savings-goal", "roi", "inflation"]
-},
-            ]
+            name: "Finance Tools"
         },
 
         {
             id: "calculators",
             icon: "🧮",
-            name: "Calculators",
-            tools: [
-                { 
-    id: "basic", 
-    icon: "🧮", 
-    name: "Basic Calculator", 
-    link: "calculator.html",
-    related: ["scientific", "percentage", "bmi", "discount"]
-},
-{ 
-    id: "scientific", 
-    icon: "🔬", 
-    name: "Scientific Calculator", 
-    link: "scientific-calculator.html",
-    related: ["basic", "percentage", "compound", "roi"]
-},
-{ 
-    id: "percentage", 
-    icon: "📊", 
-    name: "Percentage Calculator", 
-    link: "percentage-calculator.html",
-    related: ["discount", "profit-margin", "basic", "gst-vat"]
-}
-            ]
+            name: "Calculators"
         },
 
         {
             id: "converters",
             icon: "🔄",
-            name: "Converters",
-            tools: [
-                { 
-    id: "currency", 
-    icon: "💱", 
-    name: "Currency Converter", 
-    link: "currency-converter.html",
-    related: ["currency-profit", "inflation", "profit-margin", "roi"]
-},
-{ 
-    id: "weight", 
-    icon: "⚖️", 
-    name: "Weight Converter", 
-    link: "weight-converter.html",
-    related: ["bmi", "age", "percentage", "basic"]
-}
-            ]
+            name: "Converters"
         },
 
         {
             id: "health",
             icon: "❤️",
-            name: "Health Tools",
-            tools: [
-{ 
-    id: "bmi", 
-    icon: "❤️", 
-    name: "BMI Calculator", 
-    link: "bmi-calculator.html",
-    related: ["weight", "age", "percentage", "basic"]
-}            ]
+            name: "Health Tools"
         },
 
         {
             id: "utilities",
             icon: "🛠️",
-            name: "Utilities",
-            tools: [
-                { 
-    id: "age", 
-    icon: "🎂", 
-    name: "Age Calculator", 
-    link: "age-calculator.html",
-    related: ["bmi", "weight", "retirement", "basic"]
-},
-{ 
-    id: "qr", 
-    icon: "📱", 
-    name: "QR Code Generator", 
-    link: "qr-code-generator.html",
-    related: ["image-tools", "developer-tools", "ai-tools", "pdf-tools"]
-}
-            ]
+            name: "Utilities"
         },
 
         {
             id: "future",
             icon: "🚀",
-            name: "Coming Soon",
-            tools: [
-    { id: "ai-tools", icon: "🤖", name: "AI Tools", link: "#" },
-    { id: "pdf-tools", icon: "📄", name: "PDF Tools", link: "#" },
-    { id: "image-tools", icon: "🖼️", name: "Image Tools", link: "#" },
-    { id: "developer-tools", icon: "💻", name: "Developer Tools", link: "#" },
-    { id: "insurance-tools", icon: "🛡️", name: "Insurance Tools", link: "#" }
-]
+            name: "Coming Soon"
         }
-    ],
 
-    featuredTools: [
-        "retirement",
-        "currency-profit",
-        "inflation",
-        "emi"
-    ],
+    ];
 
-    newestTools: [
-        "retirement",
-        "currency-profit",
-        "inflation"
-    ]
-};
-// Google Analytics - ToolXone
-(function () {
-    const GA_ID = "G-WLY68C9N20";
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-    document.head.appendChild(script);
+    /* ======================================================
+       Build Category Views
+       ====================================================== */
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
+    function buildCategories() {
 
-    gtag("js", new Date());
-    gtag("config", GA_ID);
-})();
+        const registry =
+            getRegistry();
+
+
+        return categoryDefinitions.map(
+            function (category) {
+
+                const tools =
+                    registry
+                        .filter(function (tool) {
+
+                            return (
+                                tool &&
+                                tool.categoryId ===
+                                category.id &&
+                                tool.active === true
+                            );
+
+                        })
+                        .map(function (tool) {
+
+                            return {
+
+                                id:
+                                    tool.id,
+
+                                icon:
+                                    tool.icon,
+
+                                name:
+                                    tool.name,
+
+                                link:
+                                    tool.url,
+
+                                related:
+                                    Array.isArray(
+                                        tool.related
+                                    )
+                                        ? [
+                                            ...tool.related
+                                        ]
+                                        : []
+
+                            };
+
+                        });
+
+
+                return {
+
+                    id:
+                        category.id,
+
+                    icon:
+                        category.icon,
+
+                    name:
+                        category.name,
+
+                    tools:
+                        tools
+
+                };
+
+            }
+        );
+
+    }
+
+
+    /* ======================================================
+       Featured Tool IDs
+       ====================================================== */
+
+    const featuredTools = [
+
+        "retirement-calculator",
+
+        "currency-profit-calculator",
+
+        "inflation-calculator",
+
+        "emi-calculator"
+
+    ];
+
+
+    /* ======================================================
+       Newest Tool IDs
+       ====================================================== */
+
+    const newestTools = [
+
+        "retirement-calculator",
+
+        "currency-profit-calculator",
+
+        "inflation-calculator"
+
+    ];
+
+
+    /* ======================================================
+       Core Configuration
+       ====================================================== */
+
+    const TOOLXONE = {
+
+        name:
+            "ToolXone",
+
+        version:
+            "3.1.0",
+
+        founder:
+            "Tahir Aslam",
+
+        year:
+            2026,
+
+        defaultTheme:
+            "light",
+
+        featuredTools:
+            featuredTools,
+
+        newestTools:
+            newestTools
+
+    };
+
+
+    /* ======================================================
+       DYNAMIC CANONICAL VIEWS
+       ======================================================
+
+       These getters intentionally resolve the registry at
+       access time instead of initialization time.
+
+       Therefore:
+
+       config.js loads before registry
+           OR
+       registry loads before config.js
+
+       both remain safe.
+
+       ====================================================== */
+
+    Object.defineProperties(
+
+        TOOLXONE,
+
+        {
+
+            totalTools: {
+
+                enumerable: true,
+
+                configurable: false,
+
+                get: function () {
+
+                    return getRegistry().length;
+
+                }
+
+            },
+
+
+            categories: {
+
+                enumerable: true,
+
+                configurable: false,
+
+                get: function () {
+
+                    return buildCategories();
+
+                }
+
+            }
+
+        }
+
+    );
+
+
+    /* ======================================================
+       Canonical Tool API
+       ====================================================== */
+
+    TOOLXONE.getTool =
+        getTool;
+
+
+    TOOLXONE.getAllTools =
+        function () {
+
+            return [
+                ...getRegistry()
+            ];
+
+        };
+
+
+    TOOLXONE.getCategories =
+        function () {
+
+            return buildCategories();
+
+        };
+
+
+    TOOLXONE.getFeaturedTools =
+        function () {
+
+            return featuredTools
+                .map(function (id) {
+
+                    return getTool(id);
+
+                })
+                .filter(Boolean);
+
+        };
+
+
+    TOOLXONE.getNewestTools =
+        function () {
+
+            return newestTools
+                .map(function (id) {
+
+                    return getTool(id);
+
+                })
+                .filter(Boolean);
+
+        };
+
+
+    /* ======================================================
+       Global Exposure
+       ====================================================== */
+
+    window.TOOLXONE =
+        TOOLXONE;
+
+
+    /* ======================================================
+       Diagnostics
+       ====================================================== */
+
+    console.info(
+        "ToolXone Core Config v3.1.0 initialized."
+    );
+
+    console.info(
+        "Registry binding:",
+        Array.isArray(
+            window.ToolXoneToolsRegistry
+        )
+            ? "AVAILABLE"
+            : "WAITING FOR CANONICAL REGISTRY"
+    );
+
+
+    /* ======================================================
+       Google Analytics
+       ====================================================== */
+
+    (function () {
+
+        const GA_ID =
+            "G-WLY68C9N20";
+
+
+        const script =
+            document.createElement("script");
+
+
+        script.async =
+            true;
+
+
+        script.src =
+            "https://www.googletagmanager.com/gtag/js?id="
+            + GA_ID;
+
+
+        document.head.appendChild(
+            script
+        );
+
+
+        window.dataLayer =
+            window.dataLayer || [];
+
+
+        function gtag() {
+
+            dataLayer.push(
+                arguments
+            );
+
+        }
+
+
+        window.gtag =
+            gtag;
+
+
+        gtag(
+            "js",
+            new Date()
+        );
+
+
+        gtag(
+            "config",
+            GA_ID
+        );
+
+    })();
+
+
+})(window, document);

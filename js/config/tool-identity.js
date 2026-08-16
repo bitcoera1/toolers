@@ -1,445 +1,73 @@
-/*
-==========================================================
- ToolXone Tool Identity Resolver
- Unified Tool Identity System
- Version: 1.0.0
-==========================================================
-*/
+/*!
+ * ==========================================================
+ * ToolXone Tool Identity Resolver
+ * Unified Tool Identity System
+ * Version: 2.0.0
+ * ==========================================================
+ *
+ * RESPONSIBILITY:
+ *
+ * - Resolve tool identity
+ * - Resolve aliases
+ * - Resolve slugs
+ * - Resolve URLs
+ * - Return canonical tool IDs
+ * - Return canonical tool records
+ *
+ * IMPORTANT:
+ *
+ * This module DOES NOT maintain its own tool database.
+ *
+ * The single source of truth is:
+ *
+ *     ToolXoneToolsRegistry
+ *
+ * This resolver consumes the canonical registry and provides
+ * a stable identity API for the rest of ToolXone.
+ *
+ * ==========================================================
+ */
 
-(function () {
+(function (window) {
 
     "use strict";
 
 
-    /*=========================================================
-      Constants
-    =========================================================*/
+    /* ========================================================
+       Constants
+       ======================================================== */
 
     const NAME =
         "ToolXone Tool Identity Resolver";
 
     const VERSION =
-        "1.0.0";
+        "2.0.0";
 
 
-    /*=========================================================
-      Canonical Tool Map
-    =========================================================*/
+    /* ========================================================
+       Registry Access
+       ======================================================== */
 
-    const identities = {
+    function getRegistry() {
 
-        "basic-calculator": {
+        if (
+            Array.isArray(
+                window.ToolXoneToolsRegistry
+            )
+        ) {
 
-            id: "basic-calculator",
-
-            name: "Basic Calculator",
-
-            aliases: [
-
-                "basic",
-
-                "calculator",
-
-                "basic-calculator",
-
-                "Basic Calculator"
-
-            ]
-
-        },
-
-
-        "scientific-calculator": {
-
-            id: "scientific-calculator",
-
-            name: "Scientific Calculator",
-
-            aliases: [
-
-                "scientific",
-
-                "scientific-calculator",
-
-                "Scientific Calculator"
-
-            ]
-
-        },
-
-
-        "percentage-calculator": {
-
-            id: "percentage-calculator",
-
-            name: "Percentage Calculator",
-
-            aliases: [
-
-                "percentage",
-
-                "percentage-calculator",
-
-                "Percentage Calculator"
-
-            ]
-
-        },
-
-
-        "age-calculator": {
-
-            id: "age-calculator",
-
-            name: "Age Calculator",
-
-            aliases: [
-
-                "age",
-
-                "age-calculator",
-
-                "Age Calculator"
-
-            ]
-
-        },
-
-
-        "bmi-calculator": {
-
-            id: "bmi-calculator",
-
-            name: "BMI Calculator",
-
-            aliases: [
-
-                "bmi",
-
-                "bmi-calculator",
-
-                "BMI Calculator"
-
-            ]
-
-        },
-
-
-        "weight-converter": {
-
-            id: "weight-converter",
-
-            name: "Weight Converter",
-
-            aliases: [
-
-                "weight",
-
-                "weight-converter",
-
-                "Weight Converter"
-
-            ]
-
-        },
-
-
-        "currency-converter": {
-
-            id: "currency-converter",
-
-            name: "Currency Converter",
-
-            aliases: [
-
-                "currency",
-
-                "currency-converter",
-
-                "Currency Converter"
-
-            ]
-
-        },
-
-
-        "loan-calculator": {
-
-            id: "loan-calculator",
-
-            name: "Loan Calculator",
-
-            aliases: [
-
-                "loan",
-
-                "loan-calculator",
-
-                "Loan Calculator"
-
-            ]
-
-        },
-
-
-        "emi-calculator": {
-
-            id: "emi-calculator",
-
-            name: "EMI Calculator",
-
-            aliases: [
-
-                "emi",
-
-                "emi-calculator",
-
-                "EMI Calculator"
-
-            ]
-
-        },
-
-
-        "mortgage-calculator": {
-
-            id: "mortgage-calculator",
-
-            name: "Mortgage Calculator",
-
-            aliases: [
-
-                "mortgage",
-
-                "mortgage-calculator",
-
-                "Mortgage Calculator"
-
-            ]
-
-        },
-
-
-        "compound-interest-calculator": {
-
-            id: "compound-interest-calculator",
-
-            name: "Compound Interest Calculator",
-
-            aliases: [
-
-                "compound",
-
-                "compound-interest-calculator",
-
-                "Compound Interest Calculator"
-
-            ]
-
-        },
-
-
-        "roi-calculator": {
-
-            id: "roi-calculator",
-
-            name: "ROI Calculator",
-
-            aliases: [
-
-                "roi",
-
-                "roi-calculator",
-
-                "ROI Calculator"
-
-            ]
-
-        },
-
-
-        "profit-margin-calculator": {
-
-            id: "profit-margin-calculator",
-
-            name: "Profit Margin Calculator",
-
-            aliases: [
-
-                "profit-margin",
-
-                "profit-margin-calculator",
-
-                "Profit Margin Calculator"
-
-            ]
-
-        },
-
-
-        "discount-calculator": {
-
-            id: "discount-calculator",
-
-            name: "Discount Calculator",
-
-            aliases: [
-
-                "discount",
-
-                "discount-calculator",
-
-                "Discount Calculator"
-
-            ]
-
-        },
-
-
-        "gst-vat-calculator": {
-
-            id: "gst-vat-calculator",
-
-            name: "GST / VAT Calculator",
-
-            aliases: [
-
-                "gst-vat",
-
-                "gst-vat-calculator",
-
-                "GST / VAT Calculator"
-
-            ]
-
-        },
-
-
-        "inflation-calculator": {
-
-            id: "inflation-calculator",
-
-            name: "Inflation Calculator",
-
-            aliases: [
-
-                "inflation",
-
-                "inflation-calculator",
-
-                "Inflation Calculator"
-
-            ]
-
-        },
-
-
-        "currency-profit-calculator": {
-
-            id: "currency-profit-calculator",
-
-            name: "Currency Profit Calculator",
-
-            aliases: [
-
-                "currency-profit",
-
-                "currency-profit-calculator",
-
-                "Currency Profit Calculator"
-
-            ]
-
-        },
-
-
-        "savings-goal-calculator": {
-
-            id: "savings-goal-calculator",
-
-            name: "Savings Goal Calculator",
-
-            aliases: [
-
-                "savings-goal",
-
-                "savings-goal-calculator",
-
-                "Savings Goal Calculator"
-
-            ]
-
-        },
-
-
-        "retirement-calculator": {
-
-            id: "retirement-calculator",
-
-            name: "Retirement Calculator",
-
-            aliases: [
-
-                "retirement",
-
-                "retirement-calculator",
-
-                "Retirement Calculator"
-
-            ]
-
-        },
-
-
-        "qr-code-generator": {
-
-            id: "qr-code-generator",
-
-            name: "QR Code Generator",
-
-            aliases: [
-
-                "qr",
-
-                "qr-code-generator",
-
-                "QR Code Generator"
-
-            ]
+            return window.ToolXoneToolsRegistry;
 
         }
 
-    };
+        return [];
+
+    }
 
 
-    /*=========================================================
-      Build Alias Index
-    =========================================================*/
-
-    const aliasIndex = Object.create(null);
-
-
-    Object.keys(identities).forEach(function (id) {
-
-        const tool =
-            identities[id];
-
-        tool.aliases.forEach(function (alias) {
-
-            aliasIndex[
-                String(alias)
-                    .trim()
-                    .toLowerCase()
-            ] = id;
-
-        });
-
-    });
-
-
-    /*=========================================================
-      Normalize Input
-    =========================================================*/
+    /* ========================================================
+       Normalize Input
+       ======================================================== */
 
     function normalize(value) {
 
@@ -459,9 +87,198 @@
     }
 
 
-    /*=========================================================
-      Resolve
-    =========================================================*/
+    /* ========================================================
+       Get Tool By Canonical ID
+       ======================================================== */
+
+    function getById(id) {
+
+        const registry =
+            getRegistry();
+
+        const normalized =
+            normalize(id);
+
+        if (!normalized) {
+
+            return null;
+
+        }
+
+        return registry.find(function (tool) {
+
+            return (
+                tool &&
+                normalize(tool.id) === normalized
+            );
+
+        }) || null;
+
+    }
+
+
+    /* ========================================================
+       Get Tool By Slug
+       ======================================================== */
+
+    function getBySlug(slug) {
+
+        const registry =
+            getRegistry();
+
+        const normalized =
+            normalize(slug);
+
+        if (!normalized) {
+
+            return null;
+
+        }
+
+        return registry.find(function (tool) {
+
+            return (
+                tool &&
+                tool.slug &&
+                normalize(tool.slug) === normalized
+            );
+
+        }) || null;
+
+    }
+
+
+    /* ========================================================
+       Get Tool By URL
+       ======================================================== */
+
+    function getByUrl(url) {
+
+        const registry =
+            getRegistry();
+
+        const normalized =
+            normalize(url);
+
+        if (!normalized) {
+
+            return null;
+
+        }
+
+        return registry.find(function (tool) {
+
+            return (
+                tool &&
+                tool.url &&
+                normalize(tool.url) === normalized
+            );
+
+        }) || null;
+
+    }
+
+
+    /* ========================================================
+       Get Tool By Alias
+       ======================================================== */
+
+    function getByAlias(alias) {
+
+        const registry =
+            getRegistry();
+
+        const normalized =
+            normalize(alias);
+
+        if (!normalized) {
+
+            return null;
+
+        }
+
+        return registry.find(function (tool) {
+
+            if (!tool) {
+
+                return false;
+
+            }
+
+
+            /* -----------------------------------------------
+               Canonical ID
+               ----------------------------------------------- */
+
+            if (
+                tool.id &&
+                normalize(tool.id) === normalized
+            ) {
+
+                return true;
+
+            }
+
+
+            /* -----------------------------------------------
+               Slug
+               ----------------------------------------------- */
+
+            if (
+                tool.slug &&
+                normalize(tool.slug) === normalized
+            ) {
+
+                return true;
+
+            }
+
+
+            /* -----------------------------------------------
+               URL
+               ----------------------------------------------- */
+
+            if (
+                tool.url &&
+                normalize(tool.url) === normalized
+            ) {
+
+                return true;
+
+            }
+
+
+            /* -----------------------------------------------
+               Aliases
+               ----------------------------------------------- */
+
+            if (
+                Array.isArray(tool.aliases)
+            ) {
+
+                return tool.aliases.some(
+                    function (item) {
+
+                        return (
+                            normalize(item) ===
+                            normalized
+                        );
+
+                    }
+                );
+
+            }
+
+            return false;
+
+        }) || null;
+
+    }
+
+
+    /* ========================================================
+       Resolve
+       ======================================================== */
 
     function resolve(value) {
 
@@ -474,16 +291,71 @@
 
         }
 
-        return aliasIndex[
-            normalized
-        ] || null;
+
+        /*
+         * Canonical ID
+         */
+
+        const byId =
+            getById(normalized);
+
+        if (byId) {
+
+            return byId.id;
+
+        }
+
+
+        /*
+         * Slug
+         */
+
+        const bySlug =
+            getBySlug(normalized);
+
+        if (bySlug) {
+
+            return bySlug.id;
+
+        }
+
+
+        /*
+         * URL
+         */
+
+        const byUrl =
+            getByUrl(normalized);
+
+        if (byUrl) {
+
+            return byUrl.id;
+
+        }
+
+
+        /*
+         * Alias
+         */
+
+        const byAlias =
+            getByAlias(normalized);
+
+        if (byAlias) {
+
+            return byAlias.id;
+
+        }
+
+
+        return null;
 
     }
 
 
-    /*=========================================================
-      Get Tool
-    =========================================================*/
+    /* ========================================================
+       Get Tool
+       ======================================================== */
 
     function get(value) {
 
@@ -496,14 +368,14 @@
 
         }
 
-        return identities[id];
+        return getById(id);
 
     }
 
 
-    /*=========================================================
-      Exists
-    =========================================================*/
+    /* ========================================================
+       Exists
+       ======================================================== */
 
     function exists(value) {
 
@@ -512,9 +384,20 @@
     }
 
 
-    /*=========================================================
-      Get Canonical Name
-    =========================================================*/
+    /* ========================================================
+       Get Canonical ID
+       ======================================================== */
+
+    function getId(value) {
+
+        return resolve(value);
+
+    }
+
+
+    /* ========================================================
+       Get Canonical Name
+       ======================================================== */
 
     function getName(value) {
 
@@ -528,35 +411,257 @@
     }
 
 
-    /*=========================================================
-      Get Canonical ID
-    =========================================================*/
+    /* ========================================================
+       Get URL
+       ======================================================== */
 
-    function getId(value) {
+    function getUrl(value) {
 
-        return resolve(value);
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.url
+            : null;
 
     }
 
 
-    /*=========================================================
-      List
-    =========================================================*/
+    /* ========================================================
+       Get Slug
+       ======================================================== */
+
+    function getSlug(value) {
+
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.slug
+            : null;
+
+    }
+
+
+    /* ========================================================
+       Get Icon
+       ======================================================== */
+
+    function getIcon(value) {
+
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.icon
+            : null;
+
+    }
+
+
+    /* ========================================================
+       Get Category
+       ======================================================== */
+
+    function getCategory(value) {
+
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.category
+            : null;
+
+    }
+
+
+    /* ========================================================
+       Get Category ID
+       ======================================================== */
+
+    function getCategoryId(value) {
+
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.categoryId
+            : null;
+
+    }
+
+
+    /* ========================================================
+       Get Statistics Category
+       ======================================================== */
+
+    function getStatisticsCategory(value) {
+
+        const tool =
+            get(value);
+
+        return tool
+            ? tool.statisticsCategory
+            : null;
+
+    }
+
+
+    /* ========================================================
+       Get Aliases
+       ======================================================== */
+
+    function getAliases(value) {
+
+        const tool =
+            get(value);
+
+        if (
+            !tool ||
+            !Array.isArray(tool.aliases)
+        ) {
+
+            return [];
+
+        }
+
+        return [
+            ...tool.aliases
+        ];
+
+    }
+
+
+    /* ========================================================
+       Get Related Tool IDs
+       ======================================================== */
+
+    function getRelatedIds(value) {
+
+        const tool =
+            get(value);
+
+        if (
+            !tool ||
+            !Array.isArray(tool.related)
+        ) {
+
+            return [];
+
+        }
+
+        return [
+            ...tool.related
+        ];
+
+    }
+
+
+    /* ========================================================
+       Get Related Tool Objects
+       ======================================================== */
+
+    function getRelated(value) {
+
+        const registry =
+            getRegistry();
+
+        const relatedIds =
+            getRelatedIds(value);
+
+        if (!relatedIds.length) {
+
+            return [];
+
+        }
+
+        return relatedIds
+            .map(function (id) {
+
+                return registry.find(
+                    function (tool) {
+
+                        return (
+                            tool &&
+                            tool.id === id
+                        );
+
+                    }
+                );
+
+            })
+            .filter(Boolean);
+
+    }
+
+
+    /* ========================================================
+       Get Active Tools
+       ======================================================== */
+
+    function getActive() {
+
+        return getRegistry()
+            .filter(function (tool) {
+
+                return (
+                    tool &&
+                    tool.active === true
+                );
+
+            });
+
+    }
+
+
+    /* ========================================================
+       List Canonical IDs
+       ======================================================== */
 
     function list() {
 
-        return Object.keys(
-            identities
+        return getRegistry()
+            .map(function (tool) {
+
+                return tool.id;
+
+            });
+
+    }
+
+
+    /* ========================================================
+       Count
+       ======================================================== */
+
+    function count() {
+
+        return getRegistry().length;
+
+    }
+
+
+    /* ========================================================
+       Registry Availability
+       ======================================================== */
+
+    function isRegistryAvailable() {
+
+        return Array.isArray(
+            window.ToolXoneToolsRegistry
         );
 
     }
 
 
-    /*=========================================================
-      Information
-    =========================================================*/
+    /* ========================================================
+       Information
+       ======================================================== */
 
     function info() {
+
+        const registry =
+            getRegistry();
 
         return {
 
@@ -564,52 +669,135 @@
 
             version: VERSION,
 
+            registryAvailable:
+                isRegistryAvailable(),
+
             totalTools:
-                list().length
+                registry.length
 
         };
 
     }
 
 
-    /*=========================================================
-      Public API
-    =========================================================*/
+    /* ========================================================
+       Public API
+       ======================================================== */
 
     window.ToolXoneToolIdentity = {
 
-        name: NAME,
+        name:
+            NAME,
 
-        version: VERSION,
+        version:
+            VERSION,
 
-        resolve,
+        resolve:
+            resolve,
 
-        get,
+        get:
+            get,
 
-        exists,
+        getById:
+            getById,
 
-        getName,
+        getBySlug:
+            getBySlug,
 
-        getId,
+        getByUrl:
+            getByUrl,
 
-        list,
+        getByAlias:
+            getByAlias,
 
-        info
+        exists:
+            exists,
+
+        getId:
+            getId,
+
+        getName:
+            getName,
+
+        getUrl:
+            getUrl,
+
+        getSlug:
+            getSlug,
+
+        getIcon:
+            getIcon,
+
+        getCategory:
+            getCategory,
+
+        getCategoryId:
+            getCategoryId,
+
+        getStatisticsCategory:
+            getStatisticsCategory,
+
+        getAliases:
+            getAliases,
+
+        getRelatedIds:
+            getRelatedIds,
+
+        getRelated:
+            getRelated,
+
+        getActive:
+            getActive,
+
+        list:
+            list,
+
+        count:
+            count,
+
+        isRegistryAvailable:
+            isRegistryAvailable,
+
+        info:
+            info
 
     };
 
 
-    /*=========================================================
-      Initialization
-    =========================================================*/
+    /* ========================================================
+       Initialization
+       ======================================================== */
 
-    console.info(
+    if (
+        isRegistryAvailable()
+    ) {
 
-        NAME +
-        " v" +
-        VERSION +
-        " initialized"
+        console.info(
+            NAME +
+            " v" +
+            VERSION +
+            " initialized."
+        );
 
-    );
+        console.info(
+            "Canonical registry detected:",
+            getRegistry().length,
+            "tools."
+        );
 
-})();
+    }
+
+    else {
+
+        console.warn(
+            NAME +
+            " v" +
+            VERSION +
+            " initialized, " +
+            "but ToolXoneToolsRegistry was not found."
+        );
+
+    }
+
+
+})(window);

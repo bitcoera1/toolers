@@ -120,6 +120,22 @@ actions : {
 
     },
 
+    mortgage : {
+
+    startCalculating : ".mortgage-card",
+
+    learnMore : "#financeInfo"
+
+},
+
+"mortgage-calculator" : {
+
+    startCalculating : ".mortgage-card",
+
+    learnMore : "#financeInfo"
+
+},
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",

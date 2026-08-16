@@ -269,8 +269,17 @@
 /*=========================================================
  * Resolve Related Tool
  *---------------------------------------------------------
- * Resolves related items through the centralized ToolXone
- * tool registry whenever possible.
+ * Resolves related tools through the canonical ToolXone
+ * identity system and the central ToolXone tools registry.
+ *
+ * Resolution priority:
+ *
+ * 1. Already-normalized related object
+ * 2. ToolXoneToolIdentity
+ * 3. ToolXoneToolsRegistry
+ * 4. Legacy getToolById()
+ * 5. Legacy getAllTools()
+ * 6. Legacy object fallback
  *=========================================================*/
 
 function resolveRelatedItem(item) {
@@ -279,174 +288,468 @@ function resolveRelatedItem(item) {
         return null;
     }
 
-    let tool = null;
+    /* =====================================================
+     * 1. Extract supplied identity / presentation data
+     * ===================================================== */
 
-    /*
-     * -----------------------------------------------------
-     * 1. Resolve by Tool ID
-     * -----------------------------------------------------
-     */
+    let requestedId = "";
+    let suppliedUrl = "";
+    let suppliedTitle = "";
+    let suppliedDescription = "";
+    let suppliedIcon = "";
+    let suppliedCategory = "";
 
     if (typeof item === "string") {
 
-        if (typeof getToolById === "function") {
+        requestedId = item.trim();
 
-            tool = getToolById(item);
+    }
+    else if (typeof item === "object") {
 
-        }
+        requestedId =
+            String(
+                item.id ||
+                item.slug ||
+                item.name ||
+                item.title ||
+                ""
+            ).trim();
+
+        suppliedUrl =
+            String(
+                item.url ||
+                item.link ||
+                ""
+            ).trim();
+
+        suppliedTitle =
+            item.title ||
+            item.name ||
+            "";
+
+        suppliedDescription =
+            item.description ||
+            "";
+
+        suppliedIcon =
+            item.icon ||
+            "";
+
+        suppliedCategory =
+            item.categoryName ||
+            item.category ||
+            "";
 
     }
 
     /*
-     * -----------------------------------------------------
-     * 2. Resolve object by ID
-     * -----------------------------------------------------
+     * If the supplied object already contains a complete
+     * normalized tool record, preserve its useful values.
      */
 
-    else if (
+    if (
         typeof item === "object" &&
-        item.id
+        item.id &&
+        (item.name || item.title) &&
+        (item.link || item.url)
     ) {
 
-        if (typeof getToolById === "function") {
+        suppliedTitle =
+            suppliedTitle ||
+            item.name ||
+            item.title ||
+            "";
 
-            tool = getToolById(item.id);
+        suppliedDescription =
+            suppliedDescription ||
+            item.description ||
+            "";
 
+        suppliedIcon =
+            suppliedIcon ||
+            item.icon ||
+            "";
+
+        suppliedCategory =
+            suppliedCategory ||
+            item.categoryName ||
+            item.category ||
+            "";
+
+    }
+
+
+    /* =====================================================
+     * 2. Canonical identity resolution
+     * ===================================================== */
+
+    let canonicalId = requestedId;
+
+    if (
+        window.ToolXoneToolIdentity &&
+        typeof window.ToolXoneToolIdentity.getId === "function"
+    ) {
+
+        const resolvedId =
+            window.ToolXoneToolIdentity.getId(
+                canonicalId ||
+                suppliedUrl ||
+                suppliedTitle
+            );
+
+        if (resolvedId) {
+            canonicalId = resolvedId;
         }
 
     }
 
-    /*
-     * -----------------------------------------------------
-     * 3. Resolve object by URL
-     * -----------------------------------------------------
-     */
+
+    /* =====================================================
+     * 3. IMPORTANT:
+     *    Resolve through ToolXoneToolCards first.
+     *
+     *    tool-cards.js owns enrichTool(), which converts
+     *    canonical registry records into the presentation
+     *    shape required by cards.
+     * ===================================================== */
+
+    let tool = null;
+
+    if (
+        window.ToolXoneToolCards &&
+        typeof window.ToolXoneToolCards.getToolById === "function" &&
+        canonicalId
+    ) {
+
+        tool =
+            window.ToolXoneToolCards.getToolById(
+                canonicalId
+            );
+
+    }
+
+
+    /* =====================================================
+     * 4. Alias resolution through ToolXoneToolCards
+     * ===================================================== */
 
     if (
         !tool &&
-        typeof item === "object" &&
-        item.url
+        window.ToolXoneToolCards &&
+        typeof window.ToolXoneToolCards.getToolByAlias === "function" &&
+        canonicalId
     ) {
 
-        const targetURL =
-            String(item.url)
-                .split("/")
-                .pop();
+        tool =
+            window.ToolXoneToolCards.getToolByAlias(
+                canonicalId
+            );
 
-        if (typeof getAllTools === "function") {
+    }
 
-            tool = getAllTools().find(function(candidate) {
 
-                return (
-                    candidate.link === targetURL ||
-                    candidate.url === targetURL
-                );
+    /* =====================================================
+     * 5. Global backward-compatible getToolById()
+     * ===================================================== */
 
-            });
+    if (
+        !tool &&
+        typeof getToolById === "function" &&
+        canonicalId
+    ) {
+
+        tool =
+            getToolById(
+                canonicalId
+            );
+
+    }
+
+
+    /* =====================================================
+     * 6. Direct canonical registry fallback
+     *
+     *    This is deliberately AFTER ToolXoneToolCards so
+     *    enriched presentation data gets priority.
+     * ===================================================== */
+
+    if (
+        !tool &&
+        Array.isArray(window.ToolXoneToolsRegistry)
+    ) {
+
+        const registry =
+            window.ToolXoneToolsRegistry;
+
+        tool =
+            registry.find(function (candidate) {
+
+                if (!candidate) {
+                    return false;
+                }
+
+                const candidates = [
+
+                    candidate.id,
+                    candidate.slug,
+                    candidate.name,
+                    candidate.title,
+                    candidate.url,
+                    candidate.link,
+
+                    ...(Array.isArray(candidate.aliases)
+                        ? candidate.aliases
+                        : [])
+
+                ];
+
+                return candidates.some(function (candidateValue) {
+
+                    if (!candidateValue) {
+                        return false;
+                    }
+
+                    return (
+                        String(candidateValue)
+                            .toLowerCase()
+                            .replace(/\.html$/i, "")
+                            .replace(/\/$/, "") ===
+                        String(canonicalId || "")
+                            .toLowerCase()
+                            .replace(/\.html$/i, "")
+                            .replace(/\/$/, "")
+                    );
+
+                });
+
+            }) || null;
+
+    }
+
+
+    /* =====================================================
+     * 7. Legacy getAllTools() fallback
+     * ===================================================== */
+
+    if (
+        !tool &&
+        typeof getAllTools === "function"
+    ) {
+
+        const tools =
+            getAllTools();
+
+        if (Array.isArray(tools)) {
+
+            tool =
+                tools.find(function (candidate) {
+
+                    if (!candidate) {
+                        return false;
+                    }
+
+                    const candidates = [
+
+                        candidate.id,
+                        candidate.slug,
+                        candidate.name,
+                        candidate.title,
+                        candidate.url,
+                        candidate.link,
+
+                        ...(Array.isArray(candidate.aliases)
+                            ? candidate.aliases
+                            : [])
+
+                    ];
+
+                    return candidates.some(function (candidateValue) {
+
+                        if (!candidateValue) {
+                            return false;
+                        }
+
+                        return (
+                            String(candidateValue)
+                                .toLowerCase()
+                                .replace(/\.html$/i, "")
+                                .replace(/\/$/, "") ===
+                            String(canonicalId || "")
+                                .toLowerCase()
+                                .replace(/\.html$/i, "")
+                                .replace(/\/$/, "")
+                        );
+
+                    });
+
+                }) || null;
 
         }
 
     }
 
-    /*
-     * -----------------------------------------------------
-     * 4. If centralized tool data exists, use it.
-     * -----------------------------------------------------
-     */
 
-    if (tool) {
+    /* =====================================================
+     * 8. If no canonical tool was found, stop.
+     * ===================================================== */
 
-        return {
-
-            id:
-                tool.id,
-
-            icon:
-                tool.icon ||
-                item.icon ||
-                "🧮",
-
-            title:
-                tool.name ||
-                item.title ||
-                "",
-
-            description:
-                item.description ||
-                tool.description ||
-                `Quick access to ${
-                    String(
-                        tool.name || "this tool"
-                    ).toLowerCase()
-                }.`,
-
-            category:
-                tool.categoryName ||
-                item.category ||
-                "ToolXone Tools",
-
-            url:
-                tool.link ||
-                tool.url ||
-                item.url ||
-                "#"
-
-        };
-
+    if (!tool) {
+        return null;
     }
 
-    /*
-     * -----------------------------------------------------
-     * 5. Fallback for legacy related objects
-     * -----------------------------------------------------
-     */
 
-    if (
-        typeof item === "object" &&
-        item.title &&
-        item.url
-    ) {
+    /* =====================================================
+     * 9. Canonical ID
+     * ===================================================== */
 
-        return {
+    const finalId =
+        tool.id ||
+        canonicalId ||
+        requestedId;
 
-            id:
-                item.id || "",
-
-            icon:
-                item.icon || "🧮",
-
-            title:
-                item.title,
-
-            description:
-                item.description || "",
-
-            category:
-                item.category ||
-                "ToolXone Tools",
-
-            url:
-                item.url
-
-        };
-
+    if (!finalId) {
+        return null;
     }
 
-    return null;
+
+    /* =====================================================
+     * 10. Category normalization
+     * ===================================================== */
+
+    const categoryId =
+        String(
+            tool.categoryId ||
+            tool.category ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    const categoryMap = {
+
+        calculators:
+            "Calculators",
+
+        calculator:
+            "Calculators",
+
+        finance:
+            "Finance Tools",
+
+        health:
+            "Health Tools",
+
+        converters:
+            "Converters",
+
+        converter:
+            "Converters",
+
+        utilities:
+            "Utilities",
+
+        utility:
+            "Utilities",
+
+        future:
+            "Coming Soon"
+
+    };
+
+    const category =
+        tool.categoryName ||
+        categoryMap[categoryId] ||
+        suppliedCategory ||
+        "ToolXone Tools";
+
+
+    /* =====================================================
+     * 11. Final normalized related-tool object
+     *
+     *     IMPORTANT:
+     *     Prefer enriched ToolXoneToolCards data.
+     * ===================================================== */
+
+    const finalTitle =
+        tool.name ||
+        tool.title ||
+        suppliedTitle ||
+        "";
+
+    if (!finalTitle) {
+        return null;
+    }
+
+    const finalUrl =
+        tool.link ||
+        tool.url ||
+        suppliedUrl ||
+        "#";
+
+    const finalIcon =
+        tool.icon ||
+        suppliedIcon ||
+        "🧮";
+
+    const finalDescription =
+        tool.description ||
+        suppliedDescription ||
+        `Quick access to ${finalTitle.toLowerCase()}.`;
+
+
+    return {
+
+        id:
+            finalId,
+
+        icon:
+            finalIcon,
+
+        title:
+            finalTitle,
+
+        description:
+            finalDescription,
+
+        category:
+            category,
+
+        url:
+            finalUrl
+
+    };
 
 }
+
 
 /*=========================================================
  * Resolve Current Tool ID
  *---------------------------------------------------------
- * Converts page-level tool identifiers/slugs into the
- * canonical ToolXone tool ID used by the central registry.
+ * Converts page-level tool identifiers, aliases and URLs
+ * into the canonical ToolXone tool ID.
  *=========================================================*/
 
 function resolveCurrentToolId(value) {
 
     if (!value) {
         return "";
+    }
+
+    /*
+     * =====================================================
+     * 0. Safely extract an identity from an object
+     * =====================================================
+     */
+
+    if (typeof value === "object") {
+
+        value =
+            value.id ||
+            value.slug ||
+            value.url ||
+            value.link ||
+            value.name ||
+            "";
     }
 
     const raw = String(value).trim();
@@ -456,64 +759,236 @@ function resolveCurrentToolId(value) {
     }
 
     /*
-     * 1. Direct canonical ToolXone ID
+     * =====================================================
+     * 1. CANONICAL TOOL IDENTITY RESOLVER
+     * =====================================================
      */
-    if (typeof getToolById === "function") {
 
-        const direct = getToolById(raw);
+    if (
+        window.ToolXoneToolIdentity &&
+        typeof window.ToolXoneToolIdentity.getId === "function"
+    ) {
 
-        if (direct && direct.id) {
-            return direct.id;
+        const resolved =
+            window.ToolXoneToolIdentity.getId(raw);
+
+        if (resolved) {
+            return resolved;
         }
-
     }
 
     /*
-     * 2. Resolve through the complete ToolXone registry
+     * =====================================================
+     * 2. CANONICAL TOOLS REGISTRY
+     *
+     * This is important because some pages may not load
+     * tool-identity.js directly.
+     * =====================================================
      */
-    if (typeof getAllTools === "function") {
 
-        const normalized = raw
-            .toLowerCase()
-            .replace(/\.html$/i, "");
+    if (
+        window.ToolXoneToolsRegistry
+    ) {
 
-        const tools = getAllTools();
+        const registry =
+            window.ToolXoneToolsRegistry;
 
-        const match = tools.find(function(tool) {
+        /*
+         * Prefer registry alias resolver
+         */
 
-            if (!tool) {
-                return false;
+        if (
+            typeof registry.getByAlias === "function"
+        ) {
+
+            const aliasMatch =
+                registry.getByAlias(raw);
+
+            if (
+                aliasMatch &&
+                aliasMatch.id
+            ) {
+                return aliasMatch.id;
             }
-
-            const toolId =
-                String(tool.id || "").toLowerCase();
-
-            const toolLink =
-                String(tool.link || tool.url || "")
-                    .split("/")
-                    .pop()
-                    .replace(/\.html$/i, "")
-                    .toLowerCase();
-
-            return (
-                toolId === normalized ||
-                toolLink === normalized
-            );
-
-        });
-
-        if (match && match.id) {
-            return match.id;
         }
 
+        /*
+         * Try canonical ID lookup
+         */
+
+        if (
+            typeof registry.get === "function"
+        ) {
+
+            const directMatch =
+                registry.get(raw);
+
+            if (
+                directMatch &&
+                directMatch.id
+            ) {
+                return directMatch.id;
+            }
+        }
+
+        /*
+         * Final registry array fallback
+         */
+
+        const registryTools =
+            Array.isArray(registry)
+                ? registry
+                : [];
+
+        const normalized =
+            raw
+                .toLowerCase()
+                .replace(/\.html$/i, "");
+
+        const registryMatch =
+            registryTools.find(function(tool) {
+
+                if (!tool) {
+                    return false;
+                }
+
+                const candidates = [
+
+                    tool.id,
+
+                    tool.slug,
+
+                    tool.name,
+
+                    tool.url,
+
+                    tool.link,
+
+                    ...(Array.isArray(tool.aliases)
+                        ? tool.aliases
+                        : [])
+
+                ];
+
+                return candidates.some(function(candidate) {
+
+                    if (!candidate) {
+                        return false;
+                    }
+
+                    return String(candidate)
+                        .toLowerCase()
+                        .replace(/\.html$/i, "") === normalized;
+
+                });
+
+            });
+
+        if (
+            registryMatch &&
+            registryMatch.id
+        ) {
+            return registryMatch.id;
+        }
     }
 
     /*
-     * 3. Return original value if no canonical match exists
+     * =====================================================
+     * 3. TOOL CARDS FALLBACK
+     * =====================================================
      */
+
+    if (
+        typeof getAllTools === "function"
+    ) {
+
+        const tools =
+            getAllTools();
+
+        if (Array.isArray(tools)) {
+
+            const normalized =
+                raw
+                    .toLowerCase()
+                    .replace(/\.html$/i, "");
+
+            const match =
+                tools.find(function(tool) {
+
+                    if (!tool) {
+                        return false;
+                    }
+
+                    const candidates = [
+
+                        tool.id,
+
+                        tool.slug,
+
+                        tool.name,
+
+                        tool.url,
+
+                        tool.link,
+
+                        ...(Array.isArray(tool.aliases)
+                            ? tool.aliases
+                            : [])
+
+                    ];
+
+                    return candidates.some(function(candidate) {
+
+                        if (!candidate) {
+                            return false;
+                        }
+
+                        return String(candidate)
+                            .toLowerCase()
+                            .replace(/\.html$/i, "") === normalized;
+
+                    });
+
+                });
+
+            if (
+                match &&
+                match.id
+            ) {
+                return match.id;
+            }
+        }
+    }
+
+    /*
+     * =====================================================
+     * 4. Legacy direct lookup
+     * =====================================================
+     */
+
+    if (
+        typeof getToolById === "function"
+    ) {
+
+        const tool =
+            getToolById(raw);
+
+        if (
+            tool &&
+            tool.id
+        ) {
+            return tool.id;
+        }
+    }
+
+    /*
+     * =====================================================
+     * 5. Last resort
+     * =====================================================
+     */
+
     return raw;
 }
-
 
 /*=========================================================
  * Build Four Related Tools
@@ -567,66 +1042,64 @@ function buildRelatedItems(items, currentToolId) {
     }
 
     /*
-     * -----------------------------------------------------
-     * Fill remaining slots from the central ToolXone
-     * registry.
-     * -----------------------------------------------------
-     */
+ * ---------------------------------------------------------
+ * Fill remaining slots from canonical ToolXone registry
+ * ---------------------------------------------------------
+ */
 
-    if (resolved.length < 4) {
+if (resolved.length < 4) {
 
-        if (typeof getAllTools === "function") {
+    const registry =
+        Array.isArray(window.ToolXoneToolsRegistry)
+            ? window.ToolXoneToolsRegistry
+            : [];
 
-            const allTools =
-                getAllTools();
+    for (const candidate of registry) {
 
-            for (const candidate of allTools) {
+        if (resolved.length >= 4) {
+            break;
+        }
 
-                if (resolved.length >= 4) {
-                    break;
-                }
+        if (
+            !candidate ||
+            !candidate.id ||
+            candidate.active === false
+        ) {
+            continue;
+        }
 
-                if (
-                    !candidate ||
-                    !candidate.id
-                ) {
-                    continue;
-                }
+        if (
+            currentToolId &&
+            candidate.id === currentToolId
+        ) {
+            continue;
+        }
 
-                if (
-                    currentToolId &&
-                    candidate.id === currentToolId
-                ) {
-                    continue;
-                }
+        if (
+            resolved.some(
+                existing =>
+                    existing.id === candidate.id
+            )
+        ) {
+            continue;
+        }
 
-                if (
-                    resolved.some(
-                        existing =>
-                            existing.id === candidate.id
-                    )
-                ) {
-                    continue;
-                }
+        const normalized =
+            resolveRelatedItem(
+                candidate.id
+            );
 
-                const normalized =
-                    resolveRelatedItem(
-                        candidate.id
-                    );
+        if (normalized) {
 
-                if (normalized) {
-
-                    resolved.push(
-                        normalized
-                    );
-
-                }
-
-            }
+            resolved.push(
+                normalized
+            );
 
         }
 
     }
+
+}
 
     return resolved.slice(0, 4);
 
@@ -726,9 +1199,12 @@ function renderInto(container, related, currentToolId) {
     const rawCurrentToolId =
     currentToolId ||
     document.body.dataset.tool ||
+    window.location.pathname
+        .split("/")
+        .pop() ||
     "";
 
-    const resolvedCurrentToolId =
+const resolvedCurrentToolId =
     resolveCurrentToolId(rawCurrentToolId);
 
     const finalItems =

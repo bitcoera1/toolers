@@ -906,10 +906,474 @@ ToolXone's Loan Calculator uses the values you enter to estimate your monthly pa
     }
 
 );
+
+/* ==========================================================
+   MORTGAGE CALCULATOR — FULL EDUCATIONAL ARTICLE
+   ========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "articles",
+
+    "mortgage-calculator",
+
+    {
+
+        title:
+            "How Mortgage Payments Work",
+
+        introduction:
+            `A mortgage is a loan commonly used to finance the purchase of a home or other property. The amount borrowed is the principal, and the lender charges interest on that balance according to the terms of the loan.
+
+ToolXone's Mortgage Calculator estimates the monthly principal and interest payment using the loan amount, annual interest rate, and loan term you enter. It also shows the estimated total interest, total repayment, and number of monthly payments over the selected term.`,
+
+        sections: [
+
+            /* ==================================================
+               1. MORTGAGE INPUTS
+            ================================================== */
+
+            {
+                heading:
+                    "What Information Does the Mortgage Calculator Use?",
+
+                content:
+                    `
+<p>
+    The calculation is based on three main inputs: the amount borrowed,
+    the annual interest rate, and the length of the loan. Changing any of
+    these values can affect the estimated monthly payment and the total
+    amount repaid.
+</p>
+
+<div class="mortgage-input-grid">
+
+    <div class="mortgage-input-item">
+        <strong>Loan Amount</strong>
+        <span>
+            The principal amount borrowed and repaid through the mortgage.
+        </span>
+    </div>
+
+    <div class="mortgage-input-item">
+        <strong>Annual Interest Rate</strong>
+        <span>
+            The yearly interest rate entered as a percentage.
+        </span>
+    </div>
+
+    <div class="mortgage-input-item">
+        <strong>Loan Term</strong>
+        <span>
+            The repayment period entered in years and converted into
+            monthly payment periods.
+        </span>
+    </div>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               2. MORTGAGE PAYMENT FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "Mortgage Payment Formula",
+
+                content:
+                    `
+<p>
+    For a fixed-rate loan with a positive interest rate, the calculator
+    uses the standard amortizing loan payment formula:
+</p>
+
+<div class="mortgage-formula">
+    M = P × [r(1 + r)ⁿ] ÷ [(1 + r)ⁿ − 1]
+</div>
+
+<p>
+    In this formula, <strong>M</strong> is the monthly principal and
+    interest payment, <strong>P</strong> is the loan principal,
+    <strong>r</strong> is the monthly interest rate, and
+    <strong>n</strong> is the total number of monthly payments.
+</p>
+
+<p>
+    The annual percentage rate entered into the calculator is divided by
+    100 and then by 12 to obtain the monthly rate. The loan term in years
+    is multiplied by 12 to determine the number of monthly payments.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               3. MORTGAGE CALCULATION EXAMPLE
+            ================================================== */
+
+            {
+                heading:
+                    "Mortgage Calculation Example",
+
+                content:
+                    `
+<p>
+    Suppose you borrow $300,000 at an annual interest rate of 5% for
+    30 years. The loan contains 360 monthly payment periods:
+</p>
+
+<div class="mortgage-formula mortgage-formula-example">
+    30 years × 12 months = 360 payments
+</div>
+
+<p>
+    Using a 5% annual rate and the fixed-payment formula, the estimated
+    monthly principal and interest payment is approximately:
+</p>
+
+<div class="mortgage-formula mortgage-formula-example">
+    Monthly Payment ≈ $1,610.46
+</div>
+
+<p>
+    Over 360 payments, the estimated total repayment is approximately
+    $579,767, of which approximately $279,767 represents interest.
+    Small differences can occur because displayed values are rounded.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               4. PRINCIPAL AND INTEREST
+            ================================================== */
+
+            {
+                heading:
+                    "What Are Principal and Interest?",
+
+                content:
+                    `
+<p>
+    Principal is the amount borrowed. Interest is the cost of borrowing
+    money under the interest-rate assumptions used in the calculation.
+    A fixed mortgage payment can contain both principal and interest.
+</p>
+
+<p>
+    ToolXone also compares the original principal with the estimated total
+    interest so you can see how much of the total repayment comes from the
+    amount borrowed and how much comes from interest.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               5. INTEREST RATE EFFECT
+            ================================================== */
+
+            {
+                heading:
+                    "How Does the Interest Rate Affect a Mortgage?",
+
+                content:
+                    `
+<p>
+    For the same loan amount and repayment term, increasing the interest
+    rate generally increases the monthly payment and total interest cost.
+    A lower rate generally reduces both.
+</p>
+
+<p>
+    Even a relatively small rate difference can have a meaningful effect
+    over a long mortgage term because interest is included across many
+    monthly payment periods. Comparing several rates can therefore be
+    useful when exploring different loan scenarios.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. LOAN TERM EFFECT
+            ================================================== */
+
+            {
+                heading:
+                    "How Does the Loan Term Affect Mortgage Payments?",
+
+                content:
+                    `
+<p>
+    A longer loan term spreads repayment across more monthly payments.
+    This generally lowers the required monthly payment, but it can increase
+    the total interest paid because the loan remains outstanding for a
+    longer period.
+</p>
+
+<p>
+    A shorter term generally produces a higher monthly payment but can
+    reduce total interest. Comparing different terms can help illustrate
+    the trade-off between the size of the monthly payment and the total
+    cost of borrowing.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               7. ZERO INTEREST
+            ================================================== */
+
+            {
+                heading:
+                    "What Happens with a 0% Interest Rate?",
+
+                content:
+                    `
+<p>
+    If the annual interest rate is 0%, there is no interest to include in
+    the payment formula. ToolXone therefore divides the loan amount by the
+    total number of monthly payments.
+</p>
+
+<div class="mortgage-formula">
+    Monthly Payment = Loan Amount ÷ Total Monthly Payments
+</div>
+
+<p>
+    For example, a $120,000 loan repaid over 10 years at 0% interest would
+    contain 120 monthly payments:
+</p>
+
+<div class="mortgage-formula mortgage-formula-example">
+    $120,000 ÷ 120 = $1,000 per month
+</div>
+
+<p>
+    In that scenario, total interest is zero and total repayment equals the
+    original loan amount.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               8. LOWER PAYMENT VS TOTAL COST
+            ================================================== */
+
+            {
+                heading:
+                    "Why Can a Lower Monthly Payment Cost More Overall?",
+
+                content:
+                    `
+<p>
+    A lower monthly payment does not necessarily mean a lower total loan
+    cost. Extending the repayment period can reduce the amount due each
+    month while allowing interest to accumulate across more payment periods.
+</p>
+
+<p>
+    This is why the calculator shows both the monthly payment and total
+    interest. Looking at both figures provides more context than comparing
+    monthly payments alone.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               9. WHAT IS NOT INCLUDED
+            ================================================== */
+
+            {
+                heading:
+                    "What Is Not Included in This Mortgage Estimate?",
+
+                content:
+                    `
+<p>
+    ToolXone's Mortgage Calculator estimates principal and interest based
+    on the loan values entered. It does not automatically include every
+    expense that may be associated with obtaining or owning a property.
+</p>
+
+<div class="mortgage-note">
+
+    <strong>The estimate does not automatically include:</strong>
+
+    <ul>
+        <li>Property taxes</li>
+        <li>Homeowners insurance</li>
+        <li>Private mortgage insurance (PMI)</li>
+        <li>Homeowners association (HOA) fees</li>
+        <li>Closing costs or lender fees</li>
+        <li>Maintenance and repair costs</li>
+        <li>Utilities or other property expenses</li>
+    </ul>
+
+</div>
+
+<p>
+    These costs can affect the actual amount a homeowner pays, so the
+    calculator's monthly result should not be interpreted as the complete
+    cost of owning a home.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               10. AFFORDABILITY
+            ================================================== */
+
+            {
+                heading:
+                    "Mortgage Payment vs. Home Affordability",
+
+                content:
+                    `
+<p>
+    Estimating a mortgage payment and determining whether a property is
+    affordable are different questions. This calculator estimates loan
+    payments; it does not determine how much a person can afford to borrow
+    or purchase.
+</p>
+
+<p>
+    Affordability can depend on factors beyond the mortgage formula,
+    including income, existing obligations, available savings, taxes,
+    insurance, lender requirements, and other household expenses.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               11. COMPARING MORTGAGE SCENARIOS
+            ================================================== */
+
+            {
+                heading:
+                    "How to Compare Mortgage Scenarios",
+
+                content:
+                    `
+<p>
+    One useful way to use the calculator is to keep two inputs unchanged
+    while adjusting the third. For example, enter the same loan amount and
+    term while comparing different interest rates. Then compare the monthly
+    payment and total interest shown for each scenario.
+</p>
+
+<p>
+    You can also keep the loan amount and rate unchanged while testing
+    different terms. This makes it easier to see the relationship between
+    repayment time, monthly payment, and total interest.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               12. MORTGAGE VS LOAN
+            ================================================== */
+
+            {
+                heading:
+                    "Mortgage Calculator vs. General Loan Calculator",
+
+                content:
+                    `
+<p>
+    Mortgage and general loan calculations can use similar fixed-payment
+    mathematics, but mortgages are specifically associated with property
+    financing and may involve additional real-world costs that are not
+    represented by principal and interest alone.
+</p>
+
+<p>
+    For other fixed-payment borrowing scenarios, you can also use
+    ToolXone's
+    <a href="loan-calculator.html">Loan Calculator</a>
+    to explore loan payments and repayment costs.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               13. INTERPRETING THE RESULT
+            ================================================== */
+
+            {
+                heading:
+                    "How to Interpret Your Mortgage Estimate",
+
+                content:
+                    `
+<p>
+    Use the result as an estimate based on the loan amount, interest rate,
+    and term entered. The monthly payment helps illustrate the estimated
+    principal and interest obligation, while total interest and total
+    repayment show the longer-term cost under those assumptions.
+</p>
+
+<p>
+    Actual mortgage terms and payments may differ because of lender
+    calculations, fees, taxes, insurance, rounding, payment timing, and
+    other conditions. When evaluating a real mortgage offer, use the
+    lender's official loan information and applicable financial documents
+    for the actual terms and costs.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               14. IMPORTANT NOTE
+            ================================================== */
+
+            {
+                heading:
+                    "Important Note",
+
+                content:
+                    `
+<aside class="mortgage-important-note">
+
+    <p>
+        ToolXone's Mortgage Calculator provides estimates based on the
+        values entered and the assumptions described above. Actual mortgage
+        payments, interest charges, repayment amounts, taxes, insurance,
+        fees, lender calculations, and other property-related costs may
+        differ.
+    </p>
+
+    <p>
+        Results are intended for informational and educational purposes and
+        should not be treated as a mortgage offer or as financial,
+        investment, tax, legal, lending, or real-estate advice.
+    </p>
+
+</aside>
+`
+            }
+
+        ]
+
+    }
+
+);
     
 
     /* ==========================================================
-       FAQ
+       LOAN CALCULATOR FAQ
     ========================================================== */
 
     ToolXoneContentRegistry.register(
@@ -1006,7 +1470,112 @@ ToolXone's Loan Calculator uses the values you enter to estimate your monthly pa
 
 
     /* ==========================================================
-       RELATED TOOLS
+    MORTGAGE CALCULATOR FAQ
+    ========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "faq",
+
+    "mortgage-calculator",
+
+    [
+
+        {
+            question:
+                "What does this mortgage calculator estimate?",
+
+            answer:
+                "This mortgage calculator estimates your monthly principal and interest payment, total interest paid, total repayment amount, and number of monthly payments based on the loan amount, annual interest rate, and loan term you enter."
+        },
+
+
+        {
+            question:
+                "How does the mortgage calculator work?",
+
+            answer:
+                "The calculator uses the loan amount, annual interest rate, and loan term to estimate the fixed monthly principal and interest payment. It then calculates the total amount paid over the loan term and the portion of that total represented by interest."
+        },
+
+
+        {
+            question:
+                "How can I use this calculator when comparing home loans?",
+
+            answer:
+                "Try different loan amounts, interest rates, and loan terms to compare possible mortgage scenarios. This can help you see how a lower interest rate, smaller loan amount, or different repayment period may affect your monthly payment and total interest cost."
+        },
+
+
+        {
+            question:
+                "How does the interest rate affect a mortgage?",
+
+            answer:
+                "For the same loan amount and term, a higher interest rate generally increases both the monthly payment and the total interest paid over the life of the mortgage. A lower rate generally reduces these costs."
+        },
+
+
+        {
+            question:
+                "How does the loan term affect mortgage payments?",
+
+            answer:
+                "A longer loan term generally reduces the monthly payment because repayment is spread across more months, but it can increase the total interest paid over the life of the loan. A shorter term generally requires higher monthly payments but may reduce total interest."
+        },
+
+
+        {
+            question:
+                "Does this mortgage calculator include property taxes, insurance, PMI, or HOA fees?",
+
+            answer:
+                "No. This calculator estimates principal and interest based on the loan information you enter. It does not automatically include property taxes, homeowners insurance, private mortgage insurance, homeowners association fees, closing costs, or other expenses that may affect the actual cost of owning a home."
+        },
+
+
+        {
+            question:
+                "Can I calculate a mortgage with a 0% interest rate?",
+
+            answer:
+                "Yes. If you enter a 0% annual interest rate, the calculator divides the loan amount by the total number of monthly payments to estimate the monthly payment without interest."
+        },
+
+
+        {
+            question:
+                "Can the mortgage term include half years?",
+
+            answer:
+                "Yes, when the entered term converts to a whole number of months. For example, 30.5 years equals 366 months and can be calculated. A term that produces a fractional number of months is rejected because mortgage payments are calculated in whole monthly periods."
+        },
+
+
+        {
+            question:
+                "Are the mortgage results exact?",
+
+            answer:
+                "The results are estimates based on the values you enter and the calculator's fixed-payment formula. Actual mortgage payments and costs may differ because of lender terms, fees, taxes, insurance, payment timing, rounding, and other factors."
+        },
+
+
+        {
+            question:
+                "Is this mortgage calculator free to use?",
+
+            answer:
+                "Yes. ToolXone's Mortgage Calculator is free to use online and can be used to explore and compare different home loan scenarios."
+        }
+
+    ]
+
+);
+
+    /* ==========================================================
+       LOAN CALCULATOR RELATED TOOLS
     ========================================================== */
 
     ToolXoneContentRegistry.register(
@@ -1024,9 +1593,29 @@ ToolXone's Loan Calculator uses the values you enter to estimate your monthly pa
 
 );
 
+/* ==========================================================
+   MORTGAGE CALCULATOR RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "related",
+
+    "mortgage-calculator",
+
+    [
+
+        "loan-calculator",
+        "emi-calculator",
+        "compound-interest-calculator",
+        "savings-goal-calculator"
+
+    ]
+
+);
 
     /* ==========================================================
-       HERO
+       LOAN CALCULATOR HERO
     ========================================================== */
 
     ToolXoneContentRegistry.register(
@@ -1137,7 +1726,139 @@ ToolXone's Loan Calculator uses the values you enter to estimate your monthly pa
 
 
     /* ==========================================================
-       METADATA
+       MORTGAGE CALCULATOR HERO
+    ========================================================== */
+
+    ToolXoneContentRegistry.register(
+
+        "hero",
+
+        "mortgage-calculator",
+
+        {
+
+            badge:
+                "FINANCE TOOL",
+
+            category:
+                "Finance",
+
+            difficulty:
+                "Easy",
+
+            title:
+                "Free Mortgage Calculator",
+
+            subtitle:
+                "Estimate your monthly principal and interest payment and understand the total cost of your mortgage.",
+
+            description:
+                "Estimate mortgage payments online with ToolXone's free Mortgage Calculator. Compare loan amounts, interest rates and repayment terms to explore different home loan scenarios.",
+
+            highlights: [
+
+                "Calculate monthly mortgage payments",
+
+                "Estimate total interest",
+
+                "Calculate total repayment",
+
+                "Compare different mortgage scenarios"
+
+            ],
+
+            statistics: {
+
+                functions: {
+
+                    value: "3+",
+
+                    label: "Functions",
+
+                    title:
+                        "What can this calculator do?",
+
+                    description:
+                        "Estimate monthly principal and interest payments, total interest and total repayment using the entered loan amount, annual interest rate and loan term."
+                },
+
+                accuracy: {
+
+                    value: "Formula",
+
+                    label: "Accuracy",
+
+                    title:
+                        "Calculation Method",
+
+                    description:
+                        "Results are calculated using the standard fixed-payment mortgage formula based on the entered loan amount, annual interest rate and repayment term."
+                },
+
+                availability: {
+
+                    value: "24/7",
+
+                    label: "Availability",
+
+                    title:
+                        "Available Anytime",
+
+                    description:
+                        "Use ToolXone's Mortgage Calculator online whenever you need to estimate and compare fixed-payment mortgage scenarios."
+                },
+
+                price: {
+
+                    value: "Free",
+
+                    label: "Price",
+
+                    title:
+                        "Free to Use",
+
+                    description:
+                        "ToolXone's Mortgage Calculator is free to use online with no payment required."
+                }
+
+            },
+
+            preview: {
+
+                title:
+                    "Mortgage Calculator",
+
+                description:
+                    "Estimate your monthly payment, total interest and total repayment.",
+
+                image: {
+
+                    src:
+                        "images/mortgage-calculator.webp",
+
+                    alt:
+                        "ToolXone Free Mortgage Calculator"
+
+                }
+
+            },
+
+            cta: {
+
+                primary:
+                    "Calculate Mortgage",
+
+                secondary:
+                    "Learn More"
+
+            }
+
+        }
+
+    );
+
+    /* ==========================================================
+       LOAN METADATA
     ========================================================== */
 
     ToolXoneContentRegistry.register(
@@ -1169,11 +1890,43 @@ ToolXone's Loan Calculator uses the values you enter to estimate your monthly pa
 
 
     /* ==========================================================
+       MORTGAGE METADATA
+    ========================================================== */
+
+    ToolXoneContentRegistry.register(
+
+        "metadata",
+
+        "mortgage-calculator",
+
+        {
+
+            title:
+                "Mortgage Calculator - Monthly Payment & Interest Calculator | ToolXone",
+
+            description:
+                "Use ToolXone's free Mortgage Calculator to estimate monthly mortgage payments, total interest and total repayment. Compare loan amounts, interest rates and repayment terms for different home loan scenarios.",
+
+            canonical:
+                "https://www.toolxone.com/mortgage-calculator.html",
+
+            robots:
+                "index,follow",
+
+            author:
+                "ToolXone"
+
+        }
+
+    );
+
+
+    /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-        "✓ ToolXone Finance content registered: Loan Calculator."
+        "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator."
     );
 
 })();
