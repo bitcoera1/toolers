@@ -2527,6 +2527,295 @@ A positive ROI means the final return is greater than the original investment, w
     }
 );
 
+/* ==========================================================
+   PROFIT MARGIN CALCULATOR — FULL EDUCATIONAL ARTICLE
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "articles",
+    "profit-margin-calculator",
+    {
+        title:
+            "How to Calculate Profit Margin and Markup",
+
+        introduction:
+            `Profit margin and markup are useful ways to compare cost, selling price and profit. Although both are based on the same profit amount, they measure that profit against different values. Profit margin compares profit with the selling price, while markup compares profit with the cost price.`,
+
+        sections: [
+
+            /* ==================================================
+               1. PROFIT FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "Profit Formula",
+
+                content:
+                    `
+<p>
+    Profit is the difference between the selling price and the
+    cost price:
+</p>
+
+<div class="profit-formula">
+    <strong>
+        Profit = Selling Price − Cost Price
+    </strong>
+</div>
+
+<p>
+    For example, if an item costs <strong>$80</strong> and sells
+    for <strong>$100</strong>, the profit is <strong>$20</strong>.
+    If the selling price is lower than the cost price, the result
+    is a loss.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               2. PROFIT MARGIN FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "Profit Margin Formula",
+
+                content:
+                    `
+<p>
+    Profit margin measures profit as a percentage of the
+    selling price:
+</p>
+
+<div class="profit-formula">
+    <strong>
+        Profit Margin (%) = (Profit ÷ Selling Price) × 100
+    </strong>
+</div>
+
+<p>
+    Using a cost price of <strong>$80</strong> and a selling
+    price of <strong>$100</strong>, the profit is
+    <strong>$20</strong>. Dividing $20 by the $100 selling
+    price gives a profit margin of <strong>20%</strong>.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               3. MARKUP FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "Markup Formula",
+
+                content:
+                    `
+<p>
+    Markup measures profit as a percentage of the cost price
+    rather than the selling price:
+</p>
+
+<div class="profit-formula">
+    <strong>
+        Markup (%) = (Profit ÷ Cost Price) × 100
+    </strong>
+</div>
+
+<p>
+    With the same <strong>$80</strong> cost and
+    <strong>$100</strong> selling price, the
+    <strong>$20</strong> profit represents a
+    <strong>25% markup</strong> because $20 is 25% of the
+    $80 cost price.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               4. PROFIT MARGIN VS MARKUP
+            ================================================== */
+
+            {
+                heading:
+                    "Profit Margin vs. Markup",
+
+                content:
+                    `
+<p>
+    Profit margin and markup are not the same percentage.
+    Profit margin uses the selling price as its base, while
+    markup uses the cost price.
+</p>
+
+<p>
+    This is why an item with a <strong>20% profit margin</strong>
+    can have a <strong>25% markup</strong>.
+</p>
+
+<p>
+    Understanding this difference can help when reviewing
+    prices, profitability and pricing decisions. Always check
+    whether a percentage refers to margin or markup before
+    comparing results.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               5. SELLING PRICE BELOW COST
+            ================================================== */
+
+            {
+                heading:
+                    "What Happens When Selling Price Is Below Cost?",
+
+                content:
+                    `
+<p>
+    When the selling price is lower than the cost price, the
+    difference is a loss rather than a profit.
+</p>
+
+<p>
+    In that situation, this calculator can display negative
+    profit margin and markup percentages to show the size of
+    the loss relative to the selling price and cost.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. HOW TO USE THE CALCULATOR
+            ================================================== */
+
+            {
+                heading:
+                    "How to Use the Profit Margin Calculator",
+
+                content:
+                    `
+<ol class="profit-steps">
+
+    <li>
+        Enter the cost price of the product or item.
+    </li>
+
+    <li>
+        Enter the selling price.
+    </li>
+
+    <li>
+        Select <strong>Calculate</strong> to calculate profit
+        or loss, profit margin and markup.
+    </li>
+
+    <li>
+        Review the results to understand the relationship
+        between cost, selling price and profit.
+    </li>
+
+    <li>
+        Try different selling prices to compare how pricing
+        changes affect profit, margin and markup.
+    </li>
+
+</ol>
+`
+            },
+
+
+            /* ==================================================
+               7. RELATED BUSINESS CALCULATIONS
+            ================================================== */
+
+            {
+                heading:
+                    "Explore Related Business Calculations",
+
+                content:
+                    `
+<p>
+    If you need to calculate a percentage increase, decrease
+    or percentage relationship, try ToolXone's
+    <a href="percentage-calculator.html">
+        Percentage Calculator
+    </a>.
+</p>
+
+<p>
+    To compare investment gains or losses with the amount
+    invested, use the
+    <a href="roi-calculator.html">
+        ROI Calculator
+    </a>.
+</p>
+
+<p>
+    For price reductions and sale pricing, explore the
+    <a href="discount-calculator.html">
+        Discount Calculator
+    </a>.
+</p>
+
+<p>
+    If taxes need to be considered separately in a transaction,
+    use the
+    <a href="gst-vat-calculator.html">
+        GST / VAT Calculator
+    </a>.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               8. INTERPRETING THE RESULTS
+            ================================================== */
+
+            {
+                heading:
+                    "How to Interpret the Results",
+
+                content:
+                    `
+<p>
+    The calculated results describe the relationship between
+    the cost price and selling price you enter.
+</p>
+
+<p>
+    The calculator does not automatically include other
+    business expenses such as shipping, advertising, payment
+    processing, taxes, salaries or overhead unless those costs
+    are already included in the cost value you enter.
+</p>
+
+<p>
+    For business decisions, consider all relevant costs rather
+    than relying on the purchase or production cost alone.
+</p>
+
+<p>
+    The calculator provides a mathematical estimate based on
+    the values entered and should be used as one part of a
+    broader pricing or profitability analysis.
+</p>
+`
+            }
+
+        ]
+    }
+);
+
+
     /* ==========================================================
        LOAN CALCULATOR FAQ
     ========================================================== */
@@ -2921,25 +3210,6 @@ ToolXoneContentRegistry.register(
 
 );
 
-    /* ==========================================================
-       LOAN CALCULATOR RELATED TOOLS
-    ========================================================== */
-
-    ToolXoneContentRegistry.register(
-
-    "related",
-
-    "loan-calculator",
-
-    [
-        "compound",
-        "mortgage",
-        "emi",
-        "savings-goal"
-    ]
-
-);
-
 /* ==========================================================
    ROI CALCULATOR — FAQ
 ========================================================== */
@@ -3045,6 +3315,101 @@ ToolXoneContentRegistry.register(
 
 );
 
+
+/* ==========================================================
+   PROFIT MARGIN CALCULATOR FAQ
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "faq",
+    "profit-margin-calculator",
+    [
+        {
+            question:
+                "What is profit margin?",
+
+            answer:
+                "Profit margin shows what percentage of the selling price remains as profit after subtracting the entered cost price. It is calculated by dividing profit by selling price and multiplying by 100."
+        },
+
+        {
+            question:
+                "How does this Profit Margin Calculator work?",
+
+            answer:
+                "Enter the cost price and selling price. The calculator subtracts cost from selling price to determine profit or loss, then calculates profit margin as a percentage of selling price and markup as a percentage of cost."
+        },
+
+        {
+            question:
+                "What is the difference between profit margin and markup?",
+
+            answer:
+                "Profit margin measures profit as a percentage of the selling price, while markup measures profit as a percentage of the cost price. Because they use different bases, the margin percentage and markup percentage are usually different."
+        },
+
+        {
+            question:
+                "How is profit calculated?",
+
+            answer:
+                "Profit is calculated by subtracting cost price from selling price. If the selling price is greater than the cost price, the result is a profit. If the selling price is lower than the cost price, the result is a loss."
+        },
+
+        {
+            question:
+                "How is profit margin calculated?",
+
+            answer:
+                "Profit margin is calculated as profit divided by selling price, multiplied by 100. For example, if an item costs 80 and sells for 100, the profit is 20 and the profit margin is 20%."
+        },
+
+        {
+            question:
+                "How is markup calculated?",
+
+            answer:
+                "Markup is calculated as profit divided by cost price, multiplied by 100. If an item costs 80 and sells for 100, the profit is 20 and the markup is 25%."
+        },
+
+        {
+            question:
+                "Can this calculator show a loss?",
+
+            answer:
+                "Yes. If the selling price is lower than the cost price, the calculator displays a loss and the resulting profit margin and markup can be negative."
+        },
+
+        {
+            question:
+                "Is this Profit Margin Calculator free to use?",
+
+            answer:
+                "Yes. ToolXone's Profit Margin Calculator is free to use online for calculating profit or loss, profit margin and markup from cost and selling prices."
+        }
+    ]
+);
+
+    /* ==========================================================
+       LOAN CALCULATOR RELATED TOOLS
+    ========================================================== */
+
+    ToolXoneContentRegistry.register(
+
+    "related",
+
+    "loan-calculator",
+
+    [
+        "compound",
+        "mortgage",
+        "emi",
+        "savings-goal"
+    ]
+
+);
+
+
 /* ==========================================================
    MORTGAGE CALCULATOR RELATED TOOLS
 ========================================================== */
@@ -3126,6 +3491,20 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   PROFIT MARGIN CALCULATOR RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "related",
+    "profit-margin-calculator",
+    [
+        "discount-calculator",
+        "gst-vat-calculator",
+        "roi-calculator",
+        "currency-profit-calculator"
+    ]
+);
 
     /* ==========================================================
        LOAN CALCULATOR HERO
@@ -3621,7 +4000,7 @@ ToolXoneContentRegistry.register(
 
 );
 
-    /* ==========================================================
+/* ==========================================================
    ROI CALCULATOR HERO
 ========================================================== */
 
@@ -3700,6 +4079,78 @@ ToolXoneContentRegistry.register(
     }
 );
 
+/* ==========================================================
+   PROFIT MARGIN CALCULATOR HERO
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "hero",
+    "profit-margin-calculator",
+    {
+        badge:
+            "FREE FINANCE CALCULATOR",
+
+        category:
+            "Finance",
+
+        difficulty:
+            "Easy",
+
+        title:
+            "Profit Margin Calculator",
+
+        subtitle:
+            "Calculate Profit, Profit Margin and Markup",
+
+        description:
+            "Calculate profit or loss, profit margin, and markup instantly using your cost price and selling price. ToolXone's free Profit Margin Calculator helps you understand pricing, profitability, and potential returns quickly and accurately.",
+
+        highlights: [
+            "Calculate Profit or Loss",
+            "Calculate Profit Margin",
+            "Calculate Markup",
+            "Make Smarter Pricing Decisions"
+        ],
+
+        statistics: {
+            functions:
+                "Profit & Loss",
+
+            accuracy:
+                "Accurate",
+
+            availability:
+                "Online",
+
+            price:
+                "100% Free"
+        },
+
+        cta: {
+            primary:
+                "Start Calculating",
+
+            secondary:
+                "Learn More"
+        },
+
+        preview: {
+            image: {
+                src:
+                    "images/profit-margin-calculator.webp",
+
+                alt:
+                    "ToolXone Profit Margin Calculator for calculating profit or loss, profit margin and markup"
+            },
+
+            title:
+                "Profit Margin Calculator",
+
+            description:
+                "Calculate profit, profit margin and markup from cost price and selling price."
+        }
+    }
+);
 
     /* ==========================================================
        LOAN METADATA
@@ -3883,13 +4334,72 @@ ToolXoneContentRegistry.register(
     }
 );
 
+/* ==========================================================
+   PROFIT MARGIN CALCULATOR METADATA
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "metadata",
+    "profit-margin-calculator",
+    {
+        title:
+            "Profit Margin Calculator – Free Online Margin & Markup Tool | ToolXone",
+
+        description:
+            "Use ToolXone's free Profit Margin Calculator to calculate profit or loss, profit margin and markup from cost price and selling price. Fast and easy for pricing decisions.",
+
+        keywords: [
+            "profit margin calculator",
+            "profit calculator",
+            "profit margin",
+            "markup calculator",
+            "profit markup calculator",
+            "profit or loss calculator",
+            "selling price calculator"
+        ],
+
+        category:
+            "Finance",
+
+        toolType:
+            "Calculator",
+
+        audience:
+            "Business owners, retailers, freelancers, online sellers, marketers, and anyone evaluating pricing and profitability.",
+
+        purpose:
+            "Calculate profit or loss, profit margin and markup from cost price and selling price.",
+
+        benefits: [
+            "Calculate profit or loss",
+            "Calculate profit margin",
+            "Calculate markup percentage",
+            "Compare pricing outcomes"
+        ],
+
+        image:
+            "images/profit-calculator.webp",
+
+        imageAlt:
+            "Profit Margin Calculator for calculating profit, profit margin and markup",
+
+        imageTitle:
+            "Profit Margin Calculator",
+
+        imageCaption:
+            "Calculate profit or loss, profit margin and markup with ToolXone.",
+
+        canonical:
+            "https://www.toolxone.com/profit-margin-calculator.html"
+    }
+);
 
     /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator."
+    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator."
 
     );
 

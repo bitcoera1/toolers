@@ -160,6 +160,14 @@ actions : {
 
     },
 
+    "profit-margin-calculator": {
+
+        startCalculating: ".profit-card",
+
+        learnMore: "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",
