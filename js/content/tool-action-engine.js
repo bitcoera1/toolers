@@ -152,6 +152,14 @@ actions : {
 
     },
 
+    "roi-calculator": {
+
+        startCalculating: ".roi-card",
+
+        learnMore: "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",

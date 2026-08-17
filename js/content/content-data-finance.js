@@ -2188,6 +2188,345 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   ROI CALCULATOR — FULL EDUCATIONAL ARTICLE
+   ========================================================== */
+
+   ToolXoneContentRegistry.register(
+    "articles",
+    "roi-calculator",
+    {
+        title:
+            "Understanding Return on Investment (ROI)",
+
+        introduction:
+            `ROI, or Return on Investment, is a simple financial measure used to compare the profit or loss from an investment with the amount originally invested. It expresses the result as a percentage, making it easier to evaluate investment performance and compare different opportunities.
+
+A positive ROI means the final return is greater than the original investment, while a negative ROI means the investment produced a loss. An ROI of 0% means the investment broke even.`,
+
+        sections: [
+
+            /* ==================================================
+               1. ROI FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "ROI Formula",
+
+                content:
+                    `
+<p>
+    The standard return on investment formula compares the net profit
+    or loss with the original investment:
+</p>
+
+<div class="roi-formula-box">
+    <strong>
+        ROI (%) = ((Final Return − Investment Amount) ÷ Investment Amount) × 100
+    </strong>
+</div>
+
+<p>
+    Net profit or loss is calculated by subtracting the original
+    investment from the final return:
+</p>
+
+<div class="roi-formula-box">
+    <strong>
+        Profit or Loss = Final Return − Investment Amount
+    </strong>
+</div>
+`
+            },
+
+
+            /* ==================================================
+               2. ROI CALCULATION EXAMPLE
+            ================================================== */
+
+            {
+                heading:
+                    "ROI Calculation Example",
+
+                content:
+                    `
+<p>
+    Suppose you invest <strong>$1,000</strong> and the investment later
+    has a final return of <strong>$1,500</strong>.
+</p>
+
+<div class="roi-example-box">
+
+    <p>
+        <strong>Investment:</strong> $1,000
+    </p>
+
+    <p>
+        <strong>Final Return:</strong> $1,500
+    </p>
+
+    <p>
+        <strong>Profit:</strong> $1,500 − $1,000 = $500
+    </p>
+
+    <p>
+        <strong>ROI:</strong> ($500 ÷ $1,000) × 100 = 50%
+    </p>
+
+</div>
+
+<p>
+    The investment produced a <strong>50% positive ROI</strong>,
+    meaning the profit was equal to 50% of the original amount invested.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               3. POSITIVE, ZERO AND NEGATIVE ROI
+            ================================================== */
+
+            {
+                heading:
+                    "Positive, Zero and Negative ROI",
+
+                content:
+                    `
+<p>
+    ROI can help you quickly understand whether an investment produced
+    a gain, broke even, or resulted in a loss.
+</p>
+
+<div class="roi-status-grid">
+
+    <article class="roi-status-card">
+
+        <h3>Positive ROI</h3>
+
+        <p>
+            A positive ROI occurs when the final return is greater than
+            the original investment. For example, investing $1,000 and
+            receiving $1,200 produces a $200 profit and a 20% ROI.
+        </p>
+
+    </article>
+
+    <article class="roi-status-card">
+
+        <h3>Zero ROI</h3>
+
+        <p>
+            An ROI of 0% occurs when the final return equals the original
+            investment. For example, investing $1,000 and receiving
+            $1,000 means there is no profit or loss.
+        </p>
+
+    </article>
+
+    <article class="roi-status-card">
+
+        <h3>Negative ROI</h3>
+
+        <p>
+            A negative ROI occurs when the final return is lower than
+            the original investment. For example, investing $1,000 and
+            receiving $750 produces a $250 loss and an ROI of -25%.
+        </p>
+
+    </article>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               4. HOW TO USE THE CALCULATOR
+            ================================================== */
+
+            {
+                heading:
+                    "How to Use the ToolXone ROI Calculator",
+
+                content:
+                    `
+<ol class="roi-steps">
+
+    <li>
+        Enter the amount of money originally invested in
+        <strong>Investment Amount</strong>.
+    </li>
+
+    <li>
+        Enter the total value or amount received from the investment
+        in <strong>Final Return</strong>.
+    </li>
+
+    <li>
+        Select <strong>Calculate</strong> to view the investment,
+        final return, profit or loss, and ROI percentage.
+    </li>
+
+    <li>
+        Review the result to understand whether the investment generated
+        a positive return, broke even, or produced a loss.
+    </li>
+
+    <li>
+        Use <strong>Reset</strong> whenever you want to start a new
+        calculation.
+    </li>
+
+</ol>
+`
+            },
+
+
+            /* ==================================================
+               5. HOW TO INTERPRET ROI
+            ================================================== */
+
+            {
+                heading:
+                    "How to Interpret ROI",
+
+                content:
+                    `
+<p>
+    ROI is useful because it converts investment performance into a
+    percentage. This makes results easier to compare even when the
+    original investment amounts are different.
+</p>
+
+<p>
+    For example, a $500 profit may sound substantial, but its meaning
+    depends on how much was invested. A $500 profit on a $1,000
+    investment represents a 50% ROI, while the same $500 profit on a
+    $10,000 investment represents only a 5% ROI.
+</p>
+
+<p>
+    A higher ROI generally indicates a greater return relative to the
+    amount invested. However, ROI should not be considered by itself
+    when evaluating financial decisions because investments can differ
+    in duration, risk, costs and other factors.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. COMMON USES
+            ================================================== */
+
+            {
+                heading:
+                    "Common Uses of an ROI Calculator",
+
+                content:
+                    `
+<p>
+    Return on investment calculations can be useful in many financial
+    and business situations, including:
+</p>
+
+<ul class="roi-use-list">
+
+    <li>Comparing investment opportunities</li>
+    <li>Evaluating business projects</li>
+    <li>Measuring marketing campaign performance</li>
+    <li>Reviewing advertising spending</li>
+    <li>Evaluating equipment or technology purchases</li>
+    <li>Estimating returns from business improvements</li>
+    <li>Comparing project costs with financial results</li>
+
+</ul>
+`
+            },
+
+
+            /* ==================================================
+               7. MARKETING EXAMPLE
+            ================================================== */
+
+            {
+                heading:
+                    "ROI Example for Marketing",
+
+                content:
+                    `
+<p>
+    Suppose a business spends <strong>$2,000</strong> on a marketing
+    campaign and uses <strong>$3,000</strong> as the final return for
+    the ROI calculation.
+</p>
+
+<div class="roi-example-box">
+
+    <p>
+        <strong>Investment:</strong> $2,000
+    </p>
+
+    <p>
+        <strong>Final Return:</strong> $3,000
+    </p>
+
+    <p>
+        <strong>Profit:</strong> $1,000
+    </p>
+
+    <p>
+        <strong>ROI:</strong> ($1,000 ÷ $2,000) × 100 = 50%
+    </p>
+
+</div>
+
+<p>
+    Using those inputs, the calculated ROI is <strong>50%</strong>.
+    When evaluating real marketing performance, businesses may also
+    need to consider additional campaign costs and how the return is
+    defined.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               8. LIMITATIONS OF ROI
+            ================================================== */
+
+            {
+                heading:
+                    "Limitations of ROI",
+
+                content:
+                    `
+<p>
+    ROI is a useful performance metric, but a simple ROI percentage
+    does not provide a complete picture of every investment.
+</p>
+
+<p>
+    The basic ROI calculation does not automatically account for factors
+    such as investment duration, inflation, taxes, financing costs,
+    transaction fees, opportunity cost or differences in risk.
+</p>
+
+<p>
+    Two investments can therefore have the same ROI while having very
+    different time periods or risk levels. ROI can be a useful starting
+    point for comparison, but important financial decisions may require
+    additional analysis.
+</p>
+`
+            }
+
+        ]
+    }
+);
+
     /* ==========================================================
        LOAN CALCULATOR FAQ
     ========================================================== */
@@ -2602,6 +2941,111 @@ ToolXoneContentRegistry.register(
 );
 
 /* ==========================================================
+   ROI CALCULATOR — FAQ
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "faq",
+
+    "roi-calculator",
+
+    [
+
+        {
+            question:
+                "What is ROI?",
+
+            answer:
+                "ROI (Return on Investment) is a percentage that measures the profit or loss generated by an investment compared with the original amount invested. A positive ROI indicates a gain, a negative ROI indicates a loss, and a 0% ROI means the investment broke even."
+        },
+
+
+        {
+            question:
+                "What is the ROI formula?",
+
+            answer:
+                "The standard ROI formula is: ROI (%) = ((Final Return − Investment Amount) ÷ Investment Amount) × 100. The calculation first determines the profit or loss by subtracting the original investment from the final return."
+        },
+
+
+        {
+            question:
+                "How do I calculate ROI?",
+
+            answer:
+                "Enter the original Investment Amount and the Final Return into the ToolXone ROI Calculator, then select Calculate. The calculator determines the profit or loss and expresses the result as a percentage of the original investment."
+        },
+
+
+        {
+            question:
+                "What does a positive ROI mean?",
+
+            answer:
+                "A positive ROI means the final return is greater than the original investment, so the investment generated a profit. For example, an investment of $1,000 that produces a $1,200 final return has a 20% ROI."
+        },
+
+
+        {
+            question:
+                "What does a negative ROI mean?",
+
+            answer:
+                "A negative ROI means the final return is lower than the original investment, so the investment resulted in a loss. For example, investing $1,000 and receiving $750 produces a -25% ROI."
+        },
+
+
+        {
+            question:
+                "What does a 0% ROI mean?",
+
+            answer:
+                "A 0% ROI means the final return is equal to the original investment. In this situation, the investment has neither gained nor lost money based on the values entered."
+        },
+
+
+        {
+            question:
+                "Can ROI be used to compare investments?",
+
+            answer:
+                "Yes. ROI can make investment results easier to compare because it expresses profit or loss as a percentage of the original investment. However, ROI alone does not account for factors such as investment duration, risk, taxes, fees, inflation, or financing costs."
+        },
+
+
+        {
+            question:
+                "Can ROI be used for marketing campaigns?",
+
+            answer:
+                "Yes. ROI can be used to evaluate the return generated relative to marketing or advertising spending. For example, if a campaign costs $2,000 and the final return used for the calculation is $3,000, the resulting ROI is 50%."
+        },
+
+
+        {
+            question:
+                "What are the limitations of ROI?",
+
+            answer:
+                "A basic ROI percentage does not automatically account for investment duration, inflation, taxes, transaction fees, financing costs, opportunity cost, or differences in risk. Two investments can have the same ROI while having very different time periods and risk levels."
+        },
+
+
+        {
+            question:
+                "Is ROI the same as profit?",
+
+            answer:
+                "No. Profit or loss is the monetary difference between the final return and the original investment, while ROI expresses that profit or loss as a percentage of the original investment. ROI therefore provides a relative measure of investment performance."
+        }
+
+    ]
+
+);
+
+/* ==========================================================
    MORTGAGE CALCULATOR RELATED TOOLS
 ========================================================== */
 
@@ -2660,6 +3104,28 @@ ToolXoneContentRegistry.register(
     ]
 
 );
+
+/* ==========================================================
+   ROI CALCULATOR RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "related",
+
+    "roi-calculator",
+
+    [
+
+    "loan-calculator",
+    "mortgage-calculator",
+    "emi-calculator",
+    "compound-interest-calculator"
+
+    ]
+
+);
+
 
     /* ==========================================================
        LOAN CALCULATOR HERO
@@ -3155,6 +3621,85 @@ ToolXoneContentRegistry.register(
 
 );
 
+    /* ==========================================================
+   ROI CALCULATOR HERO
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "hero",
+    "roi-calculator",
+    {
+        badge: "FINANCE TOOL",
+
+        category: "Finance",
+
+        difficulty: "Easy",
+
+        title: "Free ROI Calculator",
+
+        subtitle:
+            "Calculate return on investment, profit or loss, and investment performance instantly.",
+
+        description:
+            "Use ToolXone's free ROI Calculator to measure your investment return, compare performance, and understand how much profit or loss an investment has generated.",
+
+        highlights: [
+            "Calculate ROI percentage",
+            "Measure profit or loss",
+            "Evaluate investment performance",
+            "Compare investment returns"
+        ],
+
+        statistics: {
+            functions: {
+                value: "4+",
+                label: "Functions"
+            },
+
+            accuracy: {
+                value: "Formula",
+                label: "Accuracy"
+            },
+
+            availability: {
+                value: "24/7",
+                label: "Availability"
+            },
+
+            price: {
+                value: "Free",
+                label: "Price"
+            }
+        },
+
+        cta: {
+            primary: "Calculate",
+            secondary: "Learn More"
+        },
+
+        preview: {
+            image: {
+                src: "images/roi-calculator.webp",
+
+                alt:
+                    "ToolXone ROI Calculator for calculating return on investment, profit or loss and investment performance",
+
+                title:
+                    "ROI Calculator",
+
+                caption:
+                    "Calculate return on investment, profit or loss and investment performance."
+            },
+
+            title:
+                "ROI Calculator",
+
+            description:
+                "Calculate return on investment, profit or loss, and investment performance instantly."
+        }
+    }
+);
+
 
     /* ==========================================================
        LOAN METADATA
@@ -3279,13 +3824,72 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   ROI CALCULATOR METADATA
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "metadata",
+    "roi-calculator",
+    {
+        title:
+            "ROI Calculator",
+
+        description:
+            "Calculate return on investment (ROI), profit or loss, and investment performance instantly with ToolXone's free ROI Calculator.",
+
+        keywords: [
+            "ROI calculator",
+            "return on investment calculator",
+            "investment return calculator",
+            "profit calculator",
+            "investment profit calculator",
+            "ROI percentage calculator"
+        ],
+
+        category:
+            "Finance",
+
+        toolType:
+            "Calculator",
+
+        audience:
+            "Investors, business owners, marketers, and anyone evaluating investment performance.",
+
+        purpose:
+            "Calculate ROI percentage and determine the profit or loss generated by an investment.",
+
+        benefits: [
+            "Calculate ROI percentage",
+            "Measure investment profit or loss",
+            "Evaluate investment performance",
+            "Compare investment returns"
+        ],
+
+        image:
+            "images/roi-calculator.webp",
+
+        imageAlt:
+            "ROI Calculator for calculating return on investment, profit or loss and investment performance",
+
+        imageTitle:
+            "ROI Calculator",
+
+        imageCaption:
+            "Calculate return on investment, profit or loss and investment performance with ToolXone.",
+
+        canonical:
+            "https://www.toolxone.com/roi-calculator.html"
+    }
+);
+
 
     /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator."
+    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator."
 
     );
 

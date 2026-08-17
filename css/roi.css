@@ -449,7 +449,7 @@ body.dark-mode .roi-negative-words{
    HOW-TO STEPS
    ========================================================= */
 
-.roi-steps {
+.tool-article .roi-steps {
     margin: 22px 0 10px;
     padding: 0;
 
@@ -457,7 +457,7 @@ body.dark-mode .roi-negative-words{
     counter-reset: roi-step;
 }
 
-.roi-steps li {
+.tool-article .roi-steps li {
     position: relative;
 
     margin-bottom: 14px;
@@ -474,7 +474,7 @@ body.dark-mode .roi-negative-words{
     counter-increment: roi-step;
 }
 
-.roi-steps li::before {
+.tool-article .roi-steps li::before {
     content: counter(roi-step);
 
     position: absolute;
@@ -502,7 +502,7 @@ body.dark-mode .roi-negative-words{
    USE CASE LIST
    ========================================================= */
 
-.roi-use-list {
+.tool-article .roi-use-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px 18px;
@@ -513,7 +513,7 @@ body.dark-mode .roi-negative-words{
     list-style: none;
 }
 
-.roi-use-list li {
+.tool-article .roi-use-list li {
     position: relative;
 
     padding: 14px 16px 14px 46px;
@@ -526,7 +526,7 @@ body.dark-mode .roi-negative-words{
     border-radius: 12px;
 }
 
-.roi-use-list li::before {
+.tool-article .roi-use-list li::before {
     content: "✓";
 
     position: absolute;
@@ -611,7 +611,7 @@ body.dark-mode .roi-negative-words{
         padding: 20px;
     }
 
-    .roi-steps li {
+    .tool-article .roi-steps li {
         padding:
             16px
             16px
@@ -621,14 +621,14 @@ body.dark-mode .roi-negative-words{
         font-size: 0.95rem;
     }
 
-    .roi-steps li::before {
+    .tool-article .roi-steps li::before {
         left: 14px;
 
         width: 28px;
         height: 28px;
     }
 
-    .roi-use-list li {
+    .tool-article .roi-use-list li {
         padding:
             13px
             14px

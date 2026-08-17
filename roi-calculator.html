@@ -5,69 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- =========================================
-     PRIMARY SEO
-========================================= -->
-
 <title>ROI Calculator - Free Return on Investment Calculator | ToolXone</title>
-
-<meta name="description"
-content="Calculate ROI, profit or loss, and return percentage instantly with ToolXone's free ROI Calculator. Measure investment performance for business, marketing, projects and investments.">
-
-<meta name="robots"
-content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-<meta name="author" content="ToolXone">
-<meta name="theme-color" content="#0f172a">
-
-<link rel="canonical"
-href="https://www.toolxone.com/roi-calculator.html">
-
-
-<!-- =========================================
-     OPEN GRAPH
-========================================= -->
-
-<meta property="og:type" content="website">
-
-<meta property="og:site_name" content="ToolXone">
-
-<meta property="og:title"
-content="ROI Calculator - Free Return on Investment Calculator | ToolXone">
-
-<meta property="og:description"
-content="Calculate ROI, profit or loss, and investment return percentage instantly with ToolXone's free online ROI Calculator.">
-
-<meta property="og:url"
-content="https://www.toolxone.com/roi-calculator.html">
-
-<meta property="og:image"
-content="https://www.toolxone.com/images/toolxone-logo.jpg">
-
-<meta property="og:image:alt"
-content="ToolXone ROI Calculator">
-
-<meta property="og:locale" content="en_US">
-
-
-<!-- =========================================
-     X / TWITTER
-========================================= -->
-
-<meta name="twitter:card" content="summary_large_image">
-
-<meta name="twitter:title"
-content="ROI Calculator - Free Return on Investment Calculator | ToolXone">
-
-<meta name="twitter:description"
-content="Calculate ROI, profit or loss, and investment return percentage instantly with ToolXone's free ROI Calculator.">
-
-<meta name="twitter:image"
-content="https://www.toolxone.com/images/toolxone-logo.jpg">
-
-<meta name="twitter:image:alt"
-content="ToolXone ROI Calculator">
-
 
 <!-- =========================================
      ICONS
@@ -84,100 +22,41 @@ href="images/toolxone-favicon.png">
 href="images/toolxone-favicon.png">
 
 
-<!-- =========================================
-     STYLES
-========================================= -->
+<!-- ======================================================
+     Core Framework
+====================================================== -->
 
 <link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
 <link rel="stylesheet" href="css/roi.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
 <link rel="stylesheet" href="css/validation.css">
-<link rel="stylesheet" href="css/feedback.css">
-
-
-<!-- =========================================
-     STRUCTURED DATA
-========================================= -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://www.toolxone.com/roi-calculator.html#webpage",
-      "url": "https://www.toolxone.com/roi-calculator.html",
-      "name": "ROI Calculator - Free Return on Investment Calculator",
-      "description": "Calculate ROI, profit or loss, and return percentage with ToolXone's free online ROI Calculator.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://www.toolxone.com/#website"
-      },
-      "mainEntity": {
-        "@id": "https://www.toolxone.com/roi-calculator.html#application"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://www.toolxone.com/roi-calculator.html#application",
-      "name": "ROI Calculator",
-      "url": "https://www.toolxone.com/roi-calculator.html",
-      "description": "Free online ROI calculator for calculating investment profit or loss and return on investment percentage.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Any",
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@id": "https://www.toolxone.com/#organization"
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.toolxone.com/#website",
-      "url": "https://www.toolxone.com/",
-      "name": "ToolXone",
-      "publisher": {
-        "@id": "https://www.toolxone.com/#organization"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://www.toolxone.com/#organization",
-      "name": "ToolXone",
-      "url": "https://www.toolxone.com/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.toolxone.com/images/toolxone-logo.jpg"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.toolxone.com/roi-calculator.html#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.toolxone.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "ROI Calculator",
-          "item": "https://www.toolxone.com/roi-calculator.html"
-        }
-      ]
-    }
-  ]
-}
-</script>
 
 </head>
 
-<body data-tool="roi">
+<body data-tool="roi-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" class="site-logo" alt="ToolXone Logo">
@@ -186,6 +65,15 @@ href="images/toolxone-favicon.png">
 </header>
 
 <div id="navbar"></div>
+
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<section
+        id="toolHero"
+        class="tx-hero-section">
+    </section>
 
 <main class="roi-page">
 
@@ -240,272 +128,17 @@ href="images/toolxone-favicon.png">
 
 <section id="related-tools-section">
 
-    <section class="featured-header">
-        <div class="featured-badge-title">💡 RELATED TOOLS</div>
-        <h2>You May Also Like</h2>
-        <p>Continue exploring related financial calculators.</p>
-    </section>
-
-    <div id="relatedTools"></div>
+<div id="relatedTools"></div>
 
 </section>
 
 <div id="financeInfo"></div>
 
-<!-- =========================================
-     ROI CALCULATOR — EDUCATIONAL CONTENT
-========================================= -->
-
-<section class="roi-guide" aria-labelledby="roi-guide-title">
-
-    <div class="roi-guide-container">
-
-        <h2 id="roi-guide-title">What Is ROI (Return on Investment)?</h2>
-
-        <p>
-            ROI, or <strong>Return on Investment</strong>, is a simple financial
-            measure used to compare the profit or loss from an investment with
-            the amount originally invested. It expresses the result as a
-            percentage, making it easier to evaluate investment performance
-            and compare different opportunities.
-        </p>
-
-        <p>
-            A positive ROI means the final return is greater than the original
-            investment, while a negative ROI means the investment produced a
-            loss. An ROI of 0% means the investment broke even.
-        </p>
-
-
-        <h2>ROI Formula</h2>
-
-        <p>
-            The standard return on investment formula compares the net profit
-            or loss with the original investment:
-        </p>
-
-        <div class="roi-formula-box">
-            <strong>
-                ROI (%) = ((Final Return − Investment Amount) ÷ Investment Amount) × 100
-            </strong>
-        </div>
-
-        <p>
-            Net profit or loss is calculated by subtracting the original
-            investment from the final return:
-        </p>
-
-        <div class="roi-formula-box">
-            <strong>
-                Profit or Loss = Final Return − Investment Amount
-            </strong>
-        </div>
-
-
-        <h2>ROI Calculation Example</h2>
-
-        <p>
-            Suppose you invest <strong>$1,000</strong> and the investment later
-            has a final return of <strong>$1,500</strong>.
-        </p>
-
-        <div class="roi-example-box">
-
-            <p>
-                <strong>Investment:</strong> $1,000
-            </p>
-
-            <p>
-                <strong>Final Return:</strong> $1,500
-            </p>
-
-            <p>
-                <strong>Profit:</strong> $1,500 − $1,000 = $500
-            </p>
-
-            <p>
-                <strong>ROI:</strong> ($500 ÷ $1,000) × 100 = 50%
-            </p>
-
-        </div>
-
-        <p>
-            The investment produced a <strong>50% positive ROI</strong>,
-            meaning the profit was equal to 50% of the original amount invested.
-        </p>
-
-
-        <h2>Positive, Zero and Negative ROI</h2>
-
-        <p>
-            ROI can help you quickly understand whether an investment produced
-            a gain, broke even, or resulted in a loss.
-        </p>
-
-        <div class="roi-status-grid">
-
-            <article class="roi-status-card">
-                <h3>Positive ROI</h3>
-                <p>
-                    A positive ROI occurs when the final return is greater than
-                    the original investment. For example, investing $1,000 and
-                    receiving $1,200 produces a $200 profit and a 20% ROI.
-                </p>
-            </article>
-
-            <article class="roi-status-card">
-                <h3>Zero ROI</h3>
-                <p>
-                    An ROI of 0% occurs when the final return equals the original
-                    investment. For example, investing $1,000 and receiving
-                    $1,000 means there is no profit or loss.
-                </p>
-            </article>
-
-            <article class="roi-status-card">
-                <h3>Negative ROI</h3>
-                <p>
-                    A negative ROI occurs when the final return is lower than
-                    the original investment. For example, investing $1,000 and
-                    receiving $750 produces a $250 loss and an ROI of -25%.
-                </p>
-            </article>
-
-        </div>
-
-
-        <h2>How to Use the ToolXone ROI Calculator</h2>
-
-        <ol class="roi-steps">
-            <li>
-                Enter the amount of money originally invested in
-                <strong>Investment Amount</strong>.
-            </li>
-
-            <li>
-                Enter the total value or amount received from the investment
-                in <strong>Final Return</strong>.
-            </li>
-
-            <li>
-                Select <strong>Calculate</strong> to view the investment,
-                final return, profit or loss, and ROI percentage.
-            </li>
-
-            <li>
-                Review the result to understand whether the investment generated
-                a positive return, broke even, or produced a loss.
-            </li>
-
-            <li>
-                Use <strong>Reset</strong> whenever you want to start a new
-                calculation.
-            </li>
-        </ol>
-
-
-        <h2>How to Interpret ROI</h2>
-
-        <p>
-            ROI is useful because it converts investment performance into a
-            percentage. This makes results easier to compare even when the
-            original investment amounts are different.
-        </p>
-
-        <p>
-            For example, a $500 profit may sound substantial, but its meaning
-            depends on how much was invested. A $500 profit on a $1,000
-            investment represents a 50% ROI, while the same $500 profit on a
-            $10,000 investment represents only a 5% ROI.
-        </p>
-
-        <p>
-            A higher ROI generally indicates a greater return relative to the
-            amount invested. However, ROI should not be considered by itself
-            when evaluating financial decisions because investments can differ
-            in duration, risk, costs and other factors.
-        </p>
-
-
-        <h2>Common Uses of an ROI Calculator</h2>
-
-        <p>
-            Return on investment calculations can be useful in many financial
-            and business situations, including:
-        </p>
-
-        <ul class="roi-use-list">
-            <li>Comparing investment opportunities</li>
-            <li>Evaluating business projects</li>
-            <li>Measuring marketing campaign performance</li>
-            <li>Reviewing advertising spending</li>
-            <li>Evaluating equipment or technology purchases</li>
-            <li>Estimating returns from business improvements</li>
-            <li>Comparing project costs with financial results</li>
-        </ul>
-
-
-        <h2>ROI Example for Marketing</h2>
-
-        <p>
-            Suppose a business spends <strong>$2,000</strong> on a marketing
-            campaign and uses <strong>$3,000</strong> as the final return for
-            the ROI calculation.
-        </p>
-
-        <div class="roi-example-box">
-
-            <p>
-                <strong>Investment:</strong> $2,000
-            </p>
-
-            <p>
-                <strong>Final Return:</strong> $3,000
-            </p>
-
-            <p>
-                <strong>Profit:</strong> $1,000
-            </p>
-
-            <p>
-                <strong>ROI:</strong> ($1,000 ÷ $2,000) × 100 = 50%
-            </p>
-
-        </div>
-
-        <p>
-            Using those inputs, the calculated ROI is <strong>50%</strong>.
-            When evaluating real marketing performance, businesses may also
-            need to consider additional campaign costs and how the return is
-            defined.
-        </p>
-
-
-        <h2>Limitations of ROI</h2>
-
-        <p>
-            ROI is a useful performance metric, but a simple ROI percentage
-            does not provide a complete picture of every investment.
-        </p>
-
-        <p>
-            The basic ROI calculation does not automatically account for factors
-            such as investment duration, inflation, taxes, financing costs,
-            transaction fees, opportunity cost or differences in risk.
-        </p>
-
-        <p>
-            Two investments can therefore have the same ROI while having very
-            different time periods or risk levels. ROI can be a useful starting
-            point for comparison, but important financial decisions may require
-            additional analysis.
-        </p>
-
-    </div>
-
-</section>
-
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -522,6 +155,7 @@ href="images/toolxone-favicon.png">
 <script src="js/finance-components.js"></script>
 <script src="js/finance-engine.js"></script>
 <script src="js/number-engine.js"></script>
+
 
 <!-- Backend -->
 <script src="js/backend/backend-config.js"></script>
@@ -545,6 +179,88 @@ href="images/toolxone-favicon.png">
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
 
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/roi-calculator-schema.js"></script>
+
+<script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "ROICalculator"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+
+</script>
+
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/config/tool-identity.js"></script>
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-finance.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
+
 <script src="js/roi.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
@@ -564,63 +280,6 @@ const roiCalculator = {
         { label: "Final Return", type: "number", id: "returnAmount", placeholder: "1500" }
     ],
 
-    info: {
-    title: "Why Use an ROI Calculator?",
-    description: `
-        An ROI calculator makes it easy to measure the financial performance
-        of an investment without calculating the return manually. Enter the
-        original investment amount and final return to quickly calculate your
-        profit or loss and Return on Investment (ROI) percentage. This can help
-        you compare investment results, evaluate business projects, review
-        marketing campaigns, assess purchases and understand how much was
-        gained or lost relative to the amount invested.
-    `
-},
-
-    faq: [
-    {
-        question: "What does ROI mean?",
-        answer: "ROI stands for Return on Investment. It measures the profit or loss from an investment relative to the amount originally invested and expresses the result as a percentage."
-    },
-    {
-        question: "How is ROI calculated?",
-        answer: "ROI is calculated using the formula: ((Final Return - Investment Amount) ÷ Investment Amount) × 100."
-    },
-    {
-        question: "What is a good ROI?",
-        answer: "A positive ROI means an investment produced a gain, but what qualifies as a good ROI depends on factors such as the type of investment, risk, costs, objectives and the time required to achieve the return."
-    },
-    {
-        question: "What does a negative ROI mean?",
-        answer: "A negative ROI means the final return is lower than the original investment, resulting in a loss. For example, investing $1,000 and receiving $750 produces an ROI of -25%."
-    },
-    {
-        question: "What does 0% ROI mean?",
-        answer: "An ROI of 0% means the final return equals the original investment, so there is no profit or loss based on the values entered."
-    },
-    {
-        question: "Can ROI be greater than 100%?",
-        answer: "Yes. ROI can exceed 100% when the profit is greater than the original investment. For example, investing $1,000 and receiving $2,500 produces a $1,500 profit and a 150% ROI."
-    },
-    {
-        question: "Can I use the ROI Calculator for marketing campaigns?",
-        answer: "Yes. You can use the calculator to compare an amount invested with a final return. For marketing analysis, make sure the values you enter reflect the costs and returns relevant to your campaign."
-    },
-    {
-        question: "Does ROI account for investment duration?",
-        answer: "No. This calculator uses the basic ROI formula and does not automatically account for how long an investment was held. Investments with the same ROI can perform differently when their time periods differ."
-    },
-    {
-        question: "Does ROI include taxes, fees and inflation?",
-        answer: "Not automatically. The result is based on the investment amount and final return entered. Taxes, fees, inflation and other costs should be considered separately or incorporated into the values where appropriate."
-    },
-    {
-        question: "Is the ToolXone ROI Calculator free?",
-        answer: "Yes. The ToolXone ROI Calculator is free to use for calculating profit or loss and return on investment percentage."
-    }
-    
-    ]
-
 };
 
 createFinanceCalculator(roiCalculator);
@@ -629,4 +288,5 @@ renderFinanceFeedback("financeFeedback", "ROI Calculator");
 </script>
 
 </body>
+
 </html>
