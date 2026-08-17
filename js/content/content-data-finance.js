@@ -2816,6 +2816,793 @@ ToolXoneContentRegistry.register(
 );
 
 
+/* ==========================================================
+   DISCOUNT CALCULATOR — FULL EDUCATIONAL ARTICLE
+   ========================================================== */
+
+ToolXoneContentRegistry.register(
+    "articles",
+    "discount-calculator",
+    {
+
+        title:
+            "How to Calculate Discounts, Savings, and Final Price",
+
+        introduction:
+            `A discount reduces the original price of a product or service by a specific percentage or amount. Understanding how discounts work can help you compare offers, estimate savings, and determine how much you will actually pay before making a purchase.
+
+The ToolXone Discount Calculator makes this process simple. Enter the original price and discount percentage to calculate the discount amount, final price, percentage saved, and useful insights about your savings.`,
+
+        sections: [
+
+            /* ==================================================
+               1. WHAT IS A DISCOUNT?
+            ================================================== */
+
+            {
+                heading:
+                    "What Is a Discount?",
+
+                content:
+                    `
+<p>
+    A discount is a reduction from the original price of an item,
+    product, or service. Discounts are commonly used during sales,
+    promotions, clearance events, seasonal offers, and customer
+    reward programs.
+</p>
+
+<p>
+    For example, suppose a product originally costs
+    <strong>$100</strong> and the seller offers a
+    <strong>20% discount</strong>. The discount is worth
+    <strong>$20</strong>, which means the final price becomes
+    <strong>$80</strong>.
+</p>
+
+<div class="discount-example-box">
+    <strong>Quick Example</strong>
+
+    <p>
+        Original Price = $100<br>
+        Discount = 20%<br>
+        You Save = $20<br>
+        Final Price = $80
+    </p>
+</div>
+`
+            },
+
+
+            /* ==================================================
+               2. HOW TO USE THE CALCULATOR
+            ================================================== */
+
+            {
+                heading:
+                    "How to Use the Discount Calculator",
+
+                content:
+                    `
+<p>
+    You only need two values to calculate a percentage discount:
+    the original price and the discount percentage.
+</p>
+
+<ol class="discount-guide-steps">
+
+    <li>
+        <strong>Enter the original price.</strong>
+        Add the price of the item before any discount is applied.
+    </li>
+
+    <li>
+        <strong>Enter the discount percentage.</strong>
+        Enter the percentage being removed from the original price,
+        such as 10%, 25%, 50%, or any other value supported by the
+        calculator.
+    </li>
+
+    <li>
+        <strong>Calculate the result.</strong>
+        The calculator determines how much you save and how much of
+        the original price remains to be paid.
+    </li>
+
+    <li>
+        <strong>Review the savings insights.</strong>
+        Use the result summary and savings information to understand
+        the discount beyond the percentage alone.
+    </li>
+
+</ol>
+`
+            },
+
+
+            /* ==================================================
+               3. DISCOUNT FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "Discount Formula",
+
+                content:
+                    `
+<p>
+    To calculate a percentage discount manually, multiply the
+    original price by the discount percentage expressed as a
+    decimal.
+</p>
+
+<div class="discount-formula-box">
+
+    <span>Discount Amount</span>
+
+    <strong>
+        Discount Amount = Original Price × (Discount Percentage ÷ 100)
+    </strong>
+
+</div>
+
+<p>
+    Once the discount amount is known, subtract it from the original
+    price to determine the final price.
+</p>
+
+<div class="discount-formula-box">
+
+    <span>Final Price</span>
+
+    <strong>
+        Final Price = Original Price − Discount Amount
+    </strong>
+
+</div>
+
+<p>
+    You can also calculate the final price directly by determining
+    what percentage of the original price remains after the
+    discount.
+</p>
+
+<div class="discount-formula-box">
+
+    <span>Direct Final Price Formula</span>
+
+    <strong>
+        Final Price = Original Price × (1 − Discount Percentage ÷ 100)
+    </strong>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               4. WORKED EXAMPLE — 20%
+            ================================================== */
+
+            {
+                heading:
+                    "Example: Calculate a 20% Discount",
+
+                content:
+                    `
+<p>
+    Suppose an item has an original price of
+    <strong>$1,000</strong> and receives a
+    <strong>20% discount</strong>.
+</p>
+
+<p>
+    First, calculate the discount amount:
+</p>
+
+<div class="discount-calculation-box">
+    $1,000 × (20 ÷ 100) = $200
+</div>
+
+<p>
+    The discount saves <strong>$200</strong>.
+    Now subtract the savings from the original price:
+</p>
+
+<div class="discount-calculation-box">
+    $1,000 − $200 = $800
+</div>
+
+<p>
+    Therefore, a 20% discount on a $1,000 item reduces the price to
+    <strong>$800</strong>. You save $200 and pay 80% of the
+    original price.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               5. WORKED EXAMPLE — 35%
+            ================================================== */
+
+            {
+                heading:
+                    "Example: Calculate a 35% Discount",
+
+                content:
+                    `
+<p>
+    Percentage discounts do not need to be round numbers such as
+    10%, 25%, or 50%. The same formula works with other discount
+    percentages.
+</p>
+
+<p>
+    Suppose the original price is <strong>$240</strong> and the
+    discount is <strong>35%</strong>.
+</p>
+
+<div class="discount-calculation-box">
+    $240 × (35 ÷ 100) = $84
+</div>
+
+<p>
+    The savings are <strong>$84</strong>. The final price is:
+</p>
+
+<div class="discount-calculation-box">
+    $240 − $84 = $156
+</div>
+
+<p>
+    After the 35% discount, you pay <strong>$156</strong> and save
+    <strong>$84</strong>.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. DECIMAL DISCOUNTS
+            ================================================== */
+
+            {
+                heading:
+                    "How Do Decimal Discounts Work?",
+
+                content:
+                    `
+<p>
+    Some discounts include decimal percentages, such as 12.5%,
+    17.375%, or 22.75%. These values use exactly the same discount
+    formula.
+</p>
+
+<p>
+    For example, if an item costs <strong>$800</strong> and receives
+    a <strong>12.5% discount</strong>:
+</p>
+
+<div class="discount-calculation-box">
+    $800 × (12.5 ÷ 100) = $100
+</div>
+
+<p>
+    The discount amount is <strong>$100</strong>, so the final
+    price is:
+</p>
+
+<div class="discount-calculation-box">
+    $800 − $100 = $700
+</div>
+
+<p>
+    A calculator is especially useful when working with decimal
+    percentages or large prices because it avoids repeated manual
+    calculations.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               7. COMMON DISCOUNT PERCENTAGES
+            ================================================== */
+
+            {
+                heading:
+                    "Understanding Common Discount Percentages",
+
+                content:
+                    `
+<p>
+    A discount percentage represents the portion of the original
+    price that you save. The remaining percentage represents the
+    portion you still pay.
+</p>
+
+<div class="discount-table-wrapper">
+
+    <table class="discount-guide-table">
+
+        <thead>
+            <tr>
+                <th scope="col">Discount</th>
+                <th scope="col">You Save</th>
+                <th scope="col">You Pay</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>5%</td>
+                <td>5%</td>
+                <td>95%</td>
+            </tr>
+
+            <tr>
+                <td>10%</td>
+                <td>10%</td>
+                <td>90%</td>
+            </tr>
+
+            <tr>
+                <td>20%</td>
+                <td>20%</td>
+                <td>80%</td>
+            </tr>
+
+            <tr>
+                <td>25%</td>
+                <td>25%</td>
+                <td>75%</td>
+            </tr>
+
+            <tr>
+                <td>50%</td>
+                <td>50%</td>
+                <td>50%</td>
+            </tr>
+
+            <tr>
+                <td>75%</td>
+                <td>75%</td>
+                <td>25%</td>
+            </tr>
+
+            <tr>
+                <td>90%</td>
+                <td>90%</td>
+                <td>10%</td>
+            </tr>
+
+            <tr>
+                <td>100%</td>
+                <td>100%</td>
+                <td>0%</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<p>
+    A 25% discount, for example, means you save one quarter of the
+    original price and pay the remaining three quarters. At 50%,
+    the savings and amount paid are equal. At 75%, the situation is
+    reversed: you save three quarters and pay one quarter.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               8. SAVINGS VS AMOUNT PAID
+            ================================================== */
+
+            {
+                heading:
+                    "Savings vs. Amount Paid",
+
+                content:
+                    `
+<p>
+    Looking at both the savings and the amount paid can make a
+    discount easier to understand.
+</p>
+
+<p>
+    If the discount is below 50%, the amount you pay is greater than
+    the amount you save. At exactly 50%, the two amounts are equal.
+    Above 50%, your savings become greater than the amount you pay.
+</p>
+
+<div class="discount-example-box">
+
+    <strong>Example: $100 Original Price</strong>
+
+    <p>
+        25% discount → Save $25 and pay $75<br>
+        50% discount → Save $50 and pay $50<br>
+        75% discount → Save $75 and pay $25
+    </p>
+
+</div>
+
+<p>
+    This relationship is useful when comparing deals because it
+    shows what portion of the original price is preserved as
+    savings rather than focusing only on the advertised percentage.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               9. PRACTICAL USE CASES
+            ================================================== */
+
+            {
+                heading:
+                    "When Is a Discount Calculator Useful?",
+
+                content:
+                    `
+<p>
+    Percentage discounts appear in many everyday situations.
+    Quickly calculating the actual savings can make different offers
+    easier to compare.
+</p>
+
+<ul class="discount-guide-list">
+
+    <li>
+        <strong>Online shopping:</strong>
+        Calculate sale prices before placing an order.
+    </li>
+
+    <li>
+        <strong>Retail sales:</strong>
+        Check discounts on clothing, electronics, furniture, and
+        other products.
+    </li>
+
+    <li>
+        <strong>Seasonal promotions:</strong>
+        Compare offers during holiday sales, clearance events, or
+        promotional campaigns.
+    </li>
+
+    <li>
+        <strong>Business pricing:</strong>
+        Estimate how promotional discounts affect the selling price
+        of a product or service.
+    </li>
+
+    <li>
+        <strong>Budget planning:</strong>
+        Determine how much money remains after taking advantage of a
+        discounted purchase.
+    </li>
+
+    <li>
+        <strong>Price comparison:</strong>
+        Compare different discount percentages on products with
+        different original prices.
+    </li>
+
+</ul>
+`
+            },
+
+
+            /* ==================================================
+               10. BIGGER DISCOUNT ≠ ALWAYS BETTER DEAL
+            ================================================== */
+
+            {
+                heading:
+                    "Does a Bigger Discount Always Mean a Better Deal?",
+
+                content:
+                    `
+<p>
+    Not necessarily. A larger discount percentage produces greater
+    savings relative to the stated original price, but the original
+    price itself also matters.
+</p>
+
+<p>
+    For example, a product advertised at 50% off may still cost more
+    than a similar product sold elsewhere at its regular price.
+    When evaluating a deal, compare the final price as well as the
+    discount percentage.
+</p>
+
+<div class="discount-tip-box">
+
+    <strong>Smart Shopping Tip</strong>
+
+    <p>
+        Compare the final price with similar products, historical
+        prices, and your budget rather than judging an offer only by
+        the size of the discount.
+    </p>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               11. DISCOUNT AND TAX
+            ================================================== */
+
+            {
+                heading:
+                    "Discounts and Sales Tax, GST, or VAT",
+
+                content:
+                    `
+<p>
+    A discount calculation determines the reduced price before
+    considering any applicable taxes. Depending on the transaction
+    and local tax rules, GST, VAT, or sales tax may affect the
+    amount ultimately paid.
+</p>
+
+<p>
+    For example, if a $100 item receives a 20% discount, its
+    discounted price is $80. If you then need to estimate an
+    applicable percentage-based tax, you can use the
+    <a href="gst-vat-calculator.html">
+        ToolXone GST / VAT Calculator
+    </a>
+    for that separate calculation.
+</p>
+
+<p>
+    Actual tax treatment can vary by location and transaction, so
+    the applicable rules should be checked when an exact
+    tax-inclusive price is required.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               12. DISCOUNTS AND BUSINESS PROFITABILITY
+            ================================================== */
+
+            {
+                heading:
+                    "Discounts and Business Profitability",
+
+                content:
+                    `
+<p>
+    Businesses often use discounts to encourage purchases, attract
+    new customers, move inventory, or support promotional
+    campaigns. However, reducing the selling price can also affect
+    profitability.
+</p>
+
+<p>
+    A discount tells you how much the selling price has been reduced,
+    but it does not tell you how much profit remains after costs.
+    Businesses evaluating discounted prices can use the
+    <a href="profit-margin-calculator.html">
+        ToolXone Profit Margin Calculator
+    </a>
+    to examine the relationship between revenue, cost, and profit
+    margin.
+</p>
+
+<p>
+    When the goal is to compare a gain with the amount invested,
+    the
+    <a href="roi-calculator.html">
+        ToolXone ROI Calculator
+    </a>
+    can provide a different perspective on financial performance.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               13. DISCOUNTS AND CURRENCY
+            ================================================== */
+
+            {
+                heading:
+                    "Comparing Discounts Across Different Currencies",
+
+                content:
+                    `
+<p>
+    International shopping can make discount comparisons more
+    complicated because the listed prices may use different
+    currencies.
+</p>
+
+<p>
+    A 30% discount remains a 30% reduction regardless of currency,
+    but comparing the actual final cost may require converting the
+    prices into the same currency first.
+</p>
+
+<p>
+    If your comparison involves exchange values and potential gains
+    between currency amounts, the
+    <a href="currency-profit-calculator.html">
+        ToolXone Currency Profit Calculator
+    </a>
+    can help with that separate analysis.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               14. MULTIPLE DISCOUNTS
+            ================================================== */
+
+            {
+                heading:
+                    "How Do Multiple Discounts Work?",
+
+                content:
+                    `
+<p>
+    When two discounts are applied one after another, you generally
+    should not simply add the percentages together. Each successive
+    discount is calculated from the price remaining after the
+    previous discount.
+</p>
+
+<p>
+    For example, suppose a $100 item receives a 20% discount
+    followed by another 10% discount.
+</p>
+
+<div class="discount-calculation-box">
+    First discount: $100 − 20% = $80
+</div>
+
+<div class="discount-calculation-box">
+    Second discount: $80 − 10% = $72
+</div>
+
+<p>
+    The final price is <strong>$72</strong>, which represents total
+    savings of <strong>$28</strong> or an effective discount of
+    <strong>28%</strong> from the original $100 price—not 30%.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               15. PERCENTAGE PAID
+            ================================================== */
+
+            {
+                heading:
+                    "How Much of the Original Price Do You Pay?",
+
+                content:
+                    `
+<p>
+    Another quick way to understand a discount is to subtract the
+    discount percentage from 100%.
+</p>
+
+<div class="discount-formula-box">
+
+    <span>Percentage Remaining</span>
+
+    <strong>
+        Percentage Paid = 100% − Discount Percentage
+    </strong>
+
+</div>
+
+<p>
+    With a 30% discount, you pay 70% of the original price.
+    With a 65% discount, you pay 35%. With a 100% discount, nothing
+    remains to be paid.
+</p>
+
+<p>
+    This approach is particularly useful when you want to calculate
+    the final price directly instead of calculating the savings
+    first.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               16. TIPS
+            ================================================== */
+
+            {
+                heading:
+                    "Tips for Evaluating a Discount",
+
+                content:
+                    `
+<ul class="discount-guide-list">
+
+    <li>
+        Check the original price before evaluating the advertised
+        discount.
+    </li>
+
+    <li>
+        Compare the final price with competing products or stores.
+    </li>
+
+    <li>
+        Look at both the percentage saved and the actual money saved.
+    </li>
+
+    <li>
+        Remember that taxes, shipping fees, or other charges may
+        affect the total purchase cost.
+    </li>
+
+    <li>
+        For consecutive discounts, calculate each reduction from the
+        price remaining after the previous discount.
+    </li>
+
+    <li>
+        Consider whether the purchase fits your budget even when the
+        discount appears attractive.
+    </li>
+
+</ul>
+`
+            },
+
+
+            /* ==================================================
+               17. ARTICLE CONCLUSION
+            ================================================== */
+
+            {
+                heading:
+                    "Calculate Discounts Quickly with ToolXone",
+
+                content:
+                    `
+<p>
+    Discount calculations are simple once you understand the
+    relationship between the original price, discount percentage,
+    savings, and final price. The discount amount is the portion of
+    the original price removed, while the final price is the amount
+    remaining after that reduction.
+</p>
+
+<p>
+    ToolXone's Discount Calculator performs these calculations
+    instantly and presents the result in an easy-to-understand
+    format, helping you evaluate sales, compare prices, and make
+    more informed purchasing decisions.
+</p>
+`
+            }
+
+        ]
+    }
+);
+
     /* ==========================================================
        LOAN CALCULATOR FAQ
     ========================================================== */
@@ -3390,6 +4177,80 @@ ToolXoneContentRegistry.register(
     ]
 );
 
+/* ==========================================================
+   DISCOUNT CALCULATOR — FAQ CONTENT
+   ========================================================== */
+
+ToolXoneContentRegistry.register(
+    "faq",
+    "discount-calculator",
+    [
+        {
+            question:
+                "How is a discount calculated?",
+
+            answer:
+                "A percentage discount is calculated by multiplying the original price by the discount percentage divided by 100. For example, a 20% discount on a $100 item saves $20, leaving a final price of $80."
+        },
+
+        {
+            question:
+                "What does final price mean?",
+
+            answer:
+                "The final price is the amount you pay after the discount has been subtracted from the original price. Final Price = Original Price − Discount Amount."
+        },
+
+        {
+            question:
+                "How do I calculate the price after a percentage discount?",
+
+            answer:
+                "Subtract the discount percentage from 100% to find the percentage of the original price that remains, then multiply the original price by that percentage. For example, after a 25% discount, you pay 75% of the original price."
+        },
+
+        {
+            question:
+                "Can I calculate decimal discounts such as 12.5%?",
+
+            answer:
+                "Yes. The ToolXone Discount Calculator supports decimal discount percentages such as 12.5%, 17.375%, and 22.75%. For example, a 12.5% discount on $800 saves $100, giving a final price of $700."
+        },
+
+        {
+            question:
+                "Are two successive discounts the same as adding them together?",
+
+            answer:
+                "No. Successive discounts are applied one after another, with each discount calculated from the remaining price. For example, 20% off followed by 10% off produces an effective discount of 28%, not 30%."
+        },
+
+        {
+            question:
+                "What happens with a 100% discount?",
+
+            answer:
+                "A 100% discount removes the entire original price. You save 100% of the price and pay zero. For example, a 100% discount on a $250 item means you save $250 and pay $0."
+        },
+
+        {
+            question:
+                "Does a larger discount always mean a better deal?",
+
+            answer:
+                "Not necessarily. A larger discount gives greater savings relative to the stated original price, but the original price also matters. Compare the final price with comparable products rather than judging an offer only by its advertised discount percentage."
+        },
+
+        {
+            question:
+                "Does the Discount Calculator include GST, VAT, or sales tax?",
+
+            answer:
+                "No. The Discount Calculator calculates the discount amount, savings, and final discounted price. GST, VAT, sales tax, or other taxes may need to be calculated separately depending on the transaction and applicable tax rules."
+        }
+    ]
+);
+
     /* ==========================================================
        LOAN CALCULATOR RELATED TOOLS
     ========================================================== */
@@ -3503,6 +4364,23 @@ ToolXoneContentRegistry.register(
         "gst-vat-calculator",
         "roi-calculator",
         "currency-profit-calculator"
+    ]
+);
+
+/* ==========================================================
+   DISCOUNT CALCULATOR RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "related",
+    "discount-calculator",
+    [
+
+        "profit-margin-calculator",
+        "gst-vat-calculator",
+        "roi-calculator",
+        "currency-profit-calculator"
+
     ]
 );
 
@@ -4152,6 +5030,121 @@ ToolXoneContentRegistry.register(
     }
 );
 
+
+/* ==========================================================
+   DISCOUNT CALCULATOR HERO
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "hero",
+    "discount-calculator",
+    {
+
+        badge:
+            "FINANCE TOOL",
+
+        category:
+            "Finance",
+
+        difficulty:
+            "Easy",
+
+        title:
+            "Free Discount Calculator",
+
+        subtitle:
+            "Calculate discount amount, total savings and final price instantly.",
+
+        description:
+            "Use ToolXone's free Discount Calculator to quickly determine how much you save, the discount amount, and the final price after applying a percentage discount.",
+
+        highlights: [
+            "Calculate discount amount",
+            "Find total savings",
+            "Get final price",
+            "See percentage saved"
+        ],
+
+        statistics: {
+
+            functions: {
+                value: "4+",
+                label: "Functions",
+                title:
+                    "What can this calculator do?",
+                description:
+                    "Calculate the discount amount, total savings, final price and percentage saved from the original price and discount percentage."
+            },
+
+            accuracy: {
+                value: "Formula",
+                label: "Accuracy",
+                title:
+                    "Calculation Method",
+                description:
+                    "Results are calculated using standard percentage discount formulas based on the original price and entered discount percentage."
+            },
+
+            availability: {
+                value: "24/7",
+                label: "Availability",
+                title:
+                    "Available Anytime",
+                description:
+                    "Use ToolXone's Discount Calculator online whenever you need to compare sale prices, savings and discounts."
+            },
+
+            price: {
+                value: "Free",
+                label: "Price",
+                title:
+                    "Free to Use",
+                description:
+                    "ToolXone's Discount Calculator is free to use online with no payment required."
+            }
+
+        },
+
+        preview: {
+
+            title:
+                "Discount Calculator",
+
+            description:
+                "Calculate discount amount, savings and final price instantly.",
+
+            image: {
+
+                src:
+                    "images/discount-calculator.webp",
+
+                alt:
+                    "ToolXone Free Discount Calculator for calculating savings, discount amount and final price",
+
+                title:
+                    "Discount Calculator",
+
+                caption:
+                    "Calculate discount amount, savings and final price with ToolXone."
+
+            }
+
+        },
+
+        cta: {
+
+            primary:
+                "Calculate Discount",
+
+            secondary:
+                "Learn More"
+
+        }
+
+    }
+);
+
+
     /* ==========================================================
        LOAN METADATA
     ========================================================== */
@@ -4394,12 +5387,75 @@ ToolXoneContentRegistry.register(
     }
 );
 
+/* ==========================================================
+   DISCOUNT CALCULATOR METADATA
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "metadata",
+    "discount-calculator",
+    {
+
+        title:
+            "Discount Calculator",
+
+        description:
+            "Calculate discount amount, savings, final price and percentage saved instantly with ToolXone's free Discount Calculator.",
+
+        keywords: [
+            "discount calculator",
+            "percentage discount calculator",
+            "discount percentage calculator",
+            "sale price calculator",
+            "discount savings calculator",
+            "price discount calculator",
+            "final price calculator"
+        ],
+
+        category:
+            "Finance",
+
+        toolType:
+            "Calculator",
+
+        audience:
+            "Shoppers, consumers, retailers, businesses, freelancers, and anyone comparing discounted prices.",
+
+        purpose:
+            "Calculate discount amount, savings, final price, and the percentage of the original price paid after a discount.",
+
+        benefits: [
+            "Calculate discount amount",
+            "Determine final price",
+            "Calculate total savings",
+            "Compare discount percentages",
+            "Understand the percentage of the original price paid"
+        ],
+
+        image:
+            "images/discount-calculator.webp",
+
+        imageAlt:
+            "Discount Calculator for calculating savings, discount amount and final price",
+
+        imageTitle:
+            "Discount Calculator",
+
+        imageCaption:
+            "Calculate discount amount, savings and final price with ToolXone.",
+
+        canonical:
+            "https://www.toolxone.com/discount-calculator.html"
+
+    }
+);
+
     /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator."
+    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator + Discount Calculator."
 
     );
 

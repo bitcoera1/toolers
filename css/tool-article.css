@@ -431,3 +431,249 @@ body.dark .tool-article td,
         margin: 20px 0;
     }
 }
+
+/* ============================================================
+   15. DISCOUNT CALCULATOR — ARTICLE GUIDE COMPONENTS
+   ------------------------------------------------------------
+   Scoped specifically to Discount Calculator article content.
+   Uses positioned icons so text nodes and <strong> elements
+   remain in their natural document flow.
+   ============================================================ */
+
+
+/* ============================================================
+   15.1 NUMBERED GUIDE STEPS
+   ============================================================ */
+
+.tool-article ol.discount-guide-steps {
+    counter-reset: discount-step;
+
+    margin: 22px 0 30px;
+    padding: 0;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tool-article ol.discount-guide-steps > li {
+    position: relative;
+
+    counter-increment: discount-step;
+
+    margin: 0;
+    padding: 22px 20px 22px 72px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    color: #334155;
+
+    line-height: 1.65;
+
+    box-sizing: border-box;
+}
+
+
+/* Number circle */
+
+.tool-article ol.discount-guide-steps > li::before {
+    content: counter(discount-step);
+
+    position: absolute;
+
+    top: 22px;
+    left: 20px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #10b981;
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
+
+
+/* Step heading */
+
+.tool-article ol.discount-guide-steps > li strong {
+    display: block;
+
+    margin: 0 0 4px;
+
+    color: #0f172a;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   15.2 GUIDE / USE-CASE LIST
+   ============================================================ */
+
+.tool-article ul.discount-guide-list {
+    margin: 20px 0 30px;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tool-article ul.discount-guide-list > li {
+    position: relative;
+
+    margin: 0;
+    padding: 13px 16px 13px 50px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    color: #334155;
+
+    line-height: 1.6;
+
+    box-sizing: border-box;
+}
+
+
+/* Check icon */
+
+.tool-article ul.discount-guide-list > li::before {
+    content: "✓";
+
+    position: absolute;
+
+    top: 13px;
+    left: 16px;
+
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d1fae5;
+    color: #059669;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   15.3 DARK MODE
+   ============================================================ */
+
+body.dark-mode .tool-article ol.discount-guide-steps > li,
+body.dark .tool-article ol.discount-guide-steps > li,
+[data-theme="dark"] .tool-article ol.discount-guide-steps > li,
+
+body.dark-mode .tool-article ul.discount-guide-list > li,
+body.dark .tool-article ul.discount-guide-list > li,
+[data-theme="dark"] .tool-article ul.discount-guide-list > li {
+    background: #172033;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .tool-article ol.discount-guide-steps > li strong,
+body.dark .tool-article ol.discount-guide-steps > li strong,
+[data-theme="dark"] .tool-article ol.discount-guide-steps > li strong {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tool-article ul.discount-guide-list > li::before,
+body.dark .tool-article ul.discount-guide-list > li::before,
+[data-theme="dark"] .tool-article ul.discount-guide-list > li::before {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+
+/* ============================================================
+   15.4 TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .tool-article ol.discount-guide-steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .tool-article ol.discount-guide-steps > li {
+        padding: 20px 18px 20px 68px;
+    }
+
+    .tool-article ol.discount-guide-steps > li::before {
+        top: 20px;
+        left: 18px;
+    }
+}
+
+
+/* ============================================================
+   15.5 MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    .tool-article ol.discount-guide-steps {
+        gap: 12px;
+        margin: 18px 0 24px;
+    }
+
+    .tool-article ol.discount-guide-steps > li {
+        padding: 17px 15px 17px 60px;
+
+        border-radius: 14px;
+    }
+
+    .tool-article ol.discount-guide-steps > li::before {
+        top: 17px;
+        left: 15px;
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 15px;
+    }
+
+    .tool-article ul.discount-guide-list {
+        gap: 9px;
+    }
+
+    .tool-article ul.discount-guide-list > li {
+        padding: 12px 13px 12px 46px;
+
+        border-radius: 12px;
+    }
+
+    .tool-article ul.discount-guide-list > li::before {
+        top: 12px;
+        left: 13px;
+    }
+}

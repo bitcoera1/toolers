@@ -168,6 +168,14 @@ actions : {
 
     },
 
+    "discount-calculator": {
+
+        startCalculating: ".discount-card",
+
+        learnMore: "#financeInfo"
+
+    },
+    
     "weight-converter" : {
     
         startCalculating : ".tool-area",
