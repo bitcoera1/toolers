@@ -175,7 +175,17 @@ actions : {
         learnMore: "#financeInfo"
 
     },
-    
+
+   "gst-vat-calculator": {
+
+        startCalculating:
+        ".tax-card",
+
+        learnMore:
+        "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",

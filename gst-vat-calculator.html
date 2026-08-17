@@ -5,8 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GST / VAT Calculator - Add or Remove Tax Free | ToolXone</title>
-
+<title>Free GST / VAT Calculator - Add or Remove Tax | ToolXone</title>
 <meta
     name="description"
     content="Free GST / VAT Calculator to add or remove tax, calculate tax amount, base price and tax-inclusive price instantly using any percentage rate."
@@ -64,10 +63,40 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
+
+<!-- ======================================================
+     Core Framework
+====================================================== -->
+
 <link rel="stylesheet" href="css/tools.css">
+
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
 <link rel="stylesheet" href="css/gst-vat.css">
+
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
 <link rel="stylesheet" href="css/validation.css">
-<link rel="stylesheet" href="css/feedback.css">
 
 <script type="application/ld+json">
 {
@@ -115,7 +144,7 @@
 
 </head>
 
-<body data-tool="gst-vat">
+<body data-tool="gst-vat-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" class="site-logo" alt="ToolXone Logo">
@@ -124,6 +153,15 @@
 </header>
 
 <div id="navbar"></div>
+
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<section
+        id="toolHero"
+        class="tx-hero-section">
+    </section>
 
 <main class="tax-page">
 
@@ -174,270 +212,17 @@
 
 <section id="related-tools-section">
 
-    <section class="featured-header">
-        <div class="featured-badge-title">💡 RELATED TOOLS</div>
-        <h2>You May Also Like</h2>
-        <p>Continue exploring related financial calculators.</p>
-    </section>
-
-    <div id="relatedTools"></div>
+<div id="relatedTools"></div>
 
 </section>
 
 <div id="financeInfo"></div>
 
-<!-- =========================================
-     GST / VAT CALCULATOR — EDUCATIONAL CONTENT
-========================================== -->
-
-<section class="gst-guide" aria-labelledby="gst-guide-title">
-
-    <div class="gst-guide-container">
-
-        <!-- WHAT IS GST / VAT -->
-        <section class="gst-guide-block">
-
-            <h2 id="gst-guide-title">What Is GST / VAT?</h2>
-
-            <p>
-                GST (Goods and Services Tax) and VAT (Value Added Tax) are forms
-                of consumption tax applied to many goods and services. Depending
-                on the country or jurisdiction, the tax may be added to a base
-                price or already included in the displayed price.
-            </p>
-
-            <p>
-                For example, if an item costs <strong>$100 before tax</strong>
-                and an <strong>18% tax rate</strong> applies, the tax amount is
-                <strong>$18</strong> and the tax-inclusive price becomes
-                <strong>$118</strong>.
-            </p>
-
-            <div class="gst-example-box">
-                <h3>Quick Example</h3>
-
-                <p>Base Price = $100</p>
-                <p>Tax Rate = 18%</p>
-                <p>Tax Amount = $18</p>
-                <p>Final Price = $118</p>
-            </div>
-
-        </section>
-
-
-        <!-- HOW TO USE -->
-        <section class="gst-guide-block">
-
-            <h2>How to Use the GST / VAT Calculator</h2>
-
-            <p>
-                ToolXone can calculate tax when you want to add GST or VAT to a
-                price, or work backward from a tax-inclusive amount to estimate
-                the original price before tax.
-            </p>
-
-            <ol class="gst-steps">
-                <li>
-                    <strong>Choose the calculation type.</strong>
-                    Select whether you want to add GST / VAT to a price or
-                    remove GST / VAT from a tax-inclusive amount.
-                </li>
-
-                <li>
-                    <strong>Enter the amount.</strong>
-                    Enter the price or total amount you want to calculate.
-                </li>
-
-                <li>
-                    <strong>Enter the tax rate.</strong>
-                    Use the GST, VAT, or percentage tax rate applicable to your
-                    calculation.
-                </li>
-
-                <li>
-                    <strong>Calculate the result.</strong>
-                    The calculator will determine the base price, tax amount,
-                    and final amount based on your selected calculation type.
-                </li>
-            </ol>
-
-        </section>
-
-
-        <!-- ADD TAX -->
-        <section class="gst-guide-block">
-
-            <h2>How to Add GST / VAT to a Price</h2>
-
-            <p>
-                When the entered amount is the price before tax, calculate the
-                tax as a percentage of the base price and then add it to the
-                original amount.
-            </p>
-
-            <div class="gst-formula-box">
-                <strong>Tax Amount = Base Price × (Tax Rate ÷ 100)</strong>
-                <br>
-                <strong>Final Price = Base Price + Tax Amount</strong>
-            </div>
-
-            <p>
-                For example, with a base price of <strong>$1,000</strong> and
-                a tax rate of <strong>18%</strong>, the tax amount is
-                <strong>$180</strong>, producing a final price of
-                <strong>$1,180</strong>.
-            </p>
-
-            <p>
-    If you need to calculate a percentage separately before applying tax,
-    use the
-    <a href="percentage-calculator.html" class="gst-context-link">
-        ToolXone Percentage Calculator
-    </a>
-    to calculate percentages, percentage increases, and percentage decreases.
-</p>
-
-        </section>
-
-
-        <!-- REMOVE TAX -->
-        <section class="gst-guide-block">
-
-            <h2>How to Remove GST / VAT From a Tax-Inclusive Price</h2>
-
-            <p>
-                If GST or VAT is already included in a price, finding the
-                original price is different from simply subtracting the tax
-                percentage from the total. The tax-inclusive amount must be
-                divided by the tax multiplier.
-            </p>
-
-            <div class="gst-formula-box">
-                <strong>
-                    Base Price = Tax-Inclusive Price ÷
-                    (1 + Tax Rate ÷ 100)
-                </strong>
-                <br>
-                <strong>
-                    Tax Amount = Tax-Inclusive Price − Base Price
-                </strong>
-            </div>
-
-            <p>
-                For example, if <strong>$1,180</strong> already includes
-                <strong>18% tax</strong>, the base price is
-                <strong>$1,000</strong> and the included tax amount is
-                <strong>$180</strong>.
-            </p>
-
-            <p>
-    Tax and discounts affect prices differently. If you are working with a
-    sale price or promotional reduction, use the
-    <a href="discount-calculator.html" class="gst-context-link">
-        ToolXone Discount Calculator
-    </a>
-    to calculate the discount amount, savings, and final discounted price.
-</p>
-
-            <div class="gst-note-box">
-                <strong>Important:</strong>
-                Removing 18% tax from a tax-inclusive price is not the same as
-                reducing that price by 18%. The tax was calculated from the
-                original pre-tax amount.
-            </div>
-
-        </section>
-
-
-        <!-- TAX INCLUSIVE VS EXCLUSIVE -->
-        <section class="gst-guide-block">
-
-            <h2>Tax-Inclusive vs Tax-Exclusive Prices</h2>
-
-            <p>
-                A <strong>tax-exclusive price</strong> is the price before GST,
-                VAT, or another percentage tax is added. A
-                <strong>tax-inclusive price</strong> already contains the tax.
-            </p>
-
-            <p>
-                Knowing which type of amount you have is important because adding
-                tax and extracting tax require different calculations.
-            </p>
-
-        </section>
-
-
-        <!-- GST VS VAT -->
-        <section class="gst-guide-block">
-
-            <h2>GST vs VAT: What Is the Difference?</h2>
-
-            <p>
-                GST and VAT are both terms used for consumption-tax systems, but
-                their names, rates, exemptions, reporting requirements, and
-                collection rules can differ between countries and jurisdictions.
-            </p>
-
-            <p>
-                This calculator focuses on the percentage calculation itself.
-                Enter the rate that applies to your situation to calculate the
-                corresponding tax and price amounts.
-            </p>
-
-        </section>
-
-
-        <!-- COMMON USES -->
-        <section class="gst-guide-block">
-
-            <h2>Common Uses of a GST / VAT Calculator</h2>
-
-            <ul class="gst-use-list">
-                <li>Adding percentage tax to a price before purchase or sale</li>
-                <li>Finding the tax amount included in a final price</li>
-                <li>Estimating pre-tax and tax-inclusive invoice amounts</li>
-                <li>Checking pricing calculations for products or services</li>
-                <li>Working with custom GST, VAT, or sales-tax percentages</li>
-            </ul>
-
-            <p>
-    Businesses evaluating selling prices and profitability can also use the
-    <a href="profit-margin-calculator.html" class="gst-context-link">
-        ToolXone Profit Margin Calculator
-    </a>
-    to calculate profit margin, markup, cost, and selling price.
-</p>
-
-        </section>
-
-
-        <!-- IMPORTANT NOTE -->
-        <section class="gst-guide-block gst-tax-notice">
-
-            <h2>Important Tax Note</h2>
-
-            <p>
-                The ToolXone GST / VAT Calculator performs mathematical
-                calculations using the amount and tax rate you enter. It does
-                not determine which tax rate, exemption, tax treatment, or
-                legal requirement applies to a particular transaction.
-            </p>
-
-            <p>
-                Tax rules vary by country, region, product, service, and
-                transaction type. For tax filing, compliance, or legal decisions,
-                verify the applicable rules with the relevant tax authority or
-                a qualified professional.
-            </p>
-
-        </section>
-
-    </div>
-
-</section>
-
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -479,6 +264,87 @@
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
 
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/gst-vat-calculator-schema.js"></script>
+
+<script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "GST-VAT-Calculator"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+
+</script>
+
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/config/tool-identity.js"></script>
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-finance.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
 <script src="js/gst-vat.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
@@ -507,58 +373,12 @@ const taxCalculator = {
         { label: "Tax Rate (%)", type: "number", id: "taxRate", placeholder: "18" }
     ],
 
-    info: {
-    title: "Why Use a GST / VAT Calculator?",
-    description:
-        "A GST / VAT calculator makes it easier to work with tax-inclusive and tax-exclusive prices without performing the calculations manually. Enter an amount and your applicable tax rate to quickly calculate the tax amount, base price, and final price. You can add GST or VAT to a pre-tax amount or work backward from a tax-inclusive total to estimate the original price before tax. This is useful for shoppers, freelancers, sellers, businesses, invoices, quotations, pricing checks, and everyday tax calculations."
-},
-
-    faq: [
-    {
-        question: "What is GST or VAT?",
-        answer: "GST (Goods and Services Tax) and VAT (Value Added Tax) are forms of consumption tax applied to goods and services in many countries. The name, rate, exemptions, and rules vary by country and jurisdiction."
-    },
-    {
-        question: "How do I add GST or VAT to a price?",
-        answer: "Choose the option to add GST / VAT, enter the price before tax, and enter the applicable tax rate. The calculator will calculate the tax amount and add it to the base price to produce the final tax-inclusive price."
-    },
-    {
-        question: "How do I remove GST or VAT from a tax-inclusive price?",
-        answer: "Choose the option to remove GST / VAT, enter the tax-inclusive amount, and enter the applicable tax rate. The calculator will work backward to estimate the original base price and the tax amount included in the total."
-    },
-    {
-        question: "What is the difference between a tax-inclusive and tax-exclusive price?",
-        answer: "A tax-exclusive price is the amount before GST, VAT, or another percentage tax is added. A tax-inclusive price already contains the tax. The calculation used to add tax is different from the calculation used to extract tax from an inclusive total."
-    },
-    {
-        question: "Is removing 18% GST or VAT the same as subtracting 18% from the final price?",
-        answer: "No. If a final price already includes 18% tax, subtracting 18% directly from that total does not recover the original pre-tax price. The tax-inclusive amount must be divided by 1.18 to determine the base price."
-    },
-    {
-        question: "Can I use any GST or VAT rate?",
-        answer: "Yes. You can enter a custom percentage rate for the calculation. Because tax rates and rules vary by country, region, product, and service, use the rate that applies to your situation."
-    },
-    {
-        question: "Can I use this calculator for sales tax?",
-        answer: "Yes, for a straightforward percentage-based sales tax calculation, you can enter the applicable tax rate to add tax to a base price or estimate the tax contained in an inclusive total. It does not determine which tax rate or tax rules apply to a transaction."
-    },
-    {
-        question: "What results does the GST / VAT Calculator provide?",
-        answer: "Depending on the calculation type, the calculator determines the base price, tax amount, and final tax-inclusive amount so you can see how the tax affects the price."
-    },
-    {
-        question: "Can businesses and freelancers use this calculator for invoices and quotations?",
-        answer: "Yes. It can help with quick percentage-based tax calculations when preparing or checking prices, invoices, estimates, and quotations. For official accounting, tax filing, or compliance, verify the applicable tax rules and rates with the relevant authority or a qualified professional."
-    },
-    {
-        question: "Does ToolXone determine the correct GST or VAT rate for my country?",
-        answer: "No. ToolXone performs the calculation using the tax rate you enter. It does not determine tax rates, exemptions, registration requirements, tax treatment, or other legal obligations for a particular country or transaction."
-    }
-]
-
 };
 
 createFinanceCalculator(taxCalculator);
+
+ToolXoneHeroRenderer.render("gst-vat-calculator");
+
 renderFinanceFeedback("financeFeedback", "GST / VAT Calculator");
 
 </script>

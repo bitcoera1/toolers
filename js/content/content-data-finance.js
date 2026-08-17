@@ -3603,6 +3603,631 @@ The ToolXone Discount Calculator makes this process simple. Enter the original p
     }
 );
 
+/* ==========================================================
+   GST / VAT CALCULATOR — ARTICLE
+========================================================== */
+
+ToolXoneContentRegistry.register(
+    "articles",
+    "gst-vat-calculator",
+    {
+        title:
+            "How to Calculate GST / VAT, Tax Amount, and Final Price",
+
+        introduction:
+            `GST (Goods and Services Tax) and VAT (Value Added Tax) are consumption taxes applied to the sale of goods and services. Understanding how tax is calculated can help you determine the tax amount, compare prices, prepare invoices, and understand the final amount payable.
+
+The ToolXone GST / VAT Calculator makes this process simple. Enter the amount, tax rate, and choose whether the tax should be added to the amount or extracted from a tax-inclusive price. The calculator then determines the base price, tax amount, final price, and tax percentage.`,
+
+        sections: [
+
+            /* ==================================================
+               1. WHAT IS GST / VAT?
+            ================================================== */
+
+            {
+                heading:
+                    "What Is GST / VAT?",
+
+                content:
+                    `
+<p>
+    GST and VAT are consumption taxes applied to goods and services.
+    Although the terminology and tax rules vary between jurisdictions,
+    both systems generally calculate tax as a percentage of a taxable
+    amount.
+</p>
+
+<p>
+    The tax rate determines how much tax is applied to the underlying
+    price. For example, if a product costs <strong>$100</strong> before
+    tax and the applicable GST or VAT rate is <strong>15%</strong>,
+    the tax amount is <strong>$15</strong> and the final price is
+    <strong>$115</strong>.
+</p>
+
+<div class="gst-example-box">
+
+    <strong>Quick Example</strong>
+
+    <p>
+        $100 × 15% = $15 tax
+    </p>
+
+    <p>
+        $100 + $15 = $115 final price
+    </p>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               2. GST / VAT FORMULA
+            ================================================== */
+
+            {
+                heading:
+                    "GST / VAT Calculation Formula",
+
+                content:
+                    `
+<p>
+    When the amount is a tax-exclusive price, GST or VAT can be
+    calculated by multiplying the original amount by the tax rate
+    expressed as a decimal.
+</p>
+
+<div class="gst-formula-box">
+
+    <strong>
+        Tax Amount = Base Price × (Tax Rate ÷ 100)
+    </strong>
+
+</div>
+
+<p>
+    After calculating the tax amount, add it to the base price to
+    determine the final price.
+</p>
+
+<div class="gst-formula-box">
+
+    <strong>
+        Final Price = Base Price + Tax Amount
+    </strong>
+
+</div>
+
+<p>
+    For example, with a base price of $200 and a GST / VAT rate of
+    10%, the tax amount is $20 and the final price is $220.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               3. TAX-EXCLUSIVE PRICE
+            ================================================== */
+
+            {
+                heading:
+                    "How to Calculate Tax on a Tax-Exclusive Price",
+
+                content:
+                    `
+<p>
+    A tax-exclusive amount is a price that does not yet include GST
+    or VAT. The applicable tax is calculated separately and then added
+    to the original amount.
+</p>
+
+<div class="gst-example-box">
+
+    <p>
+        <strong>Base Price:</strong> $500
+    </p>
+
+    <p>
+        <strong>Tax Rate:</strong> 20%
+    </p>
+
+    <p>
+        <strong>Tax Amount:</strong> $500 × 20% = $100
+    </p>
+
+    <p>
+        <strong>Final Price:</strong> $500 + $100 = $600
+    </p>
+
+</div>
+
+<p>
+    Therefore, a $500 tax-exclusive price becomes $600 after applying
+    a 20% GST or VAT rate.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               4. TAX-INCLUSIVE PRICE
+            ================================================== */
+
+            {
+                heading:
+                    "How to Extract GST / VAT from a Tax-Inclusive Price",
+
+                content:
+                    `
+<p>
+    A tax-inclusive amount already contains GST or VAT. In this case,
+    the tax cannot be calculated simply by multiplying the total by
+    the tax rate because the total already includes the tax.
+</p>
+
+<p>
+    Instead, divide the tax-inclusive amount by one plus the tax rate
+    expressed as a decimal to determine the underlying base price.
+</p>
+
+<div class="gst-formula-box">
+
+    <strong>
+        Base Price = Tax-Inclusive Price ÷ (1 + Tax Rate ÷ 100)
+    </strong>
+
+</div>
+
+<p>
+    The tax amount can then be found by subtracting the calculated
+    base price from the tax-inclusive price.
+</p>
+
+<div class="gst-formula-box">
+
+    <strong>
+        Tax Amount = Final Price − Base Price
+    </strong>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               5. TAX-INCLUSIVE EXAMPLE
+            ================================================== */
+
+            {
+                heading:
+                    "Tax-Inclusive Calculation Example",
+
+                content:
+                    `
+<p>
+    Suppose a product has a final price of <strong>$120</strong>
+    including a GST or VAT rate of <strong>20%</strong>.
+</p>
+
+<div class="gst-example-box">
+
+    <p>
+        <strong>Final Price:</strong> $120
+    </p>
+
+    <p>
+        <strong>Tax Rate:</strong> 20%
+    </p>
+
+    <p>
+        <strong>Base Price:</strong>
+        $120 ÷ 1.20 = $100
+    </p>
+
+    <p>
+        <strong>Tax Amount:</strong>
+        $120 − $100 = $20
+    </p>
+
+</div>
+
+<p>
+    The original price before tax was therefore $100, while the GST or
+    VAT included in the final price was $20.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. ADD TAX VS EXTRACT TAX
+            ================================================== */
+
+            {
+                heading:
+                    "Add Tax vs. Extract Tax",
+
+                content:
+                    `
+<p>
+    The two calculation methods answer different questions and should
+    not be confused.
+</p>
+
+<ul class="gst-guide-list">
+
+    <li>
+        <strong>Add Tax:</strong>
+        Use this option when the amount you enter is the price before
+        GST or VAT and you want to calculate the final price after tax.
+    </li>
+
+    <li>
+        <strong>Extract Tax:</strong>
+        Use this option when the amount you enter already includes GST
+        or VAT and you want to determine the underlying price and tax
+        component.
+    </li>
+
+</ul>
+
+<p>
+    Selecting the correct calculation type ensures that the calculator
+    interprets the entered amount correctly.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               7. HOW TO USE THE CALCULATOR
+            ================================================== */
+
+            {
+                heading:
+                    "How to Use the GST / VAT Calculator",
+
+                content:
+                    `
+<p>
+    The ToolXone GST / VAT Calculator requires only a few inputs.
+    Follow these steps to calculate the tax amount and final price.
+</p>
+
+<ol class="gst-guide-steps">
+
+    <li>
+        <strong>Enter the amount.</strong>
+        Enter the original price or total amount you want to analyze.
+    </li>
+
+    <li>
+        <strong>Enter the tax rate.</strong>
+        Enter the applicable GST or VAT percentage, such as 5%, 10%,
+        15%, 18%, 20%, or another applicable rate.
+    </li>
+
+    <li>
+        <strong>Select the calculation type.</strong>
+        Choose whether tax should be added to the amount or extracted
+        from a tax-inclusive amount.
+    </li>
+
+    <li>
+        <strong>Calculate the result.</strong>
+        The calculator displays the base price, tax amount, final
+        price, and tax rate.
+    </li>
+
+</ol>
+`
+            },
+
+
+            /* ==================================================
+               8. UNDERSTANDING THE RESULT
+            ================================================== */
+
+            {
+                heading:
+                    "Understanding Your GST / VAT Results",
+
+                content:
+                    `
+<p>
+    The calculator presents several values to make the tax calculation
+    easier to understand.
+</p>
+
+<ul class="gst-guide-list">
+
+    <li>
+        <strong>Base Price:</strong>
+        The amount before GST or VAT is applied.
+    </li>
+
+    <li>
+        <strong>Tax Amount:</strong>
+        The GST or VAT component calculated from the applicable rate.
+    </li>
+
+    <li>
+        <strong>Final Price:</strong>
+        The total amount after tax is added, or the tax-inclusive
+        amount entered by the user.
+    </li>
+
+    <li>
+        <strong>Tax Rate:</strong>
+        The percentage used for the calculation.
+    </li>
+
+</ul>
+
+<p>
+    Viewing these values together makes it easier to understand how
+    the tax affects the final amount.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               9. COMMON GST / VAT RATES
+            ================================================== */
+
+            {
+                heading:
+                    "Common GST / VAT Rates",
+
+                content:
+                    `
+<p>
+    GST and VAT rates differ by country, region, product category,
+    service type, and applicable tax rules. Some jurisdictions may
+    also apply reduced rates, zero rates, exemptions, or special
+    treatments to particular goods and services.
+</p>
+
+<p>
+    For this reason, the ToolXone GST / VAT Calculator does not assume
+    that one tax rate applies universally. Enter the rate that is
+    applicable to the transaction you are calculating.
+</p>
+
+<p>
+    Examples of commonly encountered rates include <strong>5%</strong>,
+    <strong>10%</strong>, <strong>15%</strong>, <strong>18%</strong>,
+    and <strong>20%</strong>, but the correct rate depends on the
+    relevant jurisdiction and transaction.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               10. GST / VAT AND FINAL PRICE
+            ================================================== */
+
+            {
+                heading:
+                    "How GST / VAT Affects the Final Price",
+
+                content:
+                    `
+<p>
+    When GST or VAT is added to a tax-exclusive price, the final
+    amount paid by the customer becomes higher than the original
+    price.
+</p>
+
+<p>
+    The increase depends on the applicable tax rate. A higher tax rate
+    produces a larger tax amount when applied to the same base price.
+</p>
+
+<div class="gst-formula-box">
+
+    <strong>
+        Final Price = Base Price × (1 + Tax Rate ÷ 100)
+    </strong>
+
+</div>
+
+<p>
+    For example, a $1,000 price with a 15% tax rate results in a
+    $150 tax amount and a $1,150 final price when the tax is added.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               11. WHY TAX-INCLUSIVE CALCULATIONS MATTER
+            ================================================== */
+
+            {
+                heading:
+                    "Why Tax-Inclusive Calculations Matter",
+
+                content:
+                    `
+<p>
+    Many advertised or displayed prices may already include GST or
+    VAT. When you need to understand how much of that total represents
+    tax, the tax-inclusive calculation is useful.
+</p>
+
+<p>
+    Separating the base price from the tax component can help with
+    invoice preparation, financial analysis, price comparisons, and
+    understanding the composition of a final selling price.
+</p>
+
+<p>
+    Remember that the tax amount contained in a tax-inclusive price is
+    not simply the total price multiplied by the stated tax rate.
+    The tax-inclusive formula must be used to separate the tax
+    correctly.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               12. GST / VAT CALCULATION EXAMPLE
+            ================================================== */
+
+            {
+                heading:
+                    "Complete GST / VAT Example",
+
+                content:
+                    `
+<p>
+    Consider a product with a pre-tax price of
+    <strong>$750</strong> and a GST / VAT rate of
+    <strong>18%</strong>.
+</p>
+
+<div class="gst-example-box">
+
+    <p>
+        <strong>Base Price:</strong> $750
+    </p>
+
+    <p>
+        <strong>Tax Rate:</strong> 18%
+    </p>
+
+    <p>
+        <strong>Tax Amount:</strong>
+        $750 × 18% = $135
+    </p>
+
+    <p>
+        <strong>Final Price:</strong>
+        $750 + $135 = $885
+    </p>
+
+</div>
+
+<p>
+    The customer would therefore pay $885 when the 18% GST or VAT is
+    added to the $750 pre-tax price.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               13. GST / VAT FOR PRICE COMPARISON
+            ================================================== */
+
+            {
+                heading:
+                    "Using GST / VAT Calculations for Price Comparison",
+
+                content:
+                    `
+<p>
+    Comparing prices becomes easier when you know whether the listed
+    amounts include GST or VAT. Two products with similar advertised
+    prices may have different final costs depending on how tax is
+    presented.
+</p>
+
+<p>
+    When comparing prices, identify whether each amount is tax-exclusive
+    or tax-inclusive and apply the appropriate calculation method.
+</p>
+
+<p>
+    This helps you compare the actual amounts more consistently rather
+    than comparing prices that are calculated on different tax bases.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               14. GST / VAT CALCULATION ACCURACY
+            ================================================== */
+
+            {
+                heading:
+                    "Important Considerations When Calculating GST / VAT",
+
+                content:
+                    `
+<p>
+    The mathematical calculation of GST or VAT is straightforward,
+    but the correct tax treatment depends on the transaction and the
+    applicable rules.
+</p>
+
+<ul class="gst-guide-list">
+
+    <li>
+        Confirm the applicable tax rate before calculating.
+    </li>
+
+    <li>
+        Determine whether the amount is tax-exclusive or
+        tax-inclusive.
+    </li>
+
+    <li>
+        Check whether special rates, exemptions, or other tax rules
+        apply to the transaction.
+    </li>
+
+    <li>
+        Consider the required rounding rules when preparing official
+        invoices or financial records.
+    </li>
+
+    <li>
+        Use the calculator as a mathematical calculation tool rather
+        than as a determination of legal tax obligations.
+    </li>
+
+</ul>
+`
+            },
+
+
+            /* ==================================================
+               15. CALCULATE GST / VAT QUICKLY WITH TOOLXONE
+            ================================================== */
+
+            {
+                heading:
+                    "Calculate GST / VAT Quickly with ToolXone",
+
+                content:
+                    `
+<p>
+    GST and VAT calculations become straightforward once you know
+    whether the amount is before tax or already includes tax.
+    ToolXone's GST / VAT Calculator lets you calculate the base price,
+    tax amount, final price, and tax rate from a simple set of inputs.
+</p>
+
+<p>
+    Use the calculator whenever you need to add GST or VAT to a price
+    or extract the tax component from a tax-inclusive amount.
+</p>
+`
+            }
+
+        ]
+    }
+);
+
     /* ==========================================================
        LOAN CALCULATOR FAQ
     ========================================================== */
@@ -4251,6 +4876,147 @@ ToolXoneContentRegistry.register(
     ]
 );
 
+/* ==========================================================
+   GST / VAT CALCULATOR — FAQ
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "faq",
+
+    "gst-vat-calculator",
+
+    [
+
+        {
+            question:
+                "What is GST / VAT?",
+
+            answer:
+                "GST (Goods and Services Tax) and VAT (Value Added Tax) are consumption taxes applied to goods and services. The terminology, rates, exemptions, and rules vary by jurisdiction, but both generally calculate tax as a percentage of a taxable amount."
+        },
+
+
+        {
+            question:
+                "How is GST or VAT calculated?",
+
+            answer:
+                "For a tax-exclusive amount, calculate the tax by multiplying the base price by the tax rate divided by 100. The final price is then the base price plus the tax amount. For example, a $100 price with a 15% tax rate produces $15 tax and a $115 final price."
+        },
+
+
+        {
+            question:
+                "What is the GST / VAT formula?",
+
+            answer:
+                "The standard tax formula for a tax-exclusive amount is: Tax Amount = Base Price × (Tax Rate ÷ 100). The final price is: Final Price = Base Price + Tax Amount."
+        },
+
+
+        {
+            question:
+                "How do I calculate GST / VAT on a tax-exclusive price?",
+
+            answer:
+                "Enter the price before tax, enter the applicable GST or VAT rate, and select the option to add tax. The calculator determines the tax amount and adds it to the base price to produce the final price."
+        },
+
+
+        {
+            question:
+                "How do I calculate GST / VAT from a tax-inclusive price?",
+
+            answer:
+                "When the entered amount already includes tax, calculate the underlying base price by dividing the tax-inclusive amount by 1 plus the tax rate divided by 100. The tax amount is then the tax-inclusive price minus the base price."
+        },
+
+
+        {
+            question:
+                "What is the formula for extracting GST / VAT from a tax-inclusive price?",
+
+            answer:
+                "The formula is: Base Price = Tax-Inclusive Price ÷ (1 + Tax Rate ÷ 100). The tax amount can then be calculated as: Tax Amount = Tax-Inclusive Price − Base Price."
+        },
+
+
+        {
+            question:
+                "What is the difference between adding tax and extracting tax?",
+
+            answer:
+                "Adding tax is used when the entered amount is before GST or VAT and you want to determine the final price after tax. Extracting tax is used when the entered amount already includes GST or VAT and you want to separate the base price from the tax component."
+        },
+
+
+        {
+            question:
+                "Can I calculate GST / VAT with decimal tax rates?",
+
+            answer:
+                "Yes. The calculator can mathematically work with decimal tax rates such as 7.5%, 12.5%, or 17.5%, provided the entered rate is valid for the calculation you are performing."
+        },
+
+
+        {
+            question:
+                "Does the GST / VAT calculator determine the legally applicable tax rate?",
+
+            answer:
+                "No. The calculator performs the mathematical calculation based on the amount and tax rate you provide. The correct tax rate, exemptions, registration requirements, filing obligations, and legal tax treatment depend on the applicable jurisdiction and transaction."
+        },
+
+
+        {
+            question:
+                "Why is tax-inclusive GST / VAT not calculated by simply multiplying the total by the tax rate?",
+
+            answer:
+                "A tax-inclusive amount already contains the tax. Multiplying the total by the tax rate would calculate the tax as though the total were tax-exclusive. To correctly extract the tax component, the tax-inclusive amount must first be divided by 1 plus the tax rate expressed as a decimal."
+        },
+
+
+        {
+            question:
+                "What is the final price after GST / VAT is added?",
+
+            answer:
+                "The final price is the base price plus the calculated tax amount. For example, a $500 base price with a 20% tax rate produces $100 tax and a final price of $600."
+        },
+
+
+        {
+            question:
+                "Can GST / VAT rates vary by country or product?",
+
+            answer:
+                "Yes. GST and VAT rates and treatments vary by jurisdiction and may also differ according to the type of product or service. Some transactions may have reduced rates, zero rates, exemptions, or special rules."
+        },
+
+
+        {
+            question:
+                "Can I use the GST / VAT calculator for invoices?",
+
+            answer:
+                "Yes. The calculator can help with the mathematical calculation of the base price, tax amount, and final price. However, official invoices should follow the applicable tax, rounding, documentation, and record-keeping requirements for the relevant jurisdiction."
+        },
+
+
+        {
+            question:
+                "Does the GST / VAT calculator provide tax or legal advice?",
+
+            answer:
+                "No. The calculator is designed to perform mathematical GST and VAT calculations. It does not determine legal tax obligations, eligibility, registration requirements, exemptions, or the tax treatment that legally applies to a particular transaction."
+        }
+
+    ]
+
+);
+
     /* ==========================================================
        LOAN CALCULATOR RELATED TOOLS
     ========================================================== */
@@ -4382,6 +5148,27 @@ ToolXoneContentRegistry.register(
         "currency-profit-calculator"
 
     ]
+);
+
+/* ==========================================================
+   GST / VAT CALCULATOR — RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "related",
+
+    "gst-vat-calculator",
+
+    [
+
+        "discount-calculator",
+        "profit-margin-calculator",
+        "roi-calculator",
+        "currency-profit-calculator"
+
+    ]
+
 );
 
     /* ==========================================================
@@ -5144,6 +5931,131 @@ ToolXoneContentRegistry.register(
     }
 );
 
+/* ==========================================================
+   GST / VAT CALCULATOR — HERO
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "hero",
+
+    "gst-vat-calculator",
+
+    {
+
+        badge:
+            "FINANCE TOOL",
+
+        category:
+            "Finance",
+
+        difficulty:
+            "Easy",
+
+        title:
+            "Free GST / VAT Calculator",
+
+        subtitle:
+            "Calculate GST or VAT, tax amount, base price, and final price instantly.",
+
+        description:
+            "Use ToolXone's free GST / VAT Calculator to calculate tax on a price, determine the final amount after GST or VAT, or extract the tax component from a tax-inclusive amount.",
+
+        highlights: [
+
+            "Calculate GST / VAT amount",
+
+            "Add tax to a price",
+
+            "Extract tax from inclusive prices",
+
+            "Determine base and final prices"
+
+        ],
+
+        statistics: {
+
+            functions: {
+
+                value:
+                    "4+",
+
+                label:
+                    "Functions"
+
+            },
+
+            accuracy: {
+
+                value:
+                    "Formula",
+
+                label:
+                    "Accuracy"
+
+            },
+
+            availability: {
+
+                value:
+                    "24/7",
+
+                label:
+                    "Availability"
+
+            },
+
+            price: {
+
+                value:
+                    "Free",
+
+                label:
+                    "Price"
+
+            }
+
+        },
+
+        cta: {
+
+            primary:
+                "Calculate",
+
+            secondary:
+                "Learn More"
+
+        },
+
+        preview: {
+
+            image: {
+
+                src:
+                    "images/gst-vat-calculator.webp",
+
+                alt:
+                    "ToolXone GST VAT Calculator for calculating tax amount, base price and final price",
+
+                title:
+                    "GST / VAT Calculator",
+
+                caption:
+                    "Calculate GST or VAT, tax amount, base price and final price instantly."
+
+            },
+
+            title:
+                "GST / VAT Calculator",
+
+            description:
+                "Calculate GST or VAT, tax amount, base price, and final price instantly."
+
+        }
+
+    }
+
+);
 
     /* ==========================================================
        LOAN METADATA
@@ -5450,12 +6362,104 @@ ToolXoneContentRegistry.register(
     }
 );
 
+/* ==========================================================
+   GST / VAT CALCULATOR — METADATA
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "metadata",
+
+    "gst-vat-calculator",
+
+    {
+
+        title:
+            "GST / VAT Calculator",
+
+
+        description:
+            "Calculate GST or VAT, tax amount, base price, and final price instantly with ToolXone's free GST / VAT Calculator.",
+
+
+        keywords: [
+
+            "GST calculator",
+            "VAT calculator",
+            "GST VAT calculator",
+            "tax calculator",
+            "GST calculator online",
+            "VAT calculator online",
+            "sales tax calculator",
+            "tax amount calculator",
+            "GST tax calculator",
+            "VAT tax calculator",
+            "tax inclusive calculator",
+            "tax exclusive calculator",
+            "GST percentage calculator",
+            "VAT percentage calculator",
+            "final price calculator"
+
+        ],
+
+
+        category:
+            "Finance",
+
+
+        toolType:
+            "Calculator",
+
+
+        audience:
+            "Consumers, shoppers, business owners, sellers, freelancers, accountants, and anyone calculating GST or VAT.",
+
+
+        purpose:
+            "Calculate GST or VAT amounts, determine the base price and final price, and extract tax from tax-inclusive amounts.",
+
+
+        benefits: [
+
+            "Calculate GST or VAT instantly",
+            "Determine the tax amount",
+            "Calculate the final price after tax",
+            "Extract tax from tax-inclusive prices",
+            "Calculate the pre-tax base price",
+            "Compare tax-inclusive and tax-exclusive amounts"
+
+        ],
+
+
+        image:
+            "images/gst-vat-calculator.webp",
+
+
+        imageAlt:
+            "GST VAT Calculator for calculating tax amount, base price and final price",
+
+
+        imageTitle:
+            "GST / VAT Calculator",
+
+
+        imageCaption:
+            "Calculate GST or VAT, tax amount, base price and final price with ToolXone.",
+
+
+        canonical:
+            "https://www.toolxone.com/gst-vat-calculator.html"
+
+    }
+
+);
+
     /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator + Discount Calculator."
+    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator + Discount Calculator + GST/VAT Calculator."
 
     );
 
