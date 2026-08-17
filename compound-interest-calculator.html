@@ -30,35 +30,41 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
-<link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/compound.css">
-<link rel="stylesheet" href="css/feedback.css">
+<!-- ======================================================
+     Core Framework
+====================================================== -->
 
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":"Compound Interest Calculator",
-  "applicationCategory":"FinanceApplication",
-  "operatingSystem":"Any",
-  "url":"https://www.toolxone.com/compound-interest-calculator.html",
-  "description": "Free online compound interest calculator for estimating future value, total contributions, interest earned and investment growth over time.",
-  "offers":{
-    "@type":"Offer",
-    "price":"0",
-    "priceCurrency":"USD"
-  },
-  "publisher":{
-    "@type":"Organization",
-    "name":"ToolXone",
-    "url":"https://www.toolxone.com"
-  }
-}
-</script>
+<link rel="stylesheet" href="css/tools.css">
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+
+<link rel="stylesheet" href="css/compound.css">
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link rel="stylesheet" href="css/validation.css">
 
 </head>
 
-<body data-tool="compound">
+<body data-tool="compound-interest-calculator">
 
 <header class="site-header">
     <img src="images/toolxone-logo.jpg" class="site-logo" alt="ToolXone Logo">
@@ -67,6 +73,15 @@
 </header>
 
 <div id="navbar"></div>
+
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<section
+        id="toolHero"
+        class="tx-hero-section">
+    </section>
 
 <main class="compound-page">
 
@@ -129,182 +144,18 @@ id="interestBar"></div>
 
 <section id="related-tools-section">
 
-    <section class="featured-header">
-        <div class="featured-badge-title">💡 RELATED TOOLS</div>
-        <h2>You May Also Like</h2>
-        <p>Continue exploring related financial calculators.</p>
-    </section>
-
-    <div id="relatedTools"></div>
+<div id="relatedTools"></div>
 
 </section>
+
 
 <div id="financeInfo"></div>
 
-<section class="compound-guide">
-
-    <h2>How Compound Interest Grows Your Money</h2>
-
-    <p>
-        Compound interest allows an investment balance to grow by earning
-        interest on both the money invested and interest accumulated over time.
-        As the balance increases, future growth can be calculated on a larger
-        amount, which is why time can have a significant effect on long-term
-        investment growth.
-    </p>
-
-    <h3>Compound Interest Formula</h3>
-
-    <p>
-        For a starting principal without additional contributions, compound
-        growth is commonly represented by the following formula:
-    </p>
-
-    <div class="compound-formula">
-        <strong>A = P(1 + r/n)<sup>nt</sup></strong>
-    </div>
-
-    <p>
-        In this formula, <strong>A</strong> is the future value,
-        <strong>P</strong> is the initial principal, <strong>r</strong> is the
-        annual interest rate expressed as a decimal, <strong>n</strong> is the
-        number of compounding periods per year, and <strong>t</strong> is the
-        number of years.
-    </p>
-
-    <p>
-        ToolXone's calculator also supports monthly contributions, so its
-        projection includes the additional money entered during the investment
-        period rather than relying only on the starting principal.
-    </p>
-
-    <h3>Simple Interest vs. Compound Interest</h3>
-
-    <p>
-        Simple interest is generally calculated using the original principal,
-        while compound interest allows previously accumulated interest to
-        become part of the balance used for future growth. The difference may
-        become more noticeable as the investment period increases.
-    </p>
-
-    <h3>Why Time Matters in Compound Growth</h3>
-
-    <p>
-        Compounding has more opportunities to affect an investment when the
-        money remains invested for a longer period. Even when the interest rate
-        stays the same, extending the investment period can substantially
-        change the projected future value.
-    </p>
-
-    <p>
-        If you are planning specifically for long-term retirement savings, use
-        ToolXone's
-        <a href="retirement-calculator.html">Retirement Calculator</a>
-        to explore savings based on your current age and planned retirement age.
-    </p>
-
-    <h3>How Monthly Contributions Affect Future Value</h3>
-
-    <p>
-        Regular monthly contributions increase the total amount invested and
-        give those additional contributions an opportunity to participate in
-        future growth. Over long periods, consistent contributions can become
-        an important part of the projected investment balance.
-    </p>
-
-    <p>
-        If you are working toward a particular savings amount, the
-        <a href="savings-goal-calculator.html">Savings Goal Calculator</a>
-        can help you explore a target from a goal-based perspective.
-    </p>
-
-    <h3>What Is Compounding Frequency?</h3>
-
-    <p>
-        Compounding frequency describes how often interest is added to the
-        investment balance. This calculator allows you to compare yearly,
-        quarterly, monthly and daily compounding assumptions.
-    </p>
-
-    <p>
-        When the annual rate and other inputs remain the same, changing the
-        compounding frequency may change the projected future value because
-        interest is being incorporated into the balance at different intervals.
-    </p>
-
-    <h3>Understanding Total Contributions</h3>
-
-    <p>
-        Total contributions represent the money added by you rather than the
-        growth generated by interest. In this calculator, total contributions
-        include the initial investment plus all monthly contributions made
-        during the selected investment period.
-    </p>
-
-    <h3>Understanding Interest Earned</h3>
-
-    <p>
-        Interest earned represents the difference between the projected future
-        value and total contributions. It shows how much of the estimated final
-        balance comes from growth rather than from the money contributed.
-    </p>
-
-    <p>
-        To compare a gain or loss with an amount invested from another
-        perspective, explore ToolXone's
-        <a href="roi-calculator.html">ROI Calculator</a>.
-    </p>
-
-    <h3>Remember the Effect of Inflation</h3>
-
-    <p>
-        A future investment value may be larger in numerical terms, but
-        inflation can reduce the purchasing power of money over time. This
-        calculator estimates compound growth and does not automatically adjust
-        the projected balance for future inflation.
-    </p>
-
-    <p>
-        Use the
-        <a href="inflation-calculator.html">Inflation Calculator</a>
-        to explore how purchasing power may change over time.
-    </p>
-
-    <h3>How to Use the Compound Interest Calculator</h3>
-
-    <p>
-        Enter your initial investment, optional monthly contribution, annual
-        interest rate and investment period. Then select a compounding
-        frequency and choose Calculate Growth. The calculator will estimate
-        future value, total contributions, interest earned and overall growth.
-    </p>
-
-    <p>
-        Try several scenarios by changing the interest rate, monthly
-        contribution, investment period or compounding frequency. Comparing
-        different assumptions can help illustrate which inputs have the
-        greatest effect on the projection.
-    </p>
-
-    <h3>How to Interpret Your Compound Interest Estimate</h3>
-
-    <p>
-        The result is an estimate based on the values entered and the
-        calculator's growth assumptions. Actual savings or investment results
-        may differ because rates can change and real financial products may
-        apply different contribution timing, compounding methods, fees, taxes,
-        rounding rules or other conditions.
-    </p>
-
-    <p>
-        The calculator is useful for exploring mathematical growth scenarios,
-        but its projected future value should not be treated as a guaranteed
-        investment outcome.
-    </p>
-
-</section>
-
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -340,8 +191,90 @@ id="interestBar"></div>
 <script src="js/statistics/statistics-engine.js"></script>
 <script src="js/statistics/statistics-events.js"></script>
 <script src="js/statistics/statistics-api.js"></script>
+<script src="js/statistics/statistics-intelligence.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
+
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/compound-interest-calculator-schema.js"></script>
+
+<script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "CompoundInterestCalculator"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+
+</script>
+
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/config/tool-identity.js"></script>
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-finance.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
 
 <script src="js/compound.js"></script>
 <script src="js/footer.js"></script>
@@ -373,53 +306,17 @@ const compoundCalculator = {
                 { value: "365", label: "Daily" }
             ]
         }
-    ],
-
-    info: {
-    title: "Understand the Power of Compound Interest",
-    description: "Compound interest allows investment growth to build on both the money you contribute and interest accumulated over time. Use this calculator to estimate future value, total contributions, interest earned and overall growth while comparing different interest rates, investment periods and compounding frequencies."
-},
-
-    faq: [
-    {
-        question: "What is compound interest?",
-        answer: "Compound interest is interest calculated on an investment balance that includes both the money contributed and interest accumulated over time. As the balance grows, future interest can be earned on a larger amount."
-    },
-    {
-        question: "How does this Compound Interest Calculator work?",
-        answer: "Enter an initial investment, optional monthly contribution, annual interest rate, investment period and compounding frequency. The calculator estimates future value, total contributions, interest earned and overall growth based on the values you enter."
-    },
-    {
-        question: "What is the difference between simple interest and compound interest?",
-        answer: "Simple interest is generally calculated only on the original principal, while compound interest allows accumulated interest to become part of the balance used for future growth. Over longer periods, compounding can create a larger difference."
-    },
-    {
-        question: "How do monthly contributions affect investment growth?",
-        answer: "Monthly contributions increase the amount invested over time. Those additional contributions can also participate in future growth, so regular contributions may significantly increase the projected future value over a long investment period."
-    },
-    {
-        question: "What does compounding frequency mean?",
-        answer: "Compounding frequency describes how often interest is added to an investment balance. This calculator lets you compare yearly, quarterly, monthly and daily compounding assumptions."
-    },
-    {
-        question: "What is future value?",
-        answer: "Future value is the estimated value of the investment at the end of the selected period after accounting for the initial investment, monthly contributions and projected compound growth."
-    },
-    {
-        question: "What does interest earned mean in this calculator?",
-        answer: "Interest earned is the difference between the estimated future value and the total amount contributed. Total contributions include the initial investment plus the monthly contributions made during the selected investment period."
-    },
-    {
-        question: "Is this Compound Interest Calculator free to use?",
-        answer: "Yes. ToolXone's Compound Interest Calculator is free to use online for exploring investment growth scenarios using different contributions, interest rates, time periods and compounding frequencies."
-    }
-]
+    ]
 
 };
 
 createFinanceCalculator(compoundCalculator);
 
+ToolXoneHeroRenderer.render("compound-interest-calculator");
+
+
 </script>
 
 </body>
+
 </html>

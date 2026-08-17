@@ -144,6 +144,14 @@ actions : {
 
     },
 
+    "compound-interest-calculator": {
+
+        startCalculating: ".compound-card",
+
+        learnMore: "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",
