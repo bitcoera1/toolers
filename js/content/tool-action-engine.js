@@ -136,6 +136,14 @@ actions : {
 
 },
 
+    emi : {
+
+        startCalculating : ".emi-card",
+
+        learnMore : "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",
