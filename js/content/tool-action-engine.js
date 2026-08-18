@@ -186,6 +186,16 @@ actions : {
 
     },
 
+    "inflation-calculator": {
+
+    startCalculating:
+        ".inflation-card",
+
+    learnMore:
+        "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",

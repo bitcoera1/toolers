@@ -4228,6 +4228,615 @@ The ToolXone GST / VAT Calculator makes this process simple. Enter the amount, t
     }
 );
 
+/* ==========================================================
+   INFLATION CALCULATOR — FULL EDUCATIONAL ARTICLE
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "articles",
+
+    "inflation-calculator",
+
+    {
+
+        title:
+            "How Inflation Affects Prices, Future Value, and Purchasing Power",
+
+        introduction:
+            `Inflation describes an increase in the general level of prices over time. When prices rise, the same amount of money may buy fewer goods and services than it could previously. This reduction in what an unchanged amount of money can buy is commonly described as a loss of purchasing power.
+
+ToolXone's Inflation Calculator lets you explore this effect using a current amount, an annual inflation rate, and a time period. It estimates the future value under that inflation assumption, the total increase, and the future purchasing power of the original unchanged amount.`,
+
+        sections: [
+
+            /* ==================================================
+               1. CALCULATOR INPUTS
+            ================================================== */
+
+            {
+
+                heading:
+                    "What Information Does the Inflation Calculator Use?",
+
+                content:
+                    `
+<p>
+    The calculator uses three inputs. Together, they define the
+    inflation scenario you want to explore.
+</p>
+
+<div class="inflation-input-grid">
+
+    <div class="inflation-input-item">
+
+        <strong>Current Price / Amount</strong>
+
+        <span>
+            The amount or price you want to evaluate before applying
+            inflation.
+        </span>
+
+    </div>
+
+    <div class="inflation-input-item">
+
+        <strong>Annual Inflation Rate</strong>
+
+        <span>
+            The annual percentage rate assumed for the calculation.
+        </span>
+
+    </div>
+
+    <div class="inflation-input-item">
+
+        <strong>Number of Years</strong>
+
+        <span>
+            The length of time over which the selected inflation rate
+            is compounded.
+        </span>
+
+    </div>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               2. INFLATION FORMULA
+            ================================================== */
+
+            {
+
+                heading:
+                    "What Is the Inflation Future Value Formula?",
+
+                content:
+                    `
+<p>
+    ToolXone models the entered inflation rate as a constant annual
+    rate compounded over the selected period. The estimated future
+    value is calculated using:
+</p>
+
+<div class="inflation-formula">
+    Future Value = Current Amount × (1 + Inflation Rate)ᵗ
+</div>
+
+<p>
+    In this formula, the inflation rate is expressed as a decimal and
+    <strong>t</strong> represents the number of years. For example,
+    an entered rate of 5% is used as 0.05 in the calculation.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               3. EXAMPLE
+            ================================================== */
+
+            {
+
+                heading:
+                    "Inflation Calculation Example",
+
+                content:
+                    `
+<p>
+    Suppose an amount is $1,000 today and you want to explore a
+    scenario with 10% annual inflation for 5 years.
+</p>
+
+<div class="inflation-formula inflation-formula-example">
+    $1,000 × (1 + 0.10)⁵ ≈ $1,610.51
+</div>
+
+<p>
+    Under that constant 10% inflation assumption, an amount equivalent
+    to $1,000 today would rise to approximately $1,610.51 after five
+    years. The cumulative increase would therefore be approximately
+    $610.51.
+</p>
+
+<div class="inflation-formula inflation-formula-example">
+    $1,610.51 − $1,000 = $610.51
+</div>
+
+<p>
+    This example illustrates the mathematical effect of the rate
+    entered. It does not mean that actual inflation will remain at
+    10% for five years.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               4. COMPOUNDING
+            ================================================== */
+
+            {
+
+                heading:
+                    "Why Does Inflation Compound?",
+
+                content:
+                    `
+<p>
+    In this calculator, inflation compounds because each year's
+    percentage increase is applied to the value produced after the
+    previous year's increase. The effect is therefore different from
+    simply multiplying the original amount by the annual rate and
+    number of years.
+</p>
+
+<p>
+    For example, with 10% annual inflation, a $1,000 amount becomes
+    $1,100 after the first year. The next 10% increase is then applied
+    to $1,100 rather than the original $1,000.
+</p>
+
+<div class="inflation-formula">
+    Year 1: $1,000 × 1.10 = $1,100
+</div>
+
+<div class="inflation-formula">
+    Year 2: $1,100 × 1.10 = $1,210
+</div>
+`
+            },
+
+
+            /* ==================================================
+               5. CUMULATIVE INFLATION
+            ================================================== */
+
+            {
+
+                heading:
+                    "What Is Cumulative Inflation?",
+
+                content:
+                    `
+<p>
+    An annual inflation rate describes the assumed change for one
+    year, while cumulative inflation reflects the combined effect
+    across the entire period. Because the calculator compounds the
+    rate, cumulative inflation can become substantially larger than
+    a single year's rate over long periods.
+</p>
+
+<p>
+    In the $1,000 example above, the future amount of approximately
+    $1,610.51 represents an increase of about 61.05% over five years
+    even though the annual rate entered is 10%.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               6. PURCHASING POWER
+            ================================================== */
+
+            {
+
+                heading:
+                    "What Is Purchasing Power?",
+
+                content:
+                    `
+<p>
+    Purchasing power describes how much an amount of money can buy.
+    Under positive inflation, prices rise in the calculator's
+    scenario. If the amount of money remains unchanged, its
+    purchasing power falls relative to those higher prices.
+</p>
+
+<p>
+    ToolXone estimates the future purchasing power of the current
+    amount by dividing it by the compounded inflation factor:
+</p>
+
+<div class="inflation-formula">
+    Future Purchasing Power = Current Amount ÷ (1 + Inflation Rate)ᵗ
+</div>
+
+<p>
+    Using $1,000, 10% annual inflation, and 5 years:
+</p>
+
+<div class="inflation-formula inflation-formula-example">
+    $1,000 ÷ (1.10)⁵ ≈ $620.92
+</div>
+
+<p>
+    Under this scenario, an unchanged $1,000 in five years would have
+    purchasing power equivalent to approximately $620.92 in today's
+    terms under the calculator's model.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               7. FUTURE VALUE VS PURCHASING POWER
+            ================================================== */
+
+            {
+
+                heading:
+                    "Future Price and Future Purchasing Power Are Different",
+
+                content:
+                    `
+<p>
+    These two results describe opposite sides of the inflation
+    scenario. Future value estimates how much a current price or
+    amount would need to increase under the selected inflation rate.
+    Future purchasing power estimates how the buying power of an
+    unchanged amount would decline under the same assumption.
+</p>
+
+<div class="inflation-comparison-grid">
+
+    <div class="inflation-comparison-item">
+
+        <strong>Future Value</strong>
+
+        <span>
+            Shows the estimated higher future amount after applying
+            compound inflation.
+        </span>
+
+    </div>
+
+    <div class="inflation-comparison-item">
+
+        <strong>Future Purchasing Power</strong>
+
+        <span>
+            Shows the estimated buying power of the original unchanged
+            amount after inflation.
+        </span>
+
+    </div>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               8. ZERO INFLATION
+            ================================================== */
+
+            {
+
+                heading:
+                    "What Happens at 0% Inflation?",
+
+                content:
+                    `
+<p>
+    A 0% inflation rate produces an inflation factor of 1. Under
+    that assumption, the amount does not increase and the purchasing
+    power of the unchanged amount does not decrease.
+</p>
+
+<div class="inflation-formula">
+    Future Value = Current Amount × 1 = Current Amount
+</div>
+
+<p>
+    For example, $1,000 at 0% inflation remains $1,000 regardless of
+    the selected positive time period in this model. The total
+    increase is $0, and future purchasing power remains $1,000.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               9. DECIMAL RATES AND FRACTIONAL YEARS
+            ================================================== */
+
+            {
+
+                heading:
+                    "Can the Calculator Use Decimal Inflation Rates?",
+
+                content:
+                    `
+<p>
+    Yes. Inflation does not need to be entered as a whole-number
+    percentage. A rate such as 2.5%, 3.75%, or 6.2% can be used to
+    explore different scenarios.
+</p>
+
+<p>
+    The calculator also accepts fractional time periods. For example,
+    5.5 years can be entered when you want to model a period
+    containing part of a year.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               10. INFLATION VS INVESTMENT GROWTH
+            ================================================== */
+
+            {
+
+                heading:
+                    "Inflation and Investment Growth Are Not the Same Thing",
+
+                content:
+                    `
+<p>
+    Inflation measures price change under the assumption entered,
+    while investment growth describes how the value of an investment
+    may change over time. A savings or investment balance can increase
+    in nominal terms while inflation simultaneously reduces the
+    purchasing power of that money.
+</p>
+
+<p>
+    For example, if an investment grows by 6% while inflation is 3%,
+    the investment has grown in nominal terms, but comparing that
+    growth with inflation provides additional context about changes
+    in purchasing power.
+</p>
+
+<p>
+    If you want to explore compounded investment growth separately,
+    use ToolXone's
+    <a href="compound-interest-calculator.html">
+        Compound Interest Calculator
+    </a>.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               11. NOMINAL VALUE
+            ================================================== */
+
+            {
+
+                heading:
+                    "Nominal Value vs. Purchasing Power",
+
+                content:
+                    `
+<p>
+    A nominal amount is the number shown in currency terms without
+    adjusting it for changes in purchasing power. Purchasing-power
+    comparisons attempt to account for the effect of changing prices.
+</p>
+
+<p>
+    This distinction helps explain why having the same numerical
+    amount of money at two different points in time does not
+    necessarily mean having the same ability to purchase goods and
+    services.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               12. LONG-TERM FINANCIAL GOALS
+            ================================================== */
+
+            {
+
+                heading:
+                    "How Can Inflation Affect Long-Term Financial Goals?",
+
+                content:
+                    `
+<p>
+    Inflation can matter when thinking about long-term costs because
+    a target amount based only on today's prices may represent less
+    purchasing power many years later. Education, housing, travel,
+    retirement spending, and other future expenses can all be explored
+    under different inflation assumptions.
+</p>
+
+<p>
+    When planning a savings target, you can compare an estimated
+    future cost from this calculator with the amount you plan to
+    accumulate. ToolXone's
+    <a href="savings-goal-calculator.html">
+        Savings Goal Calculator
+    </a>
+    can then help estimate the regular saving required to reach a
+    chosen target.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               13. DIFFERENT PRICES, DIFFERENT INFLATION
+            ================================================== */
+
+            {
+
+                heading:
+                    "Does Inflation Affect Every Price Equally?",
+
+                content:
+                    `
+<p>
+    No. A single inflation rate is a simplified assumption for
+    scenario calculations. In real life, prices for different goods
+    and services can change at different rates. Inflation can also
+    vary across locations and time periods.
+</p>
+
+<p>
+    For this reason, the calculator should not be interpreted as
+    predicting the exact future price of a particular product or
+    service.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               14. INFLATION FORECAST LIMITATION
+            ================================================== */
+
+            {
+
+                heading:
+                    "Does This Calculator Predict Future Inflation?",
+
+                content:
+                    `
+<p>
+    No. ToolXone does not choose or forecast the inflation rate used
+    in this calculation. The annual rate is supplied by you, and the
+    calculator applies that rate consistently across the selected
+    period.
+</p>
+
+<div class="inflation-note">
+
+    <strong>Important:</strong>
+
+    <p>
+        Actual inflation can rise, fall, or vary from year to year.
+        The result is a mathematical scenario based on a constant
+        annual rate, not a forecast of future economic conditions or
+        future prices.
+    </p>
+
+</div>
+`
+            },
+
+
+            /* ==================================================
+               15. SCENARIO COMPARISON
+            ================================================== */
+
+            {
+
+                heading:
+                    "How to Compare Inflation Scenarios",
+
+                content:
+                    `
+<p>
+    One useful approach is to keep the current amount and time period
+    the same while testing several inflation rates. You can then
+    compare how the future value, total increase, and purchasing power
+    change under each assumption.
+</p>
+
+<p>
+    You can also keep the amount and rate unchanged while increasing
+    the number of years. This demonstrates how compounding can make
+    inflation's effect more significant over longer periods.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               16. INTERPRETING RESULTS
+            ================================================== */
+
+            {
+
+                heading:
+                    "How to Interpret Your Inflation Estimate",
+
+                content:
+                    `
+<p>
+    Use the results to explore the mathematical effect of the
+    assumptions you entered. Future value shows the estimated
+    inflated amount, total increase shows the difference from the
+    starting amount, and future purchasing power illustrates how the
+    buying power of an unchanged amount may decline under positive
+    inflation.
+</p>
+
+<p>
+    Because actual inflation is not constant or known in advance,
+    these figures are best used for scenario exploration, comparison,
+    and educational planning rather than as exact predictions of
+    future costs.
+</p>
+`
+            },
+
+
+            /* ==================================================
+               17. CONCLUSION
+            ================================================== */
+
+            {
+
+                heading:
+                    "Explore Inflation Scenarios with ToolXone",
+
+                content:
+                    `
+<p>
+    Inflation can change both the future cost of goods and services
+    and the purchasing power of money held today. Understanding the
+    difference between future value, cumulative inflation, and future
+    purchasing power can make long-term price comparisons easier to
+    understand.
+</p>
+
+<p>
+    ToolXone's Inflation Calculator lets you enter your own amount,
+    annual inflation rate, and time period to explore these effects
+    instantly. Use the results to compare scenarios and understand
+    how different inflation assumptions can affect future values and
+    purchasing power.
+</p>
+`
+            }
+
+        ]
+
+    }
+
+);
+
     /* ==========================================================
        LOAN CALCULATOR FAQ
     ========================================================== */
@@ -5017,6 +5626,125 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   INFLATION CALCULATOR — FAQ
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "faq",
+
+    "inflation-calculator",
+
+    [
+
+        {
+            question:
+                "What does this inflation calculator estimate?",
+
+            answer:
+                "This calculator estimates the future value of a current amount after applying a chosen annual inflation rate over a specified number of years. It also shows the total increase and the estimated future purchasing power of the original amount."
+        },
+
+        {
+            question:
+                "How does the inflation calculator work?",
+
+            answer:
+                "The calculator compounds the annual inflation rate over the number of years you enter. It uses that inflation factor to estimate how much an amount would need to become in the future to represent the same nominal cost increase under the selected inflation assumption."
+        },
+
+        {
+            question:
+                "What does future value mean in this inflation calculator?",
+
+            answer:
+                "Future value represents the estimated future amount after the entered inflation rate has been compounded over the selected time period. For example, if an item costs $1,000 today, the future value estimates what an equivalent price would be under the inflation rate you entered."
+        },
+
+        {
+            question:
+                "What does future purchasing power mean?",
+
+            answer:
+                "Future purchasing power estimates what the original unchanged amount would be worth in today's purchasing-power terms after inflation. As prices rise, the same nominal amount generally buys less, so its purchasing power decreases when the inflation rate is positive."
+        },
+
+        {
+            question:
+                "How is the inflation increase calculated?",
+
+            answer:
+                "The calculator first estimates the future value using compound inflation. The total increase is then calculated by subtracting the original amount from the estimated future value."
+        },
+
+        {
+            question:
+                "Does inflation compound over time?",
+
+            answer:
+                "Yes. This calculator models inflation using annual compounding. Each year's increase is applied to the amount after the previous year's inflation, so the effect can become larger over longer periods."
+        },
+
+        {
+            question:
+                "Can I enter a 0% inflation rate?",
+
+            answer:
+                "Yes. At a 0% inflation rate, the future value remains equal to the current amount, the total inflation increase is zero, and the purchasing power of the unchanged amount remains the same under this model."
+        },
+
+        {
+            question:
+                "Can I use decimal inflation rates and fractional years?",
+
+            answer:
+                "Yes. The calculator accepts decimal inflation rates and fractional time periods. For example, you can test an annual inflation rate of 2.5% over 5.5 years."
+        },
+
+        {
+            question:
+                "Does this calculator predict future inflation?",
+
+            answer:
+                "No. The calculator does not forecast future inflation rates. It calculates a scenario using the annual inflation rate you enter, so the result depends entirely on the assumption provided."
+        },
+
+        {
+            question:
+                "Why does purchasing power decrease when inflation rises?",
+
+            answer:
+                "Positive inflation means that prices increase under the calculator's assumptions. If the amount of money you hold does not increase at the same rate, that unchanged amount can purchase less in the future."
+        },
+
+        {
+            question:
+                "Can I use this calculator to estimate future prices?",
+
+            answer:
+                "Yes. You can enter a current price as the amount and choose an annual inflation rate and time period to estimate a future price under that constant-rate inflation scenario."
+        },
+
+        {
+            question:
+                "Are the inflation calculator results exact?",
+
+            answer:
+                "The mathematical result is based on the values entered and the calculator's compound-inflation model. Real inflation can change from year to year and may differ across goods, services, locations, and measures, so the result should be treated as a scenario estimate rather than a prediction."
+        },
+
+        {
+            question:
+                "Is the ToolXone Inflation Calculator free?",
+
+            answer:
+                "Yes. ToolXone's Inflation Calculator is free to use online for exploring inflation, future-value, and purchasing-power scenarios."
+        }
+
+    ]
+
+);
     /* ==========================================================
        LOAN CALCULATOR RELATED TOOLS
     ========================================================== */
@@ -5166,6 +5894,29 @@ ToolXoneContentRegistry.register(
         "profit-margin-calculator",
         "roi-calculator",
         "currency-profit-calculator"
+
+    ]
+
+);
+
+/* ==========================================================
+   INFLATION CALCULATOR — RELATED TOOLS
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "related",
+
+    "inflation-calculator",
+
+    [
+
+        "compound-interest-calculator",
+        "savings-goal-calculator",
+        "retirement-calculator",
+        "roi-calculator",
+        "mortgage-calculator",
+        "loan-calculator"
 
     ]
 
@@ -6057,6 +6808,115 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   INFLATION CALCULATOR — HERO
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "hero",
+
+    "inflation-calculator",
+
+    {
+
+        badge:
+            "FINANCE TOOL",
+
+        category:
+            "Finance",
+
+        title:
+            "Free Inflation Calculator",
+
+        subtitle:
+            "Calculate future value, inflation increase, and purchasing power instantly.",
+
+        description:
+            "Use ToolXone's free Inflation Calculator to estimate how inflation can affect prices and purchasing power over time. Enter an amount, annual inflation rate, and number of years to explore future value, total inflation increase, and future purchasing power.",
+
+        highlights: [
+
+            "Calculate future value with inflation",
+
+            "Estimate total inflation increase",
+
+            "Understand future purchasing power",
+
+            "Compare different inflation scenarios"
+
+        ],
+
+        statistics: {
+
+            functions: {
+                value:
+                    "3+",
+
+                label:
+                    "Inputs"
+            },
+
+            accuracy: {
+                value:
+                    "Formula",
+
+                label:
+                    "Accuracy"
+            },
+
+            availability: {
+                value:
+                    "24/7",
+
+                label:
+                    "Availability"
+            },
+
+            price: {
+                value:
+                    "Free",
+
+                label:
+                    "Price"
+            }
+
+        },
+
+        cta: {
+
+            primary:
+                "Start Calculating",
+
+            secondary:
+                "Learn More"
+
+        },
+
+        preview: {
+
+            image: {
+
+                src:
+                    "images/inflation-calculator.webp",
+
+                alt:
+                    "ToolXone Inflation Calculator for estimating future value, inflation increase, and purchasing power"
+
+            },
+
+            title:
+                "Inflation Calculator",
+
+            description:
+                "Calculate future value, inflation increase, and purchasing power instantly."
+
+        }
+
+    }
+
+);
+
     /* ==========================================================
        LOAN METADATA
     ========================================================== */
@@ -6454,12 +7314,67 @@ ToolXoneContentRegistry.register(
 
 );
 
+/* ==========================================================
+   INFLATION CALCULATOR — METADATA
+========================================================== */
+
+ToolXoneContentRegistry.register(
+
+    "metadata",
+
+    "inflation-calculator",
+
+    {
+
+        title:
+            "Inflation Calculator – Future Value & Purchasing Power | ToolXone",
+
+        description:
+            "Use ToolXone's free Inflation Calculator to estimate future value, inflation increase, and purchasing power over time using an annual inflation rate.",
+
+        keywords: [
+            "inflation calculator",
+            "inflation calculator online",
+            "calculate inflation",
+            "inflation rate calculator",
+            "future value inflation calculator",
+            "purchasing power calculator",
+            "inflation increase calculator",
+            "future price calculator",
+            "compound inflation calculator",
+            "inflation calculator free",
+            "inflation impact calculator",
+            "money inflation calculator"
+        ],
+
+        category:
+            "Finance",
+
+        toolName:
+            "Inflation Calculator",
+
+        canonical:
+            "https://www.toolxone.com/inflation-calculator.html",
+
+        image:
+            "https://www.toolxone.com/images/gst-vat-calculator.webp",
+
+        imageAlt:
+            "ToolXone Inflation Calculator for estimating future value and purchasing power",
+
+        robots:
+            "index,follow"
+
+    }
+
+);
+
     /* ==========================================================
        INFORMATION
     ========================================================== */
 
     console.info(
-    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator + Discount Calculator + GST/VAT Calculator."
+    "✓ ToolXone Finance content registered: Loan Calculator + Mortgage Calculator + EMI Calculator + Compound Interest Calculator + ROI Calculator + Profit Margin Calculator + Discount Calculator + GST/VAT Calculator + Inflation Calculator."
 
     );
 
