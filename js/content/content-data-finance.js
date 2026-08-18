@@ -6930,18 +6930,14 @@ ToolXoneContentRegistry.register(
     ========================================================== */
 
     ToolXoneContentRegistry.register(
-
     "related",
-
     "loan-calculator",
-
     [
-        "compound",
-        "mortgage",
-        "emi",
-        "savings-goal"
+        "compound-interest-calculator",
+        "mortgage-calculator",
+        "emi-calculator",
+        "savings-goal-calculator"
     ]
-
 );
 
 
@@ -6980,7 +6976,8 @@ ToolXoneContentRegistry.register(
 
         "loan-calculator",
         "mortgage-calculator",
-        "compound-interest-calculator"
+        "compound-interest-calculator",
+        "savings-goal-calculator"
 
     ]
 
@@ -8952,7 +8949,7 @@ ToolXoneContentRegistry.register(
             "https://www.toolxone.com/inflation-calculator.html",
 
         image:
-            "https://www.toolxone.com/images/gst-vat-calculator.webp",
+            "https://www.toolxone.com/images/inflation-calculator.webp",
 
         imageAlt:
             "ToolXone Inflation Calculator for estimating future value and purchasing power",

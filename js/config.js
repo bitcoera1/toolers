@@ -112,12 +112,7 @@ empty configuration.
             name: "Utilities"
         },
 
-        {
-            id: "future",
-            icon: "🚀",
-            name: "Coming Soon"
-        }
-
+        
     ];
 
 
