@@ -30,43 +30,54 @@
 <link rel="shortcut icon" href="images/toolxone-favicon.png">
 <link rel="apple-touch-icon" href="images/toolxone-favicon.png">
 
-<link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/retirement.css">
-<link rel="stylesheet" href="css/feedback.css">
+<!-- ======================================================
+     Core Framework
+====================================================== -->
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Retirement Calculator",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Any",
-  "url": "https://www.toolxone.com/retirement-calculator.html",
-  "description": "Free online retirement calculator for estimating future retirement savings and investment growth based on age, current savings, monthly contributions and expected annual return.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "ToolXone",
-    "url": "https://www.toolxone.com/"
-  }
-}
-</script>
+<link rel="stylesheet" href="css/tools.css">
+
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link rel="stylesheet" href="css/calculator-layout.css">
+<link rel="stylesheet" href="css/calculator-components.css">
+<link rel="stylesheet" href="css/retirement.css">
+
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link rel="stylesheet" href="css/tool-hero.css">
+<link rel="stylesheet" href="css/tool-article.css">
+<link rel="stylesheet" href="css/tool-faq.css">
+<link rel="stylesheet" href="css/tool-related.css">
+<link rel="stylesheet" href="css/tool-reviews.css">
+<link rel="stylesheet" href="css/tool-feedback.css">
+
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link rel="stylesheet" href="css/validation.css">
 
 </head>
 
-<body data-tool="retirement">
-
-<header class="site-header">
-    <img src="images/toolxone-logo.jpg" class="site-logo" alt="ToolXone Logo">
-    <p>Free Online Calculators, Converters & Utility Tools</p>
-    <p>Fast • Accurate • Free</p>
-</header>
+<body data-tool="retirement-calculator">
 
 <div id="navbar"></div>
+
+<!-- ======================================================
+     ToolXone Shared Hero
+====================================================== -->
+
+<section
+        id="toolHero"
+        class="tx-hero-section">
+    </section>
 
 <main class="retirement-page">
 
@@ -117,126 +128,17 @@
 
 <section id="related-tools-section">
 
-    <section class="featured-header">
-        <div class="featured-badge-title">💡 RELATED TOOLS</div>
-        <h2>You May Also Like</h2>
-        <p>Continue exploring related financial calculators.</p>
-    </section>
-
-    <div id="relatedTools"></div>
+<div id="relatedTools"></div>
 
 </section>
 
 <div id="financeInfo"></div>
 
-<section class="retirement-guide">
-
-    <h2>How to Plan for Retirement</h2>
-
-    <p>
-        Retirement planning involves estimating how your savings may grow over
-        time and understanding how factors such as your current savings,
-        monthly contributions, investment returns, retirement age and inflation
-        can affect your financial future. ToolXone's Retirement Calculator
-        helps you explore these factors by projecting the future value of your
-        retirement savings.
-    </p>
-
-    <h3>How This Retirement Calculator Works</h3>
-
-    <p>
-        Enter your current age, planned retirement age, current savings,
-        monthly contribution and expected annual return. The calculator
-        estimates how your existing savings and future contributions may grow
-        during the years remaining until retirement.
-    </p>
-
-    <p>
-        The result is a projection based on the assumptions you enter. Actual
-        investment returns can vary, so it can be useful to calculate several
-        scenarios using different contribution amounts and expected returns.
-    </p>
-
-    <h3>Why Starting Earlier Can Matter</h3>
-
-    <p>
-        A longer investment period gives savings and investment returns more
-        time to compound. Starting earlier may therefore have a significant
-        effect on the projected value of a retirement fund, even when monthly
-        contributions remain the same.
-    </p>
-
-    <p>
-        You can explore the effect of compounding separately with ToolXone's
-        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.
-    </p>
-
-    <h3>Monthly Contributions and Retirement Savings</h3>
-
-    <p>
-        Regular contributions can play an important role in building retirement
-        savings. Increasing the amount contributed each month can increase both
-        total contributions and the amount that may benefit from investment
-        growth over time.
-    </p>
-
-    <p>
-        If you are working toward a specific savings target, the
-        <a href="savings-goal-calculator.html">Savings Goal Calculator</a>
-        can help you explore how much you may need to save toward that goal.
-    </p>
-
-    <h3>Investment Returns and Retirement Planning</h3>
-
-    <p>
-        The expected annual return is an assumption about how investments may
-        grow over time. Because future returns are uncertain, retirement
-        planning should not rely on a single assumed rate. Comparing multiple
-        scenarios can provide a better understanding of how different returns
-        may affect the projected retirement balance.
-    </p>
-
-    <p>
-        To examine investment performance from another perspective, you can
-        also use the <a href="roi-calculator.html">ROI Calculator</a>.
-    </p>
-
-    <h3>Remember the Effect of Inflation</h3>
-
-    <p>
-        A future retirement balance may look much larger than today's savings,
-        but inflation can reduce the purchasing power of money over time.
-        This Retirement Calculator does not automatically adjust its result for
-        inflation, so inflation should be considered separately when evaluating
-        long-term retirement plans.
-    </p>
-
-    <p>
-        Use ToolXone's
-        <a href="inflation-calculator.html">Inflation Calculator</a>
-        to explore how changes in purchasing power may affect the value of
-        money over time.
-    </p>
-
-    <h3>How to Interpret Your Retirement Estimate</h3>
-
-    <p>
-        Treat the calculated amount as an estimate rather than a guaranteed
-        retirement outcome. Your actual results can be affected by investment
-        performance, contribution changes, inflation, taxes, fees and other
-        financial circumstances.
-    </p>
-
-    <p>
-        Try several scenarios instead of relying on a single calculation.
-        Changing your retirement age, monthly contribution or expected return
-        can help you understand which assumptions have the greatest effect on
-        your projected savings.
-    </p>
-
-</section>
-
 <div id="financeFAQ"></div>
+
+<!-- ToolXone Shared Reviews -->
+<div id="tool-reviews"></div>
+
 <div id="financeFeedback"></div>
 
 <footer id="siteFooter"></footer>
@@ -272,8 +174,90 @@
 <script src="js/statistics/statistics-engine.js"></script>
 <script src="js/statistics/statistics-events.js"></script>
 <script src="js/statistics/statistics-api.js"></script>
+<script src="js/statistics/statistics-intelligence.js"></script>
 <script src="js/statistics/statistics-dashboard.js"></script>
 <script src="js/statistics/statistics-loader.js"></script>
+
+
+<!-- ======================================================
+     ToolXone SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+<script src="js/seo/schemas/retirement-calculator-schema.js"></script>
+
+<script>
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "RetirementCalculator"
+    );
+
+if (pageSchema) {
+    ToolXoneSchema.render(pageSchema.schema);
+    ToolXoneMeta.render(pageSchema.meta);
+}
+
+</script>
+
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+
+<!-- ======================================================
+     ToolXone Content Platform
+====================================================== -->
+
+<script src="js/config/tool-identity.js"></script>
+
+<script src="js/content/content-registry.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/article-renderer.js"></script>
+
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/related-renderer.js"></script>
+
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/content-data-finance.js"></script>
+
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
 
 <script src="js/retirement.js"></script>
 <script src="js/footer.js"></script>
@@ -298,51 +282,16 @@ const retirementCalculator = {
         { label: "Expected Annual Return (%)", type: "number", id: "annualReturn", placeholder: "8" }
     ],
 
-    info: {
-    title: "Plan Your Future with a Retirement Calculator",
-    description: "A retirement calculator helps you estimate how your current savings, regular monthly contributions, and expected investment returns may grow by your planned retirement age. Use the estimate to explore different retirement planning scenarios, compare contribution amounts, and understand how time and investment growth can affect your future retirement savings."
-},
-
-    faq: [
-    {
-        question: "What does this retirement calculator estimate?",
-        answer: "This retirement calculator estimates the future value of your retirement savings based on your current age, planned retirement age, current savings, monthly contributions, and expected annual return."
-    },
-    {
-        question: "How does the retirement calculator work?",
-        answer: "The calculator projects your current savings forward and adds the estimated growth of your monthly contributions over the years remaining until retirement. The result is an estimate based on the values and expected return you enter."
-    },
-    {
-        question: "How can I use this calculator for retirement planning?",
-        answer: "Try different retirement ages, contribution amounts, savings balances, and expected returns to compare possible retirement planning scenarios. This can help you understand how saving more, investing for longer, or changing your assumptions may affect the projected result."
-    },
-    {
-        question: "How do monthly contributions affect retirement savings?",
-        answer: "Regular monthly contributions can increase your retirement savings over time because you are adding more money to the fund and those contributions may also earn investment returns during the remaining years before retirement."
-    },
-    {
-        question: "What annual return should I enter?",
-        answer: "Enter an annual return that reflects the assumption you want to test. Actual investment returns can vary and are not guaranteed, so comparing several return assumptions can provide a more useful range of possible outcomes."
-    },
-    {
-        question: "Does this retirement calculator include inflation?",
-        answer: "This calculator focuses on projected savings and investment growth and does not automatically adjust the result for inflation. Inflation can reduce future purchasing power, so it should be considered separately when planning for retirement."
-    },
-    {
-        question: "Is this retirement calculator free to use?",
-        answer: "Yes. ToolXone's Retirement Calculator is free to use online and can be used to compare different retirement savings and investment scenarios."
-    },
-    {
-        question: "What is the 4% rule?",
-        answer: "The 4% rule is a commonly discussed retirement withdrawal guideline in which approximately 4% of a retirement portfolio is withdrawn in the first year and later withdrawals are adjusted over time. It is a planning guideline rather than a guarantee and may not be appropriate for every retirement situation."
-    }
-]
-
 };
 
 createFinanceCalculator(retirementCalculator);
 
+ToolXoneHeroRenderer.render("retirement-calculator");
+
+renderFinanceFeedback("financeFeedback", "Retirement Calculator");
+
 </script>
 
 </body>
+
 </html>

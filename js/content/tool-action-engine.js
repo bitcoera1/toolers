@@ -217,6 +217,16 @@ actions : {
 
     },
 
+            "retirement-calculator": {
+
+            startCalculating:
+                ".retirement-card",
+
+            learnMore:
+                "#financeInfo"
+
+        },
+        
     "weight-converter" : {
     
         startCalculating : ".tool-area",
