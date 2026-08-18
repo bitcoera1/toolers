@@ -206,6 +206,17 @@ actions : {
 
     },
     
+
+    "savings-goal-calculator": {
+
+    startCalculating:
+        ".savings-card",
+
+    learnMore:
+        "#financeInfo"
+
+    },
+
     "weight-converter" : {
     
         startCalculating : ".tool-area",
