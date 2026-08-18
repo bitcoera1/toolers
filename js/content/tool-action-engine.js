@@ -227,7 +227,7 @@ actions : {
 
         },
         
-    "weight-converter" : {
+        "weight-converter" : {
     
         startCalculating : ".tool-area",
     
