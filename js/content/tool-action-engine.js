@@ -196,6 +196,16 @@ actions : {
 
     },
 
+   "currency-profit-calculator": {
+
+    startCalculating:
+       ".currency-profit-card",
+
+    learnMore:
+        "#financeInfo"
+
+    },
+    
     "weight-converter" : {
     
         startCalculating : ".tool-area",
