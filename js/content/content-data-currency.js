@@ -375,14 +375,12 @@
             },
 
 
-            {
-
+                        {
                 question:
-                    "Is the exchange-rate chart historical market data?",
+                    "Is the exchange-rate chart based on historical data?",
 
                 answer:
-                    "No. The converter's chart provides a visual trend representation based on the current conversion rate. It should not be interpreted as historical market-rate data."
-
+                    "Yes. The ToolXone Currency Converter chart uses real historical exchange-rate data for the selected currency pair and time range. You can view historical trends from 1D, 5D, 1M, 3M, 6M, YTD, and 1Y."
             }
 
         ]

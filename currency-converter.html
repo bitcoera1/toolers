@@ -6,7 +6,7 @@
 
 <title>Currency Converter - Live Exchange Rates | ToolXone</title>
 
-<meta name="description" content="Convert currencies instantly with ToolXone's free Currency Converter. Get live exchange rates for USD, EUR, GBP, PKR, AED and 150+ world currencies. Fast, accurate and mobile-friendly.">
+<meta name="description" content="Convert currencies instantly with ToolXone's free Currency Converter. Get live exchange rates for USD, EUR, GBP, CNY, JPY, CAD, AUD, NZD, CHF, SGD, HKD, KRW, TRY, AED and PKR. Fast, accurate and mobile-friendly.">
 
 <meta name="robots" content="index,follow">
 <meta name="author" content="ToolXone">
@@ -15,7 +15,7 @@
 <link rel="canonical" href="https://www.toolxone.com/currency-converter.html">
 
 <meta property="og:title" content="Currency Converter - Live Exchange Rates | ToolXone">
-<meta property="og:description" content="Free online Currency Converter with live exchange rates for more than 150 world currencies.">
+<meta property="og:description" content="Free online Currency Converter with live exchange rates for 17 supported currencies.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.toolxone.com/currency-converter.html">
 <meta property="og:image" content="https://www.toolxone.com/images/toolxone-logo.jpg">
@@ -175,8 +175,85 @@ Fast • Accurate • Free
 <div class="result" id="result"></div>
 
 <div class="chart-box">
-<h3 id="chartTitle">📈 Exchange Rate Trend</h3>
-<canvas id="rateChart"></canvas>
+
+    <h3 id="chartTitle">
+        📈 Currency Trend
+    </h3>
+
+    <div
+        class="chart-range-selector"
+        role="tablist"
+        aria-label="Chart time range"
+    >
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="1D"
+        >
+            1D
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn active"
+            data-range="5D"
+        >
+            5D
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="1M"
+        >
+            1M
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="3M"
+        >
+            3M
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="6M"
+        >
+            6M
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="YTD"
+        >
+            YTD
+        </button>
+
+        <button
+            type="button"
+            class="chart-range-btn"
+            data-range="1Y"
+        >
+            1Y
+        </button>
+
+    </div>
+
+    <div
+        id="chartStatus"
+        class="chart-status"
+        aria-live="polite"
+    >
+        Select a range to view historical data.
+    </div>
+
+    <canvas id="rateChart"></canvas>
+
 </div>
 
 <div id="statusBar" class="status-bar">Ready ✔</div>

@@ -235,7 +235,7 @@ function displayResult(
     updateRateChart(
         from,
         to,
-        rate
+        "5D"
     );
 }
 
@@ -322,14 +322,305 @@ function currencyAmountToWords(
 
 
 /* ======================================
-   RATE CHART
+   REAL HISTORICAL RATE CHART
+   ToolXone Currency Converter
    ====================================== */
 
-function updateRateChart(
+const RATE_HISTORY_API =
+    "https://api.frankfurter.dev/v2/rates";
+
+const RATE_HISTORY_RANGES = {
+    "1D": {
+        label: "1D",
+        days: 1
+    },
+
+    "5D": {
+        label: "5D",
+        days: 5
+    },
+
+    "1M": {
+        label: "1M",
+        months: 1
+    },
+
+    "3M": {
+        label: "3M",
+        months: 3
+    },
+
+    "6M": {
+        label: "6M",
+        months: 6
+    },
+
+    "YTD": {
+        label: "YTD",
+        ytd: true
+    },
+
+    "1Y": {
+        label: "1Y",
+        months: 12
+    }
+};
+
+
+/* ======================================
+   DATE HELPERS
+   ====================================== */
+
+function formatISODate(date) {
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+function subtractMonths(
+    date,
+    months
+) {
+
+    const result =
+        new Date(date);
+
+    result.setMonth(
+        result.getMonth() - months
+    );
+
+    return result;
+}
+
+
+function subtractDays(
+    date,
+    days
+) {
+
+    const result =
+        new Date(date);
+
+    result.setDate(
+        result.getDate() - days
+    );
+
+    return result;
+}
+
+
+function getHistoryStartDate(
+    rangeKey
+) {
+
+    const today =
+        new Date();
+
+    const config =
+        RATE_HISTORY_RANGES[
+            rangeKey
+        ];
+
+    if (!config) {
+        return subtractDays(
+            today,
+            5
+        );
+    }
+
+    if (config.ytd) {
+
+        return new Date(
+            today.getFullYear(),
+            0,
+            1
+        );
+    }
+
+    if (config.months) {
+
+        return subtractMonths(
+            today,
+            config.months
+        );
+    }
+
+    return subtractDays(
+        today,
+        config.days
+    );
+}
+
+
+/* ======================================
+   LOAD REAL HISTORICAL DATA
+   ====================================== */
+
+async function fetchHistoricalRates(
     from,
     to,
-    rate
+    rangeKey
 ) {
+
+    const startDate =
+        getHistoryStartDate(
+            rangeKey
+        );
+
+    const endDate =
+        new Date();
+
+    const start =
+        formatISODate(
+            startDate
+        );
+
+    const end =
+        formatISODate(
+            endDate
+        );
+
+    const url =
+        `${RATE_HISTORY_API}` +
+        `?base=${encodeURIComponent(from)}` +
+        `&quotes=${encodeURIComponent(to)}` +
+        `&from=${start}` +
+        `&to=${end}`;
+
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error(
+            `Historical API error: ${response.status}`
+        );
+    }
+
+    const data =
+        await response.json();
+
+    if (!Array.isArray(data)) {
+
+        throw new Error(
+            "Invalid historical rate response."
+        );
+    }
+
+    const points =
+        data
+            .filter(
+                item =>
+                    item &&
+                    item.date &&
+                    item.quote === to &&
+                    Number.isFinite(
+                        Number(item.rate)
+                    )
+            )
+            .map(
+                item => ({
+                    date:
+                        item.date,
+
+                    rate:
+                        Number(item.rate)
+                })
+            )
+            .sort(
+                (a, b) =>
+                    a.date.localeCompare(
+                        b.date
+                    )
+            );
+
+    if (!points.length) {
+
+        throw new Error(
+            `No historical data available for ${from}/${to}.`
+        );
+    }
+
+    return points;
+}
+
+
+/* ======================================
+   CHART LABEL FORMATTING
+   ====================================== */
+
+function formatChartDate(
+    dateString,
+    rangeKey
+) {
+
+    const date =
+        new Date(
+            `${dateString}T00:00:00`
+        );
+
+    if (
+        rangeKey === "1D" ||
+        rangeKey === "5D"
+    ) {
+
+        return date.toLocaleDateString(
+            undefined,
+            {
+                month: "short",
+                day: "numeric"
+            }
+        );
+    }
+
+    if (
+        rangeKey === "YTD" ||
+        rangeKey === "1Y"
+    ) {
+
+        return date.toLocaleDateString(
+            undefined,
+            {
+                month: "short",
+                year: "numeric"
+            }
+        );
+    }
+
+    return date.toLocaleDateString(
+        undefined,
+        {
+            month: "short",
+            day: "numeric"
+        }
+    );
+}
+
+
+/* ======================================
+   BUILD CHART
+   ====================================== */
+
+function renderHistoricalRateChart(
+    from,
+    to,
+    points,
+    rangeKey
+) {
+
     const canvas =
         document.getElementById(
             "rateChart"
@@ -339,44 +630,43 @@ function updateRateChart(
         return;
     }
 
-    const labels = [
-        "6h",
-        "5h",
-        "4h",
-        "3h",
-        "2h",
-        "1h",
-        "Now"
-    ];
+    const labels =
+        points.map(
+            point =>
+                formatChartDate(
+                    point.date,
+                    rangeKey
+                )
+        );
 
-    const trendData = [
-        rate * 0.996,
-        rate * 0.998,
-        rate * 0.997,
-        rate * 1.001,
-        rate * 1.003,
-        rate * 1.002,
-        rate
-    ];
+    const values =
+        points.map(
+            point =>
+                point.rate
+        );
+
+    const chartLabel =
+        `${from} → ${to}`;
 
     if (!rateChart) {
+
         rateChart =
             new Chart(
                 canvas,
                 {
-                    type:
-                        "line",
+                    type: "line",
 
                     data: {
+
                         labels,
 
                         datasets: [
                             {
                                 label:
-                                    `${from} to ${to}`,
+                                    chartLabel,
 
                                 data:
-                                    trendData,
+                                    values,
 
                                 borderColor:
                                     "#10B981",
@@ -388,44 +678,269 @@ function updateRateChart(
                                     true,
 
                                 tension:
-                                    0.4,
+                                    0.25,
 
                                 pointRadius:
-                                    4
+                                    rangeKey === "1D" ||
+                                    rangeKey === "5D"
+                                        ? 3
+                                        : 2,
+
+                                pointHoverRadius:
+                                    5,
+
+                                borderWidth:
+                                    3
                             }
                         ]
                     },
 
                     options: {
+
                         responsive:
                             true,
 
+                        maintainAspectRatio:
+                            true,
+
+                        interaction: {
+                            mode:
+                                "index",
+
+                            intersect:
+                                false
+                        },
+
                         plugins: {
+
                             legend: {
                                 display:
                                     false
+                            },
+
+                            tooltip: {
+
+                                callbacks: {
+
+                                    label:
+                                        context => {
+
+                                            const value =
+                                                context.parsed.y;
+
+                                            return (
+                                                ` 1 ${from} = ` +
+                                                formatExchangeRate(
+                                                    value
+                                                ) +
+                                                ` ${to}`
+                                            );
+                                        }
+                                }
                             }
                         },
 
                         scales: {
+
+                            x: {
+
+                                ticks: {
+                                    maxTicksLimit:
+                                        rangeKey === "1D"
+                                            ? 2
+                                            : rangeKey === "5D"
+                                                ? 5
+                                                : 8
+                                }
+                            },
+
                             y: {
+
                                 beginAtZero:
-                                    false
+                                    false,
+
+                                ticks: {
+
+                                    callback:
+                                        value =>
+                                            formatExchangeRate(
+                                                value
+                                            )
+                                }
                             }
                         }
                     }
                 }
             );
+
     } else {
+
         rateChart.data.labels =
             labels;
 
         rateChart.data.datasets[0].label =
-            `${from} to ${to}`;
+            chartLabel;
 
         rateChart.data.datasets[0].data =
-            trendData;
+            values;
+
+        rateChart.data.datasets[0].pointRadius =
+            rangeKey === "1D" ||
+            rangeKey === "5D"
+                ? 3
+                : 2;
 
         rateChart.update();
     }
 }
+
+
+/* ======================================
+   UPDATE REAL CHART
+   ====================================== */
+
+async function updateRateChart(
+    from,
+    to,
+    rangeKey = "5D"
+) {
+
+    const canvas =
+        document.getElementById(
+            "rateChart"
+        );
+
+    if (!canvas) {
+        return;
+    }
+
+    const chartTitle =
+        document.getElementById(
+            "chartTitle"
+        );
+
+    const chartStatus =
+        document.getElementById(
+            "chartStatus"
+        );
+
+    if (chartTitle) {
+
+        chartTitle.innerHTML =
+            `📈 ${from} → ${to} Trend`;
+    }
+
+    if (chartStatus) {
+
+        chartStatus.innerHTML =
+            "⏳ Loading historical exchange rates...";
+    }
+
+    try {
+
+        const points =
+            await fetchHistoricalRates(
+                from,
+                to,
+                rangeKey
+            );
+
+        renderHistoricalRateChart(
+            from,
+            to,
+            points,
+            rangeKey
+        );
+
+        if (chartStatus) {
+
+            chartStatus.innerHTML =
+                `✓ Real historical data · ${points.length} data points`;
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Historical chart error:",
+            error
+        );
+
+        if (chartStatus) {
+
+            chartStatus.innerHTML =
+                "⚠️ Historical chart data unavailable.";
+        }
+    }
+}
+
+/* ======================================
+   CHART RANGE CONTROLS
+   ====================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const rangeButtons =
+            document.querySelectorAll(
+                ".chart-range-btn"
+            );
+
+        rangeButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        const range =
+                            button.dataset.range;
+
+                        const from =
+                            document.getElementById(
+                                "fromCurrency"
+                            )?.value;
+
+                        const to =
+                            document.getElementById(
+                                "toCurrency"
+                            )?.value;
+
+                        if (
+                            !from ||
+                            !to ||
+                            !range
+                        ) {
+                            return;
+                        }
+
+                        /*
+                         * Update active button
+                         */
+                        rangeButtons.forEach(
+                            item => {
+                                item.classList.remove(
+                                    "active"
+                                );
+                            }
+                        );
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                        /*
+                         * Load real historical data
+                         */
+                        await updateRateChart(
+                            from,
+                            to,
+                            range
+                        );
+                    }
+                );
+            }
+        );
+
+    }
+);
