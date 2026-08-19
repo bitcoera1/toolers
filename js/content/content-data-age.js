@@ -39,7 +39,7 @@
                 "Free Online Age Calculator",
 
             description:
-                "Calculate your exact age in years, months, days, hours, minutes and seconds from your date of birth and find out how many days remain until your next birthday.",
+                "Calculate your exact age in years, months and days from your date of birth and find out how many days remain until your next birthday.",
 
             badge:
                 "Utility Tool",
@@ -159,17 +159,6 @@
                 {
 
                     heading:
-                        "Age in Days, Hours, Minutes and Seconds",
-
-                    content:
-                        "Depending on the calculation, age can also be expressed using smaller units such as days, hours, minutes and seconds. These values provide another way to understand the amount of time that has passed since a person's date of birth."
-
-                },
-
-
-                {
-
-                    heading:
                         "How to Use the Age Calculator",
 
                     content:
@@ -232,84 +221,72 @@
 
         faq: [
 
-            {
+    {
 
-                question:
-                    "What does this age calculator show?",
+        question:
+            "What does this age calculator show?",
 
-                answer:
-                    "It shows your exact age in years, months and days, along with additional time information and the number of days remaining until your next birthday."
+        answer:
+            "It shows your exact age in years, months and days, along with the number of days remaining until your next birthday."
 
-            },
-
-
-            {
-
-                question:
-                    "How is age calculated?",
-
-                answer:
-                    "Age is calculated by comparing your date of birth with the current date and determining the elapsed years, months and days."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Can I calculate age from any date of birth?",
+        question:
+            "How is age calculated?",
 
-                answer:
-                    "Yes. You can select any valid past date of birth supported by the calculator."
+        answer:
+            "Age is calculated by comparing your date of birth with the current date and determining the elapsed years, months and days."
 
-            },
-
-
-            {
-
-                question:
-                    "Does the Age Calculator accept future dates?",
-
-                answer:
-                    "No. Future dates are not accepted as valid dates of birth."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Can I see my age in days, hours, minutes and seconds?",
+        question:
+            "Can I calculate age from any date of birth?",
 
-                answer:
-                    "The calculator is designed to provide detailed age information using multiple time units, including years, months, days, hours, minutes and seconds."
+        answer:
+            "Yes. You can select any valid past date of birth supported by the calculator."
 
-            },
-
-
-            {
-
-                question:
-                    "Can the calculator tell me how many days are left until my birthday?",
-
-                answer:
-                    "Yes. It calculates the number of days remaining until your next birthday."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "What happens if my birthday has already passed this year?",
+        question:
+            "Does the Age Calculator accept future dates?",
 
-                answer:
-                    "The next birthday calculation uses your birthday in the following year when your birthday has already occurred in the current year."
+        answer:
+            "No. Future dates are not accepted as valid dates of birth."
 
-            }
+    },
 
-        ]
 
+    {
+
+        question:
+            "Can the calculator tell me how many days are left until my birthday?",
+
+        answer:
+            "Yes. It calculates the number of days remaining until your next birthday."
+
+    },
+
+
+    {
+
+        question:
+            "What happens if my birthday has already passed this year?",
+
+        answer:
+            "The next birthday calculation uses your birthday in the following year when your birthday has already occurred in the current year."
+
+    }
+
+]
     };
 
 

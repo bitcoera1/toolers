@@ -768,34 +768,99 @@
        Initialization
        ======================================================== */
 
-    if (
-        isRegistryAvailable()
-    ) {
+    console.info(
+        NAME +
+        " v" +
+        VERSION +
+        " initialized."
+    );
 
-        console.info(
-            NAME +
-            " v" +
-            VERSION +
-            " initialized."
-        );
 
-        console.info(
-            "Canonical registry detected:",
-            getRegistry().length,
-            "tools."
-        );
+    /* ========================================================
+       Canonical Registry Detection
+       ======================================================== */
+
+    function reportRegistryStatus() {
+
+        if (
+            isRegistryAvailable()
+        ) {
+
+            console.info(
+                "Canonical registry detected:",
+                getRegistry().length,
+                "tools."
+            );
+
+            return true;
+
+        }
+
+        return false;
 
     }
 
-    else {
 
-        console.warn(
-            NAME +
-            " v" +
-            VERSION +
-            " initialized, " +
-            "but ToolXoneToolsRegistry was not found."
+    /* ========================================================
+       Initial Registry Check
+       ======================================================== */
+
+    if (
+        !reportRegistryStatus()
+    ) {
+
+        console.info(
+            "Canonical registry not available yet — " +
+            "waiting for registry initialization."
         );
+
+
+        /* =====================================================
+           Deferred Registry Check
+           ===================================================== */
+
+        let attempts = 0;
+
+        const maxAttempts = 50;
+
+        const registryWait =
+            setInterval(function () {
+
+                attempts++;
+
+                if (
+                    reportRegistryStatus()
+                ) {
+
+                    clearInterval(
+                        registryWait
+                    );
+
+                    console.info(
+                        "✓ ToolXone Tool Identity Resolver synchronized with canonical registry."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    attempts >= maxAttempts
+                ) {
+
+                    clearInterval(
+                        registryWait
+                    );
+
+                    console.info(
+                        "Canonical registry is still " +
+                        "unavailable after deferred initialization."
+                    );
+
+                }
+
+            }, 100);
 
     }
 

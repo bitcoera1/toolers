@@ -29,7 +29,7 @@
                         "Age Calculator – Free Online Age Calculator | ToolXone",
 
                     description:
-                        "Use ToolXone's free Age Calculator to calculate your exact age in years, months, days, hours, minutes and seconds and find out how many days remain until your next birthday.",
+                        "Use ToolXone's free Age Calculator to calculate your exact age in years, months and days and find out how many days remain until your next birthday.",
 
                     keywords: [
 
@@ -270,7 +270,7 @@
                             "What does this age calculator show?",
 
                         answer:
-                            "It shows your exact age in years, months and days, along with additional time information and the number of days remaining until your next birthday."
+                            "It shows your exact age in years, months and days, along with the number of days remaining until your next birthday."
 
                     },
 
@@ -304,17 +304,6 @@
 
                         answer:
                             "No. Future dates are not accepted as valid dates of birth."
-
-                    },
-
-
-                    {
-
-                        question:
-                            "Can I see my age in days, hours, minutes and seconds?",
-
-                        answer:
-                            "The calculator is designed to provide detailed age information using multiple time units, including years, months, days, hours, minutes and seconds."
 
                     },
 

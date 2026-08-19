@@ -382,16 +382,6 @@ empty configuration.
         "ToolXone Core Config v3.1.0 initialized."
     );
 
-    console.info(
-        "Registry binding:",
-        Array.isArray(
-            window.ToolXoneToolsRegistry
-        )
-            ? "AVAILABLE"
-            : "WAITING FOR CANONICAL REGISTRY"
-    );
-
-
     /* ======================================================
        Google Analytics
        ====================================================== */
