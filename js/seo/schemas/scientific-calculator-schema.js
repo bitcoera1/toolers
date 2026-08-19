@@ -186,7 +186,7 @@ version:"1.0.0",
                 "ToolXone Scientific Calculator",
 
             applicationCategory:
-                "EducationalApplication"
+                "UtilitiesApplication"
 
         },
 

@@ -1,107 +1,150 @@
-document.getElementById("siteFooter").innerHTML = `
+/* ==========================================================
+   TOOLXONE SHARED FOOTER
+   ----------------------------------------------------------
+   Responsibility:
+   - Generate the shared ToolXone footer
+   - Keep footer structure consistent across all pages
+   - Use the shared footer styles from css/tools.css
+   ========================================================== */
 
-<footer class="footer-content">
+(function () {
 
-    <div class="footer-grid">
+    const footerContainer = document.getElementById("siteFooter");
 
-        <div class="footer-column">
+    if (!footerContainer) {
+        console.warn("⚠️ ToolXone Footer: #siteFooter not found.");
+        return;
+    }
 
-            <h3>🟢 ToolXone</h3>
+    const currentYear = new Date().getFullYear();
 
-            <p>
-                Free Online Calculators & Smart Utility Tools.
-                Helping everyone calculate, convert and make smarter decisions —
-                Fast, Accurate & Free.
-            </p>
+    footerContainer.innerHTML = `
 
-        </div>
+        <footer class="footer-content">
 
-        <div class="footer-column">
+            <div class="footer-grid">
 
-            <h3>🚀 Quick Links</h3>
+                <!-- ToolXone -->
+                <div class="footer-column">
 
-            <a href="index.html">🏠 Home</a>
-            <a href="index.html#dashboard">⭐ Popular Tools</a>
-            <a href="index.html#categories-section">📂 Categories</a>
-            <a href="index.html#dashboard">🧮 Explore Tools</a>
+                    <h3>🟢 ToolXone</h3>
 
-        </div>
+                    <p>
+                        Free Online Calculators & Smart Utility Tools.
+                        Helping everyone calculate, convert and make smarter decisions —
+                        Fast, Accurate & Free.
+                    </p>
 
-        <div class="footer-column">
+                </div>
 
-            <h3>🏢 Company</h3>
 
-            <a href="about.html">ℹ️ About Us</a>
-            <a href="contact.html">📧 Contact</a>
-            <a href="feedback.html">💬 Feedback</a>
+                <!-- Quick Links -->
+                <div class="footer-column">
 
-        </div>
+                    <h3>🚀 Quick Links</h3>
 
-        <div class="footer-column">
+                    <a href="index.html">🏠 Home</a>
+                    <a href="index.html#dashboard">⭐ Popular Tools</a>
+                    <a href="index.html#categories-section">📂 Categories</a>
+                    <a href="index.html#dashboard">🧮 Explore Tools</a>
 
-            <h3>📜 Legal</h3>
+                </div>
 
-            <a href="privacy-policy.html">🔒 Privacy Policy</a>
-            <a href="terms-conditions.html">📄 Terms & Conditions</a>
-            <a href="disclaimer.html">⚠️ Disclaimer</a>
-            <a href="affiliate-disclosure.html">🤝 Affiliate Disclosure</a>
 
-        </div>
+                <!-- Company -->
+                <div class="footer-column">
 
-  <div class="footer-column">
+                    <h3>🏢 Company</h3>
 
-    <h3>🌐 Follow ToolXone</h3>
+                    <a href="about.html">ℹ️ About Us</a>
+                    <a href="contact.html">📧 Contact</a>
+                    <a href="feedback.html">💬 Feedback</a>
 
-    <a href="https://www.facebook.com/ToolXone"
-       target="_blank"
-       rel="noopener noreferrer">
-       📘 Facebook
-    </a>
+                </div>
 
-    <a href="https://www.instagram.com/toolxone/"
-       target="_blank"
-       rel="noopener noreferrer">
-       📸 Instagram
-    </a>
 
-    <a href="https://www.pinterest.com/toolxone/"
-       target="_blank"
-       rel="noopener noreferrer">
-       📌 Pinterest
-    </a>
+                <!-- Legal -->
+                <div class="footer-column">
 
-    <a href="https://www.linkedin.com/company/toolxone/"
-       target="_blank"
-       rel="noopener noreferrer">
-       💼 LinkedIn
-    </a>
+                    <h3>📜 Legal</h3>
 
-    <a href="https://www.youtube.com/@toolxone"
-       target="_blank"
-       rel="noopener noreferrer">
-       ▶️ YouTube
-    </a>
+                    <a href="privacy-policy.html">🔒 Privacy Policy</a>
+                    <a href="terms-conditions.html">📄 Terms & Conditions</a>
+                    <a href="disclaimer.html">⚠️ Disclaimer</a>
+                    <a href="affiliate-disclosure.html">🤝 Affiliate Disclosure</a>
 
-    <a href="https://x.com/toolxone"
-       target="_blank"
-       rel="noopener noreferrer">
-       ✖️ X
-    </a>
+                </div>
 
-    <a href="https://www.reddit.com/user/ToolXone/"
-       target="_blank"
-       rel="noopener noreferrer">
-       👽 Reddit
-    </a>
 
-    <a href="https://medium.com/@toolxone"
-       target="_blank"
-       rel="noopener noreferrer">
-       ✍️ Medium
-    </a>
+                <!-- Follow ToolXone -->
+                <div class="footer-column">
 
-</div>
+                    <h3>🌐 Follow ToolXone</h3>
 
-</footer>
+                    <a href="https://www.facebook.com/ToolXone"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        📘 Facebook
+                    </a>
 
-`;
+                    <a href="https://www.instagram.com/toolxone/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        📸 Instagram
+                    </a>
+
+                    <a href="https://www.pinterest.com/toolxone/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        📌 Pinterest
+                    </a>
+
+                    <a href="https://www.linkedin.com/company/toolxone/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        💼 LinkedIn
+                    </a>
+
+                    <a href="https://www.youtube.com/@toolxone"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        ▶️ YouTube
+                    </a>
+
+                    <a href="https://x.com/toolxone"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        ✖️ X
+                    </a>
+
+                    <a href="https://www.reddit.com/user/ToolXone/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        👽 Reddit
+                    </a>
+
+                    <a href="https://medium.com/@toolxone"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        ✍️ Medium
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+
+                <p>
+                    © ${currentYear} ToolXone. All rights reserved.
+                </p>
+
+            </div>
+
+        </footer>
+
+    `;
+
+})();

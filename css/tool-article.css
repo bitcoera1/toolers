@@ -1,6 +1,6 @@
-/*
+/*!
 ==========================================================
-TOOLXONE SHARED TOOL ARTICLE
+ToolXone Shared Tool Article
 ----------------------------------------------------------
 Reusable educational-content design for:
 - Calculators
@@ -8,9 +8,14 @@ Reusable educational-content design for:
 - Health tools
 - Utilities
 - Future ToolXone tools
+
+Clean replacement:
+- Preserves existing .tool-article contract
+- Preserves Discount Calculator article components
+- Consolidates responsive rules
+- Adds mobile overflow protection
 ==========================================================
 */
-
 
 /* =====================================================
    1. ARTICLE CONTAINER
@@ -18,6 +23,8 @@ Reusable educational-content design for:
 
 .tool-article {
     width: min(100% - 32px, 1070px);
+    max-width: 100%;
+    min-width: 0;
     margin: 44px auto;
     padding: 42px 38px;
 
@@ -34,8 +41,8 @@ Reusable educational-content design for:
     line-height: 1.75;
 
     box-sizing: border-box;
+    overflow-wrap: anywhere;
 }
-
 
 /* =====================================================
    2. MAIN ARTICLE HEADING
@@ -51,8 +58,8 @@ Reusable educational-content design for:
     font-weight: 700;
 
     text-align: center;
+    overflow-wrap: anywhere;
 }
-
 
 /* =====================================================
    3. ARTICLE SECTION HEADINGS
@@ -66,12 +73,13 @@ Reusable educational-content design for:
     font-size: 22px;
     line-height: 1.35;
     font-weight: 700;
+
+    overflow-wrap: anywhere;
 }
 
 .tool-article > h2:first-of-type {
     margin-top: 30px;
 }
-
 
 /* =====================================================
    4. OPTIONAL SUBSECTION HEADINGS
@@ -85,8 +93,9 @@ Reusable educational-content design for:
     font-size: 20px;
     line-height: 1.4;
     font-weight: 700;
-}
 
+    overflow-wrap: anywhere;
+}
 
 /* =====================================================
    5. PARAGRAPHS
@@ -99,7 +108,6 @@ Reusable educational-content design for:
 .tool-article p:last-child {
     margin-bottom: 0;
 }
-
 
 /* =====================================================
    6. LISTS
@@ -125,7 +133,6 @@ Reusable educational-content design for:
     font-weight: 700;
 }
 
-
 /* =====================================================
    7. STRONG / IMPORTANT TEXT
    ===================================================== */
@@ -134,7 +141,6 @@ Reusable educational-content design for:
     color: #0f172a;
     font-weight: 700;
 }
-
 
 /* =====================================================
    8. LINKS
@@ -162,7 +168,6 @@ Reusable educational-content design for:
     border-radius: 3px;
 }
 
-
 /* =====================================================
    9. SECTION RHYTHM
    ===================================================== */
@@ -177,14 +182,8 @@ Reusable educational-content design for:
     margin-top: 38px;
 }
 
-
 /* =====================================================
    10. OPTIONAL ARTICLE CALLOUTS
-   -----------------------------------------------------
-   Available for future articles:
-
-   <div class="article-note">...</div>
-   <div class="article-example">...</div>
    ===================================================== */
 
 .tool-article .article-note,
@@ -195,6 +194,8 @@ Reusable educational-content design for:
     border-radius: 14px;
 
     line-height: 1.65;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .tool-article .article-note {
@@ -209,21 +210,21 @@ Reusable educational-content design for:
     border-left: 4px solid #3b82f6;
 }
 
-
 /* =====================================================
    11. TABLE SUPPORT
-   -----------------------------------------------------
-   Ready for future educational articles.
    ===================================================== */
 
 .tool-article .article-table-wrap {
     width: 100%;
+    max-width: 100%;
     margin: 24px 0;
 
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 
     border: 1px solid #e2e8f0;
     border-radius: 14px;
+    box-sizing: border-box;
 }
 
 .tool-article table {
@@ -254,9 +255,137 @@ Reusable educational-content design for:
     border-bottom: 0;
 }
 
+/* =====================================================
+   12. DISCOUNT CALCULATOR — ARTICLE GUIDE COMPONENTS
+   ===================================================== */
+
+/* Numbered guide steps */
+
+.tool-article ol.discount-guide-steps {
+    counter-reset: discount-step;
+
+    margin: 22px 0 30px;
+    padding: 0;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tool-article ol.discount-guide-steps > li {
+    position: relative;
+
+    counter-increment: discount-step;
+
+    margin: 0;
+    padding: 22px 20px 22px 72px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    color: #334155;
+    line-height: 1.65;
+
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.tool-article ol.discount-guide-steps > li::before {
+    content: counter(discount-step);
+
+    position: absolute;
+    top: 22px;
+    left: 20px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #10b981;
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
+
+.tool-article ol.discount-guide-steps > li strong {
+    display: block;
+
+    margin: 0 0 4px;
+
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* Guide / use-case list */
+
+.tool-article ul.discount-guide-list {
+    margin: 20px 0 30px;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tool-article ul.discount-guide-list > li {
+    position: relative;
+
+    margin: 0;
+    padding: 13px 16px 13px 50px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    color: #334155;
+    line-height: 1.6;
+
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.tool-article ul.discount-guide-list > li::before {
+    content: "✓";
+
+    position: absolute;
+    top: 13px;
+    left: 16px;
+
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d1fae5;
+    color: #059669;
+
+    border-radius: 50%;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+
+    box-sizing: border-box;
+}
 
 /* =====================================================
-   12. DARK MODE
+   13. DARK MODE
    ===================================================== */
 
 body.dark-mode .tool-article,
@@ -264,7 +393,6 @@ body.dark .tool-article,
 [data-theme="dark"] .tool-article {
     background: #111827;
     border-color: #334155;
-
     color: #cbd5e1;
 
     box-shadow:
@@ -279,14 +407,10 @@ body.dark .tool-article > h1,
 
 body.dark-mode .tool-article > h2,
 body.dark .tool-article > h2,
-[data-theme="dark"] .tool-article > h2 {
-    color: #f1f5f9;
-}
-
+[data-theme="dark"] .tool-article > h2,
 body.dark-mode .tool-article h3,
 body.dark .tool-article h3,
 [data-theme="dark"] .tool-article h3,
-
 body.dark-mode .tool-article strong,
 body.dark .tool-article strong,
 [data-theme="dark"] .tool-article strong {
@@ -343,16 +467,38 @@ body.dark .tool-article td,
     border-color: #334155;
 }
 
+body.dark-mode .tool-article ol.discount-guide-steps > li,
+body.dark .tool-article ol.discount-guide-steps > li,
+[data-theme="dark"] .tool-article ol.discount-guide-steps > li,
+body.dark-mode .tool-article ul.discount-guide-list > li,
+body.dark .tool-article ul.discount-guide-list > li,
+[data-theme="dark"] .tool-article ul.discount-guide-list > li {
+    background: #172033;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .tool-article ol.discount-guide-steps > li strong,
+body.dark .tool-article ol.discount-guide-steps > li strong,
+[data-theme="dark"] .tool-article ol.discount-guide-steps > li strong {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tool-article ul.discount-guide-list > li::before,
+body.dark .tool-article ul.discount-guide-list > li::before,
+[data-theme="dark"] .tool-article ul.discount-guide-list > li::before {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
 
 /* =====================================================
-   13. TABLET
+   14. TABLET
    ===================================================== */
 
 @media (max-width: 768px) {
 
     .tool-article {
-        width: min(100% - 24px, 1070px);
-
+        width: calc(100% - 24px);
         margin: 32px auto;
         padding: 32px 26px;
 
@@ -362,15 +508,17 @@ body.dark .tool-article td,
         line-height: 1.7;
     }
 
+    .tool-article > h1 {
+        font-size: 28px;
+    }
+
     .tool-article > h2 {
         margin-bottom: 22px;
-
         font-size: 26px;
     }
 
     .tool-article h3 {
         margin-top: 32px;
-
         font-size: 20px;
     }
 
@@ -378,18 +526,30 @@ body.dark .tool-article td,
     .tool-article ol {
         padding-left: 24px;
     }
+
+    .tool-article ol.discount-guide-steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .tool-article ol.discount-guide-steps > li {
+        padding: 20px 18px 20px 68px;
+    }
+
+    .tool-article ol.discount-guide-steps > li::before {
+        top: 20px;
+        left: 18px;
+    }
 }
 
-
 /* =====================================================
-   14. MOBILE
+   15. MOBILE
    ===================================================== */
 
 @media (max-width: 480px) {
 
     .tool-article {
         width: calc(100% - 20px);
-
         margin: 26px auto;
         padding: 26px 20px;
 
@@ -399,15 +559,18 @@ body.dark .tool-article td,
         line-height: 1.68;
     }
 
+    .tool-article > h1 {
+        margin-bottom: 22px;
+        font-size: 26px;
+    }
+
     .tool-article > h2 {
         margin-bottom: 20px;
-
         font-size: 24px;
     }
 
     .tool-article h3 {
         margin: 28px 0 12px;
-
         font-size: 19px;
     }
 
@@ -430,216 +593,10 @@ body.dark .tool-article td,
         padding: 16px;
         margin: 20px 0;
     }
-}
 
-/* ============================================================
-   15. DISCOUNT CALCULATOR — ARTICLE GUIDE COMPONENTS
-   ------------------------------------------------------------
-   Scoped specifically to Discount Calculator article content.
-   Uses positioned icons so text nodes and <strong> elements
-   remain in their natural document flow.
-   ============================================================ */
-
-
-/* ============================================================
-   15.1 NUMBERED GUIDE STEPS
-   ============================================================ */
-
-.tool-article ol.discount-guide-steps {
-    counter-reset: discount-step;
-
-    margin: 22px 0 30px;
-    padding: 0;
-
-    list-style: none;
-
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.tool-article ol.discount-guide-steps > li {
-    position: relative;
-
-    counter-increment: discount-step;
-
-    margin: 0;
-    padding: 22px 20px 22px 72px;
-
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-
-    color: #334155;
-
-    line-height: 1.65;
-
-    box-sizing: border-box;
-}
-
-
-/* Number circle */
-
-.tool-article ol.discount-guide-steps > li::before {
-    content: counter(discount-step);
-
-    position: absolute;
-
-    top: 22px;
-    left: 20px;
-
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #10b981;
-    color: #ffffff;
-
-    border-radius: 50%;
-
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1;
-
-    box-sizing: border-box;
-}
-
-
-/* Step heading */
-
-.tool-article ol.discount-guide-steps > li strong {
-    display: block;
-
-    margin: 0 0 4px;
-
-    color: #0f172a;
-    font-weight: 700;
-}
-
-
-/* ============================================================
-   15.2 GUIDE / USE-CASE LIST
-   ============================================================ */
-
-.tool-article ul.discount-guide-list {
-    margin: 20px 0 30px;
-    padding: 0;
-
-    list-style: none;
-
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.tool-article ul.discount-guide-list > li {
-    position: relative;
-
-    margin: 0;
-    padding: 13px 16px 13px 50px;
-
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
-
-    color: #334155;
-
-    line-height: 1.6;
-
-    box-sizing: border-box;
-}
-
-
-/* Check icon */
-
-.tool-article ul.discount-guide-list > li::before {
-    content: "✓";
-
-    position: absolute;
-
-    top: 13px;
-    left: 16px;
-
-    width: 22px;
-    height: 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #d1fae5;
-    color: #059669;
-
-    border-radius: 50%;
-
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1;
-
-    box-sizing: border-box;
-}
-
-
-/* ============================================================
-   15.3 DARK MODE
-   ============================================================ */
-
-body.dark-mode .tool-article ol.discount-guide-steps > li,
-body.dark .tool-article ol.discount-guide-steps > li,
-[data-theme="dark"] .tool-article ol.discount-guide-steps > li,
-
-body.dark-mode .tool-article ul.discount-guide-list > li,
-body.dark .tool-article ul.discount-guide-list > li,
-[data-theme="dark"] .tool-article ul.discount-guide-list > li {
-    background: #172033;
-    border-color: #334155;
-    color: #cbd5e1;
-}
-
-body.dark-mode .tool-article ol.discount-guide-steps > li strong,
-body.dark .tool-article ol.discount-guide-steps > li strong,
-[data-theme="dark"] .tool-article ol.discount-guide-steps > li strong {
-    color: #f1f5f9;
-}
-
-body.dark-mode .tool-article ul.discount-guide-list > li::before,
-body.dark .tool-article ul.discount-guide-list > li::before,
-[data-theme="dark"] .tool-article ul.discount-guide-list > li::before {
-    background: rgba(16, 185, 129, 0.15);
-    color: #34d399;
-}
-
-
-/* ============================================================
-   15.4 TABLET
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-    .tool-article ol.discount-guide-steps {
-        grid-template-columns: 1fr;
-        gap: 14px;
+    .tool-article .article-table-wrap {
+        margin: 20px 0;
     }
-
-    .tool-article ol.discount-guide-steps > li {
-        padding: 20px 18px 20px 68px;
-    }
-
-    .tool-article ol.discount-guide-steps > li::before {
-        top: 20px;
-        left: 18px;
-    }
-}
-
-
-/* ============================================================
-   15.5 MOBILE
-   ============================================================ */
-
-@media (max-width: 480px) {
 
     .tool-article ol.discount-guide-steps {
         gap: 12px;
@@ -648,7 +605,6 @@ body.dark .tool-article ul.discount-guide-list > li::before,
 
     .tool-article ol.discount-guide-steps > li {
         padding: 17px 15px 17px 60px;
-
         border-radius: 14px;
     }
 
@@ -668,12 +624,47 @@ body.dark .tool-article ul.discount-guide-list > li::before,
 
     .tool-article ul.discount-guide-list > li {
         padding: 12px 13px 12px 46px;
-
         border-radius: 12px;
     }
 
     .tool-article ul.discount-guide-list > li::before {
         top: 12px;
         left: 13px;
+    }
+}
+
+/* =====================================================
+   16. VERY SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    .tool-article {
+        width: calc(100% - 16px);
+        padding: 22px 16px;
+        margin: 20px auto;
+
+        font-size: 15px;
+    }
+
+    .tool-article > h1 {
+        font-size: 24px;
+    }
+
+    .tool-article > h2 {
+        font-size: 22px;
+    }
+
+    .tool-article h3 {
+        font-size: 18px;
+    }
+
+    .tool-article ul,
+    .tool-article ol {
+        padding-left: 20px;
+    }
+
+    .tool-article ol.discount-guide-steps > li {
+        padding-left: 54px;
     }
 }

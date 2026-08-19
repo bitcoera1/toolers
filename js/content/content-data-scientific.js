@@ -437,6 +437,8 @@ window.ToolXoneContentRegistry.register(
 
     {
 
+        lastUpdated: "2026-08-19",
+
         title:
             "Scientific Calculator - Free Online Scientific Calculator | ToolXone",
 

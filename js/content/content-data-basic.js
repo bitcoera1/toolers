@@ -568,7 +568,7 @@ metadata: {
 
     version: "1.0.0",
 
-    lastUpdated: "2026-08-07",
+    lastUpdated: "2026-08-19",
 
     author: "ToolXone",
 

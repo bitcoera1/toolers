@@ -586,7 +586,7 @@ body.dark-mode #relatedTools .toolxone-related-link:hover {
     width: 100% !important;
     max-width: 1200px;
 
-    margin: 0 auto;
+    margin: 56px auto 0;
 
     box-sizing: border-box;
 

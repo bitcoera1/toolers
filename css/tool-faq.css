@@ -1,156 +1,418 @@
+/* =========================================================
+   ToolXone FAQ Component
+   Clean Shared Replacement
+   ---------------------------------------------------------
+   Responsibilities:
+   - Shared FAQ section styling
+   - Desktop / tablet / mobile responsiveness
+   - 344px mobile overflow protection
+   - Light / dark theme support
+   - Accessible focus states
+   ========================================================= */
 
-/* ---------- FAQ SECTION ---------- */
 
-.tx-faq-section{
-    width:100%;
-    max-width:1000px;
-    margin:60px auto 80px;
-    padding:35px;
-    background:#162235;
-    border:1px solid #2f4058;
-    border-radius:22px;
-    color:#e5e7eb;
+/* =========================================================
+   1. FAQ SECTION
+   ========================================================= */
+
+.tx-faq-section {
+    width: min(100%, 1000px);
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 60px auto 80px;
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    background: #162235;
+    border: 1px solid #2f4058;
+    border-radius: 22px;
+
+    color: #e5e7eb;
+
+    overflow: hidden;
 }
 
-.tx-faq-section h2{
-    color:#10b981;
-    text-align:center;
-    font-size:2rem;
-    font-weight:800;
-    margin-bottom:12px;
+
+/* =========================================================
+   2. FAQ HEADER
+   ========================================================= */
+
+.tx-faq-header {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0 0 36px;
+
+    text-align: center;
+
+    box-sizing: border-box;
 }
 
-.toolxone-faq-item{
-    background:#172235;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:14px;
-    padding:20px 22px;
-    margin-bottom:18px;
-    transition:.28s ease;
+.tx-faq-header h2,
+.tx-faq-section h2 {
+    max-width: 100%;
+    margin: 0 0 12px;
+
+    color: #10b981;
+
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 800;
+
+    text-align: center;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
 }
 
-.toolxone-faq-item[open]{
+.tx-faq-subtitle {
+    width: 100%;
+    max-width: 700px;
+    min-width: 0;
 
-    border-color:#10b981;
+    margin: 0 auto;
 
-    box-shadow:
-        0 12px 28px rgba(16,185,129,.12);
+    color: #94a3b8;
 
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
 }
 
-.toolxone-faq-item summary{
-    cursor:pointer;
-    font-weight:700;
-    color:#e5e7eb;
-    
-    display:flex;
 
-    justify-content:space-between;
+/* =========================================================
+   3. FAQ ITEMS
+   ========================================================= */
 
-    align-items:center;
+.toolxone-faq-item {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0 0 18px;
+    padding: 20px 22px;
+
+    box-sizing: border-box;
+
+    background: #172235;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
 
     transition:
-    color .25s ease;
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        transform 0.28s ease;
 
+    overflow: hidden;
 }
 
-.toolxone-faq-answer p{
-    margin-top:14px;
-    line-height:1.85;
-    color:#cbd5e1;
+.toolxone-faq-item:last-child {
+    margin-bottom: 0;
 }
 
 
-body:not(.dark-mode) .tx-faq-section{
+/* =========================================================
+   4. OPEN STATE
+   ========================================================= */
 
-    background:#ffffff;
-    color:#1f2937;
-    border:1px solid #e5e7eb;
-    box-shadow:0 12px 35px rgba(15,23,42,.08);
-}
-
-body:not(.dark-mode) .toolxone-faq-answer p{
-    color:#475569;
-}
-
-body:not(.dark-mode) .toolxone-faq-item{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-}
-
-body:not(.dark-mode) .toolxone-faq-item summary{
-    color:#1f2937;
-}
-
-.toolxone-faq-item:hover{
-
-    border-color:#10b981;
-
-    transform:translateY(-3px);
+.toolxone-faq-item[open] {
+    border-color: #10b981;
 
     box-shadow:
-        0 12px 28px rgba(15,23,42,.08);
-
+        0 12px 28px rgba(16, 185, 129, 0.12);
 }
 
-.toolxone-faq-item summary:focus-visible{
 
-    outline:3px solid rgba(16,185,129,.25);
+/* =========================================================
+   5. FAQ QUESTION / SUMMARY
+   ========================================================= */
 
-    outline-offset:4px;
+.toolxone-faq-item summary {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    color: #e5e7eb;
+
+    font-weight: 700;
+    line-height: 1.5;
+
+    transition: color 0.25s ease;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
 }
 
-@media(max-width:768px){
 
-    .tx-faq-section{
+/*
+   Allow the summary text itself to shrink
+   instead of forcing horizontal overflow.
+*/
 
-        padding:28px;
+.toolxone-faq-item summary > * {
+    min-width: 0;
+}
 
+.toolxone-faq-item summary::marker {
+    color: #10b981;
+}
+
+
+/* =========================================================
+   6. FAQ ANSWER
+   ========================================================= */
+
+.toolxone-faq-answer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    overflow-wrap: anywhere;
+}
+
+.toolxone-faq-answer p {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 14px 0 0;
+
+    color: #cbd5e1;
+
+    line-height: 1.85;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+
+/* =========================================================
+   7. HOVER
+   ========================================================= */
+
+.toolxone-faq-item:hover {
+    border-color: #10b981;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   8. KEYBOARD FOCUS
+   ========================================================= */
+
+.toolxone-faq-item summary:focus-visible {
+    outline: 3px solid rgba(16, 185, 129, 0.25);
+    outline-offset: 4px;
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   9. LIGHT THEME
+   ========================================================= */
+
+body:not(.dark-mode) .tx-faq-section {
+    background: #ffffff;
+
+    color: #1f2937;
+
+    border-color: #e5e7eb;
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+body:not(.dark-mode) .toolxone-faq-item {
+    background: #f8fafc;
+
+    border-color: #e5e7eb;
+}
+
+body:not(.dark-mode) .toolxone-faq-item summary {
+    color: #1f2937;
+}
+
+body:not(.dark-mode) .toolxone-faq-answer p {
+    color: #475569;
+}
+
+body:not(.dark-mode) .toolxone-faq-item:hover {
+    box-shadow:
+        0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   10. TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .tx-faq-section {
+        width: calc(100% - 24px);
+        max-width: 100%;
+
+        margin: 40px auto 60px;
+        padding: 28px;
+
+        border-radius: 18px;
+    }
+
+    .tx-faq-header {
+        margin-bottom: 28px;
+    }
+
+    .tx-faq-header h2,
+    .tx-faq-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .toolxone-faq-item {
+        padding: 18px 20px;
     }
 
 }
 
-@media(max-width:480px){
 
-    .tx-faq-section{
+/* =========================================================
+   11. MOBILE
+   ========================================================= */
 
-        padding:22px;
+@media (max-width: 480px) {
 
-        border-radius:18px;
+    .tx-faq-section {
+        width: calc(100% - 20px);
+        max-width: 100%;
 
+        margin: 28px auto 45px;
+        padding: 20px;
+
+        border-radius: 16px;
     }
 
-    .tx-faq-section h2{
+    .tx-faq-header {
+        margin-bottom: 24px;
+    }
 
-        font-size:1.5rem;
+    .tx-faq-header h2,
+    .tx-faq-section h2 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
 
+    .tx-faq-subtitle {
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    .toolxone-faq-item {
+        margin-bottom: 12px;
+        padding: 16px;
+
+        border-radius: 13px;
+    }
+
+    .toolxone-faq-item summary {
+        gap: 10px;
+
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .toolxone-faq-answer p {
+        margin-top: 12px;
+
+        font-size: 15px;
+        line-height: 1.7;
     }
 
 }
 
-.toolxone-faq-item:last-child{
 
-    margin-bottom:0;
+/* =========================================================
+   12. VERY SMALL MOBILE — 344px / 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .tx-faq-section {
+        width: calc(100% - 16px);
+        max-width: 100%;
+
+        margin: 22px auto 36px;
+        padding: 16px;
+
+        border-radius: 14px;
+    }
+
+    .tx-faq-header {
+        margin-bottom: 20px;
+    }
+
+    .tx-faq-header h2,
+    .tx-faq-section h2 {
+        font-size: 1.35rem;
+        line-height: 1.3;
+    }
+
+    .tx-faq-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .toolxone-faq-item {
+        margin-bottom: 10px;
+        padding: 14px;
+
+        border-radius: 12px;
+    }
+
+    .toolxone-faq-item summary {
+        gap: 8px;
+
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .toolxone-faq-answer p {
+        margin-top: 10px;
+
+        font-size: 14px;
+        line-height: 1.65;
+    }
 
 }
 
-.tx-faq-header{
 
-    text-align:center;
+/* =========================================================
+   13. TOUCH DEVICES
+   ========================================================= */
 
-    margin-bottom:36px;
+@media (hover: none) {
 
-}
-
-.tx-faq-subtitle{
-
-    max-width:700px;
-
-    margin:0 auto;
-
-    color:#94a3b8;
-
-    line-height:1.8;
+    .toolxone-faq-item:hover {
+        transform: none;
+    }
 
 }

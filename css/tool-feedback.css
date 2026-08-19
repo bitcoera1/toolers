@@ -1,436 +1,369 @@
 /*=========================================================
   ToolXone Shared Feedback Section
-  Version: 2.0.0
+  Clean Replacement
+  ---------------------------------------------------------
+  Preserves the existing .tx-feedback-* and .rating-* API.
+  Consolidates duplicate rules and responsive behavior.
 =========================================================*/
-
 
 /*=========================================================
-  Feedback Container
+  1. GLOBAL FEEDBACK BOX
 =========================================================*/
 
-.tx-feedback-section{
+.tx-feedback-section {
+    width: min(100% - 32px, 760px);
+    max-width: 100%;
+    min-width: 0;
 
-    width:100%;
-    max-width:760px;
+    margin: 60px auto 80px;
+    padding: 36px;
 
-    margin:60px auto 80px;
+    background: #162235;
+    border: 1px solid #2f4058;
+    border-radius: 22px;
 
-    padding:36px;
-
-    background:#162235;
-
-    border:1px solid #2f4058;
-
-    border-radius:22px;
-
-    color:#e5e7eb;
+    color: #e5e7eb;
 
     box-shadow:
-    0 20px 55px rgba(15,23,42,.14);
+        0 20px 55px rgba(15, 23, 42, .14);
 
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+.tx-feedback-section,
+.tx-feedback-section * {
+    box-sizing: border-box;
 }
 
 
 /*=========================================================
-  Header
+  2. HEADER
 =========================================================*/
 
-.tx-feedback-header{
-
-    text-align:center;
-
-    margin-bottom:24px;
-
+.tx-feedback-header {
+    text-align: center;
+    margin-bottom: 24px;
 }
 
-.tx-feedback-icon{
+.tx-feedback-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
 
-    width:72px;
+    border-radius: 50%;
 
-    height:72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin:0 auto 16px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:linear-gradient(
+    background: linear-gradient(
         135deg,
         #10b981,
         #059669
     );
 
-    color:#fff;
-
-    font-size:32px;
+    color: #fff;
+    font-size: 32px;
 
     box-shadow:
-        0 14px 28px rgba(16,185,129,.28);
-
+        0 14px 28px rgba(16, 185, 129, .28);
 }
 
-.tx-feedback-section h2{
+.tx-feedback-section h2 {
+    margin: 0 0 12px;
 
-    font-size:2rem;
+    color: #10b981;
 
-    font-weight:800;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.25;
 
-    color:#10b981;
-
-    margin-bottom:12px;
-
+    overflow-wrap: anywhere;
 }
 
-.tx-feedback-section p{
+.tx-feedback-section p {
+    max-width: 620px;
+    margin: 0 auto;
 
-    margin:0 auto;
-
-    max-width:620px;
-
-    line-height:1.8;
-
-    color:#cbd5e1;
-
-}
-
-/*=========================================================
-  Current Tool
-=========================================================*/
-
-.tx-feedback-tool{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin:38px 0 30px;
-
-    padding:22px 28px;
-
-    border-radius:18px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(37,99,235,.12),
-            rgba(16,185,129,.08)
-        );
-
-    border:1px solid rgba(59,130,246,.20);
-
-}
-
-.tx-feedback-tool .tx-feedback-label{
-
-    font-size:.82rem;
-
-    font-weight:700;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-
-    color:#94a3b8;
-
-}
-
-.tx-feedback-tool strong{
-
-    color:#2563eb;
-
-    font-size:1.35rem;
-
-    font-weight:800;
-
-    letter-spacing:.02em;
-
+    color: #cbd5e1;
+    line-height: 1.8;
 }
 
 
 /*=========================================================
-  Form Layout
+  3. CURRENT TOOL
 =========================================================*/
 
-.tx-feedback-form{
+.tx-feedback-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
+    gap: 10px;
 
-    flex-direction:column;
+    margin: 38px 0 30px;
+    padding: 22px 28px;
 
-    gap:24px;
+    border-radius: 18px;
 
+    background: linear-gradient(
+        135deg,
+        rgba(37, 99, 235, .12),
+        rgba(16, 185, 129, .08)
+    );
+
+    border: 1px solid rgba(59, 130, 246, .20);
+
+    text-align: center;
+    min-width: 0;
 }
 
-.tx-feedback-group{
-
-    display:flex;
-
-    flex-direction:column;
-
+.tx-feedback-tool .tx-feedback-label {
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #94a3b8;
 }
 
-.tx-feedback-group label{
-
-    display:block;
-
-    margin-bottom:12px;
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    color:#e5e7eb;
-
+.tx-feedback-tool strong {
+    color: #2563eb;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: .02em;
+    overflow-wrap: anywhere;
 }
-
 
 
 /*=========================================================
-  Rating Section
+  4. FORM
 =========================================================*/
 
-.tx-feedback-title{
+.tx-feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
-    display:block;
-
-    margin:8px 0 18px;
-
-    text-align:center;
-
-    font-size:1.1rem;
-
-    font-weight:700;
-
+    min-width: 0;
 }
 
-.rating-options{
+.tx-feedback-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
 
-    display:grid;
+.tx-feedback-group label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #e5e7eb;
+
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+}
+
+
+/*=========================================================
+  5. RATING
+=========================================================*/
+
+.tx-feedback-title {
+    display: block;
+
+    margin: 8px 0 18px;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.rating-options {
+    display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(120px,1fr));
+        repeat(5, minmax(0, 1fr));
 
-    gap:14px;
+    gap: 14px;
 
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
 }
 
+.rating-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 118px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-/*=========================================================
-  Rating Cards
-=========================================================*/
+    padding: 18px 12px;
 
-.rating-card{
+    border-radius: 20px;
+    border: 1px solid #dbe3ef;
 
-    display:flex;
+    background: #ffffff;
 
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-height:118px;
-
-    padding:18px 12px;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    user-select:none;
-
-    background:#ffffff;
-
-    border:1px solid #dbe3ef;
+    cursor: pointer;
+    user-select: none;
 
     transition:
-
         transform .25s ease,
-
         border-color .25s ease,
-
         box-shadow .25s ease,
+        background-color .25s ease;
 
-        background .25s ease;
-
+    box-sizing: border-box;
 }
 
-.rating-card:hover{
+.rating-card:hover {
+    z-index: 2;
 
-    transform:translateY(-3px);
+    transform: translateY(-3px);
 
-    border-color:#10b981;
+    border-color: #10b981;
 
     box-shadow:
-
-        0 14px 28px rgba(16,185,129,.18);
-
+        0 14px 28px rgba(16, 185, 129, .18);
 }
 
-.rating-card input{
-
-    margin-bottom:8px;
-
-    transform:scale(1.15);
-
-    accent-color:#10b981;
-
+.rating-card input {
+    margin-bottom: 8px;
+    transform: scale(1.15);
+    accent-color: #10b981;
 }
 
-.rating-card span{
-
-    font-size:1.35rem;
-
-    color:#f59e0b;
-
-    letter-spacing:2px;
-
+.rating-card span {
+    color: #f59e0b;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
 }
 
-.rating-card small{
+.rating-card small {
+    margin-top: 6px;
 
-    margin-top:6px;
+    color: #374151;
 
-    text-align:center;
+    text-align: center;
 
-    font-size:.9rem;
+    font-size: .9rem;
+    font-weight: 700;
 
-    font-weight:700;
-
-    color:#374151;
-
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
-.rating-card:has(input:checked){
-
-    background:#ecfdf5;
-
-    border-color:#10b981;
+.rating-card:has(input:checked) {
+    background: #ecfdf5;
+    border-color: #10b981;
 
     transform:
         translateY(-3px)
         scale(1.02);
 
     box-shadow:
-
-        0 18px 36px rgba(16,185,129,.25);
-
+        0 18px 36px rgba(16, 185, 129, .25);
 }
 
+
 /*=========================================================
-  Inputs
+  6. FORM CONTROLS
 =========================================================*/
 
 .tx-feedback-section input,
 .tx-feedback-section select,
-.tx-feedback-section textarea{
+.tx-feedback-section textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
-    width:100%;
+    padding: 16px 18px;
 
-    padding:16px 18px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
 
-    border-radius:14px;
+    background: #172235;
+    color: #ffffff;
 
-    border:1px solid rgba(255,255,255,.08);
-
-    background:#172235;
-
-    color:#ffffff;
-
-    font:inherit;
+    font: inherit;
 
     transition:
         border-color .25s ease,
         box-shadow .25s ease,
-        background .25s ease,
+        background-color .25s ease,
         transform .25s ease;
 
+    box-sizing: border-box;
 }
 
 .tx-feedback-section input::placeholder,
-.tx-feedback-section textarea::placeholder{
-
-    color:#94a3b8;
-
+.tx-feedback-section textarea::placeholder {
+    color: #94a3b8;
 }
 
-.tx-feedback-section select{
-
-    cursor:pointer;
-
+.tx-feedback-section select {
+    cursor: pointer;
+    padding-right: 44px;
 }
 
-.tx-feedback-section textarea{
-
-    min-height:170px;
-
-    resize:vertical;
-
+.tx-feedback-section textarea {
+    min-height: 170px;
+    resize: vertical;
 }
 
 .tx-feedback-section input:focus,
 .tx-feedback-section select:focus,
-.tx-feedback-section textarea:focus{
+.tx-feedback-section textarea:focus {
+    outline: none;
 
-    outline:none;
+    border-color: #10b981;
+    background: #1b2b44;
 
-    border-color:#10b981;
-
-    background:#1b2b44;
-
-    transform:translateY(-1px);
+    transform: translateY(-1px);
 
     box-shadow:
-        0 0 0 4px rgba(16,185,129,.12);
-
+        0 0 0 4px rgba(16, 185, 129, .12);
 }
 
 
-
 /*=========================================================
-  Submit Button
+  7. SUBMIT
 =========================================================*/
 
-.tx-feedback-submit{
+.tx-feedback-submit {
+    align-self: center;
 
-    align-self:center;
+    min-width: 220px;
 
-    min-width:220px;
+    margin-top: 8px;
+    padding: 17px 46px;
 
-    padding:17px 46px;
+    border: none;
+    border-radius: 14px;
 
-    border:none;
+    background: linear-gradient(
+        135deg,
+        #10b981,
+        #059669
+    );
 
-    border-radius:14px;
+    color: #ffffff;
 
-    background:
-        linear-gradient(
-            135deg,
-            #10b981,
-            #059669
-        );
+    font-size: 1rem;
+    font-weight: 700;
 
-    color:#ffffff;
-
-    font-size:1rem;
-
-    font-weight:700;
-
-    cursor:pointer;
+    cursor: pointer;
 
     transition:
         transform .25s ease,
@@ -438,394 +371,287 @@
         filter .25s ease;
 
     box-shadow:
-        0 16px 36px rgba(16,185,129,.28);
-
+        0 16px 36px rgba(16, 185, 129, .28);
 }
 
-.tx-feedback-submit:hover{
-
+.tx-feedback-submit:hover {
     transform:
         translateY(-2px)
         scale(1.02);
 
-    filter:brightness(1.05);
+    filter: brightness(1.05);
 
     box-shadow:
-        0 22px 44px rgba(16,185,129,.35);
-
+        0 22px 44px rgba(16, 185, 129, .35);
 }
 
-.tx-feedback-submit:active{
-
-    transform:scale(.98);
-
+.tx-feedback-submit:active {
+    transform: scale(.98);
 }
 
-.tx-feedback-submit:disabled{
-
-    opacity:.65;
-
-    cursor:not-allowed;
-
-    transform:none;
-
-    box-shadow:none;
-
+.tx-feedback-submit:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
-
 
 
 /*=========================================================
-  Status Messages
+  8. STATUS
 =========================================================*/
 
-.tx-feedback-status{
+.tx-feedback-status {
+    display: none;
 
-    display:none;
+    margin-top: 14px;
+    padding: 14px 16px;
 
-    margin-top:14px;
+    border-radius: 14px;
 
-    padding:14px 16px;
-
-    border-radius:14px;
-
-    text-align:center;
-
-    font-weight:700;
-
+    text-align: center;
+    font-weight: 700;
 }
 
-.tx-feedback-status.success{
+.tx-feedback-status.success {
+    display: block;
 
-    display:block;
-
-    background:rgba(16,185,129,.12);
-
-    border:1px solid rgba(16,185,129,.25);
-
-    color:#10b981;
-
+    background: rgba(16, 185, 129, .12);
+    border: 1px solid rgba(16, 185, 129, .25);
+    color: #10b981;
 }
 
-.tx-feedback-status.error{
+.tx-feedback-status.error {
+    display: block;
 
-    display:block;
-
-    background:rgba(239,68,68,.12);
-
-    border:1px solid rgba(239,68,68,.25);
-
-    color:#ef4444;
-
+    background: rgba(239, 68, 68, .12);
+    border: 1px solid rgba(239, 68, 68, .25);
+    color: #ef4444;
 }
-
 
 
 /*=========================================================
-  Privacy Note
+  9. PRIVACY NOTE
 =========================================================*/
 
-.tx-feedback-note{
+.tx-feedback-note {
+    margin-top: 24px;
+    padding-top: 18px;
 
-    margin-top:24px;
+    border-top: 1px solid rgba(148, 163, 184, .18);
 
-    text-align:center;
+    color: #94a3b8;
 
-    font-size:.92rem;
+    text-align: center;
 
-    color:#94a3b8;
-
-    line-height:1.7;
-
-    padding-top:18px;
-
-    border-top:
-    1px solid rgba(148,163,184,.18);
-
+    font-size: .92rem;
+    line-height: 1.7;
 }
 
+
 /*=========================================================
-  Light Mode
+  10. LIGHT MODE
 =========================================================*/
 
-body:not(.dark-mode) .tx-feedback-section{
-
-    background:#ffffff;
-
-    color:#1f2937;
-
-    border:1px solid #e5e7eb;
+body:not(.dark-mode) .tx-feedback-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #1f2937;
 
     box-shadow:
-        0 16px 40px rgba(15,23,42,.08);
-
+        0 16px 40px rgba(15, 23, 42, .08);
 }
 
 body:not(.dark-mode) .tx-feedback-section p,
-body:not(.dark-mode) .tx-feedback-note{
-
-    color:#475569;
-
+body:not(.dark-mode) .tx-feedback-note {
+    color: #475569;
 }
 
-body:not(.dark-mode) .tx-feedback-group label{
-
-    color:#1f2937;
-
+body:not(.dark-mode) .tx-feedback-group label {
+    color: #1f2937;
 }
 
-body:not(.dark-mode) .tx-feedback-tool{
+body:not(.dark-mode) .tx-feedback-tool {
+    background: linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef5ff
+    );
 
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #eef5ff
-        );
-
-    border:1px solid #dbeafe;
-
+    border-color: #dbeafe;
 }
 
-body:not(.dark-mode) .tx-feedback-tool strong{
-
-    color:#2563eb;
-
+body:not(.dark-mode) .tx-feedback-tool strong {
+    color: #2563eb;
 }
 
 body:not(.dark-mode) .tx-feedback-section input,
 body:not(.dark-mode) .tx-feedback-section select,
-body:not(.dark-mode) .tx-feedback-section textarea{
-
-    background:#f8fafc;
-
-    color:#1f2937;
-
-    border:1px solid #cbd5e1;
-
+body:not(.dark-mode) .tx-feedback-section textarea {
+    background: #f8fafc;
+    color: #1f2937;
+    border-color: #cbd5e1;
 }
 
 body:not(.dark-mode) .tx-feedback-section input:focus,
 body:not(.dark-mode) .tx-feedback-section select:focus,
-body:not(.dark-mode) .tx-feedback-section textarea:focus{
-
-    background:#ffffff;
-
-    border-color:#10b981;
-
+body:not(.dark-mode) .tx-feedback-section textarea:focus {
+    background: #ffffff;
+    border-color: #10b981;
 }
 
+body:not(.dark-mode) .rating-card:has(input:checked) {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
 
 
 /*=========================================================
-  Tablet
+  11. DARK MODE RATING CARDS
 =========================================================*/
 
-@media (max-width:900px){
-
-    .rating-options{
-
-        grid-template-columns:
-            repeat(3,1fr);
-
-    }
-
+body.dark-mode .rating-card {
+    background: #ffffff;
 }
 
-@media (max-width:768px){
-
-    .tx-feedback-section{
-
-        padding:30px;
-
-    }
-
+body.dark-mode .rating-card small {
+    color: #1f2937;
 }
-
 
 
 /*=========================================================
-  Mobile
+  12. ACCESSIBILITY
 =========================================================*/
-
-@media (max-width:600px){
-
-    .rating-options{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-}
-
-@media (max-width:480px){
-
-    .tx-feedback-section{
-
-        padding:22px;
-
-        border-radius:18px;
-
-    }
-
-    .tx-feedback-section h2{
-
-        font-size:1.7rem;
-
-    }
-
-    .tx-feedback-submit{
-
-        width:100%;
-
-    }
-
-}
-
-@media (max-width:380px){
-
-    .rating-options{
-
-        grid-template-columns:1fr;
-
-    }
-
-}
-
-/*=========================================================
-  Final Premium Polish
-=========================================================*/
-
-/* Smooth rendering */
-
-.tx-feedback-section,
-.tx-feedback-section *{
-
-    box-sizing:border-box;
-
-}
-
-/* Smooth transitions */
-
-.tx-feedback-section *{
-
-    transition:
-
-        background-color .25s ease,
-
-        border-color .25s ease,
-
-        color .25s ease,
-
-        box-shadow .25s ease,
-
-        transform .25s ease;
-
-}
-
-
-/* Better tool title */
-
-.tx-feedback-tool strong{
-
-    letter-spacing:.02em;
-
-}
-
-
-/* Better labels */
-
-.tx-feedback-group label{
-
-    letter-spacing:.01em;
-
-}
-
-
-/* Better select arrow spacing */
-
-.tx-feedback-section select{
-
-    padding-right:44px;
-
-}
-
-
-/* Better textarea */
-
-.tx-feedback-message{
-
-    line-height:1.7;
-
-}
-
-
-/* Better submit spacing */
-
-.tx-feedback-submit{
-
-    margin-top:8px;
-
-}
-
-
-/* Better privacy note */
-
-.tx-feedback-note{
-
-    border-top:1px solid rgba(148,163,184,.15);
-
-    padding-top:18px;
-
-}
-
-
-/* Better dark mode */
-
-body.dark-mode .rating-card{
-
-    background:#ffffff;
-
-}
-
-body.dark-mode .rating-card small{
-
-    color:#1f2937;
-
-}
-
-
-/* Better light mode selected card */
-
-body:not(.dark-mode) .rating-card:has(input:checked){
-
-    background:#ecfdf5;
-
-    border-color:#10b981;
-
-}
-
-
-/* Better hover */
-
-.rating-card:hover{
-
-    z-index:2;
-
-}
-
-
-/* Accessibility */
 
 .tx-feedback-submit:focus-visible,
-.rating-card:focus-within,
+.rating-card:focus-within {
+    outline: 3px solid rgba(16, 185, 129, .35);
+    outline-offset: 3px;
+}
+
 .tx-feedback-group input:focus,
 .tx-feedback-group textarea:focus,
-.tx-feedback-group select:focus{
+.tx-feedback-group select:focus {
+    outline: none;
+}
 
-    outline:none;
 
+/*=========================================================
+  13. RESPONSIVE LAYOUT
+=========================================================*/
+
+@media (max-width: 900px) {
+
+    .rating-options {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .tx-feedback-section {
+        width: calc(100% - 24px);
+
+        margin: 40px auto 60px;
+        padding: 30px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .rating-options {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .tx-feedback-section {
+        width: calc(100% - 20px);
+
+        margin: 32px auto 48px;
+        padding: 22px;
+
+        border-radius: 18px;
+    }
+
+    .tx-feedback-section h2 {
+        font-size: 1.7rem;
+    }
+
+    .tx-feedback-tool {
+        padding: 20px 18px;
+    }
+
+    .tx-feedback-submit {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+@media (max-width: 380px) {
+
+    .tx-feedback-section {
+        width: calc(100% - 16px);
+        padding: 18px;
+    }
+
+    .rating-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .rating-card {
+        min-height: 108px;
+    }
+}
+
+
+/*=========================================================
+  14. VERY SMALL SCREENS
+=========================================================*/
+
+@media (max-width: 344px) {
+
+    .tx-feedback-section {
+        width: calc(100% - 12px);
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .tx-feedback-section h2 {
+        font-size: 1.55rem;
+    }
+
+    .tx-feedback-tool {
+        padding: 18px 14px;
+    }
+
+    .tx-feedback-tool strong {
+        font-size: 1.15rem;
+    }
+
+    .tx-feedback-section input,
+    .tx-feedback-section select,
+    .tx-feedback-section textarea {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .tx-feedback-submit {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 
