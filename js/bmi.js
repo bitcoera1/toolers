@@ -194,13 +194,3 @@ function moveBMIMarker(bmi) {
 
     marker.style.left = position + "%";
 }
-const resultCard = document.getElementById("bmiResultCard");
-if (resultCard) {
-    resultCard.classList.remove("show-result");
-
-// Record successful calculation
-ToolXoneStatisticsEvents.recordCalculation(
-    "bmi-calculator"
-);
-
-}
