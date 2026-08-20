@@ -227,13 +227,21 @@ actions : {
 
         },
         
-        "weight-converter" : {
-    
-        startCalculating : ".tool-area",
-    
-        learnMore : "#financeInfo"
-    
-    }
+"weight-converter" : {
+
+    startCalculating : ".tool-area",
+
+    learnMore : "#financeInfo"
+
+},
+
+"qr" : {
+
+    startCalculating : ".qr-page",
+
+    learnMore : "#financeInfo"
+
+}
 
 }
 

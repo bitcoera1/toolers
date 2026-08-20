@@ -225,14 +225,30 @@ document.addEventListener("click", function (event) {
         const qrCard =
             document.querySelector(".qr-card");
 
-        if (qrCard) {
+    if (qrCard) {
 
-            qrCard.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+    const navbar =
+        document.getElementById("navbar");
 
-        }
+    const navbarHeight =
+        navbar
+            ? navbar.getBoundingClientRect().height
+            : 0;
+
+    const scrollGap = 16;
+
+    const targetY =
+        qrCard.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight -
+        scrollGap;
+
+    window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: "smooth"
+    });
+
+}
 
         setTimeout(function () {
 

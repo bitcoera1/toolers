@@ -325,39 +325,49 @@
 
             ],
 
-            statistics: [
+            statistics: {
 
-                {
+    functions: {
 
-                    value:
-                        "6",
+        value:
+            "5",
 
-                    label:
-                        "QR Types"
+        label:
+            "QR Types"
 
-                },
+    },
 
-                {
+    accuracy: {
 
-                    value:
-                        "PNG",
+        value:
+            "Instant",
 
-                    label:
-                        "Download"
+        label:
+            "Generation"
 
-                },
+    },
 
-                {
+    availability: {
 
-                    value:
-                        "Free",
+        value:
+            "24/7",
 
-                    label:
-                        "To Use"
+        label:
+            "Availability"
 
-                }
+    },
 
-            ],
+    price: {
+
+        value:
+            "Free",
+
+        label:
+            "Price"
+
+    }
+
+},
 
             preview: {
 

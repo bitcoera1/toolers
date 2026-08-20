@@ -707,11 +707,11 @@ const ToolXoneToolsRegistry = [
         ],
 
         related: [
-            "image-tools",
-            "developer-tools",
-            "ai-tools",
-            "pdf-tools"
-        ],
+    "basic-calculator",
+    "percentage-calculator",
+    "age-calculator",
+    "weight-converter"
+],
 
         featured: false,
         newest: false,
