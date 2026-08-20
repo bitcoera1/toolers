@@ -251,7 +251,11 @@ function initializeNavbar() {
     initializeMobileNavbar();
     initializeMobileNavbarClock();
     initializeMobileSearchBridge();
+    initializeDesktopCategoryDropdowns();
+
 }
+
+
 /* =========================================
    MOBILE CLOCK
 ========================================= */
@@ -658,6 +662,236 @@ function initializeMobileCategoryAccordion() {
             }
         }
     );
+}
+
+/* =========================================
+   DESKTOP CATEGORY DROPDOWNS
+   ========================================= */
+
+function initializeDesktopCategoryDropdowns() {
+
+    const categoryMenus = [
+        ...document.querySelectorAll(
+            ".ToolXone-navbar .category-menu"
+        )
+    ];
+
+    if (!categoryMenus.length) {
+        return;
+    }
+
+
+    function closeCategoryMenu(menu) {
+
+        const button =
+            menu.querySelector(".category-btn");
+
+        const dropdown =
+            menu.querySelector(".category-dropdown");
+
+        if (!button || !dropdown) {
+            return;
+        }
+
+        menu.classList.remove("is-open");
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        dropdown.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    function openCategoryMenu(menu) {
+
+        const button =
+            menu.querySelector(".category-btn");
+
+        const dropdown =
+            menu.querySelector(".category-dropdown");
+
+        if (!button || !dropdown) {
+            return;
+        }
+
+        categoryMenus.forEach(
+            otherMenu => {
+
+                if (otherMenu !== menu) {
+                    closeCategoryMenu(
+                        otherMenu
+                    );
+                }
+
+            }
+        );
+
+        menu.classList.add("is-open");
+
+        button.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        dropdown.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+
+    categoryMenus.forEach(menu => {
+
+        const button =
+            menu.querySelector(".category-btn");
+
+        if (!button) {
+            return;
+        }
+
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        const dropdown =
+            menu.querySelector(
+                ".category-dropdown"
+            );
+
+        if (dropdown) {
+
+            dropdown.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+
+        button.addEventListener(
+            "click",
+            event => {
+
+                /*
+                 * Mobile accordion owns
+                 * category clicks below 1401px.
+                 */
+
+                if (
+                    window.innerWidth <= 1400
+                ) {
+                    return;
+                }
+
+
+                event.preventDefault();
+                event.stopPropagation();
+
+
+                const isOpen =
+                    menu.classList.contains(
+                        "is-open"
+                    );
+
+
+                if (isOpen) {
+
+                    closeCategoryMenu(
+                        menu
+                    );
+
+                } else {
+
+                    openCategoryMenu(
+                        menu
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                window.innerWidth <= 1400
+            ) {
+                return;
+            }
+
+
+            const navbar =
+                document.querySelector(
+                    ".ToolXone-navbar"
+                );
+
+
+            if (
+                navbar &&
+                !navbar.contains(
+                    event.target
+                )
+            ) {
+
+                categoryMenus.forEach(
+                    closeCategoryMenu
+                );
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key !== "Escape"
+            ) {
+                return;
+            }
+
+
+            categoryMenus.forEach(
+                closeCategoryMenu
+            );
+
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            if (
+                window.innerWidth <= 1400
+            ) {
+                categoryMenus.forEach(
+                    closeCategoryMenu
+                );
+            }
+
+        }
+    );
+
 }
 
 /* =========================================

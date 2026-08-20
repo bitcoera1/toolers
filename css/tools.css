@@ -349,6 +349,13 @@ body.dark-mode .tool-card{
     display:block;
 }
 
+
+/* CLICK-OPEN CATEGORY DROPDOWN */
+
+.category-menu.is-open .category-dropdown{
+    display:block;
+}
+
 .category-dropdown a,
 .appearance-dropdown button{
     display:block;
@@ -758,30 +765,42 @@ body.dark-mode .footer-bottom{
     }
 }
 
-
 /* ---------- MOBILE + TABLET ---------- */
 
 @media(max-width:1400px){
 
-    #navbar{
-        position:sticky;
-        top:0;
-        z-index:9999;
-    }
+/* =========================================
+   MOBILE HAMBURGER MENU PANEL
+========================================= */
 
-    .ToolXone-navbar{
-        display:block !important;
-        width:100% !important;
-        min-height:0 !important;
-        padding:0 !important;
+.mobile-nav-panel{
+    display:none !important;
 
-        background:#111827 !important;
+    width:100% !important;
+    min-width:0 !important;
 
-        box-shadow:
-            0 6px 20px
-            rgba(0,0,0,.18);
-    }
+    padding:12px;
 
+    box-sizing:border-box;
+
+    background:#111827;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    max-height:
+        calc(
+            100dvh - 58px
+        );
+
+    overflow-y:auto;
+    overscroll-behavior:contain;
+}
+
+.mobile-nav-panel.active{
+    display:block !important;
+}
 
     /* TOP STICKY ROW */
 

@@ -5,146 +5,228 @@
    - Generate the shared ToolXone footer
    - Keep footer structure consistent across all pages
    - Use the shared footer styles from css/tools.css
+   - Initialize safely regardless of script timing
    ========================================================== */
 
 (function () {
 
-    const footerContainer = document.getElementById("siteFooter");
+    "use strict";
 
-    if (!footerContainer) {
-        console.warn("⚠️ ToolXone Footer: #siteFooter not found.");
-        return;
-    }
+    function initializeFooter() {
 
-    const currentYear = new Date().getFullYear();
+        const footerContainer =
+            document.getElementById("siteFooter");
 
-    footerContainer.innerHTML = `
+        if (!footerContainer) {
 
-        <footer class="footer-content">
+            console.warn(
+                "⚠️ ToolXone Footer: #siteFooter not found."
+            );
 
-            <div class="footer-grid">
+            return;
+        }
+
+        const currentYear =
+            new Date().getFullYear();
+
+
+        footerContainer.innerHTML = `
+
+            <div class="footer-content">
 
                 <!-- ToolXone -->
-                <div class="footer-column">
+                <div class="footer-grid">
 
-                    <h3>🟢 ToolXone</h3>
+                    <div class="footer-column">
+
+                        <h3>🟢 ToolXone</h3>
+
+                        <p>
+                            Free Online Calculators & Smart Utility Tools.
+                            Helping everyone calculate, convert and make
+                            smarter decisions —
+                            Fast, Accurate & Free.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Quick Links -->
+                    <div class="footer-column">
+
+                        <h3>🚀 Quick Links</h3>
+
+                        <a href="index.html">
+                            🏠 Home
+                        </a>
+
+                        <a href="index.html#dashboard">
+                            ⭐ Popular Tools
+                        </a>
+
+                        <a href="index.html#categories-section">
+                            📂 Categories
+                        </a>
+
+                        <a href="index.html#dashboard">
+                            🧮 Explore Tools
+                        </a>
+
+                    </div>
+
+
+                    <!-- Company -->
+                    <div class="footer-column">
+
+                        <h3>🏢 Company</h3>
+
+                        <a href="about.html">
+                            ℹ️ About Us
+                        </a>
+
+                        <a href="contact.html">
+                            📧 Contact
+                        </a>
+
+                        <a href="feedback.html">
+                            💬 Feedback
+                        </a>
+
+                    </div>
+
+
+                    <!-- Legal -->
+                    <div class="footer-column">
+
+                        <h3>📜 Legal</h3>
+
+                        <a href="privacy-policy.html">
+                            🔒 Privacy Policy
+                        </a>
+
+                        <a href="terms-conditions.html">
+                            📄 Terms & Conditions
+                        </a>
+
+                        <a href="disclaimer.html">
+                            ⚠️ Disclaimer
+                        </a>
+
+                        <a href="affiliate-disclosure.html">
+                            🤝 Affiliate Disclosure
+                        </a>
+
+                    </div>
+
+
+                    <!-- Follow ToolXone -->
+                    <div class="footer-column">
+
+                        <h3>🌐 Follow ToolXone</h3>
+
+                        <a
+                            href="https://www.facebook.com/ToolXone"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            📘 Facebook
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/toolxone/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            📸 Instagram
+                        </a>
+
+                        <a
+                            href="https://www.pinterest.com/toolxone/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            📌 Pinterest
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/company/toolxone/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            💼 LinkedIn
+                        </a>
+
+                        <a
+                            href="https://www.youtube.com/@toolxone"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            ▶️ YouTube
+                        </a>
+
+                        <a
+                            href="https://x.com/toolxone"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            ✖️ X
+                        </a>
+
+                        <a
+                            href="https://www.reddit.com/user/ToolXone/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            👽 Reddit
+                        </a>
+
+                        <a
+                            href="https://medium.com/@toolxone"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            ✍️ Medium
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
 
                     <p>
-                        Free Online Calculators & Smart Utility Tools.
-                        Helping everyone calculate, convert and make smarter decisions —
-                        Fast, Accurate & Free.
+                        © ${currentYear}
+                        ToolXone. All rights reserved.
                     </p>
 
                 </div>
 
-
-                <!-- Quick Links -->
-                <div class="footer-column">
-
-                    <h3>🚀 Quick Links</h3>
-
-                    <a href="index.html">🏠 Home</a>
-                    <a href="index.html#dashboard">⭐ Popular Tools</a>
-                    <a href="index.html#categories-section">📂 Categories</a>
-                    <a href="index.html#dashboard">🧮 Explore Tools</a>
-
-                </div>
-
-
-                <!-- Company -->
-                <div class="footer-column">
-
-                    <h3>🏢 Company</h3>
-
-                    <a href="about.html">ℹ️ About Us</a>
-                    <a href="contact.html">📧 Contact</a>
-                    <a href="feedback.html">💬 Feedback</a>
-
-                </div>
-
-
-                <!-- Legal -->
-                <div class="footer-column">
-
-                    <h3>📜 Legal</h3>
-
-                    <a href="privacy-policy.html">🔒 Privacy Policy</a>
-                    <a href="terms-conditions.html">📄 Terms & Conditions</a>
-                    <a href="disclaimer.html">⚠️ Disclaimer</a>
-                    <a href="affiliate-disclosure.html">🤝 Affiliate Disclosure</a>
-
-                </div>
-
-
-                <!-- Follow ToolXone -->
-                <div class="footer-column">
-
-                    <h3>🌐 Follow ToolXone</h3>
-
-                    <a href="https://www.facebook.com/ToolXone"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        📘 Facebook
-                    </a>
-
-                    <a href="https://www.instagram.com/toolxone/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        📸 Instagram
-                    </a>
-
-                    <a href="https://www.pinterest.com/toolxone/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        📌 Pinterest
-                    </a>
-
-                    <a href="https://www.linkedin.com/company/toolxone/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        💼 LinkedIn
-                    </a>
-
-                    <a href="https://www.youtube.com/@toolxone"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        ▶️ YouTube
-                    </a>
-
-                    <a href="https://x.com/toolxone"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        ✖️ X
-                    </a>
-
-                    <a href="https://www.reddit.com/user/ToolXone/"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        👽 Reddit
-                    </a>
-
-                    <a href="https://medium.com/@toolxone"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        ✍️ Medium
-                    </a>
-
-                </div>
-
             </div>
 
+        `;
 
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
+        console.log(
+            "✅ ToolXone Footer initialized."
+        );
+    }
 
-                <p>
-                    © ${currentYear} ToolXone. All rights reserved.
-                </p>
 
-            </div>
+    /*
+     * Safe initialization
+     *
+     * If this script loads after the DOM is ready,
+     * initialize immediately.
+     *
+     * Otherwise wait for DOMContentLoaded.
+     */
 
-        </footer>
+    if (
+        document.readyState === "loading"
+    ) {
 
-    `;
+        document.addEventListener(
+            "DOMContentLoaded",
+            initializeFooter
+        );
+
+    } else {
+
+        initializeFooter();
+
+    }
 
 })();
