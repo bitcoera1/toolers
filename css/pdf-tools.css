@@ -1,0 +1,1425 @@
+/* ==========================================================
+   TOOLXONE PDF ECOSYSTEM
+   Visual System v1.0
+========================================================== */
+
+
+/* ==========================================================
+   ROOT VARIABLES
+========================================================== */
+
+:root {
+
+    --pdf-primary: #0f766e;
+    --pdf-primary-dark: #115e59;
+    --pdf-primary-light: #14b8a6;
+
+    --pdf-accent: #22c55e;
+
+    --pdf-bg: #f8fafc;
+    --pdf-surface: #ffffff;
+    --pdf-surface-soft: #f1f5f9;
+
+    --pdf-text: #0f172a;
+    --pdf-text-soft: #475569;
+    --pdf-text-muted: #64748b;
+
+    --pdf-border: #e2e8f0;
+
+    --pdf-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+
+    --pdf-shadow-hover:
+        0 18px 45px rgba(15, 23, 42, 0.14);
+
+    --pdf-radius: 18px;
+
+    --pdf-container: 1200px;
+
+}
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.pdf-tools-page {
+
+    width: 100%;
+
+    max-width:
+        var(--pdf-container);
+
+    margin:
+        0 auto;
+
+    padding:
+        0 24px 80px;
+
+    box-sizing:
+        border-box;
+
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.pdf-hero-section {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    min-height:
+        420px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        70px 24px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a 0%,
+            #123c46 45%,
+            #0f766e 100%
+        );
+
+    color:
+        #ffffff;
+
+}
+
+
+/* Decorative glow */
+
+.pdf-hero-section::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        420px;
+
+    height:
+        420px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(20, 184, 166, 0.30),
+            transparent 70%
+        );
+
+    top:
+        -180px;
+
+    right:
+        -100px;
+
+}
+
+
+.pdf-hero-section::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        350px;
+
+    height:
+        350px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34, 197, 94, 0.18),
+            transparent 70%
+        );
+
+    bottom:
+        -170px;
+
+    left:
+        -100px;
+
+}
+
+
+.pdf-hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+}
+
+
+.pdf-hero-icon {
+
+    width:
+        72px;
+
+    height:
+        72px;
+
+    margin:
+        0 auto 18px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        20px;
+
+    font-size:
+        38px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border:
+        1px solid rgba(255,255,255,0.20);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.20);
+
+}
+
+
+.pdf-hero-badge {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        16px;
+
+    padding:
+        7px 14px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(20,184,166,0.18);
+
+    border:
+        1px solid rgba(94,234,212,0.30);
+
+    color:
+        #99f6e4;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.4px;
+
+}
+
+
+.pdf-hero-content h1 {
+
+    margin:
+        0 0 18px;
+
+    font-size:
+        clamp(36px, 6vw, 64px);
+
+    line-height:
+        1.05;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -1.5px;
+
+}
+
+
+.pdf-hero-content p {
+
+    max-width:
+        760px;
+
+    margin:
+        0 auto;
+
+    color:
+        #cbd5e1;
+
+    font-size:
+        clamp(16px, 2vw, 20px);
+
+    line-height:
+        1.7;
+
+}
+
+
+/* ==========================================================
+   HERO BUTTONS
+========================================================== */
+
+.pdf-hero-actions {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        14px;
+
+    margin-top:
+        30px;
+
+}
+
+
+.pdf-primary-btn,
+.pdf-secondary-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        48px;
+
+    padding:
+        0 24px;
+
+    border-radius:
+        12px;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.pdf-primary-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            #14b8a6,
+            #22c55e
+        );
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 10px 25px rgba(20,184,166,0.28);
+
+}
+
+
+.pdf-primary-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 30px rgba(20,184,166,0.38);
+
+}
+
+
+.pdf-secondary-btn {
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid rgba(255,255,255,0.22);
+
+}
+
+
+.pdf-secondary-btn:hover {
+
+    background:
+        rgba(255,255,255,0.16);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   SECTION STRUCTURE
+========================================================== */
+
+.pdf-tools-section {
+
+    padding:
+        70px 0 10px;
+
+}
+
+
+.pdf-intro-section {
+
+    padding:
+        70px 0 30px;
+
+}
+
+
+.pdf-section-heading {
+
+    max-width:
+        780px;
+
+    margin:
+        0 auto 35px;
+
+    text-align:
+        center;
+
+}
+
+
+.pdf-section-label {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--pdf-primary);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.pdf-section-heading h2 {
+
+    margin:
+        0 0 14px;
+
+    color:
+        var(--pdf-text);
+
+    font-size:
+        clamp(28px, 4vw, 40px);
+
+    line-height:
+        1.15;
+
+    letter-spacing:
+        -0.8px;
+
+}
+
+
+.pdf-section-heading p {
+
+    margin:
+        0;
+
+    color:
+        var(--pdf-text-soft);
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* ==========================================================
+   CATEGORY NAVIGATION
+========================================================== */
+
+.pdf-category-navigation {
+
+    padding:
+        10px 0 20px;
+
+}
+
+
+.pdf-category-nav-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap:
+        16px;
+
+}
+
+
+.pdf-category-nav-item {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 145px;
+
+    padding: 22px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius: var(--pdf-radius);
+
+    background: var(--pdf-surface);
+
+    box-shadow: var(--pdf-shadow);
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: var(--pdf-text);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.pdf-category-nav-item:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        var(--pdf-shadow-hover);
+
+    border-color:
+        rgba(20,184,166,0.45);
+
+}
+
+
+.pdf-category-nav-icon {
+
+    width:
+        52px;
+
+    height:
+        52px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-bottom:
+        12px;
+
+    border-radius:
+        14px;
+
+    background:
+        #ecfeff;
+
+    font-size:
+        26px;
+
+}
+
+
+.pdf-category-nav-item h3 {
+
+    margin:
+        0;
+
+    font-size:
+        16px;
+
+    font-weight:
+        750;
+
+}
+
+
+.pdf-category-nav-item p {
+
+    margin:
+        5px 0 0;
+
+    color:
+        var(--pdf-text-muted);
+
+    font-size:
+        13px;
+
+}
+
+
+/* ==========================================================
+   UNIVERSAL PDF TOOL CARD GRID
+   Responsive • Auto-sizing • Future-proof
+========================================================== */
+
+.pdf-tool-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(210px, 1fr)
+        );
+
+    gap:
+        20px;
+}
+
+
+/* ==========================================================
+   TOOL CARD
+========================================================== */
+
+.pdf-tools-page .tool-card {
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    min-height:
+        220px;
+
+    padding:
+        25px;
+
+    box-sizing:
+        border-box;
+
+    border:
+        1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius);
+
+    background:
+        var(--pdf-surface);
+
+    box-shadow:
+        var(--pdf-shadow);
+
+    text-decoration:
+        none;
+
+    color:
+        var(--pdf-text);
+
+    overflow:
+        hidden;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+
+}
+
+
+.pdf-tools-page .tool-card::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        100px;
+
+    height:
+        100px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(20,184,166,0.07);
+
+    right:
+        -35px;
+
+    bottom:
+        -35px;
+
+}
+
+
+.pdf-tools-page .tool-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        var(--pdf-shadow-hover);
+
+    border-color:
+        rgba(20,184,166,0.45);
+
+}
+
+
+.pdf-tools-page .tool-icon {
+
+    width:
+        54px;
+
+    height:
+        54px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-bottom:
+        18px;
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfeff,
+            #dcfce7
+        );
+
+    font-size:
+        27px;
+
+}
+
+
+.pdf-tools-page .tool-card h3 {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        0 0 9px;
+
+    font-size:
+        19px;
+
+    line-height:
+        1.3;
+
+}
+
+
+.pdf-tools-page .tool-card p {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin:
+        0;
+
+    color:
+        var(--pdf-text-soft);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+}
+
+
+.pdf-tools-page .tool-card .pdf-tool-action {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin-top:
+        auto;
+
+    padding-top:
+        18px;
+
+    color:
+        var(--pdf-primary);
+
+    font-size:
+        13px;
+
+    font-weight:
+        750;
+
+}
+
+
+/* ==========================================================
+   FEATURED SECTION
+========================================================== */
+
+.pdf-featured-section {
+
+    margin-top:
+        20px;
+
+    padding:
+        55px 28px;
+
+    border:
+        1px solid var(--pdf-border);
+
+    border-radius:
+        26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f0fdfa
+        );
+
+}
+
+
+/* ==========================================================
+   CONVERSION SECTION
+========================================================== */
+
+.pdf-conversion-section {
+
+    padding:
+        70px 28px;
+
+    border-radius:
+        26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #ecfeff
+        );
+
+}
+
+
+/* ==========================================================
+   INTELLIGENCE SECTION
+========================================================== */
+
+.pdf-intelligence-section {
+
+    padding:
+        70px 28px;
+
+    border-radius:
+        26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #f5f3ff
+        );
+
+}
+
+
+/* ==========================================================
+   INFO / CONTENT
+========================================================== */
+
+.pdf-info-section {
+
+    margin-top:
+        70px;
+
+    padding:
+        35px;
+
+    border:
+        1px solid var(--pdf-border);
+
+    border-radius:
+        20px;
+
+    background:
+        var(--pdf-surface);
+
+    box-shadow:
+        var(--pdf-shadow);
+
+    color:
+        var(--pdf-text-soft);
+
+    line-height:
+        1.75;
+
+}
+
+
+.pdf-info-section h2,
+.pdf-info-section h3 {
+
+    color:
+        var(--pdf-text);
+
+}
+
+
+/* ==========================================================
+   FAQ
+========================================================== */
+
+.pdf-faq-section {
+
+    margin-top:
+        40px;
+
+}
+
+
+/* ==========================================================
+   RELATED / REVIEWS / FEEDBACK
+========================================================== */
+
+.pdf-related-section,
+.pdf-reviews-section,
+.pdf-feedback-section {
+
+    margin-top:
+        45px;
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.pdf-empty-state {
+
+    grid-column:
+        1 / -1;
+
+    padding:
+        40px;
+
+    text-align:
+        center;
+
+    border:
+        1px dashed var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius);
+
+    color:
+        var(--pdf-text-muted);
+
+    background:
+        var(--pdf-surface-soft);
+
+}
+
+
+/* ==========================================================
+   DARK THEME
+========================================================== */
+
+body.dark-mode {
+
+    --pdf-bg: #020617;
+
+    --pdf-surface: #0f172a;
+
+    --pdf-surface-soft: #111827;
+
+    --pdf-text: #f8fafc;
+
+    --pdf-text-soft: #cbd5e1;
+
+    --pdf-text-muted: #94a3b8;
+
+    --pdf-border: #1e293b;
+
+}
+
+
+body.dark-mode .pdf-category-nav-item,
+body.dark-mode .pdf-tool-card,
+body.dark-mode .pdf-info-section {
+
+    background:
+        var(--pdf-surface);
+
+}
+
+
+body.dark-mode .pdf-featured-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #0f2f2d
+        );
+
+}
+
+
+body.dark-mode .pdf-conversion-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #082f49
+        );
+
+}
+
+
+body.dark-mode .pdf-intelligence-section {
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e1b4b
+        );
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .pdf-tools-page {
+
+        padding:
+            0 16px 60px;
+
+    }
+
+
+    .pdf-hero-section {
+
+        min-height:
+            390px;
+
+        padding:
+            55px 18px;
+
+    }
+
+
+    .pdf-hero-content h1 {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .pdf-hero-content p {
+
+        font-size:
+            16px;
+
+    }
+
+
+    .pdf-category-nav-grid {
+
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    }
+
+
+    .pdf-tool-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .pdf-featured-section,
+    .pdf-conversion-section,
+    .pdf-intelligence-section {
+
+        padding:
+            40px 18px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .pdf-category-nav-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .pdf-hero-actions {
+
+        flex-direction:
+            column;
+
+        width:
+            100%;
+
+    }
+
+
+    .pdf-primary-btn,
+    .pdf-secondary-btn {
+
+        width:
+            100%;
+
+    }
+
+
+    .pdf-info-section {
+
+        padding:
+            24px;
+
+    }
+
+}
+
+/* ==========================================================
+   TOOLXONE DARK THEME — PDF CARD SYSTEM
+   Matches the Related Tools card visual language
+========================================================== */
+
+/* ----------------------------------------------------------
+   PDF CATEGORY NAVIGATION CARDS
+---------------------------------------------------------- */
+
+body.dark-mode .pdf-category-nav-item {
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    color: #f8fafc;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+
+}
+
+
+body.dark-mode .pdf-category-nav-item:hover {
+
+    background: #1e293b;
+
+    border-color:
+        rgba(20, 184, 166, 0.45);
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28);
+
+}
+
+
+/* Category icon */
+
+body.dark-mode .pdf-category-nav-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ccfbf1,
+            #dbeafe
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+}
+
+
+/* Category title */
+
+body.dark-mode .pdf-category-nav-item h3 {
+
+    color:
+        #f8fafc;
+
+}
+
+
+/* Category description */
+
+body.dark-mode .pdf-category-nav-item p {
+
+    color:
+        #cbd5e1;
+
+}
+
+
+/* ----------------------------------------------------------
+   PDF TOOL CARDS
+---------------------------------------------------------- */
+
+body.dark-mode .pdf-tools-page .tool-card {
+
+    background:
+        #1e293b;
+
+    border:
+        1px solid #334155;
+
+    color:
+        #f8fafc;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+
+}
+
+
+body.dark-mode .pdf-tools-page .tool-card:hover {
+
+    background:
+        #1e293b;
+
+    border-color:
+        rgba(20, 184, 166, 0.45);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28);
+
+}
+
+
+/* Tool card title */
+
+body.dark-mode .pdf-tools-page .tool-card h3 {
+
+    color:
+        #f8fafc;
+
+}
+
+
+/* Tool card description */
+
+body.dark-mode .pdf-tools-page .tool-card p {
+
+    color:
+        #cbd5e1;
+
+}
+
+
+/* Tool card action */
+
+body.dark-mode .pdf-tools-page .tool-card .pdf-tool-action {
+
+    color:
+        #34d399;
+
+}
+
+
+/* Tool card icon */
+
+body.dark-mode .pdf-tools-page .tool-icon {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ccfbf1,
+            #dbeafe
+        );
+
+}
+
+
+/* Decorative corner glow */
+
+body.dark-mode .pdf-tools-page .tool-card::after {
+
+    background:
+        rgba(20, 184, 166, 0.10);
+
+}
+
+
+/* ----------------------------------------------------------
+   PDF EMPTY STATE
+---------------------------------------------------------- */
+
+body.dark-mode .pdf-empty-state {
+
+    background:
+        #111827;
+
+    border-color:
+        #334155;
+
+    color:
+        #94a3b8;
+
+}
+
+/* ==========================================================
+   TOOLXONE PDF — HIDE EMPTY CONTENT SECTIONS
+   Prevents empty white placeholder blocks before Related Tools
+   ========================================================== */
+
+.pdf-info-section:not(:has(*)),
+.pdf-faq-section:not(:has(*)) {
+    display: none !important;
+}

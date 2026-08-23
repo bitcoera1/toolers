@@ -112,86 +112,158 @@ empty configuration.
             name: "Utilities"
         },
 
+        {
+    id: "pdf",
+    icon: "📄",
+    name: "PDF Tools",
+
+    presentation:
+        "showcase",
+
+    description:
+        "Complete PDF workspace",
+
+    link:
+        "pdf-tools.html",
+
+    cta:
+        "Explore PDF Tools",
+
+    capabilities: [
+        {
+            icon: "🔄",
+            label: "Convert"
+        },
+        {
+            icon: "⚡",
+            label: "Compress"
+        },
+        {
+            icon: "✏️",
+            label: "Edit"
+        },
+        {
+            icon: "🗂️",
+            label: "Organize"
+        },
+        {
+            icon: "🔐",
+            label: "Security"
+        },
+        {
+            icon: "🔍",
+            label: "Extract & OCR"
+        },
+        {
+            icon: "🤖",
+            label: "Intelligence"
+        }
+    ]
+}
         
     ];
 
 
-    /* ======================================================
-       Build Category Views
-       ====================================================== */
+/* ======================================================
+   Build Category Views
+   ====================================================== */
 
-    function buildCategories() {
+function buildCategories() {
 
-        const registry =
-            getRegistry();
+    const registry =
+        getRegistry();
 
 
-        return categoryDefinitions.map(
-            function (category) {
+    return categoryDefinitions.map(
+        function (category) {
 
-                const tools =
-                    registry
-                        .filter(function (tool) {
+            const tools =
+                registry
+                    .filter(function (tool) {
 
-                            return (
-                                tool &&
-                                tool.categoryId ===
+                        return (
+                            tool &&
+                            tool.categoryId ===
                                 category.id &&
-                                tool.active === true
-                            );
+                            tool.active === true
+                        );
 
-                        })
-                        .map(function (tool) {
+                    })
+                    .map(function (tool) {
 
-                            return {
+                        return {
 
-                                id:
-                                    tool.id,
+                            id:
+                                tool.id,
 
-                                icon:
-                                    tool.icon,
+                            icon:
+                                tool.icon,
 
-                                name:
-                                    tool.name,
+                            name:
+                                tool.name,
 
-                                link:
-                                    tool.url,
+                            link:
+                                tool.url,
 
-                                related:
-                                    Array.isArray(
-                                        tool.related
-                                    )
-                                        ? [
-                                            ...tool.related
-                                        ]
-                                        : []
+                            related:
+                                Array.isArray(
+                                    tool.related
+                                )
+                                    ? [
+                                        ...tool.related
+                                    ]
+                                    : []
 
-                            };
+                        };
 
-                        });
+                    });
 
 
-                return {
+            return {
 
-                    id:
-                        category.id,
+                id:
+                    category.id,
 
-                    icon:
-                        category.icon,
+                icon:
+                    category.icon,
 
-                    name:
-                        category.name,
+                name:
+                    category.name,
 
-                    tools:
-                        tools
+                tools:
+                    tools,
 
-                };
+                presentation:
+                    category.presentation ||
+                    "standard",
 
-            }
-        );
+                description:
+                    category.description ||
+                    "",
 
-    }
+                link:
+                    category.link ||
+                    "",
 
+                cta:
+                    category.cta ||
+                    "",
+
+                capabilities:
+                    Array.isArray(
+                        category.capabilities
+                    )
+                        ? [
+                            ...category.capabilities
+                        ]
+                        : []
+
+            };
+
+        }
+    );
+
+}
 
     /* ======================================================
        Featured Tool IDs

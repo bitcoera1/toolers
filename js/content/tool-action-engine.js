@@ -235,13 +235,31 @@ actions : {
 
 },
 
-"qr" : {
+    "qr" : {
 
-    startCalculating : ".qr-page",
+        startCalculating : ".qr-page",
 
-    learnMore : "#financeInfo"
+        learnMore : "#financeInfo"
 
-}
+    },
+
+
+    "pdf-to-image" : {
+
+        startCalculating : "#pdfImageDropZone",
+
+        learnMore : "#pdfInfo"
+
+    },
+
+
+    "image-to-pdf" : {
+
+        startCalculating : "#imagePdfDropZone",
+
+        learnMore : "#pdfInfo"
+
+    }
 
 }
 

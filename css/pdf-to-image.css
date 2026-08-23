@@ -1,0 +1,1599 @@
+/*!
+ * ==========================================================
+ * ToolXone PDF to Image
+ * ----------------------------------------------------------
+ * Dedicated UI stylesheet
+ *
+ * Version : 1.0.0
+ * Scope   : pdf-to-image.html only
+ * ==========================================================
+ */
+
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.pdf-image-page {
+
+    width: min(1180px, 94%);
+
+    margin: 0 auto;
+
+    padding:
+        30px
+        0
+        70px;
+
+}
+
+
+/* ==========================================================
+   INTRO
+========================================================== */
+
+.pdf-image-intro {
+
+    text-align: center;
+
+    max-width: 850px;
+
+    margin:
+        0 auto
+        35px;
+
+}
+
+.pdf-image-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        8px
+        16px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(16, 185, 129, .12);
+
+    color:
+        #059669;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .06em;
+
+    margin-bottom:
+        14px;
+
+}
+
+.pdf-image-intro h1 {
+
+    margin:
+        0 0 14px;
+
+    font-size:
+        clamp(30px, 4vw, 48px);
+
+    line-height:
+        1.1;
+
+}
+
+.pdf-image-intro p {
+
+    margin:
+        0 auto;
+
+    max-width:
+        760px;
+
+    color:
+        #64748b;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* ==========================================================
+   MAIN TOOL CARD
+========================================================== */
+
+.pdf-image-tool-card {
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:
+        26px;
+
+    padding:
+        clamp(20px, 4vw, 38px);
+
+    box-shadow:
+        0 18px 50px
+        rgba(15, 23, 42, .10);
+
+}
+
+
+/* ==========================================================
+   DROP ZONE
+========================================================== */
+
+.pdf-image-drop-zone {
+
+    min-height:
+        310px;
+
+    border:
+        2px dashed
+        #cbd5e1;
+
+    border-radius:
+        22px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    padding:
+        35px 20px;
+
+    background:
+        #f8fafc;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease,
+        transform .25s ease;
+
+}
+
+.pdf-image-drop-zone:hover {
+
+    border-color:
+        #10b981;
+
+    background:
+        #f0fdf4;
+
+}
+
+.pdf-image-drop-zone.is-dragover {
+
+    border-color:
+        #10b981;
+
+    background:
+        #ecfdf5;
+
+    transform:
+        scale(1.01);
+
+}
+
+.pdf-image-upload-icon {
+
+    width:
+        74px;
+
+    height:
+        74px;
+
+    border-radius:
+        20px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        rgba(16, 185, 129, .12);
+
+    font-size:
+        38px;
+
+    margin-bottom:
+        18px;
+
+}
+
+.pdf-image-drop-zone h2 {
+
+    margin:
+        0 0 8px;
+
+    font-size:
+        25px;
+
+}
+
+.pdf-image-drop-zone p {
+
+    margin:
+        4px 0;
+
+    color:
+        #64748b;
+
+}
+
+.pdf-image-drop-zone > span {
+
+    margin:
+        5px 0 12px;
+
+    color:
+        #94a3b8;
+
+    font-size:
+        14px;
+
+}
+
+.pdf-image-supported {
+
+    margin-top:
+        16px !important;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .08em;
+
+    color:
+        #94a3b8 !important;
+
+}
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.pdf-image-primary-btn,
+.pdf-image-secondary-btn,
+.pdf-image-create-btn,
+.pdf-image-clear-btn,
+.pdf-image-download-btn {
+
+    border:
+        0;
+
+    border-radius:
+        12px;
+
+    padding:
+        12px 18px;
+
+    font:
+        inherit;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+
+}
+
+.pdf-image-primary-btn,
+.pdf-image-create-btn,
+.pdf-image-download-btn {
+
+    background:
+        #10b981;
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(16, 185, 129, .20);
+
+}
+
+.pdf-image-primary-btn:hover,
+.pdf-image-create-btn:hover,
+.pdf-image-download-btn:hover {
+
+    background:
+        #059669;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(16, 185, 129, .28);
+
+}
+
+.pdf-image-secondary-btn {
+
+    background:
+        #ffffff;
+
+    color:
+        #334155;
+
+    border:
+        1px solid
+        #cbd5e1;
+
+}
+
+.pdf-image-secondary-btn:hover {
+
+    border-color:
+        #10b981;
+
+    color:
+        #059669;
+
+    transform:
+        translateY(-1px);
+
+}
+
+.pdf-image-clear-btn {
+
+    background:
+        #f8fafc;
+
+    color:
+        #64748b;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+}
+
+.pdf-image-clear-btn:hover {
+
+    background:
+        #f1f5f9;
+
+    color:
+        #334155;
+
+}
+
+
+/* ==========================================================
+   FILE STATUS
+========================================================== */
+
+.pdf-image-file-status {
+
+    margin-top:
+        18px;
+
+    min-height:
+        24px;
+
+    text-align:
+        center;
+
+    color:
+        #475569;
+
+    font-size:
+        14px;
+
+}
+
+
+/* ==========================================================
+   WORKSPACE
+========================================================== */
+
+.pdf-image-workspace {
+
+    margin-top:
+        28px;
+
+}
+
+.pdf-image-workspace[hidden] {
+
+    display:
+        none;
+
+}
+
+
+/* ==========================================================
+   WORKSPACE HEADER
+========================================================== */
+
+.pdf-image-workspace-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding-bottom:
+        22px;
+
+    border-bottom:
+        1px solid
+        #e2e8f0;
+
+}
+
+.pdf-image-workspace-header h2 {
+
+    margin:
+        0 0 6px;
+
+}
+
+.pdf-image-workspace-header p {
+
+    margin:
+        0;
+
+    color:
+        #64748b;
+
+}
+
+
+/* ==========================================================
+   PAGE ACTIONS
+========================================================== */
+
+.pdf-image-page-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    padding:
+        20px 0;
+
+}
+
+.pdf-image-selection-status {
+
+    margin-left:
+        auto;
+
+    color:
+        #64748b;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+}
+
+
+/* ==========================================================
+   PAGE PREVIEW GRID
+========================================================== */
+
+.pdf-image-preview-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(170px, 1fr));
+
+    gap:
+        18px;
+
+}
+
+
+/* ==========================================================
+   PAGE PREVIEW CARD
+========================================================== */
+
+.pdf-image-page-card {
+
+    position:
+        relative;
+
+    background:
+        #ffffff;
+
+    border:
+        2px solid
+        #e2e8f0;
+
+    border-radius:
+        16px;
+
+    padding:
+        12px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.pdf-image-page-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #a7f3d0;
+
+    box-shadow:
+        0 10px 25px
+        rgba(15, 23, 42, .10);
+
+}
+
+.pdf-image-page-card.is-selected {
+
+    border-color:
+        #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, .12);
+
+}
+
+.pdf-image-page-card canvas {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    border-radius:
+        9px;
+
+    background:
+        #f8fafc;
+
+}
+
+.pdf-image-page-number {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-top:
+        10px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    color:
+        #475569;
+
+}
+
+
+/* ==========================================================
+   PAGE SELECTION INDICATOR
+========================================================== */
+
+.pdf-image-page-check {
+
+    position:
+        absolute;
+
+    top:
+        18px;
+
+    right:
+        18px;
+
+    width:
+        27px;
+
+    height:
+        27px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #ffffff;
+
+    border:
+        2px solid
+        #cbd5e1;
+
+    color:
+        transparent;
+
+    font-size:
+        14px;
+
+    font-weight:
+        900;
+
+}
+
+.pdf-image-page-card.is-selected
+.pdf-image-page-check {
+
+    background:
+        #10b981;
+
+    border-color:
+        #10b981;
+
+    color:
+        #ffffff;
+
+}
+
+
+/* ==========================================================
+   SETTINGS
+========================================================== */
+
+.pdf-image-settings {
+
+    margin-top:
+        32px;
+
+    padding:
+        24px;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    border-radius:
+        20px;
+
+    background:
+        #f8fafc;
+
+}
+
+.pdf-image-settings-heading h2 {
+
+    margin:
+        0 0 6px;
+
+}
+
+.pdf-image-settings-heading p {
+
+    margin:
+        0 0 22px;
+
+    color:
+        #64748b;
+
+}
+
+.pdf-image-settings-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap:
+        16px;
+
+}
+
+.pdf-image-setting {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+}
+
+.pdf-image-setting label {
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    color:
+        #334155;
+
+}
+
+.pdf-image-setting select {
+
+    width:
+        100%;
+
+    min-height:
+        46px;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        #cbd5e1;
+
+    border-radius:
+        11px;
+
+    background:
+        #ffffff;
+
+    color:
+        #334155;
+
+    font:
+        inherit;
+
+    cursor:
+        pointer;
+
+}
+
+.pdf-image-setting select:focus {
+
+    outline:
+        none;
+
+    border-color:
+        #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, .12);
+
+}
+
+
+/* ==========================================================
+   ACTION AREA
+========================================================== */
+
+.pdf-image-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        12px;
+
+    margin-top:
+        30px;
+
+}
+
+.pdf-image-create-btn {
+
+    min-width:
+        220px;
+
+    padding:
+        14px 24px;
+
+}
+
+.pdf-image-clear-btn {
+
+    min-width:
+        120px;
+
+}
+
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.pdf-image-progress {
+
+    margin-top:
+        25px;
+
+    text-align:
+        center;
+
+}
+
+.pdf-image-progress[hidden] {
+
+    display:
+        none;
+
+}
+
+.pdf-image-progress-track {
+
+    width:
+        100%;
+
+    height:
+        10px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        999px;
+
+    background:
+        #e2e8f0;
+
+}
+
+.pdf-image-progress-bar {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    border-radius:
+        inherit;
+
+    background:
+        #10b981;
+
+    transition:
+        width .25s ease;
+
+}
+
+.pdf-image-progress p {
+
+    margin:
+        10px 0 0;
+
+    color:
+        #64748b;
+
+    font-size:
+        14px;
+
+}
+
+
+/* ==========================================================
+   RESULT
+========================================================== */
+
+.pdf-image-result {
+
+    margin-top:
+        32px;
+
+    padding:
+        30px;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        #bbf7d0;
+
+    border-radius:
+        22px;
+
+    background:
+        #f0fdf4;
+
+}
+
+.pdf-image-result[hidden] {
+
+    display:
+        none;
+
+}
+
+.pdf-image-result-icon {
+
+    font-size:
+        40px;
+
+    margin-bottom:
+        8px;
+
+}
+
+.pdf-image-result h2 {
+
+    margin:
+        0 0 8px;
+
+}
+
+.pdf-image-result p {
+
+    margin:
+        0 0 22px;
+
+    color:
+        #64748b;
+
+}
+
+
+/* ==========================================================
+   DOWNLOAD LIST
+========================================================== */
+
+.pdf-image-download-list {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+    max-width:
+        700px;
+
+    margin:
+        0 auto 20px;
+
+    text-align:
+        left;
+
+}
+
+.pdf-image-download-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        12px 14px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid
+        #d1fae5;
+
+    border-radius:
+        12px;
+
+}
+
+.pdf-image-download-item-name {
+
+    min-width:
+        0;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+
+    color:
+        #334155;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+}
+
+.pdf-image-download-item a {
+
+    flex:
+        0 0 auto;
+
+    color:
+        #059669;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    text-decoration:
+        none;
+
+}
+
+.pdf-image-download-item a:hover {
+
+    text-decoration:
+        underline;
+
+}
+
+
+/* ==========================================================
+   DOWNLOAD ALL
+========================================================== */
+
+.pdf-image-download-btn {
+
+    min-width:
+        230px;
+
+}
+
+
+/* ==========================================================
+   PRIVACY
+========================================================== */
+
+.pdf-image-privacy {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        16px;
+
+    max-width:
+        900px;
+
+    margin:
+        30px auto 0;
+
+    padding:
+        22px 24px;
+
+    border:
+        1px solid
+        #dbeafe;
+
+    border-radius:
+        18px;
+
+    background:
+        #f8fafc;
+
+}
+
+.pdf-image-privacy-icon {
+
+    flex:
+        0 0 auto;
+
+    font-size:
+        27px;
+
+}
+
+.pdf-image-privacy h2 {
+
+    margin:
+        0 0 6px;
+
+    font-size:
+        18px;
+
+}
+
+.pdf-image-privacy p {
+
+    margin:
+        0;
+
+    color:
+        #64748b;
+
+    line-height:
+        1.6;
+
+    font-size:
+        14px;
+
+}
+
+
+/* ==========================================================
+   DARK THEME
+========================================================== */
+
+body.dark-theme .pdf-image-tool-card,
+body.dark .pdf-image-tool-card {
+
+    background:
+        #111827;
+
+    border-color:
+        #334155;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0,0,0,.30);
+
+}
+
+body.dark-theme .pdf-image-drop-zone,
+body.dark .pdf-image-drop-zone {
+
+    background:
+        #0f172a;
+
+    border-color:
+        #475569;
+
+}
+
+body.dark-theme .pdf-image-drop-zone:hover,
+body.dark .pdf-image-drop-zone:hover {
+
+    background:
+        #0f1f1a;
+
+    border-color:
+        #10b981;
+
+}
+
+body.dark-theme .pdf-image-intro p,
+body.dark .pdf-image-intro p,
+body.dark-theme .pdf-image-drop-zone p,
+body.dark .pdf-image-drop-zone p,
+body.dark-theme .pdf-image-workspace-header p,
+body.dark .pdf-image-workspace-header p,
+body.dark-theme .pdf-image-settings-heading p,
+body.dark .pdf-image-settings-heading p,
+body.dark-theme .pdf-image-result p,
+body.dark .pdf-image-result p,
+body.dark-theme .pdf-image-privacy p,
+body.dark .pdf-image-privacy p {
+
+    color:
+        #94a3b8;
+
+}
+
+body.dark-theme .pdf-image-drop-zone h2,
+body.dark .pdf-image-drop-zone h2,
+body.dark-theme .pdf-image-workspace-header h2,
+body.dark .pdf-image-workspace-header h2,
+body.dark-theme .pdf-image-settings-heading h2,
+body.dark .pdf-image-settings-heading h2,
+body.dark-theme .pdf-image-result h2,
+body.dark .pdf-image-result h2,
+body.dark-theme .pdf-image-privacy h2,
+body.dark .pdf-image-privacy h2 {
+
+    color:
+        #f8fafc;
+
+}
+
+body.dark-theme .pdf-image-secondary-btn,
+body.dark .pdf-image-secondary-btn {
+
+    background:
+        #1e293b;
+
+    border-color:
+        #475569;
+
+    color:
+        #e2e8f0;
+
+}
+
+body.dark-theme .pdf-image-clear-btn,
+body.dark .pdf-image-clear-btn {
+
+    background:
+        #1e293b;
+
+    border-color:
+        #334155;
+
+    color:
+        #cbd5e1;
+
+}
+
+body.dark-theme .pdf-image-settings,
+body.dark .pdf-image-settings {
+
+    background:
+        #0f172a;
+
+    border-color:
+        #334155;
+
+}
+
+body.dark-theme .pdf-image-setting label,
+body.dark .pdf-image-setting label {
+
+    color:
+        #e2e8f0;
+
+}
+
+body.dark-theme .pdf-image-setting select,
+body.dark .pdf-image-setting select {
+
+    background:
+        #1e293b;
+
+    border-color:
+        #475569;
+
+    color:
+        #e2e8f0;
+
+}
+
+body.dark-theme .pdf-image-page-card,
+body.dark .pdf-image-page-card {
+
+    background:
+        #1e293b;
+
+    border-color:
+        #475569;
+
+}
+
+body.dark-theme .pdf-image-page-number,
+body.dark .pdf-image-page-number {
+
+    color:
+        #cbd5e1;
+
+}
+
+body.dark-theme .pdf-image-result,
+body.dark .pdf-image-result {
+
+    background:
+        #052e1b;
+
+    border-color:
+        #166534;
+
+}
+
+body.dark-theme .pdf-image-download-item,
+body.dark .pdf-image-download-item {
+
+    background:
+        #1e293b;
+
+    border-color:
+        #166534;
+
+}
+
+body.dark-theme .pdf-image-download-item-name,
+body.dark .pdf-image-download-item-name {
+
+    color:
+        #e2e8f0;
+
+}
+
+body.dark-theme .pdf-image-privacy,
+body.dark .pdf-image-privacy {
+
+    background:
+        #0f172a;
+
+    border-color:
+        #334155;
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE — TABLET
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .pdf-image-settings-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE — MOBILE
+========================================================== */
+
+@media (max-width: 640px) {
+
+    .pdf-image-page {
+
+        width:
+            min(94%, 100%);
+
+        padding:
+            20px 0 50px;
+
+    }
+
+
+    .pdf-image-tool-card {
+
+        padding:
+            16px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .pdf-image-drop-zone {
+
+        min-height:
+            260px;
+
+        padding:
+            25px 15px;
+
+    }
+
+
+    .pdf-image-workspace-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .pdf-image-workspace-header .pdf-image-secondary-btn {
+
+        width:
+            100%;
+
+    }
+
+
+    .pdf-image-page-actions {
+
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .pdf-image-selection-status {
+
+        margin-left:
+            0;
+
+    }
+
+
+    .pdf-image-preview-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            10px;
+
+    }
+
+
+    .pdf-image-settings {
+
+        padding:
+            18px;
+
+    }
+
+
+    .pdf-image-settings-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .pdf-image-actions {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .pdf-image-create-btn,
+    .pdf-image-clear-btn,
+    .pdf-image-download-btn {
+
+        width:
+            100%;
+
+    }
+
+
+    .pdf-image-privacy {
+
+        align-items:
+            flex-start;
+
+        padding:
+            18px;
+
+    }
+
+
+    .pdf-image-download-item {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pdf-image-drop-zone,
+    .pdf-image-page-card,
+    .pdf-image-primary-btn,
+    .pdf-image-secondary-btn,
+    .pdf-image-create-btn,
+    .pdf-image-clear-btn,
+    .pdf-image-download-btn {
+
+        transition:
+            none;
+
+    }
+
+}

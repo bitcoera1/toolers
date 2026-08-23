@@ -685,7 +685,7 @@ const ToolXoneToolsRegistry = [
         active: true
     },
 
-    {
+        {
         id: "qr-code-generator",
         name: "QR Code Generator",
         slug: "qr-code-generator",
@@ -707,14 +707,98 @@ const ToolXoneToolsRegistry = [
         ],
 
         related: [
-    "basic-calculator",
-    "percentage-calculator",
-    "age-calculator",
-    "weight-converter"
-],
+            "basic-calculator",
+            "percentage-calculator",
+            "age-calculator",
+            "weight-converter"
+        ],
 
         featured: false,
         newest: false,
+        active: true
+    },
+
+
+    /* ======================================================
+       PDF TOOLS
+       ====================================================== */
+
+
+    {
+        id: "pdf-to-image",
+        name: "PDF to Image",
+        slug: "pdf-to-image",
+
+        type: "pdf",
+        category: "pdf",
+        categoryId: "pdf",
+        statisticsCategory: "pdf",
+
+        icon: "🖼️",
+
+        url: "pdf-to-image.html",
+
+        aliases: [
+            "pdf to image",
+            "pdf to jpg",
+            "pdf to png",
+            "pdf to webp",
+            "convert pdf to image",
+            "convert pdf to jpg",
+            "convert pdf to png",
+            "convert pdf to webp",
+            "pdf-to-image",
+            "pdf-to-jpg",
+            "pdf-to-png",
+            "pdf-to-webp"
+        ],
+
+        related: [
+            "image-to-pdf",
+            "compress-pdf"
+        ],
+
+        featured: true,
+        newest: true,
+        active: true
+    },
+
+
+    {
+        id: "image-to-pdf",
+        name: "Image to PDF",
+        slug: "image-to-pdf",
+
+        type: "pdf",
+        category: "pdf",
+        categoryId: "pdf",
+        statisticsCategory: "pdf",
+
+        icon: "📄",
+
+        url: "image-to-pdf.html",
+
+        aliases: [
+            "image to pdf",
+            "jpg to pdf",
+            "png to pdf",
+            "webp to pdf",
+            "convert image to pdf",
+            "convert jpg to pdf",
+            "convert png to pdf",
+            "convert webp to pdf",
+            "image-to-pdf",
+            "jpg-to-pdf",
+            "png-to-pdf",
+            "webp-to-pdf"
+        ],
+
+        related: [
+            "pdf-to-image"
+        ],
+
+        featured: true,
+        newest: true,
         active: true
     }
 

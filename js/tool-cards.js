@@ -49,7 +49,7 @@ Legacy TOOLXONE configuration is used only for:
        MODULE INFORMATION
        ====================================================== */
 
-    const VERSION = "3.0.0";
+    const VERSION = "3.1.0";
 
 
     /* ======================================================
@@ -378,85 +378,92 @@ function enrichTool(tool) {
 
 
     /* ======================================================
-       CREATE TOOL CARD
-       ====================================================== */
+   CREATE TOOL CARD
+   ------------------------------------------------------
+   ToolXone v3.1.0
+   Entire card is now the navigation target.
+   ====================================================== */
 
-    function createToolCard(
-        tool,
-        options = {}
-    ) {
+function createToolCard(
+    tool,
+    options = {}
+) {
 
-        if (!tool) {
+    if (!tool) {
 
-            return "";
+        return "";
 
-        }
-
-
-        const badges =
-            options.badges || "";
-
-
-        const extraClass =
-            options.extraClass || "";
+    }
 
 
-        const description =
-            options.description ||
-            `Quick access to ${tool.name.toLowerCase()}.`;
+    const badges =
+        options.badges || "";
 
 
-        return `
-
-            <div class="tool-card ${extraClass}">
-
-                <div class="card-badges">
-
-                    ${badges}
-
-                </div>
+    const extraClass =
+        options.extraClass || "";
 
 
-                <div class="tool-icon">
-
-                    ${tool.icon || ""}
-
-                </div>
+    const description =
+        options.description ||
+        `Quick access to ${tool.name.toLowerCase()}`;
 
 
-                <span class="tool-category">
-
-                    ${tool.categoryIcon || ""}
-                    ${tool.categoryName || ""}
-
-                </span>
+    const toolLink =
+        tool.link ||
+        tool.url ||
+        "#";
 
 
-                <h3>
+    return `
 
-                    ${tool.name}
+        <a
+            class="tool-card ${extraClass}"
+            href="${toolLink}"
+            aria-label="Open ${tool.name}"
+            data-tool-id="${tool.id || ""}"
+        >
 
-                </h3>
+            <div class="card-badges">
 
-
-                <p>
-
-                    ${description}
-
-                </p>
-
-
-                <a href="${tool.link || tool.url || "#"}">
-
-                    Open Tool →
-
-                </a>
+                ${badges}
 
             </div>
 
-        `;
 
-    }
+            <div class="tool-icon">
+
+                ${tool.icon || ""}
+
+            </div>
+
+
+            <span class="tool-category">
+
+                ${tool.categoryIcon || ""}
+                ${tool.categoryName || ""}
+
+            </span>
+
+
+            <h3>
+
+                ${tool.name}
+
+            </h3>
+
+
+            <p>
+
+                ${description}
+
+            </p>
+
+        </a>
+
+    `;
+
+}
 
 
     /* ======================================================
@@ -699,72 +706,235 @@ function enrichTool(tool) {
     }
 
 
-    /* ======================================================
-       INITIALIZE CATEGORY CARDS
-       ====================================================== */
+/* ======================================================
+   INITIALIZE CATEGORY CARDS
+   ------------------------------------------------------
+   Supports:
+   - Standard category cards
+   - Showcase category cards
+   - Optional category destination links
+   - Capability presentation
+   ====================================================== */
 
-    function initializeCategoryCards() {
+function initializeCategoryCards() {
 
-        const container =
-            document.getElementById(
-                "categoryCards"
-            );
-
-
-        if (!container) {
-
-            return;
-
-        }
-
-
-        const categories =
-            window.TOOLXONE &&
-            typeof window.TOOLXONE.getCategories === "function"
-
-                ? window.TOOLXONE.getCategories()
-
-                : [];
+    const container =
+        document.getElementById(
+            "categoryCards"
+        );
 
 
-        container.innerHTML =
-            categories.map(function (category) {
+    if (!container) {
+
+        return;
+
+    }
+
+
+    const categories =
+        window.TOOLXONE &&
+        typeof window.TOOLXONE.getCategories ===
+            "function"
+
+            ? window.TOOLXONE.getCategories()
+
+            : [];
+
+
+    container.innerHTML =
+        categories.map(
+            function (category) {
+
+                const isShowcase =
+                    category.presentation ===
+                    "showcase";
+
+
+                const capabilities =
+                    Array.isArray(
+                        category.capabilities
+                    )
+                        ? category.capabilities
+                        : [];
+
+
+                /*
+                 * --------------------------------------------------
+                 * SHOWCASE CATEGORY
+                 * --------------------------------------------------
+                 */
+
+                if (isShowcase) {
+
+                    const capabilityMarkup =
+                        capabilities
+                            .map(
+                                function (item) {
+
+                                    return `
+
+                                        <span
+                                            class="category-capability"
+                                        >
+
+                                            <span
+                                                class="category-capability-icon"
+                                                aria-hidden="true"
+                                            >
+                                                ${item.icon || ""}
+                                            </span>
+
+                                            <span
+                                                class="category-capability-label"
+                                            >
+                                                ${item.label || ""}
+                                            </span>
+
+                                        </span>
+
+                                    `;
+
+                                }
+                            )
+                            .join("");
+
+
+                    const destination =
+                        category.link ||
+                        "#";
+
+
+                    return `
+
+                        <a
+                            class="
+                                category-card
+                                category-card--showcase
+                            "
+                            href="${destination}"
+                            aria-label="
+                                Open ${category.name}
+                            "
+                        >
+
+                            <div
+                                class="cat-icon"
+                                aria-hidden="true"
+                            >
+                                ${category.icon || ""}
+                            </div>
+
+
+                            <h3>
+                                ${category.name}
+                            </h3>
+
+
+                            ${
+                                category.description
+                                    ? `
+                                        <p
+                                            class="
+                                                category-showcase-description
+                                            "
+                                        >
+                                            ${category.description}
+                                        </p>
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                capabilities.length
+                                    ? `
+                                        <div
+                                            class="
+                                                category-capabilities
+                                            "
+                                            aria-label="
+                                                ${category.name}
+                                                capabilities
+                                            "
+                                        >
+
+                                            ${capabilityMarkup}
+
+                                        </div>
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                category.cta
+                                    ? `
+                                        <span
+                                            class="
+                                                category-showcase-cta
+                                            "
+                                        >
+                                            ${category.cta}
+                                            <span
+                                                aria-hidden="true"
+                                            >
+                                                →
+                                            </span>
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                        </a>
+
+                    `;
+
+                }
+
+
+                /*
+                 * --------------------------------------------------
+                 * STANDARD CATEGORY
+                 * --------------------------------------------------
+                 */
 
                 return `
 
                     <div
                         class="category-card"
-                        onclick="scrollToCategory('${category.id}')"
+                        onclick="
+                            scrollToCategory(
+                                '${category.id}'
+                            )
+                        "
                     >
 
-                        <div class="cat-icon">
-
-                            ${category.icon}
-
+                        <div
+                            class="cat-icon"
+                            aria-hidden="true"
+                        >
+                            ${category.icon || ""}
                         </div>
 
 
                         <h3>
-
                             ${category.name}
-
                         </h3>
 
 
                         <p>
-
                             ${category.tools.length}
                             Tools
-
                         </p>
 
                     </div>
 
                 `;
 
-            }).join("");
+            }
+        ).join("");
 
-    }
+}
 
 
     /* ======================================================
@@ -971,6 +1141,17 @@ function enrichTool(tool) {
 
                 const tools =
                     category.tools || [];
+
+                if (
+    category.presentation ===
+        "showcase" &&
+    category.link &&
+    tools.length === 0
+) {
+
+    return "";
+
+}    
 
 
                 return `
