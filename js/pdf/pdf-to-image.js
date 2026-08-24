@@ -1087,6 +1087,19 @@
         elements.workspace.hidden =
             false;
 
+        /*
+         * Workspace mode: the upload surface and transient file
+         * status belong to the initial state only. Once a PDF is
+         * loaded, keep the user inside the active workspace board.
+         */
+        if (exists(elements.dropZone)) {
+            elements.dropZone.hidden = true;
+        }
+
+        if (exists(elements.fileStatus)) {
+            elements.fileStatus.hidden = true;
+        }
+
     }
 
 
@@ -1109,6 +1122,15 @@
 
         elements.workspace.hidden =
             true;
+
+        /* Restore the initial upload state after Clear All. */
+        if (exists(elements.dropZone)) {
+            elements.dropZone.hidden = false;
+        }
+
+        if (exists(elements.fileStatus)) {
+            elements.fileStatus.hidden = false;
+        }
 
     }
 
@@ -1680,97 +1702,62 @@
 
     function renderResults() {
 
-        if (
-            !exists(
-                elements.downloadList
-            )
-        ) {
-
+        if (!exists(elements.downloadList)) {
             return;
-
         }
 
+        elements.downloadList.innerHTML = "";
 
-        elements.downloadList.innerHTML =
-            "";
+        state.results.forEach(function (result) {
 
+            const item = document.createElement("article");
+            item.className = "pdf-image-download-item";
 
-        state.results.forEach(
-            function (result) {
+            const preview = document.createElement("div");
+            preview.className = "pdf-image-result-tile-preview";
 
-                const item =
-                    document.createElement(
-                        "div"
-                    );
+            const image = document.createElement("img");
+            image.className = "pdf-image-result-tile-image";
+            image.src = result.url;
+            image.alt = `Converted PDF page ${result.page}`;
+            image.loading = "lazy";
+            image.decoding = "async";
 
+            const pageBadge = document.createElement("span");
+            pageBadge.className = "pdf-image-result-tile-page";
+            pageBadge.textContent = `Page ${result.page}`;
 
-                item.className =
-                    "pdf-image-download-item";
+            preview.appendChild(image);
+            preview.appendChild(pageBadge);
 
+            const body = document.createElement("div");
+            body.className = "pdf-image-result-tile-body";
 
-                const name =
-                    document.createElement(
-                        "span"
-                    );
+            const name = document.createElement("div");
+            name.className = "pdf-image-download-item-name";
+            name.title = result.filename;
+            name.textContent = result.filename;
 
+            const link = document.createElement("a");
+            link.className = "pdf-image-result-tile-download";
+            link.href = result.url;
+            link.download = result.filename;
+            link.setAttribute("aria-label", `Download ${result.filename}`);
+            link.textContent = "Download";
 
-                name.className =
-                    "pdf-image-download-item-name";
+            body.appendChild(name);
+            body.appendChild(link);
 
+            item.appendChild(preview);
+            item.appendChild(body);
 
-                name.textContent =
-                    result.filename;
+            elements.downloadList.appendChild(item);
+        });
 
-
-                const link =
-                    document.createElement(
-                        "a"
-                    );
-
-
-                link.href =
-                    result.url;
-
-
-                link.download =
-                    result.filename;
-
-
-                link.textContent =
-                    "Download";
-
-
-                item.appendChild(
-                    name
-                );
-
-
-                item.appendChild(
-                    link
-                );
-
-
-                elements.downloadList.appendChild(
-                    item
-                );
-
-            }
-        );
-
-
-        if (
-            exists(
-                elements.result
-            )
-        ) {
-
-            elements.result.hidden =
-                false;
-
+        if (exists(elements.result)) {
+            elements.result.hidden = false;
         }
-
     }
-
 
     /* ======================================================
        DOWNLOAD ALL
@@ -1779,6 +1766,23 @@
     async function downloadAll() {
 
     if (!state.results.length) {
+        return;
+    }
+
+    /*
+     * If there is only one converted image, Download All should
+     * behave like a normal direct image download instead of creating
+     * a ZIP containing one file.
+     */
+    if (state.results.length === 1) {
+
+        const result = state.results[0];
+
+        triggerDownload(
+            result.url,
+            result.filename
+        );
+
         return;
     }
 
