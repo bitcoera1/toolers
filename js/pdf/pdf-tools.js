@@ -1,7 +1,7 @@
 /*
 ==========================================================
 TOOLXONE PDF TOOLS HUB
-Version 1.1.0
+Version 2.0.0
 ==========================================================
 
 RESPONSIBILITY
@@ -17,27 +17,17 @@ RESPONSIBILITY
 
 IMPORTANT
 ----------------------------------------------------------
-This module does NOT own PDF tool definitions.
-
-Canonical sources:
-
-    ToolXonePDFCategory
-        ↓
-    PDF ecosystem structure
-
-    ToolXoneToolsRegistry
-        ↓
-    Canonical tool definitions
-
-    ToolXoneToolCards
-        ↓
-    Canonical ToolXone card presentation
-
-This module only connects those systems to
-pdf-tools.html.
+- PDF tools are managed exclusively through
+  ToolXonePDFRegistry
+- PDF tools are NOT read from ToolXoneToolsRegistry
+- PDF tools are NOT registered in the original
+  ToolXoneToolsRegistry
+- This module must remain isolated from the
+  original 20-tool architecture
 
 ==========================================================
 */
+
 
 (function (window, document) {
 
@@ -48,13 +38,49 @@ pdf-tools.html.
        CONSTANTS
     ====================================================== */
 
-    const VERSION = "1.1.0";
+    const VERSION = "2.0.0";
 
     const PDF_CATEGORY_ID = "pdf";
 
 
     /* ======================================================
-       CONFIGURATION ACCESS
+       PDF REGISTRY ACCESS
+    ====================================================== */
+
+    function getPDFRegistry() {
+
+        return (
+            window.ToolXonePDFRegistry ||
+            null
+        );
+
+    }
+
+
+    function getPDFRegistryTools() {
+
+        const registry =
+            getPDFRegistry();
+
+        if (
+            !registry ||
+            !registry.tools
+        ) {
+
+            return [];
+
+        }
+
+
+        return Object.values(
+            registry.tools
+        );
+
+    }
+
+
+    /* ======================================================
+       PDF CATEGORY CONFIG ACCESS
     ====================================================== */
 
     function getConfig() {
@@ -68,50 +94,7 @@ pdf-tools.html.
 
 
     /* ======================================================
-       REGISTRY ACCESS
-    ====================================================== */
-
-    function getRegistry() {
-
-        if (
-            Array.isArray(
-                window.ToolXoneToolsRegistry
-            )
-        ) {
-
-            return window.ToolXoneToolsRegistry;
-
-        }
-
-        return [];
-
-    }
-
-
-    /* ======================================================
-       TOOL CARD SYSTEM
-    ====================================================== */
-
-    function getToolCards() {
-
-        if (
-            window.ToolXoneToolCards &&
-            typeof
-            window.ToolXoneToolCards.createToolCard ===
-            "function"
-        ) {
-
-            return window.ToolXoneToolCards;
-
-        }
-
-        return null;
-
-    }
-
-
-    /* ======================================================
-       CANONICAL TOOL LOOKUP
+       PDF TOOL LOOKUP
     ====================================================== */
 
     function getTool(id) {
@@ -122,23 +105,18 @@ pdf-tools.html.
 
 
         /*
-         * Prefer the canonical ToolXone card resolver.
-         *
-         * This gives us the enriched presentation object
-         * used throughout the rest of ToolXone.
-         */
-
-        const cards =
-            getToolCards();
+        ------------------------------------------------------
+        Prefer the dedicated PDF registry resolver.
+        ------------------------------------------------------
+        */
 
         if (
-            cards &&
-            typeof cards.getToolById ===
+            typeof window.getPDFTool ===
             "function"
         ) {
 
             const tool =
-                cards.getToolById(id);
+                window.getPDFTool(id);
 
             if (tool) {
                 return tool;
@@ -148,20 +126,24 @@ pdf-tools.html.
 
 
         /*
-         * Registry fallback.
-         */
+        ------------------------------------------------------
+        Defensive registry fallback.
+        ------------------------------------------------------
+        */
 
         return (
-            getRegistry().find(
-                function (tool) {
+            getPDFRegistryTools()
+                .find(
+                    function (tool) {
 
-                    return (
-                        tool &&
-                        tool.id === id
-                    );
+                        return (
+                            tool &&
+                            tool.id === id
+                        );
 
-                }
-            ) || null
+                    }
+                ) ||
+            null
         );
 
     }
@@ -177,9 +159,22 @@ pdf-tools.html.
             return false;
         }
 
+
         return (
             tool.categoryId === PDF_CATEGORY_ID ||
-            tool.category === PDF_CATEGORY_ID
+            tool.category === PDF_CATEGORY_ID ||
+            getPDFRegistryTools()
+                .some(
+                    function (registeredTool) {
+
+                        return (
+                            registeredTool &&
+                            registeredTool.id ===
+                                tool.id
+                        );
+
+                    }
+                )
         );
 
     }
@@ -191,16 +186,17 @@ pdf-tools.html.
 
     function getPDFTools() {
 
-        return getRegistry().filter(
-            function (tool) {
+        return getPDFRegistryTools()
+            .filter(
+                function (tool) {
 
-                return (
-                    isPDFTool(tool) &&
-                    tool.active === true
-                );
+                    return (
+                        isPDFTool(tool) &&
+                        tool.status !== "inactive"
+                    );
 
-            }
-        );
+                }
+            );
 
     }
 
@@ -213,6 +209,7 @@ pdf-tools.html.
 
         const config =
             getConfig();
+
 
         if (
             !config ||
@@ -254,16 +251,18 @@ pdf-tools.html.
 
 
         return (
-            getCategories().find(
-                function (category) {
+            getCategories()
+                .find(
+                    function (category) {
 
-                    return (
-                        category &&
-                        category.id === id
-                    );
+                        return (
+                            category &&
+                            category.id === id
+                        );
 
-                }
-            ) || null
+                    }
+                ) ||
+            null
         );
 
     }
@@ -279,6 +278,7 @@ pdf-tools.html.
 
         const category =
             getCategory(categoryId);
+
 
         if (!category) {
             return [];
@@ -304,7 +304,7 @@ pdf-tools.html.
 
                     return (
                         tool &&
-                        tool.active !== false
+                        tool.status !== "inactive"
                     );
 
                 }
@@ -321,6 +321,7 @@ pdf-tools.html.
 
         const config =
             getConfig();
+
 
         if (
             !config ||
@@ -347,7 +348,7 @@ pdf-tools.html.
 
                     return (
                         tool &&
-                        tool.active !== false
+                        tool.status !== "inactive"
                     );
 
                 }
@@ -357,7 +358,31 @@ pdf-tools.html.
 
 
     /* ======================================================
-       CREATE CANONICAL TOOL CARD
+       SHARED TOOL CARD ACCESS
+    ====================================================== */
+
+    function getToolCards() {
+
+        if (
+            window.ToolXoneToolCards &&
+            typeof
+                window.ToolXoneToolCards
+                    .createToolCard ===
+                "function"
+        ) {
+
+            return window.ToolXoneToolCards;
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /* ======================================================
+       CREATE PDF TOOL CARD
     ====================================================== */
 
     function createToolCard(tool) {
@@ -367,6 +392,19 @@ pdf-tools.html.
         }
 
 
+        /*
+        ------------------------------------------------------
+        Use the existing shared ToolXone card presentation
+        system when available.
+
+        IMPORTANT:
+        This only uses the PRESENTATION layer.
+
+        It does NOT read from or modify the original
+        ToolXoneToolsRegistry.
+        ------------------------------------------------------
+        */
+
         const cards =
             getToolCards();
 
@@ -374,7 +412,7 @@ pdf-tools.html.
         if (
             cards &&
             typeof cards.createToolCard ===
-            "function"
+                "function"
         ) {
 
             return cards.createToolCard(
@@ -385,24 +423,29 @@ pdf-tools.html.
 
 
         /*
-         * Very small defensive fallback.
-         *
-         * This is NOT a second card architecture.
-         * It only prevents a total rendering failure
-         * if tool-cards.js is unavailable.
-         */
+        ------------------------------------------------------
+        PDF-only defensive fallback.
+
+        This is intentionally small and does not create
+        another global card architecture.
+        ------------------------------------------------------
+        */
 
         const title =
             tool.name ||
             "PDF Tool";
 
+
         const description =
             tool.description ||
             `Quick access to ${title}.`;
 
+
         const url =
             tool.url ||
+            tool.file ||
             "#";
+
 
         const icon =
             tool.icon ||
@@ -411,6 +454,7 @@ pdf-tools.html.
 
         return `
             <div class="tool-card">
+
                 <div class="tool-icon">
                     ${icon}
                 </div>
@@ -426,6 +470,7 @@ pdf-tools.html.
                 <a href="${url}">
                     Open Tool →
                 </a>
+
             </div>
         `;
 
@@ -625,12 +670,13 @@ pdf-tools.html.
 
 
                 /*
-                 * Critical quality rule:
-                 *
-                 * A section with zero valid tools
-                 * must not remain visible as an empty
-                 * rectangle.
-                 */
+                ------------------------------------------------
+                Critical quality rule:
+
+                A section with zero valid PDF tools
+                must not remain visible.
+                ------------------------------------------------
+                */
 
                 setSectionVisibility(
                     section,
@@ -661,8 +707,13 @@ pdf-tools.html.
             );
 
 
-        if (!section || !container) {
+        if (
+            !section ||
+            !container
+        ) {
+
             return;
+
         }
 
 
@@ -782,9 +833,11 @@ pdf-tools.html.
 
 
         /*
-         * Smooth navigation without taking control
-         * away from normal anchor behavior.
-         */
+        ------------------------------------------------------
+        Smooth navigation while preserving normal
+        anchor behavior.
+        ------------------------------------------------------
+        */
 
         container
             .querySelectorAll(
@@ -888,7 +941,7 @@ pdf-tools.html.
 
 
     /* ======================================================
-       OPEN TOOL
+       OPEN PDF TOOL
     ====================================================== */
 
     function openTool(id) {
@@ -897,13 +950,21 @@ pdf-tools.html.
             getTool(id);
 
 
-        if (
-            tool &&
-            tool.url
-        ) {
+        if (!tool) {
+            return;
+        }
+
+
+        const url =
+            tool.url ||
+            tool.file ||
+            null;
+
+
+        if (url) {
 
             window.location.href =
-                tool.url;
+                url;
 
         }
 
@@ -917,12 +978,16 @@ pdf-tools.html.
     function init() {
 
         /*
-         * Prevent accidental duplicate initialization.
-         */
+        ------------------------------------------------------
+        Prevent accidental duplicate initialization.
+        ------------------------------------------------------
+        */
 
         if (
-            document.documentElement.dataset
-                .toolxonePdfInitialized === "true"
+            document.documentElement
+                .dataset
+                .toolxonePdfInitialized ===
+                "true"
         ) {
 
             return;
@@ -930,8 +995,32 @@ pdf-tools.html.
         }
 
 
-        document.documentElement.dataset
-            .toolxonePdfInitialized = "true";
+        /*
+        ------------------------------------------------------
+        Safety check.
+
+        PDF hub must not initialize against the original
+        global registry.
+        ------------------------------------------------------
+        */
+
+        if (
+            !window.ToolXonePDFRegistry
+        ) {
+
+            console.warn(
+                "ToolXone PDF Tools Hub: PDF registry unavailable."
+            );
+
+            return;
+
+        }
+
+
+        document.documentElement
+            .dataset
+            .toolxonePdfInitialized =
+                "true";
 
 
         initializeCategoryNavigation();
@@ -979,6 +1068,8 @@ pdf-tools.html.
 
         getPDFTools,
 
+        isPDFTool,
+
         getCategories,
 
         getCategory,
@@ -1013,7 +1104,7 @@ pdf-tools.html.
     ====================================================== */
 
     console.info(
-        `ToolXone PDF Tools Hub v${VERSION} initialized.`
+        `ToolXone PDF Tools Hub v${VERSION} loaded.`
     );
 
 

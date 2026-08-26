@@ -1,0 +1,762 @@
+/*
+==========================================================
+TOOLXONE PDF WORKSPACE
+==========================================================
+
+RESPONSIBILITY
+----------------------------------------------------------
+- Shared layout system for PDF tools
+- Workspace structure
+- Workspace sections
+- Tool area layout
+- Content columns
+- File/settings/result areas
+- Responsive workspace behavior
+
+IMPORTANT
+----------------------------------------------------------
+- PDF workspace layout only
+- PDF component appearance belongs to pdf-components.css
+- Individual tool styling belongs to:
+    pdf-to-image.css
+    image-to-pdf.css
+- Must remain isolated from the original 20-tool system
+==========================================================
+*/
+
+
+/* ==========================================================
+   PDF WORKSPACE ROOT
+   ========================================================== */
+
+.pdf-workspace {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   WORKSPACE CONTAINER
+   ========================================================== */
+
+.pdf-workspace-container {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+}
+
+
+/* ==========================================================
+   WORKSPACE HEADER AREA
+   ========================================================== */
+
+.pdf-workspace-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    width: 100%;
+
+}
+
+
+.pdf-workspace-header-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   MAIN WORKSPACE GRID
+   ========================================================== */
+
+.pdf-workspace-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(280px, 360px);
+
+    align-items: start;
+
+    gap: 24px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   PRIMARY WORKSPACE AREA
+   ========================================================== */
+
+.pdf-workspace-main {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   SIDEBAR / SETTINGS AREA
+   ========================================================== */
+
+.pdf-workspace-sidebar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    min-width: 0;
+
+    position: sticky;
+
+    top: 24px;
+
+}
+
+
+/* ==========================================================
+   WORKSPACE SECTION
+   ========================================================== */
+
+.pdf-workspace-section {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+.pdf-workspace-section + .pdf-workspace-section {
+
+    margin-top: 0;
+
+}
+
+
+/* ==========================================================
+   WORKSPACE PANEL
+   ========================================================== */
+
+.pdf-workspace-panel {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==========================================================
+   UPLOAD AREA SECTION
+   ========================================================== */
+
+.pdf-workspace-upload {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   FILES / PAGES AREA
+   ========================================================== */
+
+.pdf-workspace-files {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    width: 100%;
+
+}
+
+
+.pdf-workspace-files-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    width: 100%;
+
+}
+
+
+.pdf-workspace-files-content {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   SETTINGS AREA
+   ========================================================== */
+
+.pdf-workspace-settings {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   ACTION AREA
+   ========================================================== */
+
+.pdf-workspace-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    width: 100%;
+
+}
+
+
+.pdf-workspace-actions-primary {
+
+    display: flex;
+
+    flex: 1;
+
+    gap: 12px;
+
+}
+
+
+.pdf-workspace-actions-secondary {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+
+/* ==========================================================
+   PROCESSING AREA
+   ========================================================== */
+
+.pdf-workspace-processing {
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   RESULT AREA
+   ========================================================== */
+
+.pdf-workspace-result {
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   ERROR AREA
+   ========================================================== */
+
+.pdf-workspace-error {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   PRIVACY AREA
+   ========================================================== */
+
+.pdf-workspace-privacy {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   EMPTY WORKSPACE
+   ========================================================== */
+
+.pdf-workspace-empty {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 240px;
+
+}
+
+
+/* ==========================================================
+   TOOL CONTENT
+   ========================================================== */
+
+.pdf-workspace-tool {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    width: 100%;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   TOOL BODY
+   ========================================================== */
+
+.pdf-workspace-tool-body {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   TOOL FOOTER
+   ========================================================== */
+
+.pdf-workspace-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   FULL-WIDTH WORKSPACE
+   ========================================================== */
+
+.pdf-workspace-full {
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   TWO-COLUMN CONTENT
+   ========================================================== */
+
+.pdf-workspace-two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   THREE-COLUMN CONTENT
+   ========================================================== */
+
+.pdf-workspace-three-column {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   DIVIDER
+   ========================================================== */
+
+.pdf-workspace-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin: 4px 0;
+
+    background:
+        var(
+            --border-color,
+            #e5e7eb
+        );
+
+}
+
+/* ==========================================================
+   NATIVE HIDDEN STATE
+   ----------------------------------------------------------
+   The shared workspace contains layout classes that define
+   display values such as flex. Those must never override
+   the native HTML hidden attribute.
+   ========================================================== */
+
+.pdf-workspace [hidden] {
+    display: none !important;
+}
+
+/* ==========================================================
+   VISIBILITY HELPERS
+   ========================================================== */
+
+.pdf-workspace-hidden {
+
+    display: none !important;
+
+}
+
+
+.pdf-workspace-visible {
+
+    display: block;
+
+}
+
+
+/* ==========================================================
+   STATE-BASED VISIBILITY
+   ========================================================== */
+
+.pdf-workspace[data-pdf-state="idle"]
+.pdf-workspace-processing,
+.pdf-workspace[data-pdf-state="idle"]
+.pdf-workspace-result,
+.pdf-workspace[data-pdf-state="idle"]
+.pdf-workspace-error {
+
+    display: none;
+
+}
+
+
+.pdf-workspace[data-pdf-state="processing"]
+.pdf-workspace-upload,
+.pdf-workspace[data-pdf-state="processing"]
+.pdf-workspace-actions {
+
+    display: none;
+
+}
+
+
+.pdf-workspace[data-pdf-state="complete"]
+.pdf-workspace-processing {
+
+    display: none;
+
+}
+
+
+/* ==========================================================
+   DESKTOP LARGE
+   ========================================================== */
+
+@media (min-width: 1200px) {
+
+
+    .pdf-workspace-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            360px;
+
+        gap: 28px;
+
+    }
+
+  }
+
+  
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+    .pdf-workspace {
+
+        padding: 20px;
+
+    }
+
+
+    .pdf-workspace-grid {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+    }
+
+
+    .pdf-workspace-sidebar {
+
+        position: static;
+
+    }
+
+
+    .pdf-workspace-two-column {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .pdf-workspace-three-column {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .pdf-workspace {
+
+        padding: 16px;
+
+    }
+
+
+    .pdf-workspace-container {
+
+        gap: 18px;
+
+    }
+
+
+    .pdf-workspace-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+
+    }
+
+
+    .pdf-workspace-grid {
+
+        gap: 18px;
+
+    }
+
+
+    .pdf-workspace-main,
+    .pdf-workspace-sidebar {
+
+        gap: 16px;
+
+    }
+
+
+    .pdf-workspace-actions {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .pdf-workspace-actions-primary,
+    .pdf-workspace-actions-secondary {
+
+        width: 100%;
+
+    }
+
+
+    .pdf-workspace-actions-primary {
+
+        flex-direction: column;
+
+    }
+
+
+    .pdf-workspace-actions-secondary {
+
+        flex-direction: column;
+
+    }
+
+
+    .pdf-workspace-footer {
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+    }
+
+
+    .pdf-workspace-three-column {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .pdf-workspace-empty {
+
+        min-height: 180px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL SCREENS
+   ========================================================== */
+
+@media (max-width: 430px) {
+
+    .pdf-workspace {
+
+        padding: 12px;
+
+    }
+
+
+    .pdf-workspace-container {
+
+        gap: 16px;
+
+    }
+
+
+    .pdf-workspace-tool {
+
+        gap: 18px;
+
+    }
+
+
+    .pdf-workspace-tool-body {
+
+        gap: 16px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pdf-workspace,
+    .pdf-workspace-container,
+    .pdf-workspace-grid,
+    .pdf-workspace-main,
+    .pdf-workspace-sidebar {
+
+        scroll-behavior: auto;
+
+    }
+
+}

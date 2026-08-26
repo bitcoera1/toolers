@@ -1,0 +1,1353 @@
+/*
+==========================================================
+TOOLXONE PDF COMPONENTS
+==========================================================
+
+RESPONSIBILITY
+----------------------------------------------------------
+- Shared visual styling for PDF UI components
+- Upload interface
+- File list and file items
+- Settings controls
+- Action buttons
+- Processing/progress UI
+- Result UI
+- Error UI
+- Privacy note
+- Empty state
+- Status indicator
+
+IMPORTANT
+----------------------------------------------------------
+- PDF component styling only
+- Workspace layout belongs to pdf-workspace.css
+- Tool-specific styling belongs to individual PDF CSS files
+- No PDF processing logic
+==========================================================
+*/
+
+
+/* ==========================================================
+   BASE COMPONENT VARIABLES
+   ========================================================== */
+
+:root {
+
+    --pdf-primary:
+        var(--primary-color, #4b5563);
+
+    --pdf-primary-hover:
+        var(--primary-hover, #374151);
+
+    --pdf-secondary:
+        var(--secondary-color, #6b7280);
+
+    --pdf-success:
+        var(--success-color, #16a34a);
+
+    --pdf-danger:
+        var(--danger-color, #dc2626);
+
+    --pdf-warning:
+        var(--warning-color, #d97706);
+
+    --pdf-text:
+        var(--text-color, #1f2937);
+
+    --pdf-muted:
+        var(--muted-text-color, #6b7280);
+
+    --pdf-border:
+        var(--border-color, #e5e7eb);
+
+    --pdf-surface:
+        var(--surface-color, #ffffff);
+
+    --pdf-surface-soft:
+        var(--surface-soft, #f9fafb);
+
+    --pdf-radius:
+        12px;
+
+    --pdf-radius-small:
+        8px;
+
+    --pdf-transition:
+        0.2s ease;
+
+}
+
+
+/* ==========================================================
+   UPLOAD COMPONENT
+   ========================================================== */
+
+.pdf-upload-component {
+
+    width: 100%;
+
+}
+
+
+.pdf-upload-input {
+
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+.pdf-upload-area {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 220px;
+
+    padding: 32px 24px;
+
+    border: 2px dashed var(--pdf-border);
+
+    border-radius: var(--pdf-radius);
+
+    background:
+        var(--pdf-surface-soft);
+
+    color: var(--pdf-text);
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        border-color var(--pdf-transition),
+        background var(--pdf-transition),
+        transform var(--pdf-transition);
+
+}
+
+
+.pdf-upload-area:hover {
+
+    border-color:
+        var(--pdf-primary);
+
+    background:
+        var(--pdf-surface);
+
+}
+
+
+.pdf-upload-area.is-dragging {
+
+    border-color:
+        var(--pdf-primary);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 7%,
+            var(--pdf-surface)
+        );
+
+    transform:
+        scale(1.01);
+
+}
+
+
+.pdf-upload-icon {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 16px;
+
+    border-radius: 50%;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 10%,
+            var(--pdf-surface)
+        );
+
+    font-size: 26px;
+
+}
+
+
+.pdf-upload-title {
+
+    margin: 0 0 8px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-upload-description {
+
+    max-width: 500px;
+
+    margin: 0 0 18px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+.pdf-upload-button {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    background:
+        var(--pdf-primary);
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background var(--pdf-transition),
+        transform var(--pdf-transition);
+
+}
+
+
+.pdf-upload-button:hover {
+
+    background:
+        var(--pdf-primary-hover);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* ==========================================================
+   FILE LIST
+   ========================================================== */
+
+.pdf-file-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    width: 100%;
+
+}
+
+
+.pdf-file-list.is-empty {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100px;
+
+}
+
+
+.pdf-file-list-empty {
+
+    padding: 24px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    text-align: center;
+
+}
+
+
+/* ==========================================================
+   FILE ITEM
+   ========================================================== */
+
+.pdf-file-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    background:
+        var(--pdf-surface);
+
+    transition:
+        border-color var(--pdf-transition),
+        box-shadow var(--pdf-transition),
+        background var(--pdf-transition);
+
+}
+
+
+.pdf-file-item:hover {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 35%,
+            var(--pdf-border)
+        );
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.05);
+
+}
+
+
+.pdf-file-icon {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-danger) 8%,
+            var(--pdf-surface)
+        );
+
+    font-size: 20px;
+
+}
+
+
+.pdf-file-information {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    flex: 1;
+
+    gap: 4px;
+
+}
+
+
+.pdf-file-name {
+
+    overflow: hidden;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+.pdf-file-size {
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 12px;
+
+}
+
+
+.pdf-file-remove {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background var(--pdf-transition),
+        color var(--pdf-transition);
+
+}
+
+
+.pdf-file-remove:hover {
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-danger) 10%,
+            transparent
+        );
+
+    color:
+        var(--pdf-danger);
+
+}
+
+
+/* ==========================================================
+   SETTINGS COMPONENT
+   ========================================================== */
+
+.pdf-settings-component {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    width: 100%;
+
+    padding: 20px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius);
+
+    background:
+        var(--pdf-surface);
+
+}
+
+
+.pdf-settings-title {
+
+    margin: 0 0 4px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-setting-control {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.pdf-setting-label {
+
+    color:
+        var(--pdf-text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.pdf-setting-select {
+
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    background:
+        var(--pdf-surface);
+
+    color:
+        var(--pdf-text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color var(--pdf-transition),
+        box-shadow var(--pdf-transition);
+
+}
+
+
+.pdf-setting-select:hover {
+
+    border-color:
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 45%,
+            var(--pdf-border)
+        );
+
+}
+
+
+.pdf-setting-select:focus {
+
+    border-color:
+        var(--pdf-primary);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 12%,
+            transparent
+        );
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTONS
+   ========================================================== */
+
+.pdf-action-button {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid transparent;
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background var(--pdf-transition),
+        border-color var(--pdf-transition),
+        color var(--pdf-transition),
+        transform var(--pdf-transition),
+        box-shadow var(--pdf-transition);
+
+}
+
+
+.pdf-action-button:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.pdf-action-button:active {
+
+    transform:
+        translateY(0);
+
+}
+
+
+.pdf-action-button:disabled {
+
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+.pdf-action-primary {
+
+    background:
+        var(--pdf-primary);
+
+    color: #ffffff;
+
+}
+
+
+.pdf-action-primary:hover {
+
+    background:
+        var(--pdf-primary-hover);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.10);
+
+}
+
+
+.pdf-action-secondary {
+
+    border-color:
+        var(--pdf-border);
+
+    background:
+        var(--pdf-surface);
+
+    color:
+        var(--pdf-text);
+
+}
+
+
+.pdf-action-secondary:hover {
+
+    border-color:
+        var(--pdf-primary);
+
+    color:
+        var(--pdf-primary);
+
+}
+
+
+/* ==========================================================
+   WORKSPACE HEADER COMPONENT
+   ========================================================== */
+
+.pdf-workspace-header {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.pdf-workspace-header-info {
+
+    min-width: 0;
+
+}
+
+
+.pdf-workspace-title {
+
+    margin: 0;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-workspace-description {
+
+    margin: 6px 0 0;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================================
+   PROCESSING COMPONENT
+   ========================================================== */
+
+.pdf-processing-component {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 32px 24px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius);
+
+    background:
+        var(--pdf-surface);
+
+    text-align: center;
+
+}
+
+
+.pdf-processing-icon {
+
+    margin-bottom: 12px;
+
+    font-size: 30px;
+
+}
+
+
+.pdf-processing-title {
+
+    margin: 0 0 8px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-processing-message {
+
+    margin: 0 0 20px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+.pdf-progress-wrapper {
+
+    width: 100%;
+
+    max-width: 520px;
+
+}
+
+
+.pdf-progress {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        var(--pdf-border);
+
+}
+
+
+.pdf-progress-bar {
+
+    width: 0;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        var(--pdf-primary);
+
+    transition:
+        width 0.25s ease;
+
+}
+
+
+.pdf-progress-text {
+
+    margin-top: 8px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   RESULT COMPONENT
+   ========================================================== */
+
+.pdf-result-component {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 32px 24px;
+
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--pdf-success) 25%,
+            var(--pdf-border)
+        );
+
+    border-radius:
+        var(--pdf-radius);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-success) 4%,
+            var(--pdf-surface)
+        );
+
+    text-align: center;
+
+}
+
+
+.pdf-result-icon {
+
+    margin-bottom: 12px;
+
+    font-size: 34px;
+
+}
+
+
+.pdf-result-title {
+
+    margin: 0 0 8px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-result-message {
+
+    margin: 0 0 20px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================================
+   ERROR COMPONENT
+   ========================================================== */
+
+.pdf-error-component {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 24px;
+
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--pdf-danger) 25%,
+            var(--pdf-border)
+        );
+
+    border-radius:
+        var(--pdf-radius);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--pdf-danger) 4%,
+            var(--pdf-surface)
+        );
+
+    text-align: center;
+
+}
+
+
+.pdf-error-icon {
+
+    margin-bottom: 10px;
+
+    font-size: 28px;
+
+}
+
+
+.pdf-error-title {
+
+    margin: 0 0 8px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-error-message {
+
+    margin: 0 0 18px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================================
+   PRIVACY NOTE
+   ========================================================== */
+
+.pdf-privacy-component {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: 1px solid var(--pdf-border);
+
+    border-radius:
+        var(--pdf-radius-small);
+
+    background:
+        var(--pdf-surface-soft);
+
+}
+
+
+.pdf-privacy-icon {
+
+    flex: 0 0 auto;
+
+    font-size: 20px;
+
+}
+
+
+.pdf-privacy-content {
+
+    min-width: 0;
+
+}
+
+
+.pdf-privacy-title {
+
+    margin: 0 0 4px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-privacy-message {
+
+    margin: 0;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+   ========================================================== */
+
+.pdf-empty-state {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 40px 24px;
+
+    text-align: center;
+
+}
+
+
+.pdf-empty-icon {
+
+    margin-bottom: 14px;
+
+    font-size: 36px;
+
+}
+
+
+.pdf-empty-title {
+
+    margin: 0 0 8px;
+
+    color:
+        var(--pdf-text);
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+
+.pdf-empty-message {
+
+    max-width: 500px;
+
+    margin: 0;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==========================================================
+   STATUS COMPONENT
+   ========================================================== */
+
+.pdf-status-component {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 13px;
+
+}
+
+
+.pdf-status-indicator {
+
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        var(--pdf-success);
+
+}
+
+
+.pdf-status-text {
+
+    color:
+        var(--pdf-muted);
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================== */
+
+.pdf-action-button:focus-visible,
+.pdf-file-remove:focus-visible,
+.pdf-upload-area:focus-visible,
+.pdf-setting-select:focus-visible {
+
+    outline:
+        3px solid
+        color-mix(
+            in srgb,
+            var(--pdf-primary) 25%,
+            transparent
+        );
+
+    outline-offset: 2px;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .pdf-upload-area {
+
+        min-height: 190px;
+
+        padding: 24px 16px;
+
+    }
+
+
+    .pdf-upload-title {
+
+        font-size: 18px;
+
+    }
+
+
+    .pdf-file-item {
+
+        padding: 12px;
+
+    }
+
+
+    .pdf-file-icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+
+    }
+
+
+    .pdf-settings-component {
+
+        padding: 16px;
+
+    }
+
+
+    .pdf-workspace-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .pdf-workspace-title {
+
+        font-size: 21px;
+
+    }
+
+
+    .pdf-action-button {
+
+        min-height: 40px;
+
+        padding: 0 14px;
+
+    }
+
+
+    .pdf-processing-component,
+    .pdf-result-component,
+    .pdf-error-component {
+
+        padding: 24px 16px;
+
+    }
+
+
+    .pdf-privacy-component {
+
+        padding: 14px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pdf-upload-area,
+    .pdf-upload-button,
+    .pdf-file-item,
+    .pdf-file-remove,
+    .pdf-setting-select,
+    .pdf-action-button,
+    .pdf-progress-bar {
+
+        transition: none;
+
+    }
+
+}

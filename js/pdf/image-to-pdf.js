@@ -53,7 +53,7 @@ Images are processed locally in the browser.
 
     const CONFIG = Object.freeze({
 
-        version: "1.0.0",
+        version: "1.2.0",
 
         maxFiles: 100,
 
@@ -109,6 +109,8 @@ Images are processed locally in the browser.
 
     let elements = {};
 
+    let draggedFileId = null;
+
 
     /* ======================================================
        INITIALIZE
@@ -137,7 +139,7 @@ Images are processed locally in the browser.
 
 
         console.info(
-            "ToolXone Image to PDF Engine v1.0.0 initialized."
+            "ToolXone Image to PDF Engine v1.2.0 initialized."
         );
 
     }
@@ -169,6 +171,11 @@ Images are processed locally in the browser.
             addMoreBtn:
                 document.getElementById(
                     "imagePdfAddMoreBtn"
+                ),
+
+            count:
+                document.getElementById(
+                    "imagePdfCount"
                 ),
 
             workspace:
@@ -793,6 +800,120 @@ Images are processed locally in the browser.
             card.dataset.id =
                 item.id;
 
+            card.draggable =
+                !state.isGenerating;
+
+            card.addEventListener(
+                "dragstart",
+                function (event) {
+
+                    if (state.isGenerating) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    draggedFileId =
+                        item.id;
+
+                    card.classList.add(
+                        "is-dragging"
+                    );
+
+                    event.dataTransfer.effectAllowed =
+                        "move";
+
+                    event.dataTransfer.setData(
+                        "text/plain",
+                        item.id
+                    );
+
+                }
+            );
+
+            card.addEventListener(
+                "dragend",
+                function () {
+
+                    draggedFileId =
+                        null;
+
+                    card.classList.remove(
+                        "is-dragging"
+                    );
+
+                    elements.previewGrid
+                        .querySelectorAll(
+                            ".image-pdf-preview-item"
+                        )
+                        .forEach(function (tile) {
+                            tile.classList.remove(
+                                "is-drag-over"
+                            );
+                        });
+
+                }
+            );
+
+            card.addEventListener(
+                "dragover",
+                function (event) {
+
+                    if (
+                        state.isGenerating ||
+                        !draggedFileId ||
+                        draggedFileId === item.id
+                    ) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    event.dataTransfer.dropEffect =
+                        "move";
+
+                    card.classList.add(
+                        "is-drag-over"
+                    );
+
+                }
+            );
+
+            card.addEventListener(
+                "dragleave",
+                function () {
+
+                    card.classList.remove(
+                        "is-drag-over"
+                    );
+
+                }
+            );
+
+            card.addEventListener(
+                "drop",
+                function (event) {
+
+                    if (
+                        state.isGenerating ||
+                        !draggedFileId
+                    ) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    card.classList.remove(
+                        "is-drag-over"
+                    );
+
+                    reorderFiles(
+                        draggedFileId,
+                        item.id
+                    );
+
+                }
+            );
+
 
             /* --------------------------------------------
                Remove Button
@@ -882,6 +1003,41 @@ Images are processed locally in the browser.
                 image
             );
 
+            const pageBadge =
+                document.createElement(
+                    "span"
+                );
+
+            pageBadge.className =
+                "image-pdf-page-badge";
+
+            pageBadge.textContent =
+                "Page " + (index + 1);
+
+            imageWrap.appendChild(
+                pageBadge
+            );
+
+            const dragHandle =
+                document.createElement(
+                    "span"
+                );
+
+            dragHandle.className =
+                "image-pdf-drag-handle";
+
+            dragHandle.textContent =
+                "⋮⋮";
+
+            dragHandle.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            imageWrap.appendChild(
+                dragHandle
+            );
+
 
             /* --------------------------------------------
                Information
@@ -953,6 +1109,70 @@ Images are processed locally in the browser.
             );
 
         });
+
+    }
+
+
+    /* ======================================================
+       REORDER FILES
+    ====================================================== */
+
+    function reorderFiles(
+        sourceId,
+        targetId
+    ) {
+
+        if (
+            !sourceId ||
+            !targetId ||
+            sourceId === targetId ||
+            state.isGenerating
+        ) {
+            return;
+        }
+
+        const fromIndex =
+            state.files.findIndex(
+                function (item) {
+                    return item.id === sourceId;
+                }
+            );
+
+        const toIndex =
+            state.files.findIndex(
+                function (item) {
+                    return item.id === targetId;
+                }
+            );
+
+        if (
+            fromIndex === -1 ||
+            toIndex === -1
+        ) {
+            return;
+        }
+
+        const moved =
+            state.files.splice(
+                fromIndex,
+                1
+            )[0];
+
+        state.files.splice(
+            toIndex,
+            0,
+            moved
+        );
+
+        clearGeneratedResult();
+
+        renderPreview();
+
+        updateWorkspace();
+
+        setStatus(
+            "Page order updated."
+        );
 
     }
 
@@ -1069,32 +1289,115 @@ Images are processed locally in the browser.
     }
 
 
-    /* ======================================================
-       WORKSPACE VISIBILITY
-    ====================================================== */
+/* ======================================================
+   WORKSPACE VISIBILITY
+====================================================== */
 
-    function updateWorkspace() {
+function updateWorkspace() {
 
-        if (!elements.workspace) {
+    if (!elements.workspace) {
+        return;
+    }
 
-            return;
+    const hasImages =
+        state.files.length > 0;
+
+
+    /*
+     * --------------------------------------------------
+     * INITIAL UPLOAD AREA
+     * --------------------------------------------------
+     *
+     * Visible only when there are no images.
+     *
+     * IMPORTANT:
+     * Use display:none with !important instead of only
+     * the hidden attribute because the drop-zone CSS may
+     * explicitly define its display property.
+     */
+
+    if (elements.dropZone) {
+
+        if (hasImages) {
+
+            elements.dropZone.hidden = true;
+
+            elements.dropZone.style.setProperty(
+                "display",
+                "none",
+                "important"
+            );
 
         }
+        else {
 
+            elements.dropZone.hidden = false;
 
-        elements.workspace.hidden =
-            state.files.length === 0;
-
-
-        if (elements.createBtn) {
-
-            elements.createBtn.disabled =
-                state.files.length === 0 ||
-                state.isGenerating;
+            elements.dropZone.style.removeProperty(
+                "display"
+            );
 
         }
 
     }
+
+
+    /*
+     * --------------------------------------------------
+     * IMAGE WORKSPACE
+     * --------------------------------------------------
+     *
+     * Hidden until at least one image exists.
+     *
+     * Once images are uploaded, this becomes the
+     * active workspace containing:
+     *
+     * - Your Images
+     * - PDF Pages
+     * - PDF Settings
+     * - Create PDF
+     * - Clear All
+     */
+
+    elements.workspace.hidden =
+        !hasImages;
+
+
+    /*
+     * --------------------------------------------------
+     * IMAGE COUNT
+     * --------------------------------------------------
+     */
+
+    if (elements.count) {
+
+        elements.count.textContent =
+            state.files.length +
+            " image" +
+            (
+                state.files.length === 1
+                    ? ""
+                    : "s"
+            );
+
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * CREATE PDF BUTTON
+     * --------------------------------------------------
+     */
+
+    if (elements.createBtn) {
+
+        elements.createBtn.disabled =
+            !hasImages ||
+            state.isGenerating;
+
+    }
+
+}
 
 
     /* ======================================================
@@ -2146,19 +2449,17 @@ Images are processed locally in the browser.
         }
 
 
+        /*
+         * Keep the generated PDF result inside the
+         * current ToolXone workspace.
+         *
+         * Do not force the browser to scroll the user
+         * to another section after conversion. The
+         * workspace remains in control of the viewport.
+         */
+
         elements.result.hidden =
             false;
-
-
-        elements.result.scrollIntoView({
-
-            behavior:
-                "smooth",
-
-            block:
-                "nearest"
-
-        });
 
     }
 
