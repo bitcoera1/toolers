@@ -97,11 +97,20 @@ actions : {
 
     "bmr-calculator" : {
 
-    startCalculating : ".bmr-card",
+        startCalculating : ".bmr-card",
 
-    learnMore : "#financeInfo"
+        learnMore : "#financeInfo"
 
-},
+    },
+
+    "body-fat-calculator": {
+
+        startCalculating: ".body-fat-card",
+
+        learnMore: "#financeInfo"
+
+    },
+
 
     "currency" : {
 

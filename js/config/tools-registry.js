@@ -174,10 +174,10 @@ const ToolXoneToolsRegistry = [
         ],
 
         related: [
+            "bmr-calculator",
+            "body-fat-calculator",
             "weight-converter",
-            "age-calculator",
-            "percentage-calculator",
-            "basic-calculator"
+            "age-calculator"
         ],
 
         featured: false,
@@ -210,13 +210,47 @@ const ToolXoneToolsRegistry = [
         "bmi-calculator",
         "age-calculator",
         "weight-converter",
-        "percentage-calculator"
+        "body-fat-calculator"
     ],
 
     featured: false,
     newest: true,
     active: true
 },
+
+    {
+        id: "body-fat-calculator",
+        name: "Body Fat Calculator",
+        slug: "body-fat-calculator",
+
+        type: "calculator",
+        category: "calculator",
+        categoryId: "health",
+        statisticsCategory: "health",
+
+        icon: "💪",
+
+        url: "body-fat-calculator.html",
+
+        aliases: [
+            "body fat",
+            "body fat percentage",
+            "body fat calculator",
+            "body fat percentage calculator",
+            "body-fat-calculator"
+        ],
+
+        related: [
+            "bmi-calculator",
+            "bmr-calculator",
+            "age-calculator",
+            "weight-converter"
+        ],
+
+        featured: false,
+        newest: true,
+        active: true
+    },
 
     /* ======================================================
        FINANCE CALCULATORS
