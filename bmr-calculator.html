@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+
+<title>
+BMR Calculator – Free Basal Metabolic Rate Calculator | ToolXone
+</title>
+
+
+<meta
+    name="description"
+    content="Use ToolXone's free BMR Calculator to estimate your Basal Metabolic Rate from age, sex, height, and weight using the Mifflin-St Jeor equation."
+>
+
+
+<meta
+    name="robots"
+    content="index,follow"
+>
+
+
+<meta
+    name="author"
+    content="ToolXone"
+>
+
+
+<meta
+    name="theme-color"
+    content="#0f172a"
+>
+
+
+<link
+    rel="canonical"
+    href="https://www.toolxone.com/bmr-calculator.html"
+>
+
+
+<!-- ======================================================
+     Open Graph
+====================================================== -->
+
+<meta
+    property="og:title"
+    content="BMR Calculator – Free Basal Metabolic Rate Calculator | ToolXone"
+>
+
+
+<meta
+    property="og:description"
+    content="Calculate your estimated Basal Metabolic Rate from age, sex, height, and weight with ToolXone's free online BMR Calculator."
+>
+
+
+<meta
+    property="og:type"
+    content="website"
+>
+
+
+<meta
+    property="og:url"
+    content="https://www.toolxone.com/bmr-calculator.html"
+>
+
+
+<meta
+    property="og:image"
+    content="https://www.toolxone.com/images/toolxone-logo.jpg"
+>
+
+
+<meta
+    property="og:site_name"
+    content="ToolXone"
+>
+
+
+<meta
+    property="og:locale"
+    content="en_US"
+>
+
+
+<!-- ======================================================
+     Twitter
+====================================================== -->
+
+<meta
+    name="twitter:card"
+    content="summary_large_image"
+>
+
+
+<meta
+    name="twitter:site"
+    content="@ToolXone"
+>
+
+
+<meta
+    name="twitter:title"
+    content="BMR Calculator – Free Basal Metabolic Rate Calculator | ToolXone"
+>
+
+
+<meta
+    name="twitter:description"
+    content="Estimate your Basal Metabolic Rate using age, sex, height, and weight with ToolXone's free BMR Calculator."
+>
+
+
+<meta
+    name="twitter:image"
+    content="https://www.toolxone.com/images/toolxone-logo.jpg"
+>
+
+
+<!-- ======================================================
+     Icons
+====================================================== -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="images/toolxone-favicon.png"
+>
+
+
+<link
+    rel="shortcut icon"
+    href="images/toolxone-favicon.png"
+>
+
+
+<link
+    rel="apple-touch-icon"
+    href="images/toolxone-favicon.png"
+>
+
+
+<!-- ======================================================
+     Core Framework
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="css/tools.css"
+>
+
+
+<!-- ======================================================
+     Calculator Framework
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="css/calculator-layout.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/calculator-components.css"
+>
+
+
+<!-- BMR-specific stylesheet will be added here -->
+<link
+    rel="stylesheet"
+    href="css/bmr.css"
+>
+
+
+<!-- ======================================================
+     Shared Tool Components
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="css/tool-hero.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/tool-article.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/tool-faq.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/tool-related.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/tool-reviews.css"
+>
+
+
+<link
+    rel="stylesheet"
+    href="css/tool-feedback.css"
+>
+
+
+<!-- ======================================================
+     Validation
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="css/validation.css"
+>
+
+
+<script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3609883417414465"
+    crossorigin="anonymous"
+></script>
+
+</head>
+
+
+<body data-tool="bmr-calculator">
+
+
+<header class="site-header">
+
+    <img
+        src="images/toolxone-logo.jpg"
+        alt="ToolXone Logo"
+        class="site-logo"
+    >
+
+    <p>
+        Free Online Calculators, Converters & Utility Tools
+    </p>
+
+    <p>
+        Fast • Accurate • Free
+    </p>
+
+</header>
+
+
+<div id="navbar"></div>
+
+
+<!-- ============================================= -->
+<!-- ToolXone Shared Hero                         -->
+<!-- ============================================= -->
+
+<section
+    id="toolHero"
+    class="tx-hero-section"
+>
+</section>
+
+
+<div class="tool-page">
+
+
+<main class="bmr-page">
+
+
+<section class="bmr-card">
+
+
+<h1>🔥 BMR Calculator</h1>
+
+
+<p class="tool-subtitle">
+
+    Estimate your Basal Metabolic Rate (BMR)
+    from age, sex, height, and weight using
+    the Mifflin-St Jeor equation.
+
+</p>
+
+
+<h2>Calculate Your BMR</h2>
+
+
+<!-- ==================================================
+     Sex
+================================================== -->
+
+<div class="input-group">
+
+    <label for="sex">
+
+        Sex
+
+    </label>
+
+
+    <select id="sex">
+
+        <option value="male">
+            Male
+        </option>
+
+        <option value="female">
+            Female
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- ==================================================
+     Age
+================================================== -->
+
+<div class="input-group">
+
+    <label for="age">
+
+        Age (years)
+
+    </label>
+
+
+    <input
+        type="number"
+        id="age"
+        placeholder="Example: 30"
+        min="19"
+        max="120"
+        step="1"
+    >
+
+</div>
+
+
+<!-- ==================================================
+     Unit Switch
+================================================== -->
+
+<div class="unit-switch">
+
+    <button
+        type="button"
+        class="unit-btn active"
+        id="metricBtn"
+    >
+        Metric
+    </button>
+
+
+    <button
+        type="button"
+        class="unit-btn"
+        id="imperialBtn"
+    >
+        Feet / Pounds
+    </button>
+
+</div>
+
+
+<!-- ==================================================
+     Metric Inputs
+================================================== -->
+
+<div class="metric-inputs">
+
+
+    <div class="input-group">
+
+        <label for="heightCm">
+
+            Height (cm)
+
+        </label>
+
+
+        <input
+            type="number"
+            id="heightCm"
+            placeholder="Example: 175"
+            min="100"
+            max="250"
+            step="0.1"
+        >
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label for="weightKg">
+
+            Weight (kg)
+
+        </label>
+
+
+        <input
+            type="number"
+            id="weightKg"
+            placeholder="Example: 70"
+            min="20"
+            max="500"
+            step="0.1"
+        >
+
+    </div>
+
+
+</div>
+
+
+<!-- ==================================================
+     Imperial Inputs
+================================================== -->
+
+<div
+    class="imperial-inputs"
+    style="display:none;"
+>
+
+
+    <div class="input-group">
+
+        <label for="heightFt">
+
+            Height (feet)
+
+        </label>
+
+
+        <input
+            type="number"
+            id="heightFt"
+            placeholder="Example: 5"
+            min="3"
+            max="8"
+            step="1"
+        >
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label for="heightIn">
+
+            Height (inches)
+
+        </label>
+
+
+        <input
+            type="number"
+            id="heightIn"
+            placeholder="Example: 9"
+            min="0"
+            max="11.9"
+            step="0.1"
+        >
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label for="weightLb">
+
+            Weight (pounds)
+
+        </label>
+
+
+        <input
+            type="number"
+            id="weightLb"
+            placeholder="Example: 154"
+            min="44"
+            max="1100"
+            step="0.1"
+        >
+
+    </div>
+
+
+</div>
+
+
+<!-- ==================================================
+     Actions
+================================================== -->
+
+<div class="calculator-actions">
+
+
+    <button
+        type="button"
+        id="calculateBtn"
+        class="primary-btn"
+    >
+        Calculate BMR
+    </button>
+
+
+    <button
+        type="button"
+        id="resetBtn"
+        class="secondary-btn"
+    >
+        Reset
+    </button>
+
+
+</div>
+
+
+<!-- ==================================================
+     Result
+================================================== -->
+
+<section
+    id="resultCard"
+    class="result-card"
+    style="display:none;"
+>
+
+
+    <h2>Your Estimated BMR</h2>
+
+
+    <div
+        id="bmrValue"
+        class="result-value"
+    >
+        —
+    </div>
+
+
+    <p class="result-unit">
+        calories per day
+    </p>
+
+
+    <div
+        id="bmrExplanation"
+        class="result-explanation"
+    >
+    </div>
+
+
+</section>
+
+
+</section>
+
+
+<!-- ==================================================
+     Information / Article
+================================================== -->
+
+<section id="related-tools-section">
+    <section id="relatedTools"></section>
+</section>
+
+<div id="financeInfo"></div>
+
+
+<div id="financeFAQ"></div>
+
+
+<div id="tool-reviews"></div>
+
+
+<div id="financeFeedback"></div>
+
+
+<footer id="siteFooter"></footer>
+
+
+</main>
+
+</div>
+
+
+<!-- ======================================================
+     Core JavaScript
+====================================================== -->
+
+<script src="js/config.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/search.js"></script>
+<script src="js/tool-cards.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/finance-components.js"></script>
+
+
+<!-- Backend -->
+<script src="js/backend/backend-config.js"></script>
+<script src="js/backend/api-client.js"></script>
+<script src="js/backend/statistics-api.js"></script>
+<script src="js/backend/statistics-service.js"></script>
+<script src="js/backend/analytics-api.js"></script>
+<script src="js/backend/feedback-api.js"></script>
+<script src="js/backend/phoenix-api.js"></script>
+<script src="js/backend/tool-usage-api.js"></script>
+<script src="js/backend/backend.js"></script>
+
+<!-- Statistics -->
+<script src="js/config/tools-registry.js"></script>
+
+<script src="js/statistics/statistics-storage.js"></script>
+<script src="js/statistics/statistics-engine.js"></script>
+<script src="js/statistics/statistics-events.js"></script>
+<script src="js/statistics/statistics-api.js"></script>
+<script src="js/statistics/statistics-intelligence.js"></script>
+<script src="js/statistics/statistics-dashboard.js"></script>
+<script src="js/statistics/statistics-loader.js"></script>
+
+
+<!-- ======================================================
+     SEO Framework
+====================================================== -->
+
+<script src="js/seo/schema-registry.js"></script>
+<script src="js/seo/schema-engine.js"></script>
+
+<script src="js/seo/meta-registry.js"></script>
+<script src="js/seo/meta-engine.js"></script>
+
+<script src="js/seo/seo-validator.js"></script>
+<script src="js/seo/seo-tests.js"></script>
+
+<script src="js/seo/rich-results-validator.js"></script>
+<script src="js/seo/sitemap-engine.js"></script>
+<script src="js/seo/robots-engine.js"></script>
+<script src="js/seo/seo-platform.js"></script>
+
+
+<!-- ======================================================
+     Tool-specific schema
+====================================================== -->
+
+<script src="js/seo/schemas/bmr-calculator-schema.js"></script>
+
+
+<script>
+
+/*
+==========================================================
+ToolXone Age Calculator SEO Initialization
+==========================================================
+*/
+
+const pageSchema =
+    ToolXoneSchemaRegistry.get(
+        "BMRCalculator"
+    );
+
+if (pageSchema) {
+
+    ToolXoneSchema.render(
+        pageSchema.schema
+    );
+
+    ToolXoneMeta.render(
+        pageSchema.meta
+    );
+
+}
+
+</script>
+
+<!-- Performance Framework -->
+<script src="js/performance/performance-registry.js"></script>
+<script src="js/performance/performance-engine.js"></script>
+<script src="js/performance/core-web-vitals.js"></script>
+<script src="js/performance/lazy-loader.js"></script>
+<script src="js/performance/asset-optimizer.js"></script>
+<script src="js/performance/image-optimizer.js"></script>
+<script src="js/performance/performance-validator.js"></script>
+<script src="js/performance/performance-tests.js"></script>
+<script src="js/performance/performance-platform.js"></script>
+
+<!-- Content Framework -->
+<script src="js/content/content-registry.js"></script>
+<script src="js/content/content-engine.js"></script>
+
+<script src="js/content/content-data-health.js"></script>
+
+<script src="js/content/article-loader.js"></script>
+<script src="js/content/faq-loader.js"></script>
+<script src="js/content/related-loader.js"></script>
+<script src="js/content/metadata-loader.js"></script>
+<script src="js/content/schema-loader.js"></script>
+<script src="js/content/glossary-loader.js"></script>
+
+<script src="js/content/content-platform.js"></script>
+
+<script src="js/content/article-renderer.js"></script>
+<script src="js/content/faq-renderer.js"></script>
+<script src="js/content/related-renderer.js"></script>
+<script src="js/content/metadata-renderer.js"></script>
+<script src="js/content/schema-renderer.js"></script>
+
+
+<!-- Hero -->
+<script src="js/content/hero-loader.js"></script>
+<script src="js/content/hero-renderer.js"></script>
+
+<script src="js/content/tool-action-engine.js"></script>
+
+<script src="js/content/content-integration-engine.js"></script>
+
+
+<!-- ======================================================
+     BMR ENGINE
+====================================================== -->
+
+<script src="js/bmr.js"></script>
+
+
+<!-- ======================================================
+     Shared Application
+====================================================== -->
+
+<script src="js/footer.js"></script>
+<script src="js/app.js"></script>
+
+
+<!-- ======================================================
+     PAGE INITIALIZATION
+====================================================== -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    if (
+        window.ToolXoneHeroRenderer &&
+        typeof ToolXoneHeroRenderer.render === "function"
+    ) {
+
+        ToolXoneHeroRenderer.render(
+            "bmr-calculator"
+        );
+
+    }
+
+
+    /* ==================================================
+       REVIEWS
+    ================================================== */
+
+    if (
+        typeof renderToolReviews === "function"
+    ) {
+
+        renderToolReviews(
+            "tool-reviews",
+            "BMR Calculator"
+        );
+
+    }
+
+
+    /* ==================================================
+       FEEDBACK
+    ================================================== */
+
+    if (
+        typeof renderFinanceFeedback === "function"
+    ) {
+
+        renderFinanceFeedback(
+            "financeFeedback",
+            "BMR Calculator"
+        );
+
+    }
+
+})();
+
+</script>
+
+
+</body>
+
+</html>

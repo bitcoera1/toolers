@@ -95,6 +95,13 @@ actions : {
 
     },
 
+    "bmr-calculator" : {
+
+    startCalculating : ".bmr-card",
+
+    learnMore : "#financeInfo"
+
+},
 
     "currency" : {
 

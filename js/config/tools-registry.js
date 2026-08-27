@@ -185,6 +185,39 @@ const ToolXoneToolsRegistry = [
         active: true
     },
 
+{
+    id: "bmr-calculator",
+    name: "BMR Calculator",
+    slug: "bmr-calculator",
+
+    type: "calculator",
+    category: "calculator",
+    categoryId: "health",
+    statisticsCategory: "health",
+
+    icon: "🔥",
+
+    url: "bmr-calculator.html",
+
+    aliases: [
+        "bmr",
+        "basal metabolic rate",
+        "bmr calculator",
+        "bmr-calculator"
+    ],
+
+    related: [
+        "bmi-calculator",
+        "age-calculator",
+        "weight-converter",
+        "percentage-calculator"
+    ],
+
+    featured: false,
+    newest: true,
+    active: true
+},
+
     /* ======================================================
        FINANCE CALCULATORS
        ====================================================== */
