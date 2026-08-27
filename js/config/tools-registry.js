@@ -252,6 +252,42 @@ const ToolXoneToolsRegistry = [
         active: true
     },
 
+    {
+    id: "calorie-calculator",
+
+    name: "Calorie Calculator",
+
+    categoryId: "health",
+
+    statisticsCategory: "health",
+
+    icon: "🍎",
+
+    url: "calorie-calculator.html",
+
+    aliases: [
+        "calorie",
+        "calorie calculator",
+        "daily calorie calculator",
+        "calorie needs",
+        "calorie needs calculator",
+        "maintenance calories"
+    ],
+
+    related: [
+        "bmr-calculator",
+        "bmi-calculator",
+        "body-fat-calculator",
+        "age-calculator"
+    ],
+
+    featured: false,
+
+    newest: true,
+
+    active: true
+},
+
     /* ======================================================
        FINANCE CALCULATORS
        ====================================================== */

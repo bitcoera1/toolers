@@ -111,6 +111,14 @@ actions : {
 
     },
 
+    "calorie-calculator": {
+
+        startCalculating: ".calorie-card",
+
+        learnMore: "#healthInfo"
+
+    },
+
 
     "currency" : {
 

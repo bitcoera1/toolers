@@ -166,6 +166,35 @@
 
             },
 
+            "bmr-calculator": {
+
+    article: "#healthInfo",
+
+    faq: "#healthFAQ",
+
+    related: "#relatedTools"
+
+},
+
+        "body-fat-calculator": {
+
+            article: "#healthInfo",
+
+            faq: "#healthFAQ",
+
+            related: "#relatedTools"
+
+        },
+
+        "calorie-calculator": {
+
+            article: "#healthInfo",
+
+            faq: "#healthFAQ",
+
+            related: "#relatedTools"
+
+        },
             default: {
 
                 article: "#financeInfo",

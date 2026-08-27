@@ -1,0 +1,1031 @@
+/*!
+==========================================================
+ ToolXone Calorie Calculator
+----------------------------------------------------------
+ Dedicated styling for the Calorie Calculator page.
+
+ Version: 1.0.0
+==========================================================
+*/
+
+
+/* ========================================================
+   CALORIE PAGE
+======================================================== */
+
+.calorie-page {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+}
+
+
+/* ========================================================
+   CALORIE CALCULATOR CARD
+======================================================== */
+
+.calorie-card {
+
+    width: 100%;
+
+    max-width: 760px;
+
+    margin: 32px auto;
+
+    padding: 32px;
+
+    border-radius: 20px;
+
+    background:
+        var(--card-bg, #ffffff);
+
+    border:
+        1px solid
+        var(--border-color, #e5e7eb);
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, 0.08);
+
+}
+
+
+/* ========================================================
+   HEADINGS
+======================================================== */
+
+.calorie-card h1 {
+
+    margin: 0 0 10px;
+
+    font-size: 2rem;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    color:
+        var(--heading-color, #0f172a);
+
+}
+
+
+.calorie-card h2 {
+
+    margin: 28px 0 18px;
+
+    font-size: 1.35rem;
+
+    line-height: 1.3;
+
+    font-weight: 750;
+
+    color:
+        var(--heading-color, #0f172a);
+
+}
+
+
+/* ========================================================
+   TOOL SUBTITLE
+======================================================== */
+
+.tool-subtitle {
+
+    margin: 0;
+
+    color:
+        var(--text-secondary, #64748b);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+}
+
+
+/* ========================================================
+   INPUT GROUPS
+======================================================== */
+
+.calorie-card .input-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+.calorie-card .input-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 0.95rem;
+
+    font-weight: 650;
+
+    color:
+        var(--heading-color, #0f172a);
+
+}
+
+
+/* ========================================================
+   INPUTS + SELECT
+======================================================== */
+
+.calorie-card .input-group input,
+.calorie-card .input-group select {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid
+        var(--border-color, #cbd5e1);
+
+    border-radius: 10px;
+
+    background:
+        var(--input-bg, #ffffff);
+
+    color:
+        var(--text-color, #0f172a);
+
+    font: inherit;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.calorie-card .input-group input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+.calorie-card .input-group input:focus,
+.calorie-card .input-group select:focus {
+
+    border-color: #16a34a;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(22, 163, 74, 0.12);
+
+}
+
+
+/* ========================================================
+   UNIT SWITCH
+======================================================== */
+
+.unit-switch {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin: 24px 0;
+
+    padding: 5px;
+
+    border-radius: 12px;
+
+    background: #f1f5f9;
+
+}
+
+
+.unit-btn {
+
+    min-height: 44px;
+
+    padding: 10px 16px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #475569;
+
+    font: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.unit-btn:hover {
+
+    color: #0f172a;
+
+}
+
+
+.unit-btn.active {
+
+    background: #ffffff;
+
+    color: #16a34a;
+
+    box-shadow:
+        0 2px 8px
+        rgba(15, 23, 42, 0.08);
+
+}
+
+
+/* ========================================================
+   INPUT MODE CONTAINERS
+======================================================== */
+
+.metric-inputs,
+.imperial-inputs {
+
+    width: 100%;
+
+}
+
+
+.imperial-inputs {
+
+    display: none;
+
+}
+
+
+/* ========================================================
+   INPUT HELPER TEXT
+======================================================== */
+
+.input-help {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #64748b;
+
+    font-size: 0.84rem;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================================
+   CALCULATOR ACTIONS
+======================================================== */
+
+.calculator-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 26px;
+
+}
+
+
+.calculator-actions button {
+
+    min-height: 48px;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font: inherit;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.calculator-actions button:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* ========================================================
+   PRIMARY BUTTON
+======================================================== */
+
+.primary-btn {
+
+    flex: 1;
+
+    border:
+        1px solid #16a34a;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 14px
+        rgba(22, 163, 74, 0.18);
+
+}
+
+
+.primary-btn:hover {
+
+    background: #15803d;
+
+}
+
+
+/* ========================================================
+   SECONDARY BUTTON
+======================================================== */
+
+.secondary-btn {
+
+    min-width: 120px;
+
+    border:
+        1px solid #cbd5e1;
+
+    background: #ffffff;
+
+    color: #334155;
+
+}
+
+
+.secondary-btn:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* ========================================================
+   RESULT CARD
+======================================================== */
+
+.result-card {
+
+    margin-top: 30px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    border:
+        1px solid #bbf7d0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0fdf4,
+            #ffffff
+        );
+
+}
+
+
+/* ========================================================
+   RESULT HEADING
+======================================================== */
+
+.result-card h2 {
+
+    margin: 0 0 12px;
+
+    color: #0f172a;
+
+}
+
+
+/* ========================================================
+   MAIN RESULT VALUE
+======================================================== */
+
+.result-value {
+
+    margin-top: 8px;
+
+    font-size:
+        clamp(2.5rem, 7vw, 4rem);
+
+    line-height: 1;
+
+    font-weight: 850;
+
+    color: #16a34a;
+
+    letter-spacing: -0.04em;
+
+}
+
+
+/* ========================================================
+   RESULT UNIT
+======================================================== */
+
+.result-unit {
+
+    margin: 10px 0 0;
+
+    color: #64748b;
+
+    font-size: 0.95rem;
+
+    font-weight: 600;
+
+}
+
+
+/* ========================================================
+   RESULT DETAILS GRID
+======================================================== */
+
+.calorie-results {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+}
+
+
+.calorie-result-item {
+
+    padding: 16px 12px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #dcfce7;
+
+}
+
+
+.calorie-result-item h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 0.88rem;
+
+    font-weight: 700;
+
+    color: #64748b;
+
+}
+
+
+.calorie-result-item .value {
+
+    font-size: 1.25rem;
+
+    font-weight: 800;
+
+    color: #15803d;
+
+}
+
+
+/* ========================================================
+   BMR VALUE
+======================================================== */
+
+#bmrValue {
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* ========================================================
+   MAINTENANCE VALUE
+======================================================== */
+
+#maintenanceValue {
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* ========================================================
+   WEIGHT LOSS VALUE
+======================================================== */
+
+#weightLossValue {
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* ========================================================
+   WEIGHT GAIN VALUE
+======================================================== */
+
+#weightGainValue {
+
+    font-variant-numeric:
+        tabular-nums;
+
+}
+
+
+/* ========================================================
+   RESULT EXPLANATION
+======================================================== */
+
+.result-explanation {
+
+    max-width: 600px;
+
+    margin: 18px auto 0;
+
+    color: #475569;
+
+    font-size: 0.98rem;
+
+    line-height: 1.65;
+
+}
+
+
+/* ========================================================
+   CALORIE TARGET LABELS
+======================================================== */
+
+.calorie-targets {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-top: 20px;
+
+}
+
+
+.calorie-target {
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e2e8f0;
+
+}
+
+
+.calorie-target h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 0.92rem;
+
+    font-weight: 750;
+
+    color: #334155;
+
+}
+
+
+.calorie-target-value {
+
+    font-size: 1.35rem;
+
+    font-weight: 800;
+
+    color: #16a34a;
+
+}
+
+
+/* ========================================================
+   HEALTH INFORMATION
+======================================================== */
+
+#healthInfo {
+
+    width: 100%;
+
+    margin-top: 36px;
+
+}
+
+
+/* ========================================================
+   RELATED / FAQ / REVIEWS / FEEDBACK
+======================================================== */
+
+#related-tools,
+#tool-faq,
+#tool-reviews,
+#calorieFeedback {
+
+    width: 100%;
+
+    margin-top: 36px;
+
+}
+
+
+/* ========================================================
+   DARK MODE
+======================================================== */
+
+[data-theme="dark"] .calorie-card,
+.dark-mode .calorie-card {
+
+    background: #111827;
+
+    border-color: #334155;
+
+}
+
+
+[data-theme="dark"] .calorie-card h1,
+[data-theme="dark"] .calorie-card h2,
+.dark-mode .calorie-card h1,
+.dark-mode .calorie-card h2 {
+
+    color: #f8fafc;
+
+}
+
+
+[data-theme="dark"] .tool-subtitle,
+.dark-mode .tool-subtitle {
+
+    color: #94a3b8;
+
+}
+
+
+[data-theme="dark"] .calorie-card .input-group label,
+.dark-mode .calorie-card .input-group label {
+
+    color: #e2e8f0;
+
+}
+
+
+[data-theme="dark"] .calorie-card .input-group input,
+[data-theme="dark"] .calorie-card .input-group select,
+.dark-mode .calorie-card .input-group input,
+.dark-mode .calorie-card .input-group select {
+
+    background: #0f172a;
+
+    border-color: #475569;
+
+    color: #f8fafc;
+
+}
+
+
+[data-theme="dark"] .input-help,
+.dark-mode .input-help {
+
+    color: #94a3b8;
+
+}
+
+
+/* ========================================================
+   DARK MODE — UNIT SWITCH
+======================================================== */
+
+[data-theme="dark"] .unit-switch,
+.dark-mode .unit-switch {
+
+    background: #1e293b;
+
+}
+
+
+[data-theme="dark"] .unit-btn,
+.dark-mode .unit-btn {
+
+    color: #cbd5e1;
+
+}
+
+
+[data-theme="dark"] .unit-btn.active,
+.dark-mode .unit-btn.active {
+
+    background: #334155;
+
+    color: #4ade80;
+
+}
+
+
+/* ========================================================
+   DARK MODE — SECONDARY BUTTON
+======================================================== */
+
+[data-theme="dark"] .secondary-btn,
+.dark-mode .secondary-btn {
+
+    background: #1e293b;
+
+    border-color: #475569;
+
+    color: #e2e8f0;
+
+}
+
+
+[data-theme="dark"] .secondary-btn:hover,
+.dark-mode .secondary-btn:hover {
+
+    background: #334155;
+
+}
+
+
+/* ========================================================
+   DARK MODE — RESULT CARD
+======================================================== */
+
+[data-theme="dark"] .result-card,
+.dark-mode .result-card {
+
+    border-color: #166534;
+
+    background:
+        linear-gradient(
+            145deg,
+            #052e16,
+            #111827
+        );
+
+}
+
+
+[data-theme="dark"] .result-card h2,
+.dark-mode .result-card h2 {
+
+    color: #f8fafc;
+
+}
+
+
+[data-theme="dark"] .result-value,
+.dark-mode .result-value {
+
+    color: #4ade80;
+
+}
+
+
+[data-theme="dark"] .result-unit,
+[data-theme="dark"] .result-explanation,
+.dark-mode .result-unit,
+.dark-mode .result-explanation {
+
+    color: #cbd5e1;
+
+}
+
+
+/* ========================================================
+   DARK MODE — RESULT ITEMS
+======================================================== */
+
+[data-theme="dark"] .calorie-result-item,
+.dark-mode .calorie-result-item {
+
+    background: #1e293b;
+
+    border-color: #334155;
+
+}
+
+
+[data-theme="dark"] .calorie-result-item h3,
+.dark-mode .calorie-result-item h3 {
+
+    color: #94a3b8;
+
+}
+
+
+[data-theme="dark"] .calorie-result-item .value,
+.dark-mode .calorie-result-item .value {
+
+    color: #4ade80;
+
+}
+
+
+/* ========================================================
+   DARK MODE — TARGETS
+======================================================== */
+
+[data-theme="dark"] .calorie-target,
+.dark-mode .calorie-target {
+
+    background: #1e293b;
+
+    border-color: #334155;
+
+}
+
+
+[data-theme="dark"] .calorie-target h3,
+.dark-mode .calorie-target h3 {
+
+    color: #cbd5e1;
+
+}
+
+
+[data-theme="dark"] .calorie-target-value,
+.dark-mode .calorie-target-value {
+
+    color: #4ade80;
+
+}
+
+
+/* ========================================================
+   RESPONSIVE
+======================================================== */
+
+@media (max-width: 768px) {
+
+    .calorie-card {
+
+        margin: 24px auto;
+
+        padding: 24px 20px;
+
+        border-radius: 16px;
+
+    }
+
+
+    .calorie-card h1 {
+
+        font-size: 1.7rem;
+
+    }
+
+
+    .calorie-card h2 {
+
+        font-size: 1.2rem;
+
+    }
+
+
+    .calculator-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .primary-btn,
+    .secondary-btn {
+
+        width: 100%;
+
+    }
+
+
+    .secondary-btn {
+
+        min-width: 0;
+
+    }
+
+
+    .calorie-results {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .calorie-targets {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .result-card {
+
+        padding: 24px 18px;
+
+    }
+
+}
+
+
+/* ========================================================
+   SMALL MOBILE
+======================================================== */
+
+@media (max-width: 480px) {
+
+    .calorie-card {
+
+        padding: 20px 16px;
+
+    }
+
+
+    .unit-switch {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .unit-btn {
+
+        min-height: 46px;
+
+    }
+
+
+    .result-value {
+
+        font-size: 2.7rem;
+
+    }
+
+
+    .calorie-result-item {
+
+        padding: 15px 12px;
+
+    }
+
+}
