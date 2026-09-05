@@ -22,38 +22,84 @@ function getCurrencyInfo(code){
     };
 }
 
-function getTrend(){
-    const isUp = Math.random() > 0.45;
-    const change = (Math.random() * 0.45 + 0.03).toFixed(2);
+async function getTrend(base, quote){
+    if(base === quote){
+        return {
+            isUp: true,
+            text: "0.00%",
+            points: "0,20 17,20 34,20 51,20 68,20 85,20 102,20 119,20"
+        };
+    }
+
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - 10);
+
+    const formatDate = (date) => {
+        return date.toISOString().split("T")[0];
+    };
+
+    const url =
+        `https://api.frankfurter.dev/v2/rates` +
+        `?base=${encodeURIComponent(base)}` +
+        `&quotes=${encodeURIComponent(quote)}` +
+        `&from=${formatDate(startDate)}` +
+        `&to=${formatDate(endDate)}`;
+
+    const response = await fetch(url);
+
+    if(!response.ok){
+        throw new Error("Historical rate API error");
+    }
+
+    const data = await response.json();
+
+    const history = data
+        .filter(item =>
+            item.quote === quote &&
+            typeof item.rate === "number"
+        )
+        .sort((a, b) =>
+            new Date(a.date) - new Date(b.date)
+        );
+
+    if(history.length < 2){
+        throw new Error("Not enough historical rate data");
+    }
+
+    const firstRate = history[0].rate;
+    const latestRate = history[history.length - 1].rate;
+
+    const change = ((latestRate - firstRate) / firstRate) * 100;
+
+    const isUp = change >= 0;
+
+    const text = isUp
+        ? `▲ +${change.toFixed(2)}%`
+        : `▼ ${change.toFixed(2)}%`;
+
+    const rates = history.map(item => item.rate);
+
+    const minRate = Math.min(...rates);
+    const maxRate = Math.max(...rates);
+
+    const points = rates.map((rate, index) => {
+        const x = rates.length === 1
+            ? 0
+            : (index / (rates.length - 1)) * 119;
+
+        const y = maxRate === minRate
+            ? 20
+            : 34 - ((rate - minRate) / (maxRate - minRate)) * 28;
+
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(" ");
 
     return {
         isUp,
-        text: `${isUp ? "▲ +" : "▼ -"}${change}%`
+        text,
+        points
     };
-}
-
-function generateSparklinePoints(isUp){
-    const points = [];
-    let y = isUp ? 28 : 12;
-
-    for(let i = 0; i < 8; i++){
-        const x = i * 17;
-
-        y += isUp
-            ? Math.floor(Math.random() * 9) - 5
-            : Math.floor(Math.random() * 9) - 3;
-
-        if(isUp){
-            y -= 1;
-        }else{
-            y += 1;
-        }
-
-        y = Math.max(6, Math.min(34, y));
-        points.push(`${x},${y}`);
-    }
-
-    return points.join(" ");
 }
 
 async function loadHeroSnapshot(){
@@ -85,7 +131,7 @@ async function loadHeroSnapshot(){
 
             const baseInfo = getCurrencyInfo(base);
             const quoteInfo = getCurrencyInfo(quote);
-            const trend = getTrend();
+            const trend = await getTrend(base, quote);
 
             rowsBox.innerHTML += `
                 <div class="market-row">
@@ -112,7 +158,7 @@ async function loadHeroSnapshot(){
                     <div class="sparkline ${trend.isUp ? "spark-up" : "spark-down"}">
                         <svg viewBox="0 0 120 40" preserveAspectRatio="none">
                             <polyline
-                                points="${generateSparklinePoints(trend.isUp)}"
+                                points="${trend.points}"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="3"

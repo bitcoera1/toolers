@@ -216,8 +216,8 @@ window.ToolXoneContentRegistry.register(
                 "Is my calculation data stored or shared?",
 
             answer:
-                "No. Your calculations are performed within your browser, helping keep your mathematical work private while providing fast results."
-
+    "Calculations are performed directly within your browser. ToolXone may record tool-usage statistics separately for platform usage and performance monitoring."
+        
         },
 
         {
@@ -367,7 +367,7 @@ window.ToolXoneContentRegistry.register(
 
         description :
 
-            "Solve scientific, engineering and academic calculations instantly with advanced trigonometric, logarithmic, exponential and statistical functions.",
+            "Solve scientific, engineering and academic calculations instantly with advanced trigonometric, logarithmic, exponential and mathematical functions.",
 
         badge : "Professional Tool",
 
@@ -391,7 +391,7 @@ window.ToolXoneContentRegistry.register(
 
         statistics : {
 
-            functions : "50+",
+            functions : "Advanced",
 
             accuracy : "High Precision",
 

@@ -451,11 +451,19 @@ return {
        RESET
     ========================================= */
 
-    function reset() {
-        state = createDefaultState();
+function reset() {
+    /*
+     * AC clears the active calculator state,
+     * but persistent memory must survive.
+     */
+    const preservedMemory = state.memory;
 
-        return getState();
-    }
+    state = createDefaultState();
+
+    state.memory = preservedMemory;
+
+    return getState();
+}
 
     /* =========================================
        PUBLIC API

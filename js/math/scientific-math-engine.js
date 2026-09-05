@@ -28,7 +28,9 @@
 
     const ANGLE_MODES = Object.freeze([
         "DEG",
-        "RAD"
+        "RAD",
+        "GRAD"
+    
     ]);
 
     function setAngleMode(mode) {
@@ -64,22 +66,38 @@
         return value * 180 / Math.PI;
     }
 
+    function gradsToRadians(value) {
+    return value * Math.PI / 200;
+    }
+
+    function radiansToGrads(value) {
+        return value * 200 / Math.PI;
+    }
+
     function toRadians(value) {
 
-        if (angleMode === "DEG") {
-            return degreesToRadians(value);
-        }
+    if (angleMode === "DEG") {
+        return degreesToRadians(value);
+    }
 
-        return value;
+    if (angleMode === "GRAD") {
+        return gradsToRadians(value);
+    }
+
+    return value;
     }
 
     function fromRadians(value) {
 
-        if (angleMode === "DEG") {
-            return radiansToDegrees(value);
-        }
+    if (angleMode === "DEG") {
+        return radiansToDegrees(value);
+    }
 
-        return value;
+    if (angleMode === "GRAD") {
+        return radiansToGrads(value);
+    }
+
+    return value;
     }
 
 
@@ -353,31 +371,39 @@
        RESULT NORMALIZATION
     ========================================= */
 
-    function normalizeResult(value) {
+function normalizeResult(value) {
 
-        if (!Number.isFinite(value)) {
-            throw new Error(
-                "Result is outside the supported numeric range."
-            );
-        }
-
-        /*
-         * Remove common floating-point artifacts such as:
-         *
-         * sin(30) → 0.49999999999999994
-         *
-         * while retaining useful precision.
-         */
-
-        const normalized =
-            Number.parseFloat(
-                Number(value).toPrecision(15)
-            );
-
-        return Object.is(normalized, -0)
-            ? 0
-            : normalized;
+    /*
+     * Invalid mathematical results must never
+     * silently become 0.
+     *
+     * Examples:
+     *   √(-4)  → invalid
+     *   log(-1) → invalid
+     *   ln(-1)  → invalid
+     *   1/0    → invalid
+     *
+     * Valid Infinity / NaN results are rejected
+     * so the evaluator can display Error.
+     */
+    if (!Number.isFinite(value)) {
+        throw new Error(
+            "Invalid mathematical result."
+        );
     }
+
+    /*
+     * Reduce floating-point artifacts such as:
+     *
+     *   0.1 + 0.2
+     *   0.30000000000000004
+     *
+     * while preserving useful precision.
+     */
+    return Number(
+        value.toPrecision(15)
+    );
+}
 
 
     /* =========================================
@@ -393,6 +419,9 @@
 
         degreesToRadians,
         radiansToDegrees,
+
+        gradsToRadians,
+        radiansToGrads,
 
         sin,
         cos,

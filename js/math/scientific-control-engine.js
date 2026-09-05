@@ -730,6 +730,13 @@
 
         controlState.angleMode =
             normalized;
+        
+        if (
+    window.ToolXoneScientificMath &&
+    typeof window.ToolXoneScientificMath.setAngleMode === "function"
+) {
+    window.ToolXoneScientificMath.setAngleMode(normalized);
+}
 
         return normalized;
     }
@@ -852,14 +859,79 @@
         );
     }
 
-    function memoryStore(value = getResult()) {
-        const engine = requireStateEngine();
 
-        const method = findMethod(engine, [
-            "setMemory",
-            "storeMemory",
-            "memoryStore"
-        ]);
+    /*
+     * Resolve the number currently represented by
+     * the calculator input.
+     *
+     * Priority:
+     * 1. A simple numeric expression currently being typed.
+     * 2. The current calculated result.
+     */
+    function getMemoryOperand() {
+
+        const expression =
+            normalizeExpression(
+                getExpression()
+            ).trim();
+
+        if (expression) {
+
+            const normalized =
+                expression
+                    .replace(/,/g, "")
+                    .trim();
+
+            /*
+             * Only treat a standalone numeric value
+             * as the current memory operand.
+             *
+             * Examples:
+             * 25
+             * -25
+             * 25.5
+             * .5
+             * 2.5e3
+             */
+            const numericPattern =
+                /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+
+            if (numericPattern.test(normalized)) {
+
+                const number =
+                    Number(normalized);
+
+                if (Number.isFinite(number)) {
+                    return number;
+                }
+            }
+        }
+
+        const result =
+            Number(getResult());
+
+        return Number.isFinite(result)
+            ? result
+            : 0;
+    }
+
+
+    function memoryStore(
+        value = getMemoryOperand()
+    ) {
+
+        const engine =
+            requireStateEngine();
+
+        const method =
+            findMethod(
+                engine,
+                [
+                    "setMemory",
+                    "storeMemory",
+                    "memoryStore"
+                ]
+            );
 
         if (!method) {
             throw new Error(
@@ -872,9 +944,77 @@
         return getMemory();
     }
 
-    function memoryRecall() {
-        const value = getMemory();
 
+    function memoryRecall() {
+
+        const value =
+            getMemory();
+
+        const expression =
+            normalizeExpression(
+                getExpression()
+            ).trim();
+
+        /*
+         * If there is no active expression,
+         * or the previous calculation is complete,
+         * recall memory as the new displayed value.
+         *
+         * Example:
+         * 25 → MS → AC → MR
+         * Result becomes 25.
+         */
+        if (
+            !expression ||
+            controlState.justEvaluated
+        ) {
+
+            setExpression("");
+            setResult(value);
+
+            controlState.error = null;
+            controlState.justEvaluated = true;
+
+            return value;
+        }
+
+        /*
+         * If the user is currently entering a
+         * standalone number, MR replaces it.
+         *
+         * Example:
+         * 7 → MR
+         * becomes 25 instead of 725.
+         */
+        const normalized =
+            expression
+                .replace(/,/g, "")
+                .trim();
+
+        const numericPattern =
+            /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+
+        if (
+            numericPattern.test(normalized)
+        ) {
+
+            setExpression("");
+            setResult(value);
+
+            controlState.error = null;
+            controlState.justEvaluated = true;
+
+            return value;
+        }
+
+        /*
+         * If the user is inside a larger expression,
+         * insert the memory value into that expression.
+         *
+         * Example:
+         * 5 + MR
+         * → 5 + 25
+         */
         appendExpression(
             normalizeExpression(value)
         );
@@ -882,12 +1022,15 @@
         return value;
     }
 
+
     function memoryClear() {
-        const result = callStateMethod([
-            "clearMemory",
-            "memoryClear",
-            "mc"
-        ]);
+
+        const result =
+            callStateMethod([
+                "clearMemory",
+                "memoryClear",
+                "mc"
+            ]);
 
         if (!result.supported) {
             throw new Error(
@@ -898,18 +1041,30 @@
         return getMemory();
     }
 
-    function memoryAdd(value = getResult()) {
-        const engine = requireStateEngine();
 
-        const method = findMethod(engine, [
-            "memoryAdd",
-            "addMemory",
-            "mPlus"
-        ]);
+    function memoryAdd(
+        value = getMemoryOperand()
+    ) {
+
+        const engine =
+            requireStateEngine();
+
+        const method =
+            findMethod(
+                engine,
+                [
+                    "memoryAdd",
+                    "addMemory",
+                    "mPlus"
+                ]
+            );
 
         if (method) {
+
             engine[method](value);
+
         } else {
+
             memoryStore(
                 Number(getMemory() || 0) +
                 Number(value || 0)
@@ -919,20 +1074,30 @@
         return getMemory();
     }
 
-    function memorySubtract(
-        value = getResult()
-    ) {
-        const engine = requireStateEngine();
 
-        const method = findMethod(engine, [
-            "memorySubtract",
-            "subtractMemory",
-            "mMinus"
-        ]);
+    function memorySubtract(
+        value = getMemoryOperand()
+    ) {
+
+        const engine =
+            requireStateEngine();
+
+        const method =
+            findMethod(
+                engine,
+                [
+                    "memorySubtract",
+                    "subtractMemory",
+                    "mMinus"
+                ]
+            );
 
         if (method) {
+
             engine[method](value);
+
         } else {
+
             memoryStore(
                 Number(getMemory() || 0) -
                 Number(value || 0)
@@ -941,7 +1106,7 @@
 
         return getMemory();
     }
-
+    
     /* =========================================
        HISTORY / REPLAY
     ========================================= */
@@ -1217,19 +1382,33 @@
                 error: null
             };
 
-        } catch (error) {
-            const message =
-                setError(error);
+} catch (error) {
 
-            controlState.justEvaluated = false;
+    const message =
+        setError(error);
 
-            return {
-                success: false,
-                expression: source,
-                result: null,
-                error: message
-            };
-        }
+    /*
+     * Do not leave the previous successful result
+     * visible after a failed calculation.
+     *
+     * Example:
+     *   √4   = 2
+     *   √(-4) → Error
+     *
+     * The failed calculation must replace the
+     * previous result instead of displaying 2.
+     */
+    setResult("Error");
+
+    controlState.justEvaluated = true;
+
+    return {
+        success: false,
+        expression: source,
+        result: null,
+        error: message
+    };
+}
     }
 
     /* =========================================

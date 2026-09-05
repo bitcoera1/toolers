@@ -263,11 +263,14 @@
        DOM DISCOVERY
        ===================================================== */
 
-    function discoverElements() {
-        rootElement = findRoot();
+function discoverElements() {
 
-        elements.display =
-            findElement("display");
+    if (!rootElement) {
+        rootElement = findRoot();
+    }
+
+    elements.display =
+        findElement("display");
 
         elements.expression =
             findElement("expression");
@@ -1449,14 +1452,33 @@ function handleClick(event) {
        KEYBOARD HANDLER
        ===================================================== */
 
-    function handleKeyboard(event) {
-        if (
-            event.ctrlKey ||
-            event.metaKey ||
-            event.altKey
-        ) {
-            return;
-        }
+function handleKeyboard(event) {
+
+    /* ---------------------------------------------------------
+       History shortcuts
+       Ctrl + ↑ → previous history entry
+       Ctrl + ↓ → next history entry
+       --------------------------------------------------------- */
+
+    if (event.ctrlKey && event.key === "ArrowUp") {
+        event.preventDefault();
+        historyUp();
+        return;
+    }
+
+    if (event.ctrlKey && event.key === "ArrowDown") {
+        event.preventDefault();
+        historyDown();
+        return;
+    }
+
+    if (
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey
+    ) {
+        return;
+    }
 
         const target =
             event.target;
@@ -1538,15 +1560,6 @@ function handleClick(event) {
                 allClear();
                 break;
 
-            if (event.ctrlKey && event.key === "ArrowUp")
-                event.preventDefault();
-                historyUp();
-                break;
-
-            if (event.ctrlKey && event.key === "ArrowDown")
-                event.preventDefault();
-                historyDown();
-                break;
         }
     }
 
@@ -1595,32 +1608,32 @@ function handleClick(event) {
             };
         }
 
-        controller =
-            getController();
+    controller =
+    getController();
 
-        if (!controller) {
-            console.warn(
-                "[ToolXone Scientific UI] " +
-                "Scientific Control Engine not found."
-            );
+if (!controller) {
+    console.warn(
+        "[ToolXone Scientific UI] " +
+        "Scientific Control Engine not found."
+    );
 
-            return {
-                success: false,
-                error: new Error(
-                    "ToolXoneScientificControl is unavailable"
-                )
-            };
-        }
+    return {
+        success: false,
+        error: new Error(
+            "ToolXoneScientificControl is unavailable"
+        )
+    };
+}
 
-        discoverElements();
+if (
+    options &&
+    options.root
+) {
+    rootElement =
+        options.root;
+}
 
-        if (
-            options &&
-            options.root
-        ) {
-            rootElement =
-                options.root;
-        }
+discoverElements();
 
         bindEvents();
 
@@ -1779,7 +1792,8 @@ function handleClick(event) {
         historyDown,
 
         // GT
-        clearGrandTotal
+        clearGrandTotal,
+        recallGrandTotal
     };
 
     /* =====================================================

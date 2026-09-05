@@ -315,7 +315,7 @@ function detectToolIdentity(
 
             benefitIdeas: [
                 "Live Exchange Rates",
-                "190+ Currencies",
+                "17 Supported Currencies",
                 "Instant Conversion"
             ],
 

@@ -72,6 +72,10 @@
     background:#1d4ed8;
 }
 
+.tx-equal-wide{
+    grid-column:span 2;
+}
+
 .tx-clear{
     background:#ef4444;
     color:white;

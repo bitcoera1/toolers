@@ -53,7 +53,7 @@ const TOOLS = {
         "Real-time exchange rates",
         "Fast conversion",
         "Accurate results",
-        "190+ currencies"
+        "17 supported currencies"
 
     ],
 

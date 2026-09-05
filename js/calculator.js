@@ -23,6 +23,7 @@ let rawExpression = "";
    ===================================================== */
 
 function appendValue(value) {
+
     const operators = [
         "+",
         "-",
@@ -31,21 +32,30 @@ function appendValue(value) {
     ];
 
     if (justCalculated) {
+
         if (operators.includes(value)) {
+
             justCalculated = false;
+
         } else if (
             isDigit(value) ||
             value === "."
         ) {
+
             rawExpression = "";
             justCalculated = false;
+
         }
     }
 
     if (operators.includes(value)) {
+
         appendOperator(value);
+
     } else {
+
         appendNumberCharacter(value);
+
     }
 
     updateDisplay();
@@ -166,9 +176,328 @@ function clearDisplay() {
     clearNumberWords();
 }
 
+/*
+ * =====================================================
+ * 5. TOGGLE SIGN (+/-)
+ * =====================================================
+ *
+ * Examples:
+ *
+ * 5       → -5
+ * -5      → 5
+ * 12+5    → 12+-5
+ * 12+-5   → 12+5
+ * 12×5    → 12×-5
+ */
+
+function toggleSign() {
+
+    if (!rawExpression) {
+        return;
+    }
+
+    /*
+     * If a result has just been calculated,
+     * toggle the sign of the complete result.
+     */
+    if (justCalculated) {
+
+        if (rawExpression.startsWith("-")) {
+
+            rawExpression =
+                rawExpression.slice(1);
+
+        } else {
+
+            rawExpression =
+                "-" + rawExpression;
+
+        }
+
+        justCalculated = false;
+
+        updateDisplay();
+        clearNumberWords();
+
+        return;
+    }
+
+    /*
+     * Find the beginning of the current number.
+     */
+    let boundary = -1;
+
+    for (
+        let i = rawExpression.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const character =
+            rawExpression[i];
+
+        /*
+         * + * / are always expression boundaries.
+         */
+        if (
+            character === "+" ||
+            character === "*" ||
+            character === "/"
+        ) {
+
+            boundary = i;
+            break;
+        }
+
+        /*
+         * A minus is a boundary only when
+         * it is being used as an operator.
+         *
+         * In:
+         * 12-5  → minus is an operator
+         *
+         * In:
+         * 12+-5 → second minus is a sign
+         */
+        if (
+            character === "-" &&
+            i > 0 &&
+            !isOperator(
+                rawExpression[i - 1]
+            )
+        ) {
+
+            boundary = i;
+            break;
+        }
+    }
+
+    const prefix =
+        rawExpression.slice(
+            0,
+            boundary + 1
+        );
+
+    const currentNumber =
+        rawExpression.slice(
+            boundary + 1
+        );
+
+    if (!currentNumber) {
+        return;
+    }
+
+    /*
+     * Remove an existing negative sign.
+     */
+    if (
+        currentNumber.startsWith("-")
+    ) {
+
+        rawExpression =
+            prefix +
+            currentNumber.slice(1);
+
+    }
+
+    /*
+     * Add a negative sign.
+     */
+    else {
+
+        rawExpression =
+            prefix +
+            "-" +
+            currentNumber;
+
+    }
+
+    updateDisplay();
+    clearNumberWords();
+}
+
+/*
+ * =====================================================
+ * 6. CALCULATOR-STYLE PERCENTAGE
+ * =====================================================
+ *
+ * Examples:
+ *
+ * 50 %        → 0.5
+ *
+ * 200 + 10 %  → 200 + 20
+ * 200 - 10 %  → 200 - 20
+ * 200 * 10 %  → 200 * 0.1
+ * 200 / 10 %  → 200 / 0.1
+ *
+ * Therefore:
+ *
+ * 200 + 10 % =
+ * 220
+ *
+ * 200 - 10 % =
+ * 180
+ *
+ * 200 * 10 % =
+ * 20
+ */
+
+function calculatePercentage() {
+
+    if (
+        !rawExpression ||
+        rawExpression === "-"
+    ) {
+
+        return;
+    }
+
+    /*
+     * Look for:
+     *
+     * [left expression]
+     * [operator]
+     * [current number]
+     */
+    const match =
+        rawExpression.match(
+            /^(.*?)([+\-*/])(-?\d*\.?\d+)$/
+        );
+
+    /*
+     * Standalone percentage.
+     *
+     * Example:
+     * 50 %
+     *
+     * Result:
+     * 0.5
+     */
+    if (!match) {
+
+        const value =
+            Number(rawExpression);
+
+        if (
+            !Number.isFinite(value)
+        ) {
+
+            showCalculatorError();
+            return;
+        }
+
+        rawExpression =
+            normalizeResult(
+                value / 100
+            );
+
+        updateDisplay();
+
+        showNumberWords(
+            Number(rawExpression)
+        );
+
+        justCalculated = true;
+
+        return;
+    }
+
+    const leftExpression =
+        match[1];
+
+    const operator =
+        match[2];
+
+    const rightValue =
+        Number(match[3]);
+
+    if (
+        !leftExpression ||
+        !Number.isFinite(rightValue)
+    ) {
+
+        return;
+    }
+
+    let leftValue;
+
+    try {
+
+        leftValue =
+            Function(
+                `"use strict"; return (${leftExpression});`
+            )();
+
+        if (
+            !Number.isFinite(leftValue)
+        ) {
+
+            throw new Error(
+                "Invalid percentage base."
+            );
+        }
+
+    } catch (error) {
+
+        showCalculatorError();
+
+        console.error(
+            "Percentage error:",
+            error
+        );
+
+        return;
+    }
+
+    let percentageValue;
+
+    /*
+     * Addition/subtraction:
+     *
+     * 200 + 10%
+     *
+     * 10% of 200 = 20
+     */
+    if (
+        operator === "+" ||
+        operator === "-"
+    ) {
+
+        percentageValue =
+            leftValue *
+            (rightValue / 100);
+
+    }
+
+    /*
+     * Multiplication/division:
+     *
+     * 200 × 10%
+     *
+     * 10% = 0.1
+     */
+    else {
+
+        percentageValue =
+            rightValue / 100;
+
+    }
+
+    rawExpression =
+        leftExpression +
+        operator +
+        normalizeResult(
+            percentageValue
+        );
+
+    justCalculated = false;
+
+    updateDisplay();
+    clearNumberWords();
+}
 
 /* =====================================================
-   5. BACKSPACE
+   7. BACKSPACE
    ===================================================== */
 
 function deleteLastCharacter() {
@@ -184,7 +513,7 @@ function deleteLastCharacter() {
 
 
 /* =====================================================
-   6. CALCULATE
+   8. CALCULATE
    ===================================================== */
 
 function calculate() {
@@ -285,7 +614,7 @@ function calculate() {
 
 
 /* =====================================================
-   7. ERROR STATE
+   9. ERROR STATE
    ===================================================== */
 
 function showCalculatorError() {
@@ -305,7 +634,7 @@ function showCalculatorError() {
 
 
 /* =====================================================
-   8. DISPLAY FORMATTING
+   10. DISPLAY FORMATTING
    ===================================================== */
 
 function updateDisplay() {
@@ -425,7 +754,7 @@ function formatIntegerString(value) {
 
 
 /* =====================================================
-   9. NUMBER WORDS
+   11. NUMBER WORDS
    ===================================================== */
 
 function showNumberWords(value) {
@@ -472,7 +801,7 @@ function clearNumberWords() {
 
 
 /* =====================================================
-   10. HELPERS
+   12. HELPERS
    ===================================================== */
 
 function isDigit(value) {
@@ -527,7 +856,7 @@ function normalizeResult(value) {
 
 
 /* =====================================================
-   11. KEYBOARD SUPPORT
+   13. KEYBOARD SUPPORT
    ===================================================== */
 
 document.addEventListener(
@@ -588,6 +917,15 @@ document.addEventListener(
             return;
         }
 
+        if (event.key === "%") {
+
+    event.preventDefault();
+
+    calculatePercentage();
+
+    return;
+}
+
         if (
             event.key === "Enter" ||
             event.key === "="
@@ -623,7 +961,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   12. INITIAL STATE
+   14. INITIAL STATE
    ===================================================== */
 
 document.addEventListener(

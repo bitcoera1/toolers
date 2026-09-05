@@ -144,69 +144,129 @@
        BINARY EXPRESSIONS
     ========================================= */
 
-    function evaluateBinary(
-        node,
-        evaluate
-    ) {
+function evaluateBinary(
+    node,
+    evaluate
+) {
 
-        const math =
-            getMathEngine();
+    const math =
+        getMathEngine();
 
-        const left =
-            evaluate(node.left);
+    const left =
+        evaluate(node.left);
 
-        const right =
-            evaluate(node.right);
+    /*
+     * --------------------------------------------------------
+     * CONTEXTUAL PERCENTAGE
+     * --------------------------------------------------------
+     *
+     * Standalone:
+     *     50% = 0.5
+     *
+     * Calculator-style contextual percentage:
+     *     200 + 10% = 220
+     *     200 - 10% = 180
+     *     200 × 10% = 20
+     *     200 ÷ 10% = 2000
+     *
+     * Only a direct right-hand postfix percentage is treated
+     * contextually. All other percentage expressions continue
+     * through the normal evaluator.
+     * --------------------------------------------------------
+     */
 
-        let result;
+    const isRightPercentage =
+        node.right &&
+        node.right.type === "PostfixExpression" &&
+        node.right.operator === "%";
+
+    let right;
+
+    if (isRightPercentage) {
+
+        const percentageValue =
+            evaluate(node.right.operand);
+
+        const percentage =
+            math.percent(
+                percentageValue
+            );
 
         switch (node.operator) {
 
             case "+":
-                result =
-                    left + right;
-                break;
-
             case "-":
-                result =
-                    left - right;
+                right =
+                    left * percentage;
                 break;
 
             case "*":
-                result =
-                    left * right;
-                break;
-
             case "/":
-
-                if (right === 0) {
-                    throw new Error(
-                        "Cannot divide by zero."
-                    );
-                }
-
-                result =
-                    left / right;
-                break;
-
-            case "^":
-                result =
-                    math.power(
-                        left,
-                        right
-                    );
+                right =
+                    percentage;
                 break;
 
             default:
-                throw new Error(
-                    `Unsupported binary operator: ${node.operator}`
-                );
+                right =
+                    percentage;
         }
 
-        return math.normalizeResult(
-            result
-        );
+    } else {
+
+        right =
+            evaluate(node.right);
+
     }
+
+    let result;
+
+    switch (node.operator) {
+
+        case "+":
+            result =
+                left + right;
+            break;
+
+        case "-":
+            result =
+                left - right;
+            break;
+
+        case "*":
+            result =
+                left * right;
+            break;
+
+        case "/":
+
+            if (right === 0) {
+                throw new Error(
+                    "Cannot divide by zero."
+                );
+            }
+
+            result =
+                left / right;
+            break;
+
+        case "^":
+            result =
+                math.power(
+                    left,
+                    right
+                );
+            break;
+
+        default:
+            throw new Error(
+                `Unsupported binary operator: ${node.operator}`
+            );
+    }
+
+    return math.normalizeResult(
+        result
+    );
+}
 
 
     /* =========================================
