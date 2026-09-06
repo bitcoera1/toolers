@@ -119,7 +119,7 @@ Kilogram (kg)
 
         const absolute = Math.abs(value);
 
-        let maximumFractionDigits = 8;
+        let maximumFractionDigits = 12;
 
         if (absolute >= 1000) {
 
@@ -235,7 +235,7 @@ Kilogram (kg)
         if (value < 0) {
 
             resultBox.textContent =
-                "Please enter a positive value.";
+                "Please enter a non-negative value.";
 
             return;
 
@@ -316,20 +316,16 @@ Kilogram (kg)
             `;
 
 
-            if (
-                window.ToolXoneStatisticsEvents &&
-                typeof
-                window.ToolXoneStatisticsEvents.recordCalculation
-                === "function"
-            ) {
+if (
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
+    typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+) {
 
-                window.ToolXoneStatisticsEvents
-                    .recordCalculation(
-                        "weight-converter"
-                    );
+    ToolXoneStatisticsEvents.recordCalculation(
+        "weight-converter"
+    );
 
-            }
-
+}
         }
 
         catch (error) {

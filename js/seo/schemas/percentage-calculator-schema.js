@@ -198,7 +198,7 @@ Object.freeze({
                 "ToolXone Percentage Calculator",
 
             applicationCategory:
-                "EducationalApplication"
+                "CalculatorApplication"
 
         },
 

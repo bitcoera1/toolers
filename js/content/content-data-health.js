@@ -373,7 +373,7 @@ const BODY_FAT_CALCULATOR_CONTENT = {
             "Free Body Fat Percentage Calculator",
 
         description:
-            "Estimate your body fat percentage using age, sex, height, neck, waist and hip measurements with the U.S. Navy body fat estimation method.",
+            "Estimate your body fat percentage using sex, height, neck, waist and hip measurements with the U.S. Navy body fat estimation method.",
 
         badge:
             "Health Tool",
@@ -566,7 +566,7 @@ const BODY_FAT_CALCULATOR_CONTENT = {
                     "How to Use the Body Fat Calculator",
 
                 content:
-                    "Select your sex and choose Metric or Imperial units. Enter your age, height, neck circumference and waist circumference. If using the female calculation, also enter hip circumference. Select Calculate Body Fat to receive the estimated body fat percentage."
+                    "Select your sex and choose Metric or Imperial units. Enter your height, neck circumference and waist circumference. If using the female calculation, also enter hip circumference. Select Calculate Body Fat to receive the estimated body fat percentage."
             },
 
 
@@ -630,7 +630,7 @@ const BODY_FAT_CALCULATOR_CONTENT = {
                 "What measurements are needed for the Body Fat Calculator?",
 
             answer:
-                "The calculator uses age, sex, height, neck circumference and waist circumference. The female calculation also requires hip circumference."
+                "The calculator uses sex, height, neck circumference and waist circumference. The female calculation also requires hip circumference."
         },
 
 

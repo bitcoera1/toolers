@@ -109,6 +109,13 @@
 
                 },
 
+                {
+                    heading:
+                        "Using Calculate and Reset",
+
+                    content:
+                        "After entering the required values, select Calculate to display the result. On desktop and laptop devices, you can also press the Enter key after entering a value to calculate the result. Use Reset to clear the current mode and start a new calculation."
+                },
 
                 {
 

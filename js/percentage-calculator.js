@@ -376,6 +376,11 @@ function calculateWhatPercent() {
                 result
         })
     );
+
+    // Record successful calculation
+    ToolXoneStatisticsEvents.recordCalculation(
+        "percentage-calculator"
+    );
 }
 
 
@@ -492,6 +497,11 @@ function calculateChange() {
             </div>
         `
     );
+
+    // Record successful calculation
+    ToolXoneStatisticsEvents.recordCalculation(
+        "percentage-calculator"
+    );
 }
 
 
@@ -549,46 +559,63 @@ document
         "#percentValue, #totalValue"
     )
     .forEach(input => {
+
         input.addEventListener(
             "keydown",
             function (event) {
+
                 if (
                     event.key === "Enter"
                 ) {
+
+                    event.preventDefault();
+
                     calculatePercentOf();
                 }
             }
         );
     });
 
+
 document
     .querySelectorAll(
         "#partValue, #wholeValue"
     )
     .forEach(input => {
+
         input.addEventListener(
             "keydown",
             function (event) {
+
                 if (
                     event.key === "Enter"
                 ) {
+
+                    event.preventDefault();
+
                     calculateWhatPercent();
                 }
             }
         );
     });
 
+
 document
     .querySelectorAll(
         "#oldValue, #newValue"
     )
     .forEach(input => {
+
         input.addEventListener(
             "keydown",
             function (event) {
+
                 if (
                     event.key === "Enter"
                 ) {
+
+                    event.preventDefault();
+
                     calculateChange();
                 }
             }

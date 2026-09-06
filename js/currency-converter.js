@@ -881,6 +881,40 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /* ======================================
+           ENTER KEY SUPPORT
+           ====================================== */
+
+        const amountInput =
+            document.getElementById(
+                "amount"
+            );
+
+        if (amountInput) {
+
+            amountInput.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        event.preventDefault();
+
+                        convertCurrency();
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* ======================================
+           CHART RANGE CONTROLS
+           ====================================== */
+
         const rangeButtons =
             document.querySelectorAll(
                 ".chart-range-btn"

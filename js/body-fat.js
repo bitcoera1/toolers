@@ -57,10 +57,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton =
         document.getElementById("resetBtn");
 
+        /* =====================================================
+       ENTER KEY SUPPORT
+       ===================================================== */
+
+    const calculatorInputs = document.querySelectorAll(
+        ".body-fat-page input"
+    );
+
+    calculatorInputs.forEach(function (input) {
+
+        input.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    calculateBodyFat();
+
+                }
+
+            }
+        );
+
+    });    
 
     /* =====================================================
        SEX CHANGE
-       ===================================================== */
+    ===================================================== */
 
     if (sexElement) {
 

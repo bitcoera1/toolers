@@ -91,22 +91,35 @@ document.addEventListener("DOMContentLoaded", function () {
        RESET BUTTON
        ===================================================== */
 
-    const resetButton =
-        document.getElementById("resetBtn");
+const resetButton =
+    document.getElementById("resetBtn");
 
-    if (resetButton) {
+if (resetButton) {
 
-        resetButton.addEventListener(
-            "click",
-            resetBMR
-        );
+    resetButton.addEventListener(
+        "click",
+        resetBMR
+    );
 
+}
+
+
+/* =====================================================
+   ENTER KEY SUPPORT
+   ===================================================== */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+        calculateBMR();
     }
 
+});
 
-    console.log(
-        "BMR JS Loaded Successfully!"
-    );
+
+console.log(
+    "BMR JS Loaded Successfully!"
+);
 
 });
 

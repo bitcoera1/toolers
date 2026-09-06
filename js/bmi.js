@@ -34,11 +34,19 @@ document.addEventListener("DOMContentLoaded", function () {
         resetBMI();
     });
 
-    document.getElementById("calculateBMI").addEventListener("click", calculateBMI);
-    document.getElementById("resetBMI").addEventListener("click", resetBMI);
+document.getElementById("calculateBMI").addEventListener("click", calculateBMI);
+document.getElementById("resetBMI").addEventListener("click", resetBMI);
 
-    console.log("BMI JS Loaded Successfully!");
 });
+
+// Enter key support
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        calculateBMI();
+    }
+});
+
+console.log("BMI JS Loaded Successfully!");
 
 function calculateBMI() {
     let bmi;

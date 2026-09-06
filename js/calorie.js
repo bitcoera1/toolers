@@ -88,6 +88,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton =
         document.getElementById("resetBtn");
 
+    /* =====================================================
+       ENTER KEY SUPPORT
+    ===================================================== */
+
+    const calculatorInputs = document.querySelectorAll(
+        ".calorie-page input"
+    );
+
+    calculatorInputs.forEach(function (input) {
+
+        input.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    calculateCalories();
+
+                }
+
+            }
+        );
+
+    });        
 
     /* =====================================================
        UNIT SWITCH — METRIC
