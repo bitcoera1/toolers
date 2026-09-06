@@ -547,6 +547,15 @@ function resetAge() {
         "";
 }
 
+/* =====================================================
+   9. ENTER KEY SUPPORT
+   ===================================================== */
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        calculateAge();
+    }
+});
 
 /* =====================================================
    9. STARTUP
