@@ -448,7 +448,7 @@ if (
        RESULT VALIDATION
        ====================================== */
 
-    if (
+if (
     !Number.isFinite(emi) ||
     !Number.isFinite(totalPayment) ||
     !Number.isFinite(totalInterest) ||
@@ -456,21 +456,33 @@ if (
     totalPayment < 0 ||
     totalInterest < 0
 ) {
+    const message =
+        "The loan calculation produced an invalid result. Please use different loan values.";
+
     const errors = {
-    loanAmount: message
-};
+        loanAmount: message
+    };
 
-ToolXoneValidationUI.showErrors(
-    errors
-);
+    if (
+        window.ToolXoneValidationUI &&
+        typeof ToolXoneValidationUI.showErrors === "function"
+    ) {
+        ToolXoneValidationUI.showErrors(
+            errors
+        );
 
-if (
-    typeof ToolXoneValidationUI.focusFirstInvalid === "function"
-) {
-    ToolXoneValidationUI.focusFirstInvalid(
-        errors
-    );
-}
+        if (
+            typeof ToolXoneValidationUI.focusFirstInvalid === "function"
+        ) {
+            ToolXoneValidationUI.focusFirstInvalid(
+                errors
+            );
+        }
+    } else {
+        alert(message);
+    }
+
+    return;
 
 }
 
@@ -557,16 +569,15 @@ if (
        STATISTICS
        ====================================== */
 
-    if (
-        window.ToolXoneStatisticsEvents &&
-        typeof ToolXoneStatisticsEvents
-            .recordCalculation === "function"
-    ) {
-        ToolXoneStatisticsEvents
-            .recordCalculation(
-                "loan-calculator"
-            );
-    }
+if (
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
+    typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+) {
+    ToolXoneStatisticsEvents.recordCalculation(
+        "loan-calculator"
+    );
+}
+
 }
 
 

@@ -281,6 +281,9 @@ function updateMortgageBars(
         `${interestPercent}%`;
 }
 
+const MORTGAGE_MAX_LOAN = 1e15;
+const MORTGAGE_MAX_RATE = 100;
+const MORTGAGE_MAX_YEARS = 100;
 
 /* ======================================
    MAIN WORKFLOW
@@ -289,20 +292,23 @@ function updateMortgageBars(
 function runMortgageCalculator() {
     const data = getMortgageInputValues();
 
-    if (
-        !Number.isFinite(data.loan) ||
-        !Number.isFinite(data.annualRate) ||
-        !Number.isFinite(data.years) ||
-        data.loan <= 0 ||
-        data.annualRate < 0 ||
-        data.years <= 0
-    ) {
-        showMortgageMessage(
-            "Please enter valid values. Loan amount and loan term must be greater than zero, and interest rate cannot be negative.",
-            "error"
-        );
-        return;
-    }
+if (
+    !Number.isFinite(data.loan) ||
+    !Number.isFinite(data.annualRate) ||
+    !Number.isFinite(data.years) ||
+    data.loan <= 0 ||
+    data.loan > MORTGAGE_MAX_LOAN ||
+    data.annualRate < 0 ||
+    data.annualRate > MORTGAGE_MAX_RATE ||
+    data.years <= 0 ||
+    data.years > MORTGAGE_MAX_YEARS
+) {
+    showMortgageMessage(
+        "Please enter valid values. Loan amount must be greater than 0 and no more than 1 quadrillion, interest rate must be between 0% and 100%, and loan term must be greater than 0 and no more than 100 years.",
+        "error"
+    );
+    return;
+}
 
     const payments = data.years * 12;
 
@@ -333,12 +339,13 @@ function runMortgageCalculator() {
     updateMortgageBars(resultData);
 
     if (
-        window.ToolXoneStatisticsEvents &&
-        typeof ToolXoneStatisticsEvents.recordCalculation === "function"
-    ) {
-        ToolXoneStatisticsEvents.recordCalculation(
-            "mortgage-calculator"
-        );
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
+    typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+) {
+    ToolXoneStatisticsEvents.recordCalculation(
+        "mortgage-calculator"
+    );
+
     }
 }
 

@@ -121,14 +121,32 @@ Mortgage Calculator
             },
 
 
-            application: {
+application: {
 
-                name:
-                    "ToolXone Mortgage Calculator",
+    name:
+        "ToolXone Mortgage Calculator",
 
-                applicationCategory:
-                    "FinanceApplication"
-            },
+    applicationCategory:
+        "FinanceApplication",
+
+    applicationSubCategory:
+        "Mortgage Calculator",
+
+    operatingSystem:
+        "Any",
+
+    isAccessibleForFree:
+        true,
+
+    offers: {
+
+        price:
+            "0",
+
+        priceCurrency:
+            "USD"
+    }
+},
 
 
             breadcrumbs: [

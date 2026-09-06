@@ -424,7 +424,7 @@ if (
 
 // Record successful calculation
 if (
-    window.ToolXoneStatisticsEvents &&
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
     typeof ToolXoneStatisticsEvents.recordCalculation === "function"
 ) {
     ToolXoneStatisticsEvents.recordCalculation(
