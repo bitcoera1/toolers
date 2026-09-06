@@ -281,94 +281,72 @@ Object.freeze({
 
         faq: [
 
-            {
+    {
 
-                question:
-                    "What is an Image to PDF Converter?",
+        question:
+            "Can I convert JPG images to PDF?",
 
-                answer:
-                    "An Image to PDF Converter turns image files such as JPG, PNG and WEBP into a PDF document. ToolXone lets you combine multiple images into a single PDF and customize page size, orientation, margins and image fit before downloading the result."
+        answer:
+            "Yes. ToolXone Image to PDF supports JPG images and can combine one or multiple JPG files into a single PDF document."
 
-            },
-
-
-            {
-
-                question:
-                    "Can I convert JPG images to PDF?",
-
-                answer:
-                    "Yes. ToolXone Image to PDF supports JPG images and can combine one or multiple JPG files into a single PDF document."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Can I convert PNG images to PDF?",
+        question:
+            "Can I convert PNG images to PDF?",
 
-                answer:
-                    "Yes. You can upload PNG images and convert them into a PDF document. Multiple PNG files can also be combined into one PDF."
+        answer:
+            "Yes. You can upload PNG images and convert them into a PDF document. Multiple PNG files can also be combined into one PDF."
 
-            },
-
-
-            {
-
-                question:
-                    "Can I convert WEBP images to PDF?",
-
-                answer:
-                    "Yes. ToolXone supports WEBP images and can convert them into PDF documents along with supported JPG and PNG images."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Can I combine multiple images into one PDF?",
+        question:
+            "Can I convert WebP images to PDF?",
 
-                answer:
-                    "Yes. You can add multiple supported images and arrange them as pages in a single PDF document before creating and downloading the PDF."
+        answer:
+            "Yes. ToolXone supports WebP images and can convert them into PDF documents along with supported JPG and PNG images."
 
-            },
-
-
-            {
-
-                question:
-                    "Can I customize the PDF page settings?",
-
-                answer:
-                    "Yes. ToolXone lets you choose PDF page size, orientation, margins and image-fit behavior before creating the PDF."
-
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Can I remove an image before creating the PDF?",
+        question:
+            "Can I combine multiple images into one PDF?",
 
-                answer:
-                    "Yes. Uploaded images are displayed as individual preview cards, allowing you to remove unwanted images before generating the PDF."
+        answer:
+            "Yes. You can add multiple supported images and arrange them as pages in a single PDF document before creating and downloading the PDF."
 
-            },
+    },
 
 
-            {
+    {
 
-                question:
-                    "Is ToolXone Image to PDF free?",
+        question:
+            "Can I arrange the image pages before creating the PDF?",
 
-                answer:
-                    "Yes. ToolXone Image to PDF Converter is designed as a free online tool for converting supported images into PDF documents."
+        answer:
+            "Yes. You can drag the image pages into the order you want before creating the PDF."
 
-            }
+    },
 
-        ]
+
+    {
+
+        question:
+            "Which image formats are supported for Image to PDF?",
+
+        answer:
+            "ToolXone supports JPG, PNG and WebP images for the Image to PDF workflow."
+
+    }
+
+]
 
     }
 

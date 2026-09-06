@@ -110,7 +110,7 @@ SEO schema architecture remains in:
                         "Organize PDF Documents",
 
                     content:
-                        "Manage PDF pages by combining documents, splitting files, extracting pages, removing unwanted pages and arranging documents into the order you need."
+                        "Planned PDF organization workflows will help users combine documents, split files, extract pages, remove unwanted pages and arrange documents into the order they need."
 
                 },
 
@@ -225,7 +225,7 @@ SEO schema architecture remains in:
                     "Are ToolXone PDF tools free?",
 
                 answer:
-                    "ToolXone is designed to provide practical online tools with simple workflows. Availability and supported features can vary by individual tool."
+    "Yes. ToolXone's current PDF tools are available free to use online, with simple workflows designed for everyday PDF conversion tasks."
 
             },
 
@@ -324,54 +324,6 @@ SEO schema architecture remains in:
 
             },
 
-            {
-
-                icon:
-                    "📑",
-
-                title:
-                    "Merge PDF",
-
-                description:
-                    "Combine multiple PDF documents into one file.",
-
-                url:
-                    "merge-pdf.html"
-
-            },
-
-            {
-
-                icon:
-                    "✂️",
-
-                title:
-                    "Split PDF",
-
-                description:
-                    "Split PDF documents into separate files or page ranges.",
-
-                url:
-                    "split-pdf.html"
-
-            },
-
-            {
-
-                icon:
-                    "⚡",
-
-                title:
-                    "Compress PDF",
-
-                description:
-                    "Reduce PDF file size for easier storage and sharing.",
-
-                url:
-                    "compress-pdf.html"
-
-            }
-
         ]
 
     );
@@ -402,7 +354,7 @@ SEO schema architecture remains in:
                 "Everything You Need to Work With PDFs",
 
             description:
-                "Convert, organize, compress, edit, secure and manage PDF documents with practical online tools designed for everyday work.",
+                "Convert PDF pages to images and convert images to PDF documents with practical online tools designed for everyday work. More PDF workflows are being added to the ToolXone ecosystem.",
 
             badge:
                 "PDF TOOLS",
@@ -418,20 +370,17 @@ SEO schema architecture remains in:
 
             highlights: [
 
-                "PDF Conversion",
-
-                "Document Organization",
-
-                "PDF Optimization",
-
-                "PDF Security"
+                "PDF to Image",
+                "Image to PDF",
+                "JPG, PNG & WebP",
+                "Browser-Based Workflows"
 
             ],
 
             statistics: {
 
                 categories:
-                    "7+",
+                    "2 Active",
 
                 workflows:
                     "Growing",
@@ -461,7 +410,7 @@ SEO schema architecture remains in:
                         </strong>
 
                         <span>
-                            Convert • Organize • Optimize
+                            PDF to Image • Image to PDF
                         </span>
 
                     </div>
@@ -507,10 +456,10 @@ SEO schema architecture remains in:
                 "2026-08-22",
 
             title:
-                "Free Online PDF Tools - Convert, Compress, Edit & Manage PDFs | ToolXone",
+                "Free Online PDF Tools - PDF to Image & Image to PDF | ToolXone",
 
             description:
-                "Use ToolXone's free online PDF tools to convert, organize, compress, edit, secure, extract and manage PDF documents. Simple, practical and easy to use.",
+                "Use ToolXone's free online PDF tools to convert PDF pages to images and convert JPG, PNG and WebP images to PDF documents. More PDF workflows are being added over time.",
 
             keywords: [
 
@@ -522,10 +471,6 @@ SEO schema architecture remains in:
 
                 "PDF converter",
 
-                "PDF editor",
-
-                "PDF compressor",
-
                 "PDF utilities",
 
                 "PDF tools online",
@@ -533,8 +478,6 @@ SEO schema architecture remains in:
                 "free online PDF tools",
 
                 "PDF converter online",
-
-                "PDF management tools",
 
                 "online PDF converter"
 
@@ -726,13 +669,11 @@ SEO schema architecture remains in:
             },
 
             {
-
                 question:
-                    "Can every page of a PDF be converted?",
+                    "Can I select specific pages from a PDF?",
 
                 answer:
-                    "The workflow is designed to support PDF page conversion, with page-selection capabilities planned as part of the tool's conversion options."
-
+                    "Yes. ToolXone's PDF to Image workflow lets you select the PDF pages you want to convert before starting the conversion."
             },
 
             {
@@ -783,38 +724,6 @@ SEO schema architecture remains in:
                     "image-to-pdf.html"
 
             },
-
-            {
-
-                icon:
-                    "📑",
-
-                title:
-                    "Merge PDF",
-
-                description:
-                    "Combine multiple PDF documents into one file.",
-
-                url:
-                    "merge-pdf.html"
-
-            },
-
-            {
-
-                icon:
-                    "⚡",
-
-                title:
-                    "Compress PDF",
-
-                description:
-                    "Reduce PDF file size for easier storage and sharing.",
-
-                url:
-                    "compress-pdf.html"
-
-            }
 
         ]
 
@@ -1075,7 +984,7 @@ SEO schema architecture remains in:
                         "Useful PDF Page Options",
 
                     content:
-                        "The Image to PDF workflow supports options such as page size, orientation, margins, image fitting, image quality and page ordering."
+                        "The Image to PDF workflow supports options such as page size, orientation, margins, image fitting and page ordering."
 
                 },
 
@@ -1160,7 +1069,7 @@ SEO schema architecture remains in:
                     "Can I arrange the image pages before creating the PDF?",
 
                 answer:
-                    "Yes. Page ordering is planned as part of the Image to PDF workflow so users can control the sequence of images in the resulting document."
+                    "Yes. You can drag the image pages into the order you want before creating the PDF."
 
             },
 
@@ -1170,7 +1079,7 @@ SEO schema architecture remains in:
                     "What image formats can be converted to PDF?",
 
                 answer:
-                    "The planned Image to PDF workflow supports JPG, PNG and WebP image formats."
+                    "The Image to PDF workflow supports JPG, PNG and WebP image formats."
 
             }
 
@@ -1212,38 +1121,6 @@ SEO schema architecture remains in:
                     "pdf-to-image.html"
 
             },
-
-            {
-
-                icon:
-                    "📑",
-
-                title:
-                    "Merge PDF",
-
-                description:
-                    "Combine multiple PDF documents into one file.",
-
-                url:
-                    "merge-pdf.html"
-
-            },
-
-            {
-
-                icon:
-                    "⚡",
-
-                title:
-                    "Compress PDF",
-
-                description:
-                    "Reduce PDF file size for easier sharing and storage.",
-
-                url:
-                    "compress-pdf.html"
-
-            }
 
         ]
 

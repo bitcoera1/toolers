@@ -807,8 +807,9 @@ IMPORTANT
         }
 
 
-        const categories =
-            getCategories();
+        const categories = getCategories().filter(function (category) {
+            return getToolsByCategory(category.id).length > 0;
+        });
 
 
         if (

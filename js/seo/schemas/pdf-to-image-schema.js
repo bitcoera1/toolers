@@ -285,94 +285,67 @@ Object.freeze({
 
         faq: [
 
-            {
+    {
 
-                question:
-                    "What is a PDF to Image Converter?",
+        question:
+            "Can I convert a PDF to JPG?",
 
-                answer:
-                    "A PDF to Image Converter turns PDF pages into image files such as JPG, PNG and WEBP. ToolXone lets you convert PDF pages into image files and choose the output format that best fits your needs."
+        answer:
+            "Yes. ToolXone's PDF to Image workflow is designed to support JPG output."
 
-            },
+    },
 
+    {
 
-            {
+        question:
+            "Can I convert a PDF to PNG?",
 
-                question:
-                    "Can I convert a PDF to JPG?",
+        answer:
+            "Yes. PNG is one of the supported output formats in the PDF to Image workflow."
 
-                answer:
-                    "Yes. ToolXone PDF to Image supports JPG output for converting PDF pages into JPG image files."
+    },
 
-            },
+    {
 
+        question:
+            "Can I convert a PDF to WebP?",
 
-            {
+        answer:
+            "Yes. WebP is included as an output option in the PDF to Image workflow."
 
-                question:
-                    "Can I convert a PDF to PNG?",
+    },
 
-                answer:
-                    "Yes. You can convert PDF pages into PNG images using ToolXone PDF to Image Converter."
+    {
 
-            },
+        question:
+            "Do I need a separate tool for PDF to JPG and PDF to PNG?",
 
+        answer:
+            "No. ToolXone combines these closely related workflows into one PDF to Image tool with an output-format selector."
 
-            {
+    },
 
-                question:
-                    "Can I convert a PDF to WEBP?",
+    {
 
-                answer:
-                    "Yes. ToolXone supports WEBP output, allowing PDF pages to be converted into WEBP image files."
+        question:
+            "Can I select specific pages from a PDF?",
 
-            },
+        answer:
+            "Yes. ToolXone's PDF to Image workflow lets you select the PDF pages you want to convert before starting the conversion."
 
+    },
 
-            {
+    {
 
-                question:
-                    "Can I convert multiple PDF pages into images?",
+        question:
+            "Which image format should I choose?",
 
-                answer:
-                    "Yes. ToolXone can convert PDF pages into image files, allowing pages from a PDF document to be processed as images."
+        answer:
+            "JPG can be useful for compact everyday images, PNG can be useful when lossless image quality is preferred, and WebP can be useful for modern web-oriented image workflows."
 
-            },
+    }
 
-
-            {
-
-                question:
-                    "Which image formats are supported?",
-
-                answer:
-                    "ToolXone PDF to Image supports JPG, PNG and WEBP output formats."
-
-            },
-
-
-            {
-
-                question:
-                    "Is the PDF to Image Converter free?",
-
-                answer:
-                    "Yes. ToolXone PDF to Image Converter is designed as a free online tool for converting PDF pages into supported image formats."
-
-            },
-
-
-            {
-
-                question:
-                    "Can I download the converted images?",
-
-                answer:
-                    "Yes. After converting the PDF pages, the resulting image files can be downloaded for use in your documents, projects and other workflows."
-
-            }
-
-        ]
+]
 
     }
 

@@ -2703,7 +2703,14 @@ function updateWorkspace() {
 
             }
 
+            
         );
+if (
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
+    typeof ToolXoneStatisticsEvents.recordConversion === "function"
+) {
+    ToolXoneStatisticsEvents.recordConversion("image-to-pdf");
+}
 
     }
 

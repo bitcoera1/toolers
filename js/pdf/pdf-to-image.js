@@ -1256,24 +1256,12 @@
             renderResults();
 
 
-            recordUsage(
-                "pdf_to_image_converted",
-                {
-                    pages:
-                        total,
-
-                    format:
-                        getFormat(),
-
-                    quality:
-                        getQuality(),
-
-                    scale:
-                        getScale()
-
-                }
-            );
-
+if (
+    typeof ToolXoneStatisticsEvents !== "undefined" &&
+    typeof ToolXoneStatisticsEvents.recordCalculation === "function"
+) {
+    ToolXoneStatisticsEvents.recordCalculation("pdf-to-image");
+}
 
             setStatus(
                 `Successfully converted ${total} page${total === 1 ? "" : "s"}.`,

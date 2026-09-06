@@ -23,10 +23,10 @@ version:"1.0.0",
     basic: {
 
         title:
-            "PDF Tools – Free Online PDF Tools for Convert, Merge, Compress & More | ToolXone",
+            "PDF Tools – Free Online PDF Tools for PDF to Image & Image to PDF | ToolXone",
 
         description:
-            "Use ToolXone's free online PDF Tools to convert, organize, compress, edit and manage PDF documents. Access practical PDF workflows including PDF conversion, image conversion, document organization and more. Fast, secure, mobile-friendly and free to use.",
+            "Use ToolXone's free online PDF Tools to convert PDF pages to images and convert images to PDF documents. Free, practical and mobile-friendly PDF conversion tools.",
 
         keywords: [
 
@@ -37,18 +37,6 @@ version:"1.0.0",
             "free PDF tools",
 
             "PDF converter",
-
-            "PDF editor",
-
-            "PDF compressor",
-
-            "PDF converter online",
-
-            "merge PDF",
-
-            "split PDF",
-
-            "compress PDF",
 
             "PDF to image",
 
@@ -111,7 +99,7 @@ version:"1.0.0",
             "PDF Tools – Free Online PDF Tools | ToolXone",
 
         description:
-            "Use ToolXone's free online PDF Tools to convert, organize, compress, edit and manage PDF documents with practical tools designed for everyday work.",
+            "Use ToolXone's free online PDF Tools to convert PDF pages to images and convert images to PDF documents with practical, easy-to-use workflows.",
 
         type:
             "website",
@@ -151,7 +139,7 @@ version:"1.0.0",
             "PDF Tools - Free Online PDF Tools | ToolXone",
 
         description:
-            "Convert, organize, compress and manage PDF documents with ToolXone's free online PDF Tools. Fast, practical and easy to use.",
+            "Convert PDF pages to images or turn JPG, PNG and WebP images into PDF documents with ToolXone's free online PDF Tools.",
 
         image:
             "https://www.toolxone.com/images/toolxone-logo.jpg",
@@ -194,7 +182,7 @@ version:"1.0.0",
                 "https://www.toolxone.com/pdf-tools.html",
 
             description:
-                "A collection of practical online PDF tools for converting, organizing, compressing, editing and managing PDF documents."
+                "A collection of practical online PDF tools for converting PDF pages to images and converting images into PDF documents."
 
         },
 
@@ -234,43 +222,63 @@ version:"1.0.0",
 
         faq: [
 
-            {
+        {
 
                 question:
                     "What are PDF tools?",
 
                 answer:
-                    "PDF tools are online utilities that help you work with PDF documents, including converting, organizing, compressing, editing and managing PDF files."
+                    "PDF tools are utilities designed to help users create, convert, organize, compress, edit, secure and extract information from PDF documents."
 
             },
 
             {
 
                 question:
-                    "What PDF tools are available on ToolXone?",
+                    "Are ToolXone PDF tools free?",
 
                 answer:
-                    "ToolXone's PDF Tools ecosystem is designed to provide practical PDF workflows such as PDF conversion, PDF to image, image to PDF, document organization, compression and other useful PDF utilities."
+                        "Yes. ToolXone's current PDF tools are available free to use online, with simple workflows designed for everyday PDF conversion tasks."
 
             },
 
             {
 
                 question:
-                    "Are ToolXone PDF Tools free?",
+                    "Can I convert PDF files to images?",
 
                 answer:
-                    "ToolXone provides free online tools designed to make everyday PDF and document workflows simple and accessible."
+                    "Yes. ToolXone's PDF to Image workflow is designed to convert PDF pages into image formats such as JPG, PNG and WebP."
 
             },
 
             {
 
                 question:
-                    "Can I use ToolXone PDF Tools on mobile devices?",
+                    "Can I convert images into PDF files?",
 
                 answer:
-                    "Yes. ToolXone PDF Tools are designed with a mobile-friendly interface so users can access PDF workflows across desktop, tablet and mobile devices."
+                    "Yes. ToolXone's Image to PDF workflow supports common image formats including JPG, PNG and WebP."
+
+            },
+
+            {
+
+                question:
+                    "What PDF tasks can ToolXone support?",
+
+                answer:
+                    "The PDF ecosystem is being built to support document conversion, organization, compression, editing, security, extraction, OCR and future intelligent document workflows."
+
+            },
+
+            {
+
+                question:
+                    "Can I use ToolXone PDF tools on mobile devices?",
+
+                answer:
+                    "ToolXone's online tools are designed with responsive interfaces so supported workflows can be accessed from modern desktop and mobile web browsers."
 
             }
 
